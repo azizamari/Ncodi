@@ -21,12 +21,17 @@ namespace Pital
                 var color = Console.ForegroundColor;
                 Console.ForegroundColor = ConsoleColor.DarkGray;
 
-                Print(expression);
+                TreePrint(expression);
             }
         }
-        static void Print(SyntaxNode node,string indent="")
+        // ├──
+        // │    
+        // └──
+        static void TreePrint(SyntaxNode node,string indent="", bool isLast=true)
         {
+            var marker = isLast ? "└──" : "├──";
             Console.Write(indent);
+            Console.Write(marker);
             Console.Write(node.Kind);
             if(node is SyntaxToken T && T.Value != null)
             {
@@ -35,10 +40,13 @@ namespace Pital
             }
 
             Console.WriteLine();
-            indent += "    ";
+            indent +=isLast?"   ": "│  ";
+
+            var lastChild = node.GetChildren().LastOrDefault();
+
             foreach(var child in node.GetChildren())
             {
-                Print(child, indent);
+                TreePrint(child, indent,child ==lastChild);
             }
         }
     }
