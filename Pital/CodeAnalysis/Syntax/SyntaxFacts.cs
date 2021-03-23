@@ -1,4 +1,4 @@
-﻿namespace Pital.CodeAnalysis
+﻿namespace Pital.CodeAnalysis.Syntax
 {
     internal static class SyntaxFacts
     {

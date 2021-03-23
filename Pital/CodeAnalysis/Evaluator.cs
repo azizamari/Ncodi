@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Threading.Tasks;
+using Pital.CodeAnalysis.Syntax;
 
 namespace Pital.CodeAnalysis
 {

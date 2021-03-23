@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Pital.CodeAnalysis
+namespace Pital.CodeAnalysis.Syntax
 {
     public sealed class SyntaxToken : SyntaxNode
     {

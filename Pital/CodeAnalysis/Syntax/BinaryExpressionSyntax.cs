@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Pital.CodeAnalysis
+namespace Pital.CodeAnalysis.Syntax
 {
     public sealed class BinaryExpressionSyntax : ExpressionSyntax
     {

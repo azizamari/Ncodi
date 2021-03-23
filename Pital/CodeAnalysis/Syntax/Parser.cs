@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Pital.CodeAnalysis
+namespace Pital.CodeAnalysis.Syntax
 {
     internal sealed class Parser
     {
@@ -90,7 +90,7 @@ namespace Pital.CodeAnalysis
             return left;
         }
 
-        private ExpressionSyntax ParsePrimaryExpression()
+        private ExpressionSyntax ParsePrimaryExpression()  
         {
             if (Current.Kind == SyntaxKind.OpenParenthesisToken)
             {
