@@ -2,7 +2,7 @@
 
 namespace Pital.CodeAnalysis
 {
-    class Parser
+    internal sealed class Parser
     {
         private readonly SyntaxToken[] _tokens;
 

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Pital.CodeAnalysis
 {
-    class Evaluator
+    public class Evaluator
     {
         private readonly ExpressionSyntax _root;
 

@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace Pital
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
             bool showTree = false;
             while (true)
@@ -30,12 +30,11 @@ namespace Pital
 
                 var syntaxTree = SyntaxTree.Parse(line);
 
-                var color = Console.ForegroundColor;
                 if (showTree)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     TreePrint(syntaxTree.Root);
-                    Console.ForegroundColor = color;
+                    Console.ResetColor();
                 }
 
                 if (!syntaxTree.Diagnostics.Any())
@@ -53,7 +52,7 @@ namespace Pital
                         Console.WriteLine(diagnostic);
                     }
 
-                    Console.ForegroundColor = color;
+                    Console.ResetColor();
                 }
             }
         }
