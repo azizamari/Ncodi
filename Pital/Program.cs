@@ -53,7 +53,7 @@ namespace Pital
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
 
-                    foreach (var diagnostic in syntaxTree.Diagnostics)
+                    foreach (var diagnostic in diagnostics)
                     {
                         Console.WriteLine(diagnostic);
                     }

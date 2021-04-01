@@ -1,4 +1,6 @@
-﻿namespace Pital.CodeAnalysis.Syntax
+﻿using System;
+
+namespace Pital.CodeAnalysis.Syntax
 {
     internal static class SyntaxFacts
     {
@@ -25,6 +27,19 @@
                     return 3;
                 default:
                     return 0;
+            }
+        }
+
+        public static SyntaxKind GetKeywordKind(string text)
+        {
+            switch (text)
+            {
+                case "true":
+                    return SyntaxKind.TrueKeyword;
+                case "false":
+                    return SyntaxKind.FalseKeyword;
+                default:
+                    return SyntaxKind.IdentifierToken;
             }
         }
     }

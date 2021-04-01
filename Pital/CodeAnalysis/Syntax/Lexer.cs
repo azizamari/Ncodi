@@ -66,6 +66,20 @@ namespace Pital.CodeAnalysis.Syntax
                 return new SyntaxToken(SyntaxKind.WhiteSpaceToken, start, text, null);
             }
 
+            //true & false
+            if (char.IsLetter(current))
+            {
+                var start = _position;
+                while (char.IsLetter(current))
+                    Next();
+
+                var length = _position - start;
+                var text = _text.Substring(start, length);
+                var kind = SyntaxFacts.GetKeywordKind(text);
+                return new SyntaxToken(kind, start, text, null);
+            }
+
+
             switch (current)
             {
                 case '+':

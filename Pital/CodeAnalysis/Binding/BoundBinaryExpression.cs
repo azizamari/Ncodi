@@ -4,7 +4,7 @@ namespace Pital.CodeAnalysis.Binding
 {
     internal sealed class BoundBinaryExpression : BoundExpression
     {
-        public BoundBinaryExpression(BoundExpression right,BoundBinaryOperatorKind operatorKind, BoundExpression left)
+        public BoundBinaryExpression(BoundExpression left, BoundBinaryOperatorKind operatorKind, BoundExpression right)
         {
             Right = right;
             OperatorKind = operatorKind;
