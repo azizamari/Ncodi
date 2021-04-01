@@ -1,4 +1,5 @@
 ﻿using Pital.CodeAnalysis;
+using Pital.CodeAnalysis.Binding;
 using Pital.CodeAnalysis.Syntax;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,10 @@ namespace Pital
                 }
 
                 var syntaxTree = SyntaxTree.Parse(line);
+                var binder = new Binder();
+                var boundExpression = binder.BindExpression(syntaxTree.Root);
+
+                var diagnostics = syntaxTree.Diagnostics.Concat(binder.Diagnostics).ToArray();
 
                 if (showTree)
                 {
@@ -38,9 +43,9 @@ namespace Pital
                     Console.ResetColor();
                 }
 
-                if (!syntaxTree.Diagnostics.Any())
+                if (!diagnostics.Any())
                 {
-                    var e = new Evaluator(syntaxTree.Root);
+                    var e = new Evaluator(boundExpression);
                     var result = e.Evaluate();
                     Console.WriteLine(result);
                 }
