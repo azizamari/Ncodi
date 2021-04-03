@@ -14,15 +14,17 @@ namespace Pital.CodeAnalysis.Syntax
         }
 
         public IEnumerable<string> Diagnostics => _diagnostics;
-        private char current
+        private char current => Peek(0);
+        private char lookAhead => Peek(1);
+
+        private char Peek(int offset)
         {
-            get
-            {
-                if (_position >= _text.Length)
-                    return '\0';
-                return _text[_position];
-            }
+            var index = _position + offset;
+            if (index >= _text.Length)
+                return '\0';
+            return _text[index];
         }
+
         private void Next()
         {
             _position++;
@@ -94,6 +96,12 @@ namespace Pital.CodeAnalysis.Syntax
                     return new SyntaxToken(SyntaxKind.OpenParenthesisToken, _position++, "(", null);
                 case ')':
                     return new SyntaxToken(SyntaxKind.ClosedParenthesisToken, _position++, ")", null);
+                case '!':
+                    return new SyntaxToken(SyntaxKind.BangToken, _position++, "!", null);
+                case '&':
+                    return new SyntaxToken(SyntaxKind.AmpersandToken, _position++, "&", null);
+                case '|':
+                    return new SyntaxToken(SyntaxKind.PipeToken, _position ++, "|", null);
             }
 
             _diagnostics.Add($"ERROR: bad character input: {current}");
