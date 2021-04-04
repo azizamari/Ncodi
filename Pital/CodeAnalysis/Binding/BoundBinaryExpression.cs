@@ -14,7 +14,7 @@ namespace Pital.CodeAnalysis.Binding
 
 
         public override BoundNodeKind Kind => BoundNodeKind.BinaryExpression;
-        public override Type Type => Left.Type;
+        public override Type Type => Op.Type;
 
         public BoundExpression Right { get; }
         public BoundBinaryOperator Op { get; }

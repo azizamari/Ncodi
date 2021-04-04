@@ -96,12 +96,19 @@ namespace Pital.CodeAnalysis.Syntax
                     return new SyntaxToken(SyntaxKind.OpenParenthesisToken, _position++, "(", null);
                 case ')':
                     return new SyntaxToken(SyntaxKind.ClosedParenthesisToken, _position++, ")", null);
-                case '!':
-                    return new SyntaxToken(SyntaxKind.BangToken, _position++, "!", null);
                 case '&':
                     return new SyntaxToken(SyntaxKind.AmpersandToken, _position++, "&", null);
                 case '|':
                     return new SyntaxToken(SyntaxKind.PipeToken, _position ++, "|", null);
+                case '=':
+                    if(lookAhead == '=')
+                        return new SyntaxToken(SyntaxKind.EqualsEqualsToken, _position+=2, "==", null);
+                    break;
+                case '!':
+                    if (lookAhead == '=')
+                        return new SyntaxToken(SyntaxKind.BangEqualsToken, _position+=2, "!=", null);
+                    else
+                        return new SyntaxToken(SyntaxKind.BangToken, _position++, "!", null);
             }
 
             _diagnostics.Add($"ERROR: bad character input: {current}");

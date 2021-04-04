@@ -27,5 +27,7 @@
         ParenthesizedExpression,
         UnaryExpression,
         BangToken,
+        EqualsEqualsToken,
+        BangEqualsToken,
     }
 }
