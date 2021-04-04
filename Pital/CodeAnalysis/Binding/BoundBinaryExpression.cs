@@ -2,12 +2,13 @@
 
 namespace Pital.CodeAnalysis.Binding
 {
+
     internal sealed class BoundBinaryExpression : BoundExpression
     {
-        public BoundBinaryExpression(BoundExpression left, BoundBinaryOperatorKind operatorKind, BoundExpression right)
+        public BoundBinaryExpression(BoundExpression left, BoundBinaryOperator op, BoundExpression right)
         {
             Right = right;
-            OperatorKind = operatorKind;
+            Op = op;
             Left = left;
         }
 
@@ -16,7 +17,7 @@ namespace Pital.CodeAnalysis.Binding
         public override Type Type => Left.Type;
 
         public BoundExpression Right { get; }
-        public BoundBinaryOperatorKind OperatorKind { get; }
+        public BoundBinaryOperator Op { get; }
         public BoundExpression Left { get; }
     }
 }
