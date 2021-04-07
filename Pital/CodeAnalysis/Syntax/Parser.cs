@@ -49,7 +49,10 @@ namespace Pital.CodeAnalysis.Syntax
         {
             if (Current.Kind == kind)
                 return NextToken();
-            _diagnostics.ReportUnexpectedToken(Current.Span,Current.Kind,kind);
+            //original
+            //_diagnostics.ReportUnexpectedToken(Current.Span, Current.Kind, kind);
+            //my fix
+            _diagnostics.ReportUnexpectedToken(Peek(-1).Span,Current.Kind,kind);
             return new SyntaxToken(kind, Current.Position, null, null);
         }
 
