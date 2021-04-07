@@ -2,10 +2,10 @@
 using System.Text;
 using System.Threading.Tasks;
 using Pital.CodeAnalysis.Binding;
-using Pital.CodeAnalysis.Syntax;
 
 namespace Pital.CodeAnalysis
 {
+
     internal class Evaluator
     {
         private readonly BoundExpression _root;
