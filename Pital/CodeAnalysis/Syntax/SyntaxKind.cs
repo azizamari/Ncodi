@@ -16,6 +16,10 @@
         AmpersandToken,
         PipeToken,
         IdentifierToken,
+        EqualsEqualsToken,
+        BangEqualsToken,
+        BangToken,
+        EqualsToken,
 
         //Keywords
         TrueKeyword,
@@ -26,8 +30,7 @@
         BinaryExpression,
         ParenthesizedExpression,
         UnaryExpression,
-        BangToken,
-        EqualsEqualsToken,
-        BangEqualsToken,
+        NameExpression,
+        AssignmentExpression,
     }
 }

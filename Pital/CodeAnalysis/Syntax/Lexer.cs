@@ -104,8 +104,7 @@ namespace Pital.CodeAnalysis.Syntax
                         _position += 2;
                         return new SyntaxToken(SyntaxKind.EqualsEqualsToken, start, "==", null);
                     }
-                        
-                    break;
+                    return new SyntaxToken(SyntaxKind.EqualsToken, _position++, "=", null);
                 case '!':
                     if (lookAhead == '=')
                     {
