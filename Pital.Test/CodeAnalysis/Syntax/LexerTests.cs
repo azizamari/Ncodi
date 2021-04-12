@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Pital.Test.CodeAnalysis.Syntax
 {
-    public class LexerTest
+    public class LexerTests
     {
         [Theory]
         [MemberData(nameof(GetTokensData))]
