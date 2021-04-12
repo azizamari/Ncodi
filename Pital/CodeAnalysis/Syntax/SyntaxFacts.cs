@@ -2,7 +2,7 @@
 
 namespace Pital.CodeAnalysis.Syntax
 {
-    internal static class SyntaxFacts
+    public static class SyntaxFacts
     {
         public static int GetUnaryOperatorPrecedence(this SyntaxKind kind)
         {
@@ -55,5 +55,42 @@ namespace Pital.CodeAnalysis.Syntax
                     return SyntaxKind.IdentifierToken;
             }
         }
+        public static string GetText(SyntaxKind kind)
+        {
+            switch (kind)
+            {
+                case SyntaxKind.MinusToken:
+                    return "-";
+                case SyntaxKind.PlusToken:
+                    return "+";
+                case SyntaxKind.StarToken:
+                    return "*";
+                case SyntaxKind.SlashToken:
+                    return "/";
+                case SyntaxKind.OpenParenthesisToken:
+                    return "(";
+                case SyntaxKind.ClosedParenthesisToken:
+                    return ")";
+                case SyntaxKind.AmpersandToken:
+                    return "&";
+                case SyntaxKind.PipeToken:
+                    return "|";
+                case SyntaxKind.EqualsEqualsToken:
+                    return "==";
+                case SyntaxKind.BangEqualsToken:
+                    return "!=";
+                case SyntaxKind.BangToken:
+                    return "!";
+                case SyntaxKind.EqualsToken:
+                    return "=";
+                case SyntaxKind.TrueKeyword:
+                    return "true";
+                case SyntaxKind.FalseKeyword:
+                    return "false";
+                default:
+                    return null;
+            }
+        }
     }
+
 }
