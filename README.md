@@ -3,4 +3,4 @@
 
 It contains two versions:
 -v1: Syntax is in English
--v2: Syntax is in Tunisian Dilect
+-v2: Syntax is in Tunisian Dialect
