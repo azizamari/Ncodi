@@ -51,28 +51,26 @@ namespace Pital.Test.CodeAnalysis.Syntax
         {
             try
             {
-                Assert.True(_enumerator.MoveNext());    
+                Assert.True(_enumerator.MoveNext());
                 Assert.Equal(kind, _enumerator.Current.Kind);
-
                 Assert.IsNotType<SyntaxToken>(_enumerator.Current);
             }
-            catch when(MarkFailed())
+            catch when (MarkFailed())
             {
                 throw;
             }
         }
 
-        public void AssertToken(SyntaxKind kind,string text)
+        public void AssertToken(SyntaxKind kind, string text)
         {
             try
             {
                 Assert.True(_enumerator.MoveNext());
                 Assert.Equal(kind, _enumerator.Current.Kind);
-
                 var token = Assert.IsType<SyntaxToken>(_enumerator.Current);
                 Assert.Equal(text, token.Text);
             }
-            catch when(MarkFailed())
+            catch when (MarkFailed())
             {
                 throw;
             }
