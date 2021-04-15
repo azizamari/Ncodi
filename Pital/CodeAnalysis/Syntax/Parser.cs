@@ -58,9 +58,9 @@ namespace Pital.CodeAnalysis.Syntax
 
         public SyntaxTree Parse()
         {
-            var expression = ParseExpression();
+            var expresion = ParseExpression();
             var endOfFileToken = MatchToken(SyntaxKind.EndOfFileToken);
-            return new SyntaxTree(Diagnostics, expression, endOfFileToken);
+            return new SyntaxTree(_diagnostics, expresion, endOfFileToken);
         }
 
         private ExpressionSyntax ParseExpression()
@@ -79,14 +79,14 @@ namespace Pital.CodeAnalysis.Syntax
             return ParseBinaryExpression();
         }
 
-        private ExpressionSyntax ParseBinaryExpression(int parentPrecedence=0)
+        private ExpressionSyntax ParseBinaryExpression(int parentPrecedence = 0)
         {
             ExpressionSyntax left;
             var unaryOperatorPrecedence = Current.Kind.GetUnaryOperatorPrecedence();
-            if(unaryOperatorPrecedence!=0 && unaryOperatorPrecedence >= parentPrecedence)
+            if(unaryOperatorPrecedence != 0 && unaryOperatorPrecedence >= parentPrecedence)
             {
                 var operatorToken = NextToken();
-                var operand = ParseBinaryExpression();
+                var operand = ParseBinaryExpression(unaryOperatorPrecedence);
                 left = new UnaryExpressionSyntax(operatorToken, operand);
             }
             else
@@ -94,52 +94,52 @@ namespace Pital.CodeAnalysis.Syntax
                 left = ParsePrimaryExpression();
             }
 
-
             while (true)
             {
                 var precedence = Current.Kind.GetBinaryOperatorPrecedence();
-                if (precedence == 0 || precedence<=parentPrecedence)
-                {
+                if (precedence == 0 || precedence <= parentPrecedence)
                     break;
-                }
+
                 var operatorToken = NextToken();
                 var right = ParseBinaryExpression(precedence);
                 left = new BinaryExpressionSyntax(left, operatorToken, right);
             }
+
             return left;
         }
 
-        private ExpressionSyntax ParsePrimaryExpression()  
+        private ExpressionSyntax ParsePrimaryExpression()
         {
             switch (Current.Kind)
             {
                 case SyntaxKind.OpenParenthesisToken:
-                {
-                    var left = NextToken();
-                    var expression = ParseExpression();
-                    var right = MatchToken(SyntaxKind.ClosedParenthesisToken);
-                    return new ParenthesizedExpressionSyntax(left, expression, right);
-                }
+                    {
+                        var left = NextToken();
+                        var expression = ParseExpression();
+                        var right = MatchToken(SyntaxKind.ClosedParenthesisToken);
+                        return new ParenthesizedExpressionSyntax(left, expression, right);
+                    }
 
-                case SyntaxKind.TrueKeyword:
                 case SyntaxKind.FalseKeyword:
-                {
-                    var keywordToken = NextToken();
-                    var value = keywordToken.Kind == SyntaxKind.TrueKeyword;
-                    return new LiteralExpressionSyntax(Current, value);
-                }
-                case SyntaxKind.IdentifierToken:
-                {
-                    var identifierToken = NextToken();
-                    return new NameExpressionSyntax(identifierToken);
-                }
-                default:
-                {
-                    var numberToken = MatchToken(SyntaxKind.NumberToken);
-                    return new LiteralExpressionSyntax(numberToken);
-                }
-            }
+                case SyntaxKind.TrueKeyword:
+                    {
+                        var keywordToken = NextToken();
+                        var value = keywordToken.Kind == SyntaxKind.TrueKeyword;
+                        return new LiteralExpressionSyntax(keywordToken, value);
+                    }
 
+                case SyntaxKind.IdentifierToken:
+                    {
+                        var identifierToken = NextToken();
+                        return new NameExpressionSyntax(identifierToken);
+                    }
+
+                default:
+                    {
+                        var numberToken = MatchToken(SyntaxKind.NumberToken);
+                        return new LiteralExpressionSyntax(numberToken);
+                    }
+            }
         }
     }
 }

@@ -70,7 +70,7 @@ namespace Pital.CodeAnalysis.Syntax
         public static IEnumerable<SyntaxKind> GetBinaryOperatorKinds()
         {
             var kinds = (SyntaxKind[])Enum.GetValues(typeof(SyntaxKind));
-            foreach(var kind in kinds)
+            foreach (var kind in kinds)
             {
                 if (GetBinaryOperatorPrecedence(kind) > 0)
                     yield return kind;
@@ -81,18 +81,18 @@ namespace Pital.CodeAnalysis.Syntax
         {
             switch (kind)
             {
-                case SyntaxKind.MinusToken:
-                    return "-";
                 case SyntaxKind.PlusToken:
                     return "+";
+                case SyntaxKind.MinusToken:
+                    return "-";
                 case SyntaxKind.StarToken:
                     return "*";
                 case SyntaxKind.SlashToken:
                     return "/";
-                case SyntaxKind.OpenParenthesisToken:
-                    return "(";
-                case SyntaxKind.ClosedParenthesisToken:
-                    return ")";
+                case SyntaxKind.BangToken:
+                    return "!";
+                case SyntaxKind.EqualsToken:
+                    return "=";
                 case SyntaxKind.AmpersandToken:
                     return "&";
                 case SyntaxKind.PipeToken:
@@ -101,14 +101,14 @@ namespace Pital.CodeAnalysis.Syntax
                     return "==";
                 case SyntaxKind.BangEqualsToken:
                     return "!=";
-                case SyntaxKind.BangToken:
-                    return "!";
-                case SyntaxKind.EqualsToken:
-                    return "=";
-                case SyntaxKind.TrueKeyword:
-                    return "true";
+                case SyntaxKind.OpenParenthesisToken:
+                    return "(";
+                case SyntaxKind.ClosedParenthesisToken:
+                    return ")";
                 case SyntaxKind.FalseKeyword:
                     return "false";
+                case SyntaxKind.TrueKeyword:
+                    return "true";
                 default:
                     return null;
             }

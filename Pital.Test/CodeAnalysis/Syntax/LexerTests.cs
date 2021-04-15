@@ -70,29 +70,18 @@ namespace Pital.Test.CodeAnalysis.Syntax
 
         private static IEnumerable<(SyntaxKind kind,string text)> GetTokens()
         {
-            return new[]
+            var fixedTokens = Enum.GetValues(typeof(SyntaxKind))
+                .Cast<SyntaxKind>()
+                .Select(k => (kind: k, text: SyntaxFacts.GetText(k)))
+                .Where(t=>t.text!=null);
+            var dynamicTokens = new[]
             {
                 (SyntaxKind.IdentifierToken,"a"),
                 (SyntaxKind.IdentifierToken,"abc"),
                 (SyntaxKind.NumberToken,"3526"),
                 (SyntaxKind.NumberToken,"1"),
-
-
-                (SyntaxKind.MinusToken,"-"),
-                (SyntaxKind.PlusToken,"+"),
-                (SyntaxKind.StarToken,"*"),
-                (SyntaxKind.SlashToken,"/"),
-                (SyntaxKind.OpenParenthesisToken,"("),
-                (SyntaxKind.ClosedParenthesisToken,")"),
-                (SyntaxKind.AmpersandToken,"&"),
-                (SyntaxKind.PipeToken,"|"),
-                (SyntaxKind.EqualsEqualsToken,"=="),
-                (SyntaxKind.BangEqualsToken,"!="),
-                (SyntaxKind.BangToken,"!"),
-                (SyntaxKind.EqualsToken,"="),
-                (SyntaxKind.FalseKeyword,"false"),
-                (SyntaxKind.TrueKeyword,"true"),
             };
+            return fixedTokens.Concat(dynamicTokens);
         }
 
         private static IEnumerable<(SyntaxKind kind, string text)> GetSeperators()
