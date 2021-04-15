@@ -8,7 +8,7 @@ namespace Pital.Test.CodeAnalysis.Syntax
     {
         [Theory]
         [MemberData(nameof(GetBinaryOperatorPairsData))]
-        public void Parser_BinaryExpression_Honors_Presedence(SyntaxKind op1, SyntaxKind op2)
+        public void Parser_BinaryExpression_HonorsPrecedences(SyntaxKind op1, SyntaxKind op2)
         {
             var op1Precedence = SyntaxFacts.GetBinaryOperatorPrecedence(op1);
             var op2Precedence = SyntaxFacts.GetBinaryOperatorPrecedence(op2);
@@ -24,6 +24,7 @@ namespace Pital.Test.CodeAnalysis.Syntax
                 //    op1   c
                 //   /  \
                 //  a    b
+
                 using(var e= new AssertingEnumerator(expression))
                 {
                     e.AssertNode(SyntaxKind.BinaryExpression);
@@ -31,14 +32,11 @@ namespace Pital.Test.CodeAnalysis.Syntax
                     e.AssertNode(SyntaxKind.NameExpression);
                     e.AssertToken(SyntaxKind.IdentifierToken,"a");
                     e.AssertToken(op1, op1Text);
-
                     e.AssertNode(SyntaxKind.NameExpression);
                     e.AssertToken(SyntaxKind.IdentifierToken, "b");
                     e.AssertToken(op2, op2Text);
-
                     e.AssertNode(SyntaxKind.NameExpression);
                     e.AssertToken(SyntaxKind.IdentifierToken, "c");
-
                 }
             }
             else
@@ -54,12 +52,10 @@ namespace Pital.Test.CodeAnalysis.Syntax
                     e.AssertNode(SyntaxKind.NameExpression);
                     e.AssertToken(SyntaxKind.IdentifierToken, "a");
                     e.AssertToken(op1, op1Text);
-
                     e.AssertNode(SyntaxKind.BinaryExpression);
                     e.AssertNode(SyntaxKind.NameExpression);
                     e.AssertToken(SyntaxKind.IdentifierToken, "b");
                     e.AssertToken(op2, op2Text);
-
                     e.AssertNode(SyntaxKind.NameExpression);
                     e.AssertToken(SyntaxKind.IdentifierToken, "c");
                 }
@@ -68,9 +64,9 @@ namespace Pital.Test.CodeAnalysis.Syntax
 
         [Theory]
         [MemberData(nameof(GetUnaryOperatorPairsData))]
-        public void Parser_UnaryExpression_Honors_Presedence(SyntaxKind unaryKind, SyntaxKind binaryKind)
+        public void Parser_UnaryExpression_HonorsPrecedences(SyntaxKind unaryKind, SyntaxKind binaryKind)
         {
-            var unaryPrecedence = SyntaxFacts.GetBinaryOperatorPrecedence(unaryKind);
+            var unaryPrecedence = SyntaxFacts.GetUnaryOperatorPrecedence(unaryKind);
             var binaryPrecedence = SyntaxFacts.GetBinaryOperatorPrecedence(binaryKind);
             var unaryText = SyntaxFacts.GetText(unaryKind);
             var binaryText = SyntaxFacts.GetText(binaryKind);
@@ -85,6 +81,7 @@ namespace Pital.Test.CodeAnalysis.Syntax
                 //    |
                 //    a
 
+
                 using (var e = new AssertingEnumerator(expression))
                 {
                     e.AssertNode(SyntaxKind.BinaryExpression);
@@ -95,7 +92,6 @@ namespace Pital.Test.CodeAnalysis.Syntax
                     e.AssertToken(binaryKind, binaryText);
                     e.AssertNode(SyntaxKind.NameExpression);
                     e.AssertToken(SyntaxKind.IdentifierToken, "b");
-
                 }
             }
             else
