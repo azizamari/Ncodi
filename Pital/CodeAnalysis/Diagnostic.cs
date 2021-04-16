@@ -1,4 +1,6 @@
-﻿namespace Pital.CodeAnalysis
+﻿using Pital.CodeAnalysis.Text;
+
+namespace Pital.CodeAnalysis
 {
     public sealed class Diagnostic
     {

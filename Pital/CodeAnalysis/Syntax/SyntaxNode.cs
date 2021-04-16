@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Linq;
 using System.IO;
+using Pital.CodeAnalysis.Text;
 
 namespace Pital.CodeAnalysis.Syntax
 {

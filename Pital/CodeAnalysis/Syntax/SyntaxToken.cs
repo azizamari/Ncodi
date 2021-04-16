@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Pital.CodeAnalysis.Text;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Pital.CodeAnalysis.Syntax

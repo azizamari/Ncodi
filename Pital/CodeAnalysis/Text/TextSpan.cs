@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Pital.CodeAnalysis
+namespace Pital.CodeAnalysis.Text
 {
     public struct TextSpan
     {
