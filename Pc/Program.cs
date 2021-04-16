@@ -41,7 +41,7 @@ namespace Pc
                 if (showTree)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    TreePrint(syntaxTree.Root);
+                    syntaxTree.Root.WriteTo(Console.Out);
                     Console.ResetColor();
                 }
 
@@ -75,31 +75,6 @@ namespace Pc
                     Console.WriteLine();
 
                 }
-            }
-        }
-        // ├──
-        // │    
-        // └──
-        static void TreePrint(SyntaxNode node, string indent = "", bool isLast = true)
-        {
-            var marker = isLast ? "└──" : "├──";
-            Console.Write(indent);
-            Console.Write(marker);
-            Console.Write(node.Kind);
-            if (node is SyntaxToken T && T.Value != null)
-            {
-                Console.Write(" ");
-                Console.Write(T.Value);
-            }
-
-            Console.WriteLine();
-            indent += isLast ? "   " : "│  ";
-
-            var lastChild = node.GetChildren().LastOrDefault();
-
-            foreach (var child in node.GetChildren())
-            {
-                TreePrint(child, indent, child == lastChild);
             }
         }
     }

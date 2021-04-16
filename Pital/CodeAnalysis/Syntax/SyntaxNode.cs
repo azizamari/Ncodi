@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
+using System.IO;
 
 namespace Pital.CodeAnalysis.Syntax
 {
@@ -35,5 +36,47 @@ namespace Pital.CodeAnalysis.Syntax
                 }
             }
         }
+
+        public void WriteTo(TextWriter writer)
+        {
+            TreePrint(writer, this);
+        }
+
+        private static void TreePrint(TextWriter writer,SyntaxNode node, string indent = "", bool isLast = true)
+        {
+            // ├──
+            // │    
+            // └──
+
+            var marker = isLast ? "└──" : "├──";
+            writer.Write(indent);
+            writer.Write(marker);
+            writer.Write(node.Kind);
+            if (node is SyntaxToken T && T.Value != null)
+            {
+                writer.Write(" ");
+                writer.Write(T.Value);
+            }
+
+            writer.WriteLine();
+            indent += isLast ? "   " : "│  ";
+
+            var lastChild = node.GetChildren().LastOrDefault();
+
+            foreach (var child in node.GetChildren())
+            {
+                TreePrint(writer, child, indent, child == lastChild);
+            }
+        }
+
+        public override string ToString()
+        {
+            using(var writer=new StringWriter())
+            {
+                WriteTo(writer);
+                return writer.ToString();
+            }
+        }
+
     }
 }
