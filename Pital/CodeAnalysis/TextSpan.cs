@@ -1,4 +1,6 @@
-﻿namespace Pital.CodeAnalysis
+﻿using System;
+
+namespace Pital.CodeAnalysis
 {
     public struct TextSpan
     {
@@ -11,5 +13,10 @@
         public int Start { get; }
         public int Length { get; }
         public int End => Start + Length;
+
+        public static TextSpan FromBounds(int start, int end)
+        {
+            return new TextSpan(start, end - start);
+        }
     }
 }
