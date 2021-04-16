@@ -15,10 +15,5 @@ namespace Pital.CodeAnalysis.Syntax
 
         public override SyntaxKind Kind => SyntaxKind.UnaryExpression;
 
-        public override IEnumerable<SyntaxNode> GetChildren()
-        {
-            yield return OperatorToken;
-            yield return Operand;
-        }
     }
 }

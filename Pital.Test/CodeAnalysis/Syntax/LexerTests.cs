@@ -63,9 +63,9 @@ namespace Pital.Test.CodeAnalysis.Syntax
 
         public static IEnumerable<object[]> GetTokensData()
         {
-            foreach(var t in GetTokens().Concat(GetSeperators()))
+            foreach(var (kind, text) in GetTokens().Concat(GetSeperators()))
             {
-                yield return new object[] { t.kind, t.text };
+                yield return new object[] { kind, text };
             }
         }
         public static IEnumerable<object[]> GetTokenPairsData()
@@ -77,9 +77,9 @@ namespace Pital.Test.CodeAnalysis.Syntax
         }
         public static IEnumerable<object[]> GetTokenPairsWithSeperatorsData()
         {
-            foreach (var t in GetTokenPairsWithSeperators())
+            foreach (var (kind1, text1, seperatorKind, seperatorText, kind2, text2) in GetTokenPairsWithSeperators())
             {
-                yield return new object[] { t.kind1, t.text1, t.seperatorKind, t.seperatorText, t.kind2, t.text2 };
+                yield return new object[] { kind1, text1, seperatorKind, seperatorText, kind2, text2 };
             }
         }
 
