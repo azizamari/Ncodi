@@ -23,7 +23,7 @@ namespace Pital.CodeAnalysis
 
         public void ReportInvalidNumber(TextSpan span, string text, Type type)
         {
-            var message = $"The number {text} isn't a valid {type}.";
+            var message = $"The number {text} isn't a valid {type}";
             Report(span, message);
         }
 
@@ -33,14 +33,14 @@ namespace Pital.CodeAnalysis
         }
         public void ReportBadCharacter(int position, char character)
         {
-            var message = $"ERROR: bad character input: '{character}'.";
+            var message = $"ERROR: bad character input: '{character}'";
             var span = new TextSpan(position, 1);
             Report(span, message);
         }
 
         public  void ReportUnexpectedToken(TextSpan span, SyntaxKind actualKind, SyntaxKind expectedKind)
         {
-            var message = $"ERROR: unexpected token <{actualKind}>, expected <{expectedKind}>.";
+            var message = $"ERROR: unexpected token <{actualKind}>, expected <{expectedKind}>";
             Report(span, message);
         }
 
