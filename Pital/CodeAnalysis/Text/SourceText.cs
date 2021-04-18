@@ -53,7 +53,7 @@ namespace Pital.CodeAnalysis.Text
                 }
                 else
                 {
-                    AddLine(result,sourceText, lineStart, position, lineBreakWidth);
+                    AddLine(result,sourceText, position, lineStart, lineBreakWidth);
                     position += lineBreakWidth;
                     lineStart = position;
                 }
