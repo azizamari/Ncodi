@@ -61,5 +61,11 @@ namespace Pital.CodeAnalysis
             var message = $"Variable '{name}' doesn't exist";
             Report(span, message);
         }
+
+        public void ReportCannotConvert(TextSpan span, Type type1, Type type2)
+        {
+            var messsage = $"Cannot convert type from '{type1}' to '{type2}'";
+            Report(span, messsage);
+        }
     }
 }
