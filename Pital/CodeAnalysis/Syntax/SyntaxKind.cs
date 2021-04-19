@@ -32,5 +32,8 @@
         UnaryExpression,
         NameExpression,
         AssignmentExpression,
+
+        //Nodes
+        CompilationUnit,
     }
 }
