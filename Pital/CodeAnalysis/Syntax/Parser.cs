@@ -53,18 +53,44 @@ namespace Pital.CodeAnalysis.Syntax
         {
             if (Current.Kind == kind)
                 return NextToken();
-            //original
             _diagnostics.ReportUnexpectedToken(Current.Span, Current.Kind, kind);
-            //my fix
-            //_diagnostics.ReportUnexpectedToken(Peek(-1).Span,Current.Kind,kind);
             return new SyntaxToken(kind, Current.Position, null, null);
         }
 
         public CompilationUnitSyntax ParseCompilationUnit()
         {
-            var expresion = ParseExpression();
+            var expresion = ParseStatement();
             var endOfFileToken = MatchToken(SyntaxKind.EndOfFileToken);
             return new CompilationUnitSyntax(expresion, endOfFileToken);
+        }
+
+        private StatementSyntax ParseStatement()
+        {
+            if (Current.Kind == SyntaxKind.OpenBraceToken)
+            {
+                return ParseBlockStatement();
+            }
+            return ParseExpressionStatement();
+        }
+
+
+        private BlockStatementSyntax ParseBlockStatement()
+        {
+            var statements = ImmutableArray.CreateBuilder<StatementSyntax>();
+            var openBraceToken = MatchToken(SyntaxKind.OpenBraceToken);
+            while (Current.Kind != SyntaxKind.EndOfFileToken&&Current.Kind!=SyntaxKind.ClosedBraceToken)
+            {
+                var statenent = ParseStatement();
+                statements.Add(statenent);
+            }
+            var closedBraceToken = MatchToken(SyntaxKind.ClosedBraceToken);
+
+            return new BlockStatementSyntax(openBraceToken, statements.ToImmutable(), closedBraceToken);
+        }
+        private ExpressionStatementSyntax ParseExpressionStatement()
+        {
+            var expression = ParseExpression();
+            return new ExpressionStatementSyntax(expression);
         }
 
         private ExpressionSyntax ParseExpression()

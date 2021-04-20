@@ -72,6 +72,14 @@ namespace Pital.CodeAnalysis.Syntax
                     _kind = SyntaxKind.ClosedParenthesisToken;
                     _position++;
                     break;
+                case '{':
+                    _kind = SyntaxKind.OpenBraceToken;
+                    _position++;
+                    break;
+                case '}':
+                    _kind = SyntaxKind.ClosedBraceToken;
+                    _position++;
+                    break;
                 case '&':
                     _kind = SyntaxKind.AmpersandToken;
                     _position++;

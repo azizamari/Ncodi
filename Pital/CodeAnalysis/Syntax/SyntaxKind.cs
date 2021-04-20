@@ -20,6 +20,8 @@
         BangEqualsToken,
         BangToken,
         EqualsToken,
+        OpenBraceToken,
+        ClosedBraceToken,
 
         //Keywords
         TrueKeyword,
@@ -35,5 +37,9 @@
 
         //Nodes
         CompilationUnit,
+
+        //Statements
+        BlockStatement,
+        ExpressionStatement,
     }
 }
