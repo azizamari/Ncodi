@@ -14,7 +14,6 @@ namespace Pital.CodeAnalysis
         public Compilation(SyntaxTree syntaxTree)
             :this(null,syntaxTree)
         {
-            SyntaxTree = syntaxTree;
         }
 
         private Compilation(Compilation previous,SyntaxTree syntaxTree)
