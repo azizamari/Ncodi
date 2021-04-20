@@ -26,6 +26,8 @@
         //Keywords
         TrueKeyword,
         FalseKeyword,
+        constKeyword,
+        VarKeyowrd,
 
         //Expressions
         LiteralExpression,
@@ -41,5 +43,6 @@
         //Statements
         BlockStatement,
         ExpressionStatement,
+        VariableDeclaration,
     }
 }

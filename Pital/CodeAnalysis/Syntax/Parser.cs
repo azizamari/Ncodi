@@ -66,13 +66,17 @@ namespace Pital.CodeAnalysis.Syntax
 
         private StatementSyntax ParseStatement()
         {
-            if (Current.Kind == SyntaxKind.OpenBraceToken)
+            switch (Current.Kind)
             {
-                return ParseBlockStatement();
+                case SyntaxKind.OpenBraceToken:
+                    return ParseBlockStatement();
+                case SyntaxKind.constKeyword:
+                case SyntaxKind.VarKeyowrd:
+                    return ParseVariableDeclaration();
+                default:
+                    return ParseExpressionStatement();
             }
-            return ParseExpressionStatement();
         }
-
 
         private BlockStatementSyntax ParseBlockStatement()
         {
@@ -87,6 +91,17 @@ namespace Pital.CodeAnalysis.Syntax
 
             return new BlockStatementSyntax(openBraceToken, statements.ToImmutable(), closedBraceToken);
         }
+
+        private StatementSyntax ParseVariableDeclaration()
+        {
+            var expected = Current.Kind==SyntaxKind.constKeyword?SyntaxKind.constKeyword: SyntaxKind.VarKeyowrd;
+            var keyword = MatchToken(expected);
+            var identifier = MatchToken(SyntaxKind.IdentifierToken);
+            var equals = MatchToken(SyntaxKind.EqualsToken);
+            var initializer = ParseExpression();
+            return new VariableDeclarationSyntax(keyword,identifier,equals, initializer);
+        }
+
         private ExpressionStatementSyntax ParseExpressionStatement()
         {
             var expression = ParseExpression();

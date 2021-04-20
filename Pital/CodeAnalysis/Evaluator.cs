@@ -27,12 +27,13 @@ namespace Pital.CodeAnalysis
 
         private void EvaluateStatement(BoundStatement node)
         {
-            //binary
-            //number
             switch (node.Kind)
             {
                 case BoundNodeKind.BlockStatement:
                     EvaluateBlockStatement((BoundBlockStatement)node);
+                    break;
+                case BoundNodeKind.VariableDeclaration:
+                    EvaluateVariableDeclaration((BoundVariableDeclaration)node);
                     break;
                 case BoundNodeKind.ExpressionStatement:
                     EvaluateExpressionStatement((BoundExpressionStatement)node);
@@ -40,6 +41,13 @@ namespace Pital.CodeAnalysis
                 default:
                     throw new Exception($"Unexpected node {node.Kind}");
             }
+        }
+
+        private void EvaluateVariableDeclaration(BoundVariableDeclaration node)
+        {
+            var value = EvaluateExpression(node.Initializer);
+            _variables[node.Variable] = value;
+            _lastValue = value;
         }
 
         private void EvaluateExpressionStatement(BoundExpressionStatement node)

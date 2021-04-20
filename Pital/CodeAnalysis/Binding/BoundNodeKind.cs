@@ -11,6 +11,7 @@
 
         //statements 
         BlockStatement,
-        ExpressionStatement
+        ExpressionStatement,
+        VariableDeclaration
     }
 }

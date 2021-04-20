@@ -63,11 +63,27 @@ namespace Pital.CodeAnalysis.Binding
             {
                 case SyntaxKind.BlockStatement:
                     return BindBlockStatement((BlockStatementSyntax)syntax);
+                case SyntaxKind.VariableDeclaration:
+                    return BindVariableDeclaration((VariableDeclarationSyntax)syntax);
                 case SyntaxKind.ExpressionStatement:
                     return BindExpressionStatement((ExpressionStatementSyntax)syntax);
                 default:
                     throw new Exception($"Unexpexted Syntax {syntax.Kind}");
             }
+        }
+
+        private BoundStatement BindVariableDeclaration(VariableDeclarationSyntax syntax)
+        {
+            var name = syntax.Identifier.Text;
+            var isReadonly = syntax.Kind == SyntaxKind.constKeyword;
+            var initializer = BindExpression(syntax.Initializer);
+            var variable = new VariableSymbol(name, isReadonly,initializer.Type);
+
+            if (!_scope.TryDeclare(variable))
+            {
+                _diagnostics.ReportVariableAlreadyDeclared(syntax.Identifier.Span, name);
+            }
+            return new BoundVariableDeclaration(variable, initializer);
         }
 
         private BoundStatement BindBlockStatement(BlockStatementSyntax syntax)
@@ -140,8 +156,13 @@ namespace Pital.CodeAnalysis.Binding
 
             if(!_scope.TryLookUp(name,out var variable))
             {
-                variable = new VariableSymbol(name,boundExpression.Type);
-                _scope.TryDeclare(variable);
+                _diagnostics.ReportUndefinedName(syntax.IdentifierToken.Span, name);
+                return boundExpression;
+            }
+
+            if (variable.IsReadonly)
+            {
+                _diagnostics.ReportCannotAssign(syntax.EqualsToken.Span, name);
             }
 
             if (boundExpression.Type != variable.Type)
