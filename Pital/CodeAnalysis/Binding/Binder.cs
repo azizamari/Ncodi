@@ -89,12 +89,15 @@ namespace Pital.CodeAnalysis.Binding
         private BoundStatement BindBlockStatement(BlockStatementSyntax syntax)
         {
             var statements = ImmutableArray.CreateBuilder<BoundStatement>();
+            _scope = new BoundScope(_scope);
 
             foreach(var statementSyntax in syntax.Statements)
             {
                 var statement = BindStatement(statementSyntax);
                 statements.Add(statement);
             }
+
+            _scope = _scope.Parent;
             return new BoundBlockStatement(statements.ToImmutable());
         }
 
