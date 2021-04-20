@@ -109,6 +109,10 @@ namespace Pital.CodeAnalysis.Syntax
                     return "(";
                 case SyntaxKind.ClosedParenthesisToken:
                     return ")";
+                case SyntaxKind.OpenBraceToken:
+                    return "(";
+                case SyntaxKind.ClosedBraceToken:
+                    return ")";
                 case SyntaxKind.FalseKeyword:
                     return "false";
                 case SyntaxKind.TrueKeyword:
