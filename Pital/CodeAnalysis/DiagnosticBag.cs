@@ -46,13 +46,13 @@ namespace Pital.CodeAnalysis
 
         public void ReportUndefinedUnaryOperator(TextSpan span, string operatorText, Type operandText)
         {
-            var message = $"Unary operator '{operatorText}' is not defined for type {operandText}";
+            var message = $"Unary operator '{operatorText}' is not defined for type '{operandText}'";
             Report(span, message);
         }
 
         public void ReportUndefinedBinaryOperator(TextSpan span, string operatorText, Type leftType, Type rightType)
         {
-            var message = $"Binary operator '{operatorText}' is not defined for types {leftType} and {rightType}";
+            var message = $"Binary operator '{operatorText}' is not defined for types '{leftType}' and '{rightType}'";
             Report(span, message);
         }
 
@@ -64,7 +64,7 @@ namespace Pital.CodeAnalysis
 
         public void ReportCannotConvert(TextSpan span, Type type1, Type type2)
         {
-            var messsage = $"Cannot convert type from '{type1}' to '{type2}'";
+            var messsage = $"Cannot convert type '{type1}' to '{type2}'";
             Report(span, messsage);
         }
 

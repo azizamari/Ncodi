@@ -75,7 +75,7 @@ namespace Pital.CodeAnalysis.Binding
         private BoundStatement BindVariableDeclaration(VariableDeclarationSyntax syntax)
         {
             var name = syntax.Identifier.Text;
-            var isReadonly = syntax.Kind == SyntaxKind.constKeyword;
+            var isReadonly = syntax.KeywordToken.Kind == SyntaxKind.constKeyword;
             var initializer = BindExpression(syntax.Initializer);
             var variable = new VariableSymbol(name, isReadonly,initializer.Type);
 
