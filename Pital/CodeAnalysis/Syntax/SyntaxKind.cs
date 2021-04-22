@@ -52,5 +52,7 @@
         ExpressionStatement,
         VariableDeclaration,
         IfStatement,
+        WhileKeyword,
+        WhileStatement,
     }
 }

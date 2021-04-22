@@ -41,18 +41,21 @@ namespace Pital.CodeAnalysis
                 case BoundNodeKind.IfStatement:
                     EvaluateIfStatement((BoundIfStatement)node);
                     break;
+                case BoundNodeKind.WhileStatement:
+                    EvaluateWhileStatement((BoundWhileStatement)node);
+                    break;
                 default:
                     throw new Exception($"Unexpected node {node.Kind}");
             }
         }
 
-        private void EvaluateIfStatement(BoundIfStatement node)
+
+        private void EvaluateBlockStatement(BoundBlockStatement node)
         {
-            var condition = (bool)EvaluateExpression(node.Condition);
-            if (condition)
-                EvaluateStatement(node.ThenStatement);
-            else if(node.ElseStatement!=null)
-                EvaluateStatement(node.ElseStatement);
+            foreach (var statement in node.Statements)
+            {
+                EvaluateStatement(statement);
+            }
         }
 
         private void EvaluateVariableDeclaration(BoundVariableDeclaration node)
@@ -67,14 +70,22 @@ namespace Pital.CodeAnalysis
             _lastValue = EvaluateExpression(node.Expression);
         }
 
-        private void EvaluateBlockStatement(BoundBlockStatement node)
+
+        private void EvaluateIfStatement(BoundIfStatement node)
         {
-            foreach (var statement in node.Statements)
+            var condition = (bool)EvaluateExpression(node.Condition);
+            if (condition)
+                EvaluateStatement(node.ThenStatement);
+            else if(node.ElseStatement!=null)
+                EvaluateStatement(node.ElseStatement);
+        }
+        private void EvaluateWhileStatement(BoundWhileStatement node)
+        {
+            while((bool)EvaluateExpression(node.Condition))
             {
-                EvaluateStatement(statement);
+                EvaluateStatement(node.Body);
             }
         }
-
         private object EvaluateExpression(BoundExpression node)
         {
             //binary

@@ -64,8 +64,11 @@ namespace Pital.CodeAnalysis.Syntax
                     return SyntaxKind.IfKeyword;
                 case "else":
                     return SyntaxKind.ElseKeyword;
+                case "while":
+                    return SyntaxKind.WhileKeyword;
                 //case "w":
                 //    return syntaxkind.ampersandtoken;
+                //madem -> while
                 // w -> and ; wela -> or; kan -> if; w kan-> else if; makanchi -> else
                 default:
                     return SyntaxKind.IdentifierToken;
@@ -144,6 +147,8 @@ namespace Pital.CodeAnalysis.Syntax
                     return "if";
                 case SyntaxKind.ElseKeyword:
                     return "else";
+                case SyntaxKind.WhileKeyword:
+                    return "while";
                 default:
                     return null;
             }

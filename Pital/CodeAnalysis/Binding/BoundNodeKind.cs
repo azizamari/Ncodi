@@ -13,6 +13,7 @@
         BlockStatement,
         ExpressionStatement,
         VariableDeclaration,
-        IfStatement
+        IfStatement,
+        WhileStatement
     }
 }
