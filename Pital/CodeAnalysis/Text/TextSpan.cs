@@ -18,5 +18,9 @@ namespace Pital.CodeAnalysis.Text
         {
             return new TextSpan(start, end - start);
         }
+        public override string ToString()
+        {
+            return $"{Start}..{End}";
+        }
     }
 }
