@@ -70,12 +70,34 @@ namespace Pital.CodeAnalysis.Syntax
             {
                 case SyntaxKind.OpenBraceToken:
                     return ParseBlockStatement();
-                case SyntaxKind.constKeyword:
+                case SyntaxKind.ConstKeyword:
                 case SyntaxKind.VarKeyword:
                     return ParseVariableDeclaration();
+                case SyntaxKind.IfKeyword:
+                    return ParseIfStatement();
                 default:
                     return ParseExpressionStatement();
             }
+        }
+
+        private StatementSyntax ParseIfStatement()
+        {
+            var Keyword = MatchToken(SyntaxKind.IfKeyword);
+            var condition = ParseExpression();
+            var statement = ParseStatement();
+            var elseClause = ParseElseClause();
+            return new IfStatementSyntax(Keyword, condition, statement, elseClause);
+        }
+
+        private ElseClauseSyntax ParseElseClause()
+        {
+            if (Current.Kind != SyntaxKind.ElseKeyword)
+            {
+                return null;
+            }
+            var keyword = MatchToken(SyntaxKind.ElseKeyword);
+            var statement = ParseStatement();
+            return new ElseClauseSyntax(keyword, statement);
         }
 
         private BlockStatementSyntax ParseBlockStatement()
@@ -94,7 +116,7 @@ namespace Pital.CodeAnalysis.Syntax
 
         private StatementSyntax ParseVariableDeclaration()
         {
-            var expected = Current.Kind==SyntaxKind.constKeyword?SyntaxKind.constKeyword: SyntaxKind.VarKeyword;
+            var expected = Current.Kind==SyntaxKind.ConstKeyword?SyntaxKind.ConstKeyword: SyntaxKind.VarKeyword;
             var keyword = MatchToken(expected);
             var identifier = MatchToken(SyntaxKind.IdentifierToken);
             var equals = MatchToken(SyntaxKind.EqualsToken);

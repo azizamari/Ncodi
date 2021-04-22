@@ -67,15 +67,18 @@ namespace Pital.CodeAnalysis.Binding
                     return BindVariableDeclaration((VariableDeclarationSyntax)syntax);
                 case SyntaxKind.ExpressionStatement:
                     return BindExpressionStatement((ExpressionStatementSyntax)syntax);
+                case SyntaxKind.IfStatement:
+                    return BindIfStatement((IfStatementSyntax)syntax);
                 default:
                     throw new Exception($"Unexpexted Syntax {syntax.Kind}");
             }
         }
 
+
         private BoundStatement BindVariableDeclaration(VariableDeclarationSyntax syntax)
         {
             var name = syntax.Identifier.Text;
-            var isReadonly = syntax.KeywordToken.Kind == SyntaxKind.constKeyword;
+            var isReadonly = syntax.KeywordToken.Kind == SyntaxKind.ConstKeyword;
             var initializer = BindExpression(syntax.Initializer);
             var variable = new VariableSymbol(name, isReadonly,initializer.Type);
 
@@ -107,6 +110,20 @@ namespace Pital.CodeAnalysis.Binding
             return new BoundExpressionStatement(expression);
         }
 
+        private BoundStatement BindIfStatement(IfStatementSyntax syntax)
+        {
+            var condition = BindExpression(syntax.Condition,typeof(bool));
+            var thenStatement = BindStatement(syntax.ThenStatement);
+            var elseStatement = syntax.ElseClause == null ? null : BindStatement(syntax.ElseClause.ElseStatement);
+            return new BoundIfStatement(condition, thenStatement, elseStatement);
+        }
+        private BoundExpression BindExpression(ExpressionSyntax syntax, Type targetType)
+        {
+            var result = BindExpression(syntax);
+            if (result.Type != targetType)
+                Diagnostics.ReportCannotConvert(syntax.Span, result.Type, targetType);
+            return result;
+        }
         private BoundExpression BindExpression(ExpressionSyntax syntax)
         {
             switch(syntax.Kind)

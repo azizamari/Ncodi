@@ -38,9 +38,21 @@ namespace Pital.CodeAnalysis
                 case BoundNodeKind.ExpressionStatement:
                     EvaluateExpressionStatement((BoundExpressionStatement)node);
                     break;
+                case BoundNodeKind.IfStatement:
+                    EvaluateIfStatement((BoundIfStatement)node);
+                    break;
                 default:
                     throw new Exception($"Unexpected node {node.Kind}");
             }
+        }
+
+        private void EvaluateIfStatement(BoundIfStatement node)
+        {
+            var condition = (bool)EvaluateExpression(node.Condition);
+            if (condition)
+                EvaluateStatement(node.ThenStatement);
+            else if(node.ElseStatement!=null)
+                EvaluateStatement(node.ElseStatement);
         }
 
         private void EvaluateVariableDeclaration(BoundVariableDeclaration node)

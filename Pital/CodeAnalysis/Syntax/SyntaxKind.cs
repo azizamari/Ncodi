@@ -30,8 +30,10 @@
         //Keywords
         TrueKeyword,
         FalseKeyword,
-        constKeyword,
+        ConstKeyword,
         VarKeyword,
+        IfKeyword,
+        ElseKeyword,
 
         //Expressions
         LiteralExpression,
@@ -43,10 +45,12 @@
 
         //Nodes
         CompilationUnit,
+        ElseClause,
 
         //Statements
         BlockStatement,
         ExpressionStatement,
         VariableDeclaration,
+        IfStatement,
     }
 }

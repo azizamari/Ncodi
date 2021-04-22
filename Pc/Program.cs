@@ -69,14 +69,13 @@ namespace Pc
 
                 if (showTree)
                 {
-                    Console.ForegroundColor = ConsoleColor.Green;
                     syntaxTree.Root.WriteTo(Console.Out);
                     Console.ResetColor();
                 }
 
                 if (!result.Diagnostics.Any())
                 {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine(result.Value);
                     Console.ResetColor();
 

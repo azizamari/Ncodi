@@ -57,13 +57,16 @@ namespace Pital.CodeAnalysis.Syntax
                 case "false":
                     return SyntaxKind.FalseKeyword;
                 case "const":
-                    return SyntaxKind.constKeyword;
+                    return SyntaxKind.ConstKeyword;
                 case "var":
                     return SyntaxKind.VarKeyword;
+                case "if":
+                    return SyntaxKind.IfKeyword;
+                case "else":
+                    return SyntaxKind.ElseKeyword;
                 //case "w":
                 //    return syntaxkind.ampersandtoken;
-                //case "wela":
-                //    return syntaxkind.pipetoken;
+                // w -> and ; wela -> or; kan -> if; w kan-> else if; makanchi -> else
                 default:
                     return SyntaxKind.IdentifierToken;
             }
@@ -135,8 +138,12 @@ namespace Pital.CodeAnalysis.Syntax
                     return "true";
                 case SyntaxKind.VarKeyword:
                     return "var";
-                case SyntaxKind.constKeyword:
+                case SyntaxKind.ConstKeyword:
                     return "const";
+                case SyntaxKind.IfKeyword:
+                    return "if";
+                case SyntaxKind.ElseKeyword:
+                    return "else";
                 default:
                     return null;
             }
