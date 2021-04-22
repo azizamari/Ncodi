@@ -55,7 +55,7 @@ namespace Pital.CodeAnalysis.Syntax
                 case "const":
                     return SyntaxKind.constKeyword;
                 case "var":
-                    return SyntaxKind.VarKeyowrd;
+                    return SyntaxKind.VarKeyword;
                 default:
                     return SyntaxKind.IdentifierToken;
             }
@@ -110,14 +110,14 @@ namespace Pital.CodeAnalysis.Syntax
                 case SyntaxKind.ClosedParenthesisToken:
                     return ")";
                 case SyntaxKind.OpenBraceToken:
-                    return "(";
+                    return "{";
                 case SyntaxKind.ClosedBraceToken:
-                    return ")";
+                    return "}";
                 case SyntaxKind.FalseKeyword:
                     return "false";
                 case SyntaxKind.TrueKeyword:
                     return "true";
-                case SyntaxKind.VarKeyowrd:
+                case SyntaxKind.VarKeyword:
                     return "var";
                 case SyntaxKind.constKeyword:
                     return "const";

@@ -27,7 +27,7 @@
         TrueKeyword,
         FalseKeyword,
         constKeyword,
-        VarKeyowrd,
+        VarKeyword,
 
         //Expressions
         LiteralExpression,

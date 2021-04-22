@@ -111,30 +111,37 @@ namespace Pital.Test.CodeAnalysis.Syntax
             };
         }
 
-        public static bool RequiresSeparator(SyntaxKind kind1,SyntaxKind kind2)
+        public static bool RequiresSeparator(SyntaxKind t1Kind,SyntaxKind t2Kind)
         {
-            var isKeyword1 = kind1.ToString().EndsWith("Keyword");
-            var isKeyword2 = kind2.ToString().EndsWith("Keyword");
+            var t1IsKeyword = t1Kind.ToString().EndsWith("Keyword");
+            var t2IsKeyword = t2Kind.ToString().EndsWith("Keyword");
 
-            if (kind1 == SyntaxKind.IdentifierToken && kind2 == SyntaxKind.IdentifierToken)
+            if (t1Kind == SyntaxKind.IdentifierToken && t2Kind == SyntaxKind.IdentifierToken)
                 return true;
-            if (isKeyword1 && isKeyword2)
+
+            if (t1IsKeyword && t2IsKeyword)
                 return true;
-            if (isKeyword1 && kind2 == SyntaxKind.IdentifierToken || isKeyword2 && kind1 == SyntaxKind.IdentifierToken)
+
+            if (t1IsKeyword && t2Kind == SyntaxKind.IdentifierToken)
                 return true;
-            if (kind1 == SyntaxKind.NumberToken && kind2 == SyntaxKind.NumberToken)
+
+            if (t1Kind == SyntaxKind.IdentifierToken && t2IsKeyword)
                 return true;
-            if (kind1 == SyntaxKind.BangToken && kind2 == SyntaxKind.EqualsToken)
+
+            if (t1Kind == SyntaxKind.NumberToken && t2Kind == SyntaxKind.NumberToken)
                 return true;
-            if (kind1 == SyntaxKind.EqualsToken && kind2 == SyntaxKind.EqualsToken)
+
+            if (t1Kind == SyntaxKind.BangToken && t2Kind == SyntaxKind.EqualsToken)
                 return true;
-            if (kind1 == SyntaxKind.EqualsToken && kind2 == SyntaxKind.EqualsEqualsToken)
+
+            if (t1Kind == SyntaxKind.BangToken && t2Kind == SyntaxKind.EqualsEqualsToken)
                 return true;
-            if (kind1 == SyntaxKind.BangToken && kind2 == SyntaxKind.EqualsEqualsToken)
+
+            if (t1Kind == SyntaxKind.EqualsToken && t2Kind == SyntaxKind.EqualsToken)
                 return true;
-            //if (kind1 == SyntaxKind.WhiteSpaceToken && kind2 == kind1)
-            //    return true;
-            //TODO: more cases
+
+            if (t1Kind == SyntaxKind.EqualsToken && t2Kind == SyntaxKind.EqualsEqualsToken)
+                return true;
 
             return false;
         }

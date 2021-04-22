@@ -71,7 +71,7 @@ namespace Pital.CodeAnalysis.Syntax
                 case SyntaxKind.OpenBraceToken:
                     return ParseBlockStatement();
                 case SyntaxKind.constKeyword:
-                case SyntaxKind.VarKeyowrd:
+                case SyntaxKind.VarKeyword:
                     return ParseVariableDeclaration();
                 default:
                     return ParseExpressionStatement();
@@ -94,7 +94,7 @@ namespace Pital.CodeAnalysis.Syntax
 
         private StatementSyntax ParseVariableDeclaration()
         {
-            var expected = Current.Kind==SyntaxKind.constKeyword?SyntaxKind.constKeyword: SyntaxKind.VarKeyowrd;
+            var expected = Current.Kind==SyntaxKind.constKeyword?SyntaxKind.constKeyword: SyntaxKind.VarKeyword;
             var keyword = MatchToken(expected);
             var identifier = MatchToken(SyntaxKind.IdentifierToken);
             var equals = MatchToken(SyntaxKind.EqualsToken);
