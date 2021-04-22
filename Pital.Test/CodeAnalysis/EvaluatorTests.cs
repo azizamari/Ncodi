@@ -35,6 +35,16 @@ namespace Pital.Test.CodeAnalysis
         [InlineData("false & true", false)]
         [InlineData("true & false", false)]
         [InlineData("{var a=0 (a=10)*a}", 100)]
+        [InlineData("3 < 4", true)]
+        [InlineData("5 < 4", false)]
+        [InlineData("4 <= 4", true)]
+        [InlineData("4 <= 5", true)]
+        [InlineData("5 <= 4", false)]
+        [InlineData("4 > 3", true)]
+        [InlineData("4 > 5", false)]
+        [InlineData("4 >= 4", true)]
+        [InlineData("5 >= 4", true)]
+        [InlineData("4 >= 5", false)]
         public void Evaluator_Computes_CorrectValues(string text, object expectedValue)
         {
             AssertValue(text, expectedValue);

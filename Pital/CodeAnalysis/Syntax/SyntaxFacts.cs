@@ -31,6 +31,10 @@ namespace Pital.CodeAnalysis.Syntax
 
                 case SyntaxKind.EqualsEqualsToken:
                 case SyntaxKind.BangEqualsToken:
+                case SyntaxKind.LessToken:
+                case SyntaxKind.LessOrEqualsToken:
+                case SyntaxKind.GreaterToken:
+                case SyntaxKind.GreaterOrEqualsToken:
                     return 3;
 
                 case SyntaxKind.AmpersandToken:
@@ -56,6 +60,10 @@ namespace Pital.CodeAnalysis.Syntax
                     return SyntaxKind.constKeyword;
                 case "var":
                     return SyntaxKind.VarKeyword;
+                //case "w":
+                //    return syntaxkind.ampersandtoken;
+                //case "wela":
+                //    return syntaxkind.pipetoken;
                 default:
                     return SyntaxKind.IdentifierToken;
             }
@@ -105,6 +113,14 @@ namespace Pital.CodeAnalysis.Syntax
                     return "==";
                 case SyntaxKind.BangEqualsToken:
                     return "!=";
+                case SyntaxKind.LessToken:
+                    return "<";
+                case SyntaxKind.LessOrEqualsToken:
+                    return "<=";
+                case SyntaxKind.GreaterToken:
+                    return ">";
+                case SyntaxKind.GreaterOrEqualsToken:
+                    return ">=";
                 case SyntaxKind.OpenParenthesisToken:
                     return "(";
                 case SyntaxKind.ClosedParenthesisToken:

@@ -40,6 +40,11 @@ namespace Pital.CodeAnalysis.Binding
             new BoundBinaryOperator(SyntaxKind.EqualsEqualsToken,BoundBinaryOperatorKind.Equals,typeof(int),typeof(bool)),
             new BoundBinaryOperator(SyntaxKind.BangEqualsToken,BoundBinaryOperatorKind.NotEquals,typeof(int),typeof(bool)),
 
+            new BoundBinaryOperator(SyntaxKind.LessToken,BoundBinaryOperatorKind.LessThan,typeof(int),typeof(bool)),
+            new BoundBinaryOperator(SyntaxKind.LessOrEqualsToken,BoundBinaryOperatorKind.LessThanOrEquals,typeof(int),typeof(bool)),
+            new BoundBinaryOperator(SyntaxKind.GreaterToken,BoundBinaryOperatorKind.GreaterThan,typeof(int),typeof(bool)),
+            new BoundBinaryOperator(SyntaxKind.GreaterOrEqualsToken,BoundBinaryOperatorKind.GreaterThanOrEquals,typeof(int),typeof(bool)),
+
             new BoundBinaryOperator(SyntaxKind.AmpersandToken,BoundBinaryOperatorKind.LogicalAnd,typeof(bool)),
             new BoundBinaryOperator(SyntaxKind.PipeToken,BoundBinaryOperatorKind.LogicalOr,typeof(bool)),
             new BoundBinaryOperator(SyntaxKind.EqualsEqualsToken,BoundBinaryOperatorKind.Equals,typeof(bool)),

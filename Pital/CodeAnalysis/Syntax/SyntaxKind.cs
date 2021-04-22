@@ -15,13 +15,17 @@
         ClosedParenthesisToken,
         AmpersandToken,
         PipeToken,
-        IdentifierToken,
         EqualsEqualsToken,
         BangEqualsToken,
         BangToken,
         EqualsToken,
+        LessOrEqualsToken,
+        GreaterToken,
+        GreaterOrEqualsToken,
+        LessToken,
         OpenBraceToken,
         ClosedBraceToken,
+        IdentifierToken,
 
         //Keywords
         TrueKeyword,

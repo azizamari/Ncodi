@@ -102,6 +102,14 @@ namespace Pital.CodeAnalysis
                     return (bool)left && (bool)right;
                 case BoundBinaryOperatorKind.LogicalOr:
                     return (bool)left || (bool)right;
+                case BoundBinaryOperatorKind.LessThan:
+                    return (int)left < (int)right;
+                case BoundBinaryOperatorKind.LessThanOrEquals:
+                    return (int)left <= (int)right;
+                case BoundBinaryOperatorKind.GreaterThan:
+                    return (int)left > (int)right;
+                case BoundBinaryOperatorKind.GreaterThanOrEquals:
+                    return (int)left >= (int)right;
                 case BoundBinaryOperatorKind.Equals:
                     return Equals(left, right);
                 case BoundBinaryOperatorKind.NotEquals:

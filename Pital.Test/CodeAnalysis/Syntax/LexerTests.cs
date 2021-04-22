@@ -142,6 +142,14 @@ namespace Pital.Test.CodeAnalysis.Syntax
 
             if (t1Kind == SyntaxKind.EqualsToken && t2Kind == SyntaxKind.EqualsEqualsToken)
                 return true;
+            if (t1Kind == SyntaxKind.LessToken && t2Kind == SyntaxKind.EqualsToken)
+                return true;
+            if (t1Kind == SyntaxKind.LessToken && t2Kind == SyntaxKind.EqualsEqualsToken)
+                return true;
+            if (t1Kind == SyntaxKind.GreaterToken && t2Kind == SyntaxKind.EqualsToken)
+                return true;
+            if (t1Kind == SyntaxKind.GreaterToken && t2Kind == SyntaxKind.EqualsEqualsToken)
+                return true;
 
             return false;
         }
