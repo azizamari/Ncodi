@@ -80,13 +80,37 @@ namespace Pital.CodeAnalysis.Syntax
                     _kind = SyntaxKind.ClosedBraceToken;
                     _position++;
                     break;
-                case '&':
-                    _kind = SyntaxKind.AmpersandToken;
+                case '~':
+                    _kind = SyntaxKind.TildeToken;
                     _position++;
                     break;
-                case '|':
-                    _kind = SyntaxKind.PipeToken;
+                case '^':
+                    _kind = SyntaxKind.HatToken;
                     _position++;
+                    break;
+                case '&':
+                    _position++;
+                    if (Current != '&')
+                    {
+                        _kind = SyntaxKind.AmpersandToken;
+                    }
+                    else
+                    {
+                        _kind = SyntaxKind.AmpersandAmpersandToken;
+                        _position++;
+                    }
+                    break;
+                case '|':
+                    _position++;
+                    if (Current != '|')
+                    {
+                        _kind = SyntaxKind.PipeToken;
+                    }
+                    else
+                    {
+                        _kind = SyntaxKind.PipePipeToken;
+                        _position++;
+                    }
                     break;
                 case '=':
                     _position++;

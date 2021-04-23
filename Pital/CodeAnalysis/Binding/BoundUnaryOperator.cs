@@ -25,8 +25,10 @@ namespace Pital.CodeAnalysis.Binding
         private static BoundUnaryOperator[] _operators =
         {
             new BoundUnaryOperator(SyntaxKind.BangToken,BoundUnaryOperatorKind.LogicalNegation,typeof(bool)),
+
             new BoundUnaryOperator(SyntaxKind.PlusToken,BoundUnaryOperatorKind.Identity,typeof(int)),
             new BoundUnaryOperator(SyntaxKind.MinusToken,BoundUnaryOperatorKind.Negation,typeof(int)),
+            new BoundUnaryOperator(SyntaxKind.TildeToken,BoundUnaryOperatorKind.OnesComplement,typeof(int)),
         };
         public static BoundUnaryOperator Bind(SyntaxKind syntaxKind, Type operandType)
         {

@@ -8,11 +8,15 @@
         WhiteSpaceToken,
         NumberToken,
         PlusToken,
-        StarToken,
         MinusToken,
+        HatToken,
+        TildeToken,
+        StarToken,
         SlashToken,
         OpenParenthesisToken,
         ClosedParenthesisToken,
+        AmpersandAmpersandToken,
+        PipePipeToken,
         AmpersandToken,
         PipeToken,
         EqualsEqualsToken,
@@ -36,6 +40,7 @@
         ForKeyword,
         WhileKeyword,
         ElseKeyword,
+        ToKeyword,
 
         //Expressions
         LiteralExpression,
@@ -56,6 +61,5 @@
         IfStatement,
         WhileStatement,
         ForStatement,
-        ToKeyword,
     }
 }
