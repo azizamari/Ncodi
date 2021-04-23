@@ -33,14 +33,14 @@ namespace Pital.CodeAnalysis
         }
         public void ReportBadCharacter(int position, char character)
         {
-            var message = $"ERROR: bad character input: '{character}'";
+            var message = $"Bad character input: '{character}'";
             var span = new TextSpan(position, 1);
             Report(span, message);
         }
 
         public  void ReportUnexpectedToken(TextSpan span, SyntaxKind actualKind, SyntaxKind expectedKind)
         {
-            var message = $"ERROR: unexpected token <{actualKind}>, expected <{expectedKind}>";
+            var message = $"Unexpected token <{actualKind}>, expected <{expectedKind}>";
             Report(span, message);
         }
 

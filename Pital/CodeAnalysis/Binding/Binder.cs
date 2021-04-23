@@ -188,6 +188,10 @@ namespace Pital.CodeAnalysis.Binding
         private BoundExpression BindNameExpression(NameExpressionSyntax syntax)
         {
             var name = syntax.IdentifierToken.Text;
+            if (String.IsNullOrEmpty(name))
+            {
+                return new BoundLiteralExpression(0);
+            }
 
             if (!_scope.TryLookUp(name, out var variable))
             {

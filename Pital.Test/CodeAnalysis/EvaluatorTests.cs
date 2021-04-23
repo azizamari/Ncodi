@@ -203,6 +203,22 @@ namespace Pital.Test.CodeAnalysis
 
             AssertDiagnostics(text, diagnostics);
         }
+        [Fact]
+        public void Evaluator_BlockStatement_NoInfiniteLoop()
+        {
+            var text = @"
+                {
+                [)][]
+            ";
+
+            var diagnostics = @"
+                Unexpected token <ClosedParenthesisToken>, expected <IdentifierToken>
+                Unexpected token <EndOfFileToken>, expected <ClosedBraceToken>
+            ";
+
+            AssertDiagnostics(text, diagnostics);
+        }
+
         private void AssertDiagnostics(string text, string diagnosticText)
         {
             var annotatedText = AnnotatedText.Parse(text);
