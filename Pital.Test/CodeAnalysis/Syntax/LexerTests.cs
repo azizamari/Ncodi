@@ -53,12 +53,12 @@ namespace Pital.Test.CodeAnalysis.Syntax
             var text = text1 +seperatorText+ text2;
             var tokens = SyntaxTree.ParseTokens(text).ToArray();
             Assert.Equal(3, tokens.Length);
-            Assert.Equal(tokens[0].Kind, kind1);
-            Assert.Equal(tokens[1].Kind, seperatorKind);
-            Assert.Equal(tokens[2].Kind, kind2);
-            Assert.Equal(tokens[0].Text, text1);
-            Assert.Equal(tokens[1].Text, seperatorText);
-            Assert.Equal(tokens[2].Text, text2);
+            Assert.Equal(kind1, tokens[0].Kind);
+            Assert.Equal(seperatorKind, tokens[1].Kind);
+            Assert.Equal(kind2,tokens[2].Kind);
+            Assert.Equal(text1, tokens[0].Text );
+            Assert.Equal(seperatorText, tokens[1].Text);
+            Assert.Equal(text2, tokens[2].Text);
         }
 
         public static IEnumerable<object[]> GetTokensData()
