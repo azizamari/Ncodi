@@ -2,7 +2,7 @@
 {
     public sealed class IfStatementSyntax : StatementSyntax
     {
-        public IfStatementSyntax(SyntaxToken ifKeyword,ExpressionSyntax condition, StatementSyntax thenStatement,ElseClauseSyntax elseClause)
+        public IfStatementSyntax(SyntaxToken ifKeyword, ExpressionSyntax condition, StatementSyntax thenStatement, ElseClauseSyntax elseClause)
         {
             IfKeyword = ifKeyword;
             Condition = condition;
