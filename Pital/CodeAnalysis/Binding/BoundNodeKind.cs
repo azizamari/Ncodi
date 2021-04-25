@@ -15,6 +15,9 @@
         VariableDeclaration,
         IfStatement,
         WhileStatement,
-        ForStatement
+        ForStatement,
+        LabelStatement,
+        ConditionalGotoStatement,
+        GotoStatement
     }
 }

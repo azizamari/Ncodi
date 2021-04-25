@@ -14,5 +14,6 @@ namespace Pital.CodeAnalysis
         public string Name { get; }
         public bool IsReadonly { get; }
         public Type Type { get; }
+        public override string ToString() => Name;
     }
 }
