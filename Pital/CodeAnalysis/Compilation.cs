@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading;
 using System.IO;
+using Pital.CodeAnalysis.Lowering;
 
 namespace Pital.CodeAnalysis
 {
@@ -55,7 +56,8 @@ namespace Pital.CodeAnalysis
                 return new EvaluationResult(diagnostics.ToImmutableArray(), null);
             }
 
-            var evaluator = new Evaluator(GlobalScope.Statement, variables);
+            var statement = GetStatement();
+            var evaluator = new Evaluator(statement, variables);
             var value = evaluator.Evaluate();
 
             return new EvaluationResult(ImmutableArray<Diagnostic>.Empty, value);
@@ -63,7 +65,14 @@ namespace Pital.CodeAnalysis
 
         public void EmitTree(TextWriter writer)
         {
-            GlobalScope.Statement.WriteTo(writer);
+            var statement = GetStatement();
+            statement.WriteTo(writer);
+        }
+
+        private BoundStatement GetStatement()
+        {
+            var result = GlobalScope.Statement;
+            return Lowerer.Lower(result);
         }
     }
 }
