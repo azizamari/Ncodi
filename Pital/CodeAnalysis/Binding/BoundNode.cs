@@ -18,30 +18,35 @@ namespace Pital.CodeAnalysis.Binding
                 if (typeof(BoundNode).IsAssignableFrom(prop.PropertyType))
                 {
                     var child = (BoundNode)prop.GetValue(this);
-                    yield return child;
+                    if (child != null)
+                        yield return child;
                 }
-                else if (typeof(IEnumerator<BoundNode>).IsAssignableFrom(prop.PropertyType))
+                else if (typeof(IEnumerable<BoundNode>).IsAssignableFrom(prop.PropertyType))
                 {
                     var children = (IEnumerable<BoundNode>)prop.GetValue(this);
                     foreach (var child in children)
-                        yield return child;
-
+                    {
+                        if (child != null)
+                            yield return child;
+                    }
                 }
             }
         }
 
-        public IEnumerable<(string Name,object Value)> GetProperties()
+        private IEnumerable<(string Name, object Value)> GetProperties()
         {
             var properties = GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
             foreach (var prop in properties)
             {
-                if (prop.Name == nameof(Kind) || prop.Name==nameof(BoundBinaryExpression.Op))
+                if (prop.Name == nameof(Kind) ||
+                    prop.Name==nameof(BoundBinaryExpression.Op))
                     continue;
-                if (typeof(BoundNode).IsAssignableFrom(prop.PropertyType) || typeof(IEnumerator<BoundNode>).IsAssignableFrom(prop.PropertyType))
+
+                if (typeof(BoundNode).IsAssignableFrom(prop.PropertyType) || typeof(IEnumerable<BoundNode>).IsAssignableFrom(prop.PropertyType))
                     continue;
                 var value = prop.GetValue(this);
-                if (value != null) ;
-                yield return (prop.Name, value);
+                if (value != null)
+                    yield return (prop.Name, value);
             }
         }
 
@@ -96,7 +101,6 @@ namespace Pital.CodeAnalysis.Binding
 
                 writer.Write(p.Value);
             }
-            
 
             if (isToConsole)
                 Console.ResetColor();
@@ -109,11 +113,6 @@ namespace Pital.CodeAnalysis.Binding
 
             foreach (var child in node.GetChildren())
                 TreePrint(writer, child, indent, child == lastChild);
-        }
-
-        private static void WriteNode(TextWriter writer, BoundNode node)
-        {
-
         }
 
         private static string GetText(BoundNode node)
@@ -144,8 +143,5 @@ namespace Pital.CodeAnalysis.Binding
                 return writer.ToString();
             }
         }
-
-
-
     }
 }
