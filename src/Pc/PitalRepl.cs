@@ -68,10 +68,14 @@ namespace Pc
             if (string.IsNullOrEmpty(text))
                 return true;
 
-
-            // not sure about this
-            if (text.EndsWith("\r\n\r\n"))
-                return true;
+            var lastTwoLinesAreBlank = text.Split(Environment.NewLine)
+                                            .Reverse()
+                                            .TakeWhile(s => string.IsNullOrEmpty(s))
+                                            .Take(2)
+                                            .Count() == 2;
+            //if (text.EndsWith("\r\n\r\n"))
+            if (lastTwoLinesAreBlank)
+            return true;
 
             var syntaxTree = SyntaxTree.Parse(text);
 
