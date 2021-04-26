@@ -1,4 +1,5 @@
 using Pital.CodeAnalysis.Syntax;
+using Pital.CodeAnalysis.Text;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,24 @@ namespace Pital.Test.CodeAnalysis.Syntax
 {
     public class LexerTests
     {
+
         [Fact]
-        public void Lexer_Tests_AllTokens()
+        public void Lexer_Lexes_UnterminatedString()
+        {
+            var  text = "\"aziz";
+            var tokens = SyntaxTree.ParseTokens(text, out var diagnostics);
+
+            var token = Assert.Single(tokens);
+            Assert.Equal(SyntaxKind.StringToken, token.Kind);
+            Assert.Equal(text, token.Text);
+
+            var diagnotic = Assert.Single(diagnostics);
+            Assert.Equal(new TextSpan(0,1), diagnotic.Span);
+            Assert.Equal("Unterminated string literal", diagnotic.Message);
+        }
+
+        [Fact]
+        public void Lexer_Covers_AllTokens()
         {
             var tokenKinds = Enum.GetValues(typeof(SyntaxKind))
                 .Cast<SyntaxKind>()
@@ -95,6 +112,8 @@ namespace Pital.Test.CodeAnalysis.Syntax
                 (SyntaxKind.IdentifierToken,"abc"),
                 (SyntaxKind.NumberToken,"3526"),
                 (SyntaxKind.NumberToken,"1"),
+                (SyntaxKind.StringToken,"\"Aziz\""),
+                (SyntaxKind.StringToken,"\"A\"\"ziz\""),
             };
             return fixedTokens.Concat(dynamicTokens);
         }
@@ -111,54 +130,56 @@ namespace Pital.Test.CodeAnalysis.Syntax
             };
         }
 
-        public static bool RequiresSeparator(SyntaxKind t1Kind,SyntaxKind t2Kind)
+        public static bool RequiresSeparator(SyntaxKind kind1,SyntaxKind kind2)
         {
-            var t1IsKeyword = t1Kind.ToString().EndsWith("Keyword");
-            var t2IsKeyword = t2Kind.ToString().EndsWith("Keyword");
+            var isKeyword1 = kind1.ToString().EndsWith("Keyword");
+            var isKeyword2 = kind2.ToString().EndsWith("Keyword");
 
-            if (t1Kind == SyntaxKind.IdentifierToken && t2Kind == SyntaxKind.IdentifierToken)
-                return true;
-
-            if (t1IsKeyword && t2IsKeyword)
+            if (kind1 == SyntaxKind.IdentifierToken && kind2 == SyntaxKind.IdentifierToken)
                 return true;
 
-            if (t1IsKeyword && t2Kind == SyntaxKind.IdentifierToken)
+            if (isKeyword1 && isKeyword2)
                 return true;
 
-            if (t1Kind == SyntaxKind.IdentifierToken && t2IsKeyword)
+            if (isKeyword1 && kind2 == SyntaxKind.IdentifierToken)
                 return true;
 
-            if (t1Kind == SyntaxKind.NumberToken && t2Kind == SyntaxKind.NumberToken)
+            if (kind1 == SyntaxKind.IdentifierToken && isKeyword2)
                 return true;
 
-            if (t1Kind == SyntaxKind.BangToken && t2Kind == SyntaxKind.EqualsToken)
+            if (kind1 == SyntaxKind.NumberToken && kind2 == SyntaxKind.NumberToken)
                 return true;
 
-            if (t1Kind == SyntaxKind.BangToken && t2Kind == SyntaxKind.EqualsEqualsToken)
+            if (kind1 == SyntaxKind.BangToken && kind2 == SyntaxKind.EqualsToken)
                 return true;
 
-            if (t1Kind == SyntaxKind.EqualsToken && t2Kind == SyntaxKind.EqualsToken)
+            if (kind1 == SyntaxKind.BangToken && kind2 == SyntaxKind.EqualsEqualsToken)
                 return true;
 
-            if (t1Kind == SyntaxKind.EqualsToken && t2Kind == SyntaxKind.EqualsEqualsToken)
-                return true;
-            if (t1Kind == SyntaxKind.LessToken && t2Kind == SyntaxKind.EqualsToken)
-                return true;
-            if (t1Kind == SyntaxKind.LessToken && t2Kind == SyntaxKind.EqualsEqualsToken)
-                return true;
-            if (t1Kind == SyntaxKind.GreaterToken && t2Kind == SyntaxKind.EqualsToken)
-                return true;
-            if (t1Kind == SyntaxKind.GreaterToken && t2Kind == SyntaxKind.EqualsEqualsToken)
-                return true;
-            if (t1Kind == SyntaxKind.AmpersandToken && t2Kind == SyntaxKind.AmpersandAmpersandToken)
+            if (kind1 == SyntaxKind.EqualsToken && kind2 == SyntaxKind.EqualsToken)
                 return true;
 
-            if (t1Kind == SyntaxKind.AmpersandToken && t2Kind == SyntaxKind.AmpersandToken)
+            if (kind1 == SyntaxKind.EqualsToken && kind2 == SyntaxKind.EqualsEqualsToken)
                 return true;
-            if (t1Kind == SyntaxKind.PipeToken && t2Kind == SyntaxKind.PipePipeToken)
+            if (kind1 == SyntaxKind.LessToken && kind2 == SyntaxKind.EqualsToken)
+                return true;
+            if (kind1 == SyntaxKind.LessToken && kind2 == SyntaxKind.EqualsEqualsToken)
+                return true;
+            if (kind1 == SyntaxKind.GreaterToken && kind2 == SyntaxKind.EqualsToken)
+                return true;
+            if (kind1 == SyntaxKind.GreaterToken && kind2 == SyntaxKind.EqualsEqualsToken)
+                return true;
+            if (kind1 == SyntaxKind.AmpersandToken && kind2 == SyntaxKind.AmpersandAmpersandToken)
                 return true;
 
-            if (t1Kind == SyntaxKind.PipeToken && t2Kind == SyntaxKind.PipeToken)
+            if (kind1 == SyntaxKind.AmpersandToken && kind2 == SyntaxKind.AmpersandToken)
+                return true;
+            if (kind1 == SyntaxKind.PipeToken && kind2 == SyntaxKind.PipePipeToken)
+                return true;
+
+            if (kind1 == SyntaxKind.PipeToken && kind2 == SyntaxKind.PipeToken)
+                return true;
+            if (kind1 == SyntaxKind.StringToken && kind2 == SyntaxKind.StringToken)
                 return true;
 
             return false;
@@ -192,5 +213,7 @@ namespace Pital.Test.CodeAnalysis.Syntax
                 }
             }
         }
+
+
     }
 }
