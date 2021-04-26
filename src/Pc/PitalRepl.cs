@@ -21,9 +21,14 @@ namespace Pc
             {
                 var isKeyword = token.Kind.ToString().EndsWith("Keyword");
                 var isNumber = token.Kind == SyntaxKind.NumberToken;
+                var isIdentifier = token.Kind == SyntaxKind.IdentifierToken;
 
                 if (isKeyword)
                     Console.ForegroundColor = ConsoleColor.Blue;
+                else if (isIdentifier)
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                else if (isNumber)
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                 else if (!isNumber)
                     Console.ForegroundColor = ConsoleColor.DarkGray;
 
@@ -94,7 +99,7 @@ namespace Pc
 
             if (!result.Diagnostics.Any())
             {
-                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine(result.Value);
                 Console.ResetColor();
                 _previous = compilation;
