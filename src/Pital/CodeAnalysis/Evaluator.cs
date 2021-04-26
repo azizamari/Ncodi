@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Pital.CodeAnalysis.Binding;
+using Pital.CodeAnalysis.Symbols;
 
 namespace Pital.CodeAnalysis
 {

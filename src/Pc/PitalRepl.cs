@@ -1,4 +1,5 @@
 ﻿using Pital.CodeAnalysis;
+using Pital.CodeAnalysis.Symbols;
 using Pital.CodeAnalysis.Syntax;
 using Pital.CodeAnalysis.Text;
 using System;

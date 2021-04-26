@@ -7,6 +7,7 @@ using System.Collections.Immutable;
 using System.Threading;
 using System.IO;
 using Pital.CodeAnalysis.Lowering;
+using Pital.CodeAnalysis.Symbols;
 
 namespace Pital.CodeAnalysis
 {

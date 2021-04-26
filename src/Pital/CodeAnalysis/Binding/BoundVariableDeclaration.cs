@@ -1,4 +1,6 @@
-﻿namespace Pital.CodeAnalysis.Binding
+﻿using Pital.CodeAnalysis.Symbols;
+
+namespace Pital.CodeAnalysis.Binding
 {
     internal sealed class BoundVariableDeclaration : BoundStatement
     {

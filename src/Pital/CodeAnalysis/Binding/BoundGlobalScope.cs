@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using Pital.CodeAnalysis.Symbols;
+using System.Collections.Immutable;
 
 namespace Pital.CodeAnalysis.Binding
 {

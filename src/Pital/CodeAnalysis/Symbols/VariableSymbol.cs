@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Pital.CodeAnalysis
+namespace Pital.CodeAnalysis.Symbols
 {
     public sealed class VariableSymbol
     {
