@@ -7,6 +7,7 @@
         EndOfFileToken,
         WhiteSpaceToken,
         NumberToken,
+        StringToken,
         PlusToken,
         MinusToken,
         HatToken,
