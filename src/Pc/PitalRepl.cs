@@ -70,9 +70,9 @@ namespace Pc
 
             var syntaxTree = SyntaxTree.Parse(text);
 
-            //if (GetLastToken(syntaxTree.Root.Statement).IsMissing)
-            if (syntaxTree.Diagnostics.Any())
-                    return false;
+            if (syntaxTree.Root.Statement.GetLastToken().IsMissing)
+                //if (syntaxTree.Diagnostics.Any())
+                return false;
 
             return true;
         }
