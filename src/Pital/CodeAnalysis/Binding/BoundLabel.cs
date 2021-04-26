@@ -1,12 +1,11 @@
-﻿namespace Pital.CodeAnalysis
+﻿namespace Pital.CodeAnalysis.Binding
 {
-    internal sealed class LabelSymbol
+    internal sealed class BoundLabel
     {
-        internal LabelSymbol(string name)
+        internal BoundLabel(string name)
         {
             Name = name;
         }
-
         public string Name { get; }
         public override string ToString() => Name;
     }
