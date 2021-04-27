@@ -132,19 +132,13 @@ namespace Pc
                     var error = syntaxTree.Text.ToString(diagnostic.Span);
                     var suffix = syntaxTree.Text.ToString(suffixSpan);
 
-                    Console.Write("    ");
-                    Console.Write(prefix);
-
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.Write(error);
+                    Console.Write("  ");
+                    Console.WriteLine(prefix + error + suffix);
+                    var arrows = "  " + new string(' ', prefix.Length) + new string('^', error.Length);
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(arrows);
                     Console.ResetColor();
-
-                    Console.Write(suffix);
-
-                    Console.WriteLine();
                 }
-
-                Console.WriteLine();
             }
         }
     }

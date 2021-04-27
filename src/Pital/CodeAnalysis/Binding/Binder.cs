@@ -181,7 +181,7 @@ namespace Pital.CodeAnalysis.Binding
         private BoundExpression BindNameExpression(NameExpressionSyntax syntax)
         {
             var name = syntax.IdentifierToken.Text;
-            if (String.IsNullOrEmpty(name))
+            if (syntax.IdentifierToken.IsMissing)
             {
                 return new BoundErrorExpression();
             }
