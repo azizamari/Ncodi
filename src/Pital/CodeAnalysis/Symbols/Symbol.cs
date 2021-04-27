@@ -2,7 +2,7 @@
 {
     public abstract class Symbol
     {
-        internal Symbol(string name)
+        private protected Symbol(string name)
         {
             Name = name;
         }
