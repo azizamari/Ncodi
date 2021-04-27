@@ -82,15 +82,10 @@ namespace Pital.CodeAnalysis.Binding
 
         private BoundStatement BindVariableDeclaration(VariableDeclarationSyntax syntax)
         {
-            var name = syntax.Identifier.Text;
             var isReadonly = syntax.KeywordToken.Kind == SyntaxKind.ConstKeyword;
             var initializer = BindExpression(syntax.Initializer);
-            var variable = new VariableSymbol(name, isReadonly,initializer.Type);
+            var variable = BindVariable(syntax.Identifier, isReadonly, initializer.Type);
 
-            if (!_scope.TryDeclare(variable))
-            {
-                _diagnostics.ReportVariableAlreadyDeclared(syntax.Identifier.Span, name);
-            }
             return new BoundVariableDeclaration(variable, initializer);
         }
 
@@ -135,21 +130,18 @@ namespace Pital.CodeAnalysis.Binding
 
             _scope = new BoundScope(_scope);
 
-            var name = syntax.Identifier.Text;
-            var variable = new VariableSymbol(name, true, TypeSymbol.Int);
-            if (!_scope.TryDeclare(variable))
-                _diagnostics.ReportVariableAlreadyDeclared(syntax.Identifier.Span, name);
+            var variable = BindVariable(syntax.Identifier,isReadonly:true, TypeSymbol.Int);
             var body = BindStatement(syntax.Body);
 
             _scope = _scope.Parent;
 
-            return new BoundForStatement(variable, lowerBound, upperBound,body);
+            return new BoundForStatement(variable, lowerBound, upperBound, body);
         }
 
         private BoundExpression BindExpression(ExpressionSyntax syntax, TypeSymbol targetType)
         {
             var result = BindExpression(syntax);
-            if (result.Type != targetType)
+            if (result.Type != targetType&&result.Type!=TypeSymbol.Error&&targetType!=TypeSymbol.Error)
                 Diagnostics.ReportCannotConvert(syntax.Span, result.Type, targetType);
             return result;
         }
@@ -263,6 +255,15 @@ namespace Pital.CodeAnalysis.Binding
             return new BoundBinaryExpression(boundLeft,boundOperator,  boundRight);
         }
 
+        private VariableSymbol BindVariable(SyntaxToken identifier,bool isReadonly, TypeSymbol type)
+        {
+            var name = identifier.Text??"?";
+            var declare = !identifier.IsMissing;
+            var variable = new VariableSymbol(name, isReadonly, type);
+            if (declare && !_scope.TryDeclare(variable))
+                _diagnostics.ReportVariableAlreadyDeclared(identifier.Span, name);
+            return variable;
+        }
 
     }
 }
