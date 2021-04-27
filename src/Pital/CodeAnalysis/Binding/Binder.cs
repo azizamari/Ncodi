@@ -191,13 +191,13 @@ namespace Pital.CodeAnalysis.Binding
             var name = syntax.IdentifierToken.Text;
             if (String.IsNullOrEmpty(name))
             {
-                return new BoundLiteralExpression(0);
+                return new BoundErrorExpression();
             }
 
             if (!_scope.TryLookUp(name, out var variable))
             {
                 _diagnostics.ReportUndefinedName(syntax.IdentifierToken.Span,name);
-                return new BoundLiteralExpression(0);
+                return new BoundErrorExpression();
             }
             return new BoundVariableExpression(variable);
         }
@@ -232,11 +232,13 @@ namespace Pital.CodeAnalysis.Binding
         {
             var boundOperand = BindExpression(syntax.Operand);
             var boundOperator = BoundUnaryOperator.Bind(syntax.OperatorToken.Kind, boundOperand.Type);
+            if (boundOperand.Type == TypeSymbol.Error)
+                return new BoundErrorExpression();
 
             if (boundOperator == null)
             {
                 _diagnostics.ReportUndefinedUnaryOperator(syntax.OperatorToken.Span, syntax.OperatorToken.Text, boundOperand.Type);
-                return boundOperand;
+                return new BoundErrorExpression();
             }
 
             return new BoundUnaryExpression(boundOperator, boundOperand);
@@ -248,11 +250,14 @@ namespace Pital.CodeAnalysis.Binding
             var boundLeft = BindExpression(syntax.Left);
             var boundRight = BindExpression(syntax.Right);
             var boundOperator = BoundBinaryOperator.Bind(syntax.OperatorToken.Kind,boundLeft.Type,boundRight.Type);
+            
+            if(boundLeft.Type==TypeSymbol.Error||boundRight.Type==TypeSymbol.Error)
+                return new BoundErrorExpression();
 
             if (boundOperator == null)
             {
                 _diagnostics.ReportUndefinedBinaryOperator(syntax.OperatorToken.Span,syntax.OperatorToken.Text,boundLeft.Type,boundRight.Type);
-                return boundLeft;
+                return new BoundErrorExpression();
             }
 
             return new BoundBinaryExpression(boundLeft,boundOperator,  boundRight);
