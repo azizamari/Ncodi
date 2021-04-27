@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pital.CodeAnalysis.Symbols;
+using System;
 
 namespace Pital.CodeAnalysis.Binding
 {
@@ -14,7 +15,7 @@ namespace Pital.CodeAnalysis.Binding
 
 
         public override BoundNodeKind Kind => BoundNodeKind.BinaryExpression;
-        public override Type Type => Op.Type;
+        public override TypeSymbol Type => Op.Type;
 
         public BoundExpression Right { get; }
         public BoundBinaryOperator Op { get; }

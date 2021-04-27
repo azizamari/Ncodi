@@ -4,7 +4,7 @@ namespace Pital.CodeAnalysis.Symbols
 {   
     public sealed class VariableSymbol : Symbol
     {
-        internal VariableSymbol(string name, bool isReadonly, Type type)
+        internal VariableSymbol(string name, bool isReadonly, TypeSymbol type)
             : base(name)
         {
             IsReadonly = isReadonly;
@@ -12,9 +12,9 @@ namespace Pital.CodeAnalysis.Symbols
         }
 
         public bool IsReadonly { get; }
-        public Type Type { get; }
+        public TypeSymbol Type { get; }
 
-        public override SymbolKind Kind => SymbolKind.VariableSymbol;
+        public override SymbolKind Kind => SymbolKind.Variable;
 
         public override string ToString() => Name;
     }

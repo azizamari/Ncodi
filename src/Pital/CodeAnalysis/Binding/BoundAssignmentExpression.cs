@@ -10,7 +10,7 @@ namespace Pital.CodeAnalysis.Binding
             Variable = variable;
             Expression = expression;
         }
-        public override Type Type => Variable.Type;
+        public override TypeSymbol Type => Expression.Type;
 
         public override BoundNodeKind Kind => BoundNodeKind.AssignmentExpression;
 

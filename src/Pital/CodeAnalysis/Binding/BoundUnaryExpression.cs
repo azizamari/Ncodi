@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pital.CodeAnalysis.Symbols;
+using System;
 
 namespace Pital.CodeAnalysis.Binding
 {
@@ -13,7 +14,7 @@ namespace Pital.CodeAnalysis.Binding
         public BoundUnaryOperator Op { get; }
         public BoundExpression Operand { get; }
 
-        public override Type Type => Op.Type;
+        public override TypeSymbol Type => Op.Type;
 
         public override BoundNodeKind Kind => BoundNodeKind.UnaryExpression;
     }

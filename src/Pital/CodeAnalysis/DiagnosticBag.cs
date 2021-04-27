@@ -1,4 +1,5 @@
-﻿using Pital.CodeAnalysis.Syntax;
+﻿using Pital.CodeAnalysis.Symbols;
+using Pital.CodeAnalysis.Syntax;
 using Pital.CodeAnalysis.Text;
 using System;
 using System.Collections;
@@ -21,7 +22,7 @@ namespace Pital.CodeAnalysis
             _diagnostics.Add(diagnostic);
         }
 
-        public void ReportInvalidNumber(TextSpan span, string text, Type type)
+        public void ReportInvalidNumber(TextSpan span, string text, TypeSymbol type)
         {
             var message = $"The number {text} isn't a valid {type}";
             Report(span, message);
@@ -44,13 +45,13 @@ namespace Pital.CodeAnalysis
             Report(span, message);
         }
 
-        public void ReportUndefinedUnaryOperator(TextSpan span, string operatorText, Type operandText)
+        public void ReportUndefinedUnaryOperator(TextSpan span, string operatorText, TypeSymbol operandText)
         {
             var message = $"Unary operator '{operatorText}' is not defined for type '{operandText}'";
             Report(span, message);
         }
 
-        public void ReportUndefinedBinaryOperator(TextSpan span, string operatorText, Type leftType, Type rightType)
+        public void ReportUndefinedBinaryOperator(TextSpan span, string operatorText, TypeSymbol leftType, TypeSymbol rightType)
         {
             var message = $"Binary operator '{operatorText}' is not defined for types '{leftType}' and '{rightType}'";
             Report(span, message);
@@ -62,7 +63,7 @@ namespace Pital.CodeAnalysis
             Report(span, message);
         }
 
-        public void ReportCannotConvert(TextSpan span, Type type1, Type type2)
+        public void ReportCannotConvert(TextSpan span, TypeSymbol type1, TypeSymbol type2)
         {
             var messsage = $"Cannot convert type '{type1}' to '{type2}'";
             Report(span, messsage);

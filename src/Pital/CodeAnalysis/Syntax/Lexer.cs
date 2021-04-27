@@ -1,4 +1,5 @@
-﻿using Pital.CodeAnalysis.Text;
+﻿using Pital.CodeAnalysis.Symbols;
+using Pital.CodeAnalysis.Text;
 using System.Collections.Generic;
 using System.Text;
 
@@ -258,7 +259,7 @@ namespace Pital.CodeAnalysis.Syntax
             var text = _text.ToString(_start, length);
             if (!int.TryParse(text, out var value))
             {
-                _diagnostics.ReportInvalidNumber(new TextSpan(_start, length), text, typeof(int));
+                _diagnostics.ReportInvalidNumber(new TextSpan(_start, length), text, TypeSymbol.Int);
             }
             _value = value;
             _kind = SyntaxKind.NumberToken;
