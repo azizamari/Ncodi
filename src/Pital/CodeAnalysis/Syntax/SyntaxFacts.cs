@@ -74,8 +74,19 @@ namespace Pital.CodeAnalysis.Syntax
                     return SyntaxKind.ForKeyword;
                 case "to":
                     return SyntaxKind.ToKeyword;
-                //case "w":
-                //    return syntaxkind.ampersandtoken;
+
+                //tunisian syntax
+                case "w":
+                    return SyntaxKind.AmpersandAmpersandToken;
+                case "aw":
+                case "wela":
+                    return SyntaxKind.PipePipeToken;
+                case "madem":
+                    return SyntaxKind.WhileKeyword;
+                case "kan":
+                    return SyntaxKind.IfKeyword;
+                case "makanech":
+                    return SyntaxKind.ElseKeyword;
                 //madem -> while
                 // w -> and ; wela -> or; kan -> if; w kan-> else if; makanchi -> else
                 default:
