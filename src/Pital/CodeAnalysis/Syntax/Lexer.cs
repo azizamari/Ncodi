@@ -194,7 +194,7 @@ namespace Pital.CodeAnalysis.Syntax
 
             }
             var length = _position - _start;
-            var text = SyntaxFacts.GetText(_kind);
+            var text = _text.ToString(_start,length);
             if (text == null)
             {
                 text = _text.ToString(_start, length);
