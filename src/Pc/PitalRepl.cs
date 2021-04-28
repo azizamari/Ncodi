@@ -23,13 +23,16 @@ namespace Pc
                 var isKeyword = token.Kind.ToString().EndsWith("Keyword");
                 var isNumber = token.Kind == SyntaxKind.NumberToken;
                 var isIdentifier = token.Kind == SyntaxKind.IdentifierToken;
+                var isString = token.Kind == SyntaxKind.StringToken;
 
                 if (isKeyword)
-                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
                 else if (isIdentifier)
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.ForegroundColor = ConsoleColor.White;
                 else if (isNumber)
                     Console.ForegroundColor = ConsoleColor.Cyan;
+                else if (isString)
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                 else if (!isNumber)
                     Console.ForegroundColor = ConsoleColor.DarkGray;
 
@@ -104,7 +107,7 @@ namespace Pc
 
             if (!result.Diagnostics.Any())
             {
-                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(result.Value);
                 Console.ResetColor();
                 _previous = compilation;
@@ -118,9 +121,7 @@ namespace Pc
                     var lineNumber = lineIndex + 1;
                     var character = diagnostic.Span.Start - line.Start + 1;
 
-                    Console.WriteLine();
-
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write($"({lineNumber}, {character}): ");
                     Console.WriteLine(diagnostic);
                     Console.ResetColor();
@@ -131,6 +132,7 @@ namespace Pc
                     var prefix = syntaxTree.Text.ToString(prefixSpan);
                     var error = syntaxTree.Text.ToString(diagnostic.Span);
                     var suffix = syntaxTree.Text.ToString(suffixSpan);
+                    
 
                     Console.Write("  ");
                     Console.WriteLine(prefix + error + suffix);
