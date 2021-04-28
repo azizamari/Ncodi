@@ -109,6 +109,8 @@ namespace Pital.CodeAnalysis
             switch (b.Op.Kind)
             {
                 case BoundBinaryOperatorKind.Addition:
+                    if (b.Type == TypeSymbol.String)
+                        return (string)left + (string)right;
                     return (int)left + (int)right;
                 case BoundBinaryOperatorKind.Substraction:
                     return (int)left - (int)right;
