@@ -218,6 +218,10 @@ namespace Pital.CodeAnalysis.Binding
                 var argument = boundArguments[i];
                 var parameter = function.Parameter[i];
 
+                //fix cascading errors
+                if (argument.Type == TypeSymbol.Error)
+                    return new BoundErrorExpression();
+
                 if (argument.Type != parameter.Type)
                 {
                     _diagnostics.ReportWrongArgumentType(syntax.Span, parameter.Name, parameter.Type, argument.Type);
