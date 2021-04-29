@@ -19,7 +19,8 @@ namespace Pital.CodeAnalysis.Binding
 
         public static BoundGlobalScope BindGlobalScope(BoundGlobalScope previous,CompilationUnitSyntax syntax)
         {
-            var parentScope = CreateParentScopes(previous);
+            var parentScope = CreateParentScope(previous);
+
             var binder = new Binder(parentScope);
             var expression=binder.BindStatement(syntax.Statement);
             var variables = binder._scope.GetDeclaredVariables();
@@ -33,7 +34,7 @@ namespace Pital.CodeAnalysis.Binding
             return new BoundGlobalScope(previous, diagnostics, variables, expression);
         }
 
-        private static BoundScope CreateParentScopes(BoundGlobalScope previous) 
+        private static BoundScope CreateParentScope(BoundGlobalScope previous) 
         {
             // sub3 -> sub2 -> sub1
             var stack = new Stack<BoundGlobalScope>();
@@ -43,19 +44,30 @@ namespace Pital.CodeAnalysis.Binding
                 previous = previous.Previous;
             }
 
-            BoundScope parent = null;
+            var parent = CreateRootScope();
+
             while (stack.Count > 0)
             {
                 previous = stack.Pop();
                 var scope = new BoundScope(parent);
-                foreach(var v in previous.Variables)
+                foreach (var v in previous.Variables)
                 {
-                    scope.TryDeclare(v);
+                    scope.TryDeclareVariable(v);
                 }
                 parent = scope;
             }
             return parent;
         }
+
+        private static BoundScope CreateRootScope()
+        {
+            var result = new BoundScope(null);
+            
+            foreach(var func in BuiltInFunctions.GetAll())
+                result.TryDeclareFunction(func);
+            return result;
+        }
+
         public DiagnosticBag Diagnostics => _diagnostics;
 
         private BoundStatement BindStatement(StatementSyntax syntax)
@@ -191,9 +203,7 @@ namespace Pital.CodeAnalysis.Binding
                 boundArguments.Add(boundArgument);
             }
 
-            var functions = BuiltInFunctions.GetAll();
-            var function = functions.SingleOrDefault(f => f.Name == syntax.Identifier.Text);
-            if (function == null)
+            if (!_scope.TryLookUpFunction(syntax.Identifier.Text,out var function))
             {
                 _diagnostics.ReportUndefinedFunction(syntax.Identifier.Span, syntax.Identifier.Text);
                 return new BoundErrorExpression();
@@ -238,7 +248,7 @@ namespace Pital.CodeAnalysis.Binding
                 return new BoundErrorExpression();
             }
 
-            if (!_scope.TryLookUp(name, out var variable))
+            if (!_scope.TryLookUpVariable(name, out var variable))
             {
                 _diagnostics.ReportUndefinedName(syntax.IdentifierToken.Span,name);
                 return new BoundErrorExpression();
@@ -251,7 +261,7 @@ namespace Pital.CodeAnalysis.Binding
             var name = syntax.IdentifierToken.Text;
             var boundExpression = BindExpression(syntax.Expression);
 
-            if(!_scope.TryLookUp(name,out var variable))
+            if(!_scope.TryLookUpVariable(name,out var variable))
             {
                 _diagnostics.ReportUndefinedName(syntax.IdentifierToken.Span, name);
                 return boundExpression;
@@ -312,7 +322,7 @@ namespace Pital.CodeAnalysis.Binding
             var name = identifier.Text??"?";
             var declare = !identifier.IsMissing;
             var variable = new VariableSymbol(name, isReadonly, type);
-            if (declare && !_scope.TryDeclare(variable))
+            if (declare && !_scope.TryDeclareVariable(variable))
                 _diagnostics.ReportVariableAlreadyDeclared(identifier.Span, name);
             return variable;
         }
