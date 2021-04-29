@@ -9,6 +9,7 @@
         AssignmentExpression,
         VariableExpression,
         ErrorExpression,
+        CallExpression,
 
         //statements 
         BlockStatement,

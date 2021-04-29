@@ -86,5 +86,28 @@ namespace Pital.CodeAnalysis
             var message = "Unterminated string literal";
             Report(span, message);
         }
+        public void ReportUndefinedFunction(TextSpan span, string name)
+        {
+            var message = $"Function '{name}' doesn't exist";
+            Report(span, message);
+        }
+
+        public void ReportWrongArgumentCount(TextSpan span, string name, int expectedCount, int actualCount)
+        {
+            var message = $"Function '{name}' requires {expectedCount} arguments but was given {actualCount}";
+            Report(span, message);
+        }
+
+        public void ReportWrongArgumentType(TextSpan span, string name, TypeSymbol expectedType, TypeSymbol actualType)
+        {
+            var message = $"Parameter '{name}' requires a value of type '{expectedType}' but was given a value of type '{actualType}'";
+            Report(span, message);
+        }
+
+        public void ReportExpressionMustHaveValue(TextSpan span)
+        {
+            var message = "Expression must have a value";
+            Report(span, message);
+        }
     }
 }

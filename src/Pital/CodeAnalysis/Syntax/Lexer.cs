@@ -90,6 +90,10 @@ namespace Pital.CodeAnalysis.Syntax
                     _kind = SyntaxKind.HatToken;
                     _position++;
                     break;
+                case ',':
+                    _kind = SyntaxKind.CommaToken;
+                    _position++;
+                    break;
                 case '&':
                     _position++;
                     if (Current != '&')

@@ -50,6 +50,7 @@
         UnaryExpression,
         NameExpression,
         AssignmentExpression,
+        CallExpression,
 
         //Nodes
         CompilationUnit,
@@ -62,5 +63,6 @@
         IfStatement,
         WhileStatement,
         ForStatement,
+        CommaToken,
     }
 }

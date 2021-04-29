@@ -2,7 +2,7 @@
 
 namespace Pital.CodeAnalysis.Symbols
 {   
-    public sealed class VariableSymbol : Symbol
+    public class VariableSymbol : Symbol
     {
         internal VariableSymbol(string name, bool isReadonly, TypeSymbol type)
             : base(name)

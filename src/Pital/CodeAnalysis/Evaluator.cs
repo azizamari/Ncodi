@@ -97,10 +97,13 @@ namespace Pital.CodeAnalysis
                     return EvaluateUnaryExpression((BoundUnaryExpression)node);
                 case BoundNodeKind.BinaryExpression:
                     return EvaluateBinaryExpression((BoundBinaryExpression)node);
+                case BoundNodeKind.CallExpression:
+                    return EvaluateCallExpression((BoundCallExpression)node);
                 default:
                     throw new Exception($"Unexpected node {node.Kind}");
             }
         }
+
 
         private object EvaluateBinaryExpression(BoundBinaryExpression b)
         {
@@ -189,6 +192,24 @@ namespace Pital.CodeAnalysis
         private static object EvaluateLiteralExpression(BoundLiteralExpression n)
         {
             return n.Value;
+        }
+
+        private object EvaluateCallExpression(BoundCallExpression node)
+        {
+            if (node.Function == BuiltInFunctions.Input)
+            {
+                return Console.ReadLine();
+            }
+            else if (node.Function == BuiltInFunctions.Print)
+            {
+                var message = (string)EvaluateExpression(node.Arguments[0]);
+                Console.WriteLine(message);
+                return null;
+            }
+            else
+            {
+                throw new Exception($"Unexpected function {node.Function}");
+            }
         }
     }
 }

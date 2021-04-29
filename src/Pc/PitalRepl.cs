@@ -28,7 +28,7 @@ namespace Pc
                 if (isKeyword)
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
                 else if (isIdentifier)
-                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Magenta;
                 else if (isNumber)
                     Console.ForegroundColor = ConsoleColor.Cyan;
                 else if (isString)
@@ -107,9 +107,12 @@ namespace Pc
 
             if (!result.Diagnostics.Any())
             {
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine(result.Value);
-                Console.ResetColor();
+                if (result.Value != null)
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine(result.Value);
+                    Console.ResetColor();
+                }
                 _previous = compilation;
             }
             else
