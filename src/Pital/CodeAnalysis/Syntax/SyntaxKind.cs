@@ -55,6 +55,7 @@
         //Nodes
         CompilationUnit,
         ElseClause,
+        TypeClause,
 
         //Statements
         BlockStatement,
@@ -66,5 +67,6 @@
         CommaToken,
         DoWhileStatement,
         DoKeyword,
+        ColonToken,
     }
 }

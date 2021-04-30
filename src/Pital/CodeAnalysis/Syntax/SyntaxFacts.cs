@@ -145,6 +145,8 @@ namespace Pital.CodeAnalysis.Syntax
                     return "^";
                 case SyntaxKind.CommaToken:
                     return ",";
+                case SyntaxKind.ColonToken:
+                    return ":";
                 case SyntaxKind.TildeToken:
                     return "~";
                 case SyntaxKind.EqualsEqualsToken:

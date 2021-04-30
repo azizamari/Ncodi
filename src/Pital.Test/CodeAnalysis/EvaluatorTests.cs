@@ -118,7 +118,7 @@ namespace Pital.Test.CodeAnalysis
             ";
 
             var diagnostics = @"
-                'print' doesn't exist.
+                'print' is already declared
             ";
 
             AssertDiagnostics(text, diagnostics);

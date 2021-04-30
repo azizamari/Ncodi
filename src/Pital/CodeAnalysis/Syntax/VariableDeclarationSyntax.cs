@@ -2,10 +2,11 @@
 {
     public sealed class VariableDeclarationSyntax : StatementSyntax
     {
-        public VariableDeclarationSyntax(SyntaxToken keywordToken, SyntaxToken identifier, SyntaxToken equalsToken,ExpressionSyntax initializer)
+        public VariableDeclarationSyntax(SyntaxToken keywordToken, SyntaxToken identifier, TypeClauseSyntax typeClause, SyntaxToken equalsToken,ExpressionSyntax initializer)
         {
             KeywordToken = keywordToken;
             Identifier = identifier;
+            TypeClause = typeClause;
             EqualsToken = equalsToken;
             Initializer = initializer;
         }
@@ -13,6 +14,7 @@
 
         public SyntaxToken KeywordToken { get; }
         public SyntaxToken Identifier { get; }
+        public TypeClauseSyntax TypeClause { get; }
         public SyntaxToken EqualsToken { get; }
         public ExpressionSyntax Initializer { get; }
     }

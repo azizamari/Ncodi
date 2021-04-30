@@ -69,6 +69,12 @@ namespace Pital.CodeAnalysis
             Report(span, messsage);
         }
 
+        public void ReportCannotConvertImplicitly(TextSpan span, TypeSymbol type1, TypeSymbol type2)
+        {
+            var message = $"Cannot implicitly convert type '{type1}' to '{type2}'. An Explicit convesion exists ( are you missing a cast?)";
+            Report(span, message);
+        }
+
         public void ReportSymbolAlreadyDeclared(TextSpan span, string name)
         {
             var message = $"'{name}' is already declared";
@@ -107,6 +113,12 @@ namespace Pital.CodeAnalysis
         public void ReportExpressionMustHaveValue(TextSpan span)
         {
             var message = "Expression must have a value";
+            Report(span, message);
+        }
+
+        public void ReportUndefinedType(TextSpan span, string name)
+        {
+            var message = $"Type '{name}' doesn't exist";
             Report(span, message);
         }
     }
