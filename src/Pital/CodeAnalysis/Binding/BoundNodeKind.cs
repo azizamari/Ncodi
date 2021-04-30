@@ -21,5 +21,6 @@
         LabelStatement,
         ConditionalGotoStatement,
         GotoStatement,
+        ConversionExpression,
     }
 }
