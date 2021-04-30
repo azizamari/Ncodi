@@ -109,6 +109,22 @@ namespace Pital.Test.CodeAnalysis
         }
 
         [Fact]
+        public void Evaluator_Variables_Can_Shadow_Functions()
+        {
+            var text = @"
+                {
+                    var [print] = 42
+                }
+            ";
+
+            var diagnostics = @"
+                'print' doesn't exist.
+            ";
+
+            AssertDiagnostics(text, diagnostics);
+        }
+
+        [Fact]
         public void Evaluator_VariableDeclaration_Reports_Redeclaration()
         {
             var text = @"
@@ -123,7 +139,7 @@ namespace Pital.Test.CodeAnalysis
             ";
 
             var diagnostics = @"
-                Variable 'x' is already declared
+                'x' is already declared
             ";
 
             AssertDiagnostics(text, diagnostics);

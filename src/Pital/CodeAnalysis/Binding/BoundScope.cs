@@ -9,7 +9,6 @@ namespace Pital.CodeAnalysis.Binding
         private Dictionary<string,VariableSymbol> _variables=new Dictionary<string, VariableSymbol>();
         private Dictionary<string,FunctionSymbol> _functions=new Dictionary<string, FunctionSymbol>();
 
-
         public BoundScope(BoundScope parent)
         {
             Parent = parent;
@@ -21,7 +20,7 @@ namespace Pital.CodeAnalysis.Binding
             if (_variables == null)
                 _variables = new Dictionary<string, VariableSymbol>();
 
-            if (_variables.ContainsKey(variable.Name))
+            if (_variables.ContainsKey(variable.Name) || TryLookUpFunction(variable.Name, out var function))
             {
                 return false;
             }
@@ -45,7 +44,7 @@ namespace Pital.CodeAnalysis.Binding
             if(_functions==null)
                 _functions = new Dictionary<string, FunctionSymbol>();
 
-            if (_functions.ContainsKey(function.Name))
+            if (_functions.ContainsKey(function.Name) || TryLookUpVariable(function.Name, out var variable))
             {
                 return false;
             }
