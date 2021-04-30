@@ -28,11 +28,11 @@ namespace Pc
                 if (isKeyword)
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
                 else if (isIdentifier)
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                else if (isNumber)
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                else if (isString)
                     Console.ForegroundColor = ConsoleColor.Yellow;
+                else if (isNumber)
+                    Console.ForegroundColor = ConsoleColor.White;
+                else if (isString)
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                 else if (!isNumber)
                     Console.ForegroundColor = ConsoleColor.DarkGray;
 
