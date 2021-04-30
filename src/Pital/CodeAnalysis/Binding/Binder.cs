@@ -10,7 +10,8 @@ namespace Pital.CodeAnalysis.Binding
 {
     internal sealed class Binder
     {
-        public readonly DiagnosticBag _diagnostics = new DiagnosticBag();
+        private readonly DiagnosticBag _diagnostics = new DiagnosticBag();
+
         private BoundScope _scope;
 
         public Binder(BoundScope parent)
@@ -21,23 +22,19 @@ namespace Pital.CodeAnalysis.Binding
         public static BoundGlobalScope BindGlobalScope(BoundGlobalScope previous,CompilationUnitSyntax syntax)
         {
             var parentScope = CreateParentScope(previous);
-
             var binder = new Binder(parentScope);
             var expression=binder.BindStatement(syntax.Statement);
             var variables = binder._scope.GetDeclaredVariables();
             var diagnostics = binder.Diagnostics.ToImmutableArray();
 
             if (previous != null)
-            {
                 diagnostics = diagnostics.InsertRange(0, previous.Diagnostics);
-            }
 
             return new BoundGlobalScope(previous, diagnostics, variables, expression);
         }
 
-        private static BoundScope CreateParentScope(BoundGlobalScope previous) 
+        private static BoundScope CreateParentScope(BoundGlobalScope previous)
         {
-            // sub3 -> sub2 -> sub1
             var stack = new Stack<BoundGlobalScope>();
             while(previous != null)
             {
@@ -52,9 +49,7 @@ namespace Pital.CodeAnalysis.Binding
                 previous = stack.Pop();
                 var scope = new BoundScope(parent);
                 foreach (var v in previous.Variables)
-                {
                     scope.TryDeclareVariable(v);
-                }
                 parent = scope;
             }
             return parent;
@@ -63,9 +58,10 @@ namespace Pital.CodeAnalysis.Binding
         private static BoundScope CreateRootScope()
         {
             var result = new BoundScope(null);
-            
+
             foreach(var func in BuiltInFunctions.GetAll())
                 result.TryDeclareFunction(func);
+
             return result;
         }
 
@@ -79,8 +75,6 @@ namespace Pital.CodeAnalysis.Binding
                     return BindBlockStatement((BlockStatementSyntax)syntax);
                 case SyntaxKind.VariableDeclaration:
                     return BindVariableDeclaration((VariableDeclarationSyntax)syntax);
-                case SyntaxKind.ExpressionStatement:
-                    return BindExpressionStatement((ExpressionStatementSyntax)syntax);
                 case SyntaxKind.IfStatement:
                     return BindIfStatement((IfStatementSyntax)syntax);
                 case SyntaxKind.WhileStatement:
@@ -89,26 +83,11 @@ namespace Pital.CodeAnalysis.Binding
                     return BindDoWhileStatement((DoWhileStatementSyntax)syntax);
                 case SyntaxKind.ForStatement:
                     return BindForStatement((ForStatementSyntax)syntax);
+                case SyntaxKind.ExpressionStatement:
+                    return BindExpressionStatement((ExpressionStatementSyntax)syntax);
                 default:
-                    throw new Exception($"Unexpexted Syntax {syntax.Kind}");
+                    throw new Exception($"Unexpected syntax {syntax.Kind}");
             }
-        }
-
-
-        private BoundStatement BindDoWhileStatement(DoWhileStatementSyntax syntax)
-        {
-            var body = BindStatement(syntax.Body);
-            var condition = BindExpression(syntax.Condition, TypeSymbol.Bool);
-            return new BoundDoWhileStatement(body, condition);
-        }
-
-        private BoundStatement BindVariableDeclaration(VariableDeclarationSyntax syntax)
-        {
-            var isReadonly = syntax.KeywordToken.Kind == SyntaxKind.ConstKeyword;
-            var initializer = BindExpression(syntax.Initializer);
-            var variable = BindVariable(syntax.Identifier, isReadonly, initializer.Type);
-
-            return new BoundVariableDeclaration(variable, initializer);
         }
 
         private BoundStatement BindBlockStatement(BlockStatementSyntax syntax)
@@ -123,13 +102,17 @@ namespace Pital.CodeAnalysis.Binding
             }
 
             _scope = _scope.Parent;
+
             return new BoundBlockStatement(statements.ToImmutable());
         }
 
-        private BoundStatement BindExpressionStatement(ExpressionStatementSyntax syntax)
+        private BoundStatement BindVariableDeclaration(VariableDeclarationSyntax syntax)
         {
-            var expression = BindExpression(syntax.Expression,canBeVoid:true);
-            return new BoundExpressionStatement(expression);
+            var isReadOnly = syntax.KeywordToken.Kind == SyntaxKind.ConstKeyword;
+            var initializer = BindExpression(syntax.Initializer);
+            var variable = BindVariable(syntax.Identifier, isReadOnly, initializer.Type);
+
+            return new BoundVariableDeclaration(variable, initializer);
         }
 
         private BoundStatement BindIfStatement(IfStatementSyntax syntax)
@@ -145,6 +128,14 @@ namespace Pital.CodeAnalysis.Binding
             var body = BindStatement(syntax.Body);
             return new BoundWhileStatement(condition, body);
         }
+
+        private BoundStatement BindDoWhileStatement(DoWhileStatementSyntax syntax)
+        {
+            var body = BindStatement(syntax.Body);
+            var condition = BindExpression(syntax.Condition, TypeSymbol.Bool);
+            return new BoundDoWhileStatement(body, condition);
+        }
+
         private BoundStatement BindForStatement(ForStatementSyntax syntax)
         {
             var lowerBound = BindExpression(syntax.LowerBound, TypeSymbol.Int);
@@ -158,6 +149,12 @@ namespace Pital.CodeAnalysis.Binding
             _scope = _scope.Parent;
 
             return new BoundForStatement(variable, lowerBound, upperBound, body);
+        }
+
+        private BoundStatement BindExpressionStatement(ExpressionStatementSyntax syntax)
+        {
+            var expression = BindExpression(syntax.Expression, canBeVoid: true);
+            return new BoundExpressionStatement(expression);
         }
 
         private BoundExpression BindExpression(ExpressionSyntax syntax, TypeSymbol targetType)
@@ -196,84 +193,14 @@ namespace Pital.CodeAnalysis.Binding
                 case SyntaxKind.CallExpression:
                     return BindCallExpression((CallExpressionSyntax)syntax);
                 default:
-                    throw new Exception($"Unexpexted Syntax {syntax.Kind}");
+                    throw new Exception($"Unexpected syntax {syntax.Kind}");
             }
-        }
-
-        private BoundExpression BindCallExpression(CallExpressionSyntax syntax)
-        {
-            if (syntax.Arguments.Count == 1 && LookUpType(syntax.Identifier.Text) is TypeSymbol type)
-                return BindConversion(syntax.Arguments[0], type);
-
-            var boundArguments = ImmutableArray.CreateBuilder<BoundExpression>();
-
-            foreach (var argument in syntax.Arguments)
-            {
-                var boundArgument = BindExpression(argument);
-                boundArguments.Add(boundArgument);
-            }
-
-            if (!_scope.TryLookUpFunction(syntax.Identifier.Text,out var function))
-            {
-                _diagnostics.ReportUndefinedFunction(syntax.Identifier.Span, syntax.Identifier.Text);
-                return new BoundErrorExpression();
-            }
-            if (syntax.Arguments.Count != function.Parameter.Length)
-            {
-                _diagnostics.ReportWrongArgumentCount(syntax.Span, function.Name, function.Parameter.Length, syntax.Arguments.Count);
-                return new BoundErrorExpression();
-            }
-            for (var i = 0; i < syntax.Arguments.Count; i++)
-            {
-                var argument = boundArguments[i];
-                var parameter = function.Parameter[i];
-
-                //fix cascading errors
-                if (argument.Type == TypeSymbol.Error)
-                    return new BoundErrorExpression();
-
-                if (argument.Type != parameter.Type)
-                {
-                    _diagnostics.ReportWrongArgumentType(syntax.Span, parameter.Name, parameter.Type, argument.Type);
-                    return new BoundErrorExpression();
-                }
-            }
-
-            return new BoundCallExpression(function, boundArguments.ToImmutable());
-        }
-
-
-        private BoundExpression BindConversion(ExpressionSyntax syntax, TypeSymbol type)
-        {
-            var expression = BindExpression(syntax);
-            return BindConversion(syntax.Span, expression, type);
-        }
-
-        private BoundExpression BindConversion(TextSpan diagnosticSpan, BoundExpression expression, TypeSymbol type)
-        {
-            var conversion = Conversion.Classify(expression.Type, type);
-
-            if (!conversion.Exists)
-            {
-                if (expression.Type == TypeSymbol.Error && type != TypeSymbol.Error)
-                {
-                    _diagnostics.ReportCannotConvert(diagnosticSpan, expression.Type, type);
-                }
-                return new BoundErrorExpression();
-            }
-
-            if (conversion.IsIdentity)
-                return expression;
-
-            return new BoundConversionExpression(type, expression);
         }
 
         private BoundExpression BindParenthesizedExpression(ParenthesizedExpressionSyntax syntax)
         {
             return BindExpression(syntax.Expression);
         }
-
-
 
         private BoundExpression BindLiteralExpression(LiteralExpressionSyntax syntax)
         {
@@ -290,7 +217,7 @@ namespace Pital.CodeAnalysis.Binding
 
             if (!_scope.TryLookUpVariable(name, out var variable))
             {
-                _diagnostics.ReportUndefinedName(syntax.IdentifierToken.Span,name);
+                _diagnostics.ReportUndefinedName(syntax.IdentifierToken.Span, name);
                 return new BoundErrorExpression();
             }
             return new BoundVariableExpression(variable);
@@ -308,9 +235,7 @@ namespace Pital.CodeAnalysis.Binding
             }
 
             if (variable.IsReadonly)
-            {
                 _diagnostics.ReportCannotAssign(syntax.EqualsToken.Span, name);
-            }
             var convertedExpression = BindConversion(syntax.Expression.Span, boundExpression, variable.Type);
 
             return new BoundAssignmentExpression(variable, convertedExpression);
@@ -319,10 +244,10 @@ namespace Pital.CodeAnalysis.Binding
         private BoundExpression BindUnaryExpression(UnaryExpressionSyntax syntax)
         {
             var boundOperand = BindExpression(syntax.Operand);
-            var boundOperator = BoundUnaryOperator.Bind(syntax.OperatorToken.Kind, boundOperand.Type);
             if (boundOperand.Type == TypeSymbol.Error)
                 return new BoundErrorExpression();
 
+            var boundOperator = BoundUnaryOperator.Bind(syntax.OperatorToken.Kind, boundOperand.Type);
             if (boundOperator == null)
             {
                 _diagnostics.ReportUndefinedUnaryOperator(syntax.OperatorToken.Span, syntax.OperatorToken.Text, boundOperand.Type);
@@ -332,23 +257,86 @@ namespace Pital.CodeAnalysis.Binding
             return new BoundUnaryExpression(boundOperator, boundOperand);
         }
 
-
         private BoundExpression BindBinaryExpression(BinaryExpressionSyntax syntax)
         {
             var boundLeft = BindExpression(syntax.Left);
             var boundRight = BindExpression(syntax.Right);
-            var boundOperator = BoundBinaryOperator.Bind(syntax.OperatorToken.Kind,boundLeft.Type,boundRight.Type);
-            
-            if(boundLeft.Type==TypeSymbol.Error||boundRight.Type==TypeSymbol.Error)
+
+            if (boundLeft.Type == TypeSymbol.Error || boundRight.Type == TypeSymbol.Error)
                 return new BoundErrorExpression();
 
+            var boundOperator = BoundBinaryOperator.Bind(syntax.OperatorToken.Kind, boundLeft.Type, boundRight.Type);
             if (boundOperator == null)
             {
-                _diagnostics.ReportUndefinedBinaryOperator(syntax.OperatorToken.Span,syntax.OperatorToken.Text,boundLeft.Type,boundRight.Type);
+                _diagnostics.ReportUndefinedBinaryOperator(syntax.OperatorToken.Span, syntax.OperatorToken.Text, boundLeft.Type, boundRight.Type);
                 return new BoundErrorExpression();
             }
 
-            return new BoundBinaryExpression(boundLeft,boundOperator,  boundRight);
+            return new BoundBinaryExpression(boundLeft, boundOperator, boundRight);
+        }
+
+        private BoundExpression BindCallExpression(CallExpressionSyntax syntax)
+        {
+            if (syntax.Arguments.Count == 1 && LookUpType(syntax.Identifier.Text) is TypeSymbol type)
+                return BindConversion(syntax.Arguments[0], type);
+
+            var boundArguments = ImmutableArray.CreateBuilder<BoundExpression>();
+
+            foreach (var argument in syntax.Arguments)
+            {
+                var boundArgument = BindExpression(argument);
+                boundArguments.Add(boundArgument);
+            }
+
+            if (!_scope.TryLookUpFunction(syntax.Identifier.Text, out var function))
+            {
+                _diagnostics.ReportUndefinedFunction(syntax.Identifier.Span, syntax.Identifier.Text);
+                return new BoundErrorExpression();
+            }
+
+            if (syntax.Arguments.Count != function.Parameters.Length)
+            {
+                _diagnostics.ReportWrongArgumentCount(syntax.Span, function.Name, function.Parameters.Length, syntax.Arguments.Count);
+                return new BoundErrorExpression();
+            }
+
+            for (var i = 0; i < syntax.Arguments.Count; i++)
+            {
+                var argument = boundArguments[i];
+                var parameter = function.Parameters[i];
+
+                if (argument.Type != parameter.Type)
+                {
+                    _diagnostics.ReportWrongArgumentType(syntax.Span, parameter.Name, parameter.Type, argument.Type);
+                    return new BoundErrorExpression();
+                }
+            }
+
+            return new BoundCallExpression(function, boundArguments.ToImmutable());
+        }
+
+        private BoundExpression BindConversion(ExpressionSyntax syntax, TypeSymbol type)
+        {
+            var expression = BindExpression(syntax);
+            return BindConversion(syntax.Span, expression, type);
+        }
+
+        private BoundExpression BindConversion(TextSpan diagnosticSpan, BoundExpression expression, TypeSymbol type)
+        {
+            var conversion = Conversion.Classify(expression.Type, type);
+
+            if (!conversion.Exists)
+            {
+                if (expression.Type != TypeSymbol.Error && type != TypeSymbol.Error)
+                {
+                    _diagnostics.ReportCannotConvert(diagnosticSpan, expression.Type, type);
+                }
+                return new BoundErrorExpression();
+            }
+
+            if (conversion.IsIdentity)
+                return expression;
+            return new BoundConversionExpression(type, expression);
         }
 
         private VariableSymbol BindVariable(SyntaxToken identifier,bool isReadonly, TypeSymbol type)
@@ -357,7 +345,7 @@ namespace Pital.CodeAnalysis.Binding
             var declare = !identifier.IsMissing;
             var variable = new VariableSymbol(name, isReadonly, type);
             if (declare && !_scope.TryDeclareVariable(variable))
-                _diagnostics.ReportVariableAlreadyDeclared(identifier.Span, name);
+                _diagnostics.ReportSymbolAlreadyDeclared(identifier.Span, name);
             return variable;
         }
 
@@ -375,6 +363,5 @@ namespace Pital.CodeAnalysis.Binding
                     return null;
             }
         }
-
     }
 }

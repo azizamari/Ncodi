@@ -8,13 +8,13 @@ namespace Pital.CodeAnalysis.Symbols
         public FunctionSymbol(string name, ImmutableArray<ParameterSymbol> parameter, TypeSymbol returnType)
             :base(name)
         {
-            Parameter = parameter;
+            Parameters = parameter;
             ReturnType = returnType;
         }
 
         public override SymbolKind Kind => SymbolKind.Fucntion;
 
-        public ImmutableArray<ParameterSymbol> Parameter { get; }
+        public ImmutableArray<ParameterSymbol> Parameters { get; }
         public TypeSymbol ReturnType { get; }
     }
 }
