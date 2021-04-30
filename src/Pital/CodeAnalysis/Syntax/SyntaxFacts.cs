@@ -74,11 +74,12 @@ namespace Pital.CodeAnalysis.Syntax
                     return SyntaxKind.ForKeyword;
                 case "to":
                     return SyntaxKind.ToKeyword;
+                case "do":
+                    return SyntaxKind.DoKeyword;
 
                 //tunisian syntax
                 case "w":
                     return SyntaxKind.AmpersandAmpersandToken;
-                case "aw":
                 case "wela":
                     return SyntaxKind.PipePipeToken;
                 case "madem":
@@ -87,6 +88,8 @@ namespace Pital.CodeAnalysis.Syntax
                     return SyntaxKind.IfKeyword;
                 case "makanech":
                     return SyntaxKind.ElseKeyword;
+                case "dir":
+                    return SyntaxKind.DoKeyword;
                 //madem -> while
                 // w -> and ; wela -> or; kan -> if; w kan-> else if; makanchi -> else
                 default:
@@ -182,6 +185,8 @@ namespace Pital.CodeAnalysis.Syntax
                     return "for";
                 case SyntaxKind.ToKeyword:
                     return "to";
+                case SyntaxKind.DoKeyword:
+                    return "do";
                 default:
                     return null;
             }

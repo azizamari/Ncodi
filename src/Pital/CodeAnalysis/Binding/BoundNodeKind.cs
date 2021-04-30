@@ -22,5 +22,6 @@
         ConditionalGotoStatement,
         GotoStatement,
         ConversionExpression,
+        DoWhileStatement,
     }
 }

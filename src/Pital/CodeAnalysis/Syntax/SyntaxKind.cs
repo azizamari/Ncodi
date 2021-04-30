@@ -64,5 +64,7 @@
         WhileStatement,
         ForStatement,
         CommaToken,
+        DoWhileStatement,
+        DoKeyword,
     }
 }

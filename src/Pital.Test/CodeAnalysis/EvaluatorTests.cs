@@ -53,6 +53,7 @@ namespace Pital.Test.CodeAnalysis
         [InlineData("{ var i = 10 var result = 0 while i > 0 { result = result + i i = i - 1} result }", 55)]
         [InlineData("{ var result = 0 for i = 1 to 10 { result = result + i } result }", 55)]
         [InlineData("{ var a = 10 for i = 1 to (a = a - 1) { } a }", 9)]
+        [InlineData("{ var a = 0 do a = a + 1 while a < 10 a}", 10)]
         [InlineData("1 | 2", 3)]
         [InlineData("1 | 0", 1)]
         [InlineData("1 & 3", 1)]
@@ -86,6 +87,25 @@ namespace Pital.Test.CodeAnalysis
             var result = compilation.Evaluate(variables);
             Assert.Empty(result.Diagnostics);
             Assert.Equal(expectedValue, result.Value);
+        }
+
+        [Fact]
+        public void Evaluator_DoWhileStatement_Reports_CannotConvert()
+        {
+            var text = @"
+                {
+                    var x = 0
+                    do
+                        x = 10
+                    while [10]
+                }
+            ";
+
+            var diagnostics = @"
+                Cannot convert type 'int' to 'bool'
+            ";
+
+            AssertDiagnostics(text, diagnostics);
         }
 
         [Fact]
