@@ -113,12 +113,12 @@ namespace Pital.Test.CodeAnalysis
         {
             var text = @"
                 {
-                    var [print] = 42
+                    var [ekteb] = 42
                 }
             ";
 
             var diagnostics = @"
-                'print' is already declared
+                'ekteb' is already declared
             ";
 
             AssertDiagnostics(text, diagnostics);
