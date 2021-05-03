@@ -82,8 +82,8 @@ namespace Pital.CodeAnalysis
         private void EvaluateVariableDeclaration(BoundVariableDeclaration node)
         {
             var value = EvaluateExpression(node.Initializer);
-            _globals[node.Variable] = value;
             _lastValue = value;
+            Assign(node.Variable, value);
         }
 
         private void EvaluateExpressionStatement(BoundExpressionStatement node)
@@ -204,15 +204,7 @@ namespace Pital.CodeAnalysis
         private object EvaluateAssignmentExpression(BoundAssignmentExpression a)
         {
             var value = EvaluateExpression(a.Expression);
-            if (a.Variable.Kind == SymbolKind.GlobalVariable)
-            {
-                _globals[a.Variable]=value;
-            }
-            else
-            {
-                var locals = _locals.Peek();
-                locals[a.Variable]=value;
-            }
+            Assign(a.Variable, value);
             return value;
         }
 
@@ -269,6 +261,18 @@ namespace Pital.CodeAnalysis
                 _locals.Pop();
                  
                 return result;
+            }
+        }
+        private void Assign(VariableSymbol variable, object value)
+        {
+            if (variable.Kind == SymbolKind.GlobalVariable)
+            {
+                _globals[variable] = value;
+            }
+            else
+            {
+                var locals = _locals.Peek();
+                locals[variable] = value;
             }
         }
     }
