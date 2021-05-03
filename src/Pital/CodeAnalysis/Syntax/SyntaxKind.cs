@@ -31,6 +31,7 @@
         OpenBraceToken,
         ClosedBraceToken,
         IdentifierToken,
+        ColonToken,
 
         //Keywords
         TrueKeyword,
@@ -42,6 +43,8 @@
         WhileKeyword,
         ElseKeyword,
         ToKeyword,
+        DoKeyword,
+        FunctionKeyword,
 
         //Expressions
         LiteralExpression,
@@ -54,8 +57,11 @@
 
         //Nodes
         CompilationUnit,
+        GlobalStatmenet,
+        FunctionDeclaration,
         ElseClause,
         TypeClause,
+        Parameter,
 
         //Statements
         BlockStatement,
@@ -66,7 +72,5 @@
         ForStatement,
         CommaToken,
         DoWhileStatement,
-        DoKeyword,
-        ColonToken,
     }
 }

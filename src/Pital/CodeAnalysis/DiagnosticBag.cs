@@ -63,11 +63,18 @@ namespace Pital.CodeAnalysis
             Report(span, message);
         }
 
+        internal void ReportParameterAlreadyDeclared(TextSpan span, string parameterName)
+        {
+            var message = $"Parameter named '{parameterName}' already exists";
+            Report(span, message);
+        }
+
         public void ReportCannotConvert(TextSpan span, TypeSymbol type1, TypeSymbol type2)
         {
             var messsage = $"Cannot convert type '{type1}' to '{type2}'";
             Report(span, messsage);
         }
+
 
         public void ReportCannotConvertImplicitly(TextSpan span, TypeSymbol type1, TypeSymbol type2)
         {
@@ -120,6 +127,11 @@ namespace Pital.CodeAnalysis
         {
             var message = $"Type '{name}' doesn't exist";
             Report(span, message);
+        }
+        public void ReportFunctionsAreUnsupported(TextSpan span)
+        {
+            var message ="Functions conataining return values are not supported";
+            Report(span, message); 
         }
     }
 }

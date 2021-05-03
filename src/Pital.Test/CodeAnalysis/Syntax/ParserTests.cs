@@ -1,5 +1,6 @@
 ﻿using Pital.CodeAnalysis.Syntax;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Pital.Test.CodeAnalysis.Syntax
@@ -120,7 +121,7 @@ namespace Pital.Test.CodeAnalysis.Syntax
         {
             var syntaxTree = SyntaxTree.Parse(text);
             var root = syntaxTree.Root;
-            var statement = root.Statement;
+            var statement = root.Members.Last();
             return Assert.IsType<ExpressionStatementSyntax>(statement).Expression;
         }
 

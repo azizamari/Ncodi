@@ -76,6 +76,8 @@ namespace Pital.CodeAnalysis.Syntax
                     return SyntaxKind.ToKeyword;
                 case "do":
                     return SyntaxKind.DoKeyword;
+                case "def":
+                    return SyntaxKind.FunctionKeyword;
 
                 //tunisian syntax
                 case "w":
@@ -169,6 +171,8 @@ namespace Pital.CodeAnalysis.Syntax
                     return "{";
                 case SyntaxKind.ClosedBraceToken:
                     return "}";
+                case SyntaxKind.FunctionKeyword:
+                    return "def";
                 case SyntaxKind.FalseKeyword:
                     return "false";
                 case SyntaxKind.TrueKeyword:
