@@ -1,3 +1,3 @@
 @echo off
 dotnet build
-dotnet test .\Pital.Test\Pital.Test.csproj
+dotnet test .\Ncodi.Test\Ncodi.Test.csproj
