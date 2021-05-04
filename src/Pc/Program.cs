@@ -6,7 +6,7 @@ namespace Ni
     {
         private static void Main()
         {
-            var repl = new PitalRepl();
+            var repl = new NcodiRepl();
             repl.Run();
         }
     }
