@@ -1,15 +1,15 @@
 ﻿using System;
-using Pital.CodeAnalysis.Binding;
-using Pital.CodeAnalysis.Syntax;
+using Ncodi.CodeAnalysis.Binding;
+using Ncodi.CodeAnalysis.Syntax;
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading;
 using System.IO;
-using Pital.CodeAnalysis.Lowering;
-using Pital.CodeAnalysis.Symbols;
+using Ncodi.CodeAnalysis.Lowering;
+using Ncodi.CodeAnalysis.Symbols;
 
-namespace Pital.CodeAnalysis
+namespace Ncodi.CodeAnalysis
 {
     public sealed class Compilation
     {

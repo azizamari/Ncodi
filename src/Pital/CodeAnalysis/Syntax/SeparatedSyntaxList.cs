@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 
-namespace Pital.CodeAnalysis.Syntax
+namespace Ncodi.CodeAnalysis.Syntax
 {
     public abstract class SeparatedSyntaxList
     {

@@ -1,11 +1,11 @@
-﻿using Pital.CodeAnalysis.Binding;
-using Pital.CodeAnalysis.Symbols;
-using Pital.CodeAnalysis.Syntax;
+﻿using Ncodi.CodeAnalysis.Binding;
+using Ncodi.CodeAnalysis.Symbols;
+using Ncodi.CodeAnalysis.Syntax;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 
-namespace Pital.CodeAnalysis.Lowering
+namespace Ncodi.CodeAnalysis.Lowering
 {
     internal sealed class Lowerer : BoundTreeRewriter
     {

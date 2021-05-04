@@ -1,6 +1,6 @@
-﻿using Pital.CodeAnalysis.Symbols;
+﻿using Ncodi.CodeAnalysis.Symbols;
 
-namespace Pital.CodeAnalysis.Binding
+namespace Ncodi.CodeAnalysis.Binding
 {
     internal sealed class BoundErrorExpression: BoundExpression
     {

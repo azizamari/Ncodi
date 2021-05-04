@@ -1,11 +1,11 @@
-using Pital.CodeAnalysis.Syntax;
-using Pital.CodeAnalysis.Text;
+using Ncodi.CodeAnalysis.Syntax;
+using Ncodi.CodeAnalysis.Text;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace Pital.Test.CodeAnalysis.Syntax
+namespace Ncodi.Test.CodeAnalysis.Syntax
 {
     public class LexerTests
     {

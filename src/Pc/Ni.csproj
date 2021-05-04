@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\Pital\Pital.csproj" />
+    <ProjectReference Include="..\Pital\Ncodi.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

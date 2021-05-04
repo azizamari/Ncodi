@@ -1,12 +1,12 @@
-﻿using Pital.CodeAnalysis;
-using Pital.CodeAnalysis.Symbols;
-using Pital.CodeAnalysis.Syntax;
-using Pital.CodeAnalysis.Text;
+﻿using Ncodi.CodeAnalysis;
+using Ncodi.CodeAnalysis.Symbols;
+using Ncodi.CodeAnalysis.Syntax;
+using Ncodi.CodeAnalysis.Text;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Pc
+namespace Ni
 {
     internal sealed class PitalRepl : Repl
     {

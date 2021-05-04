@@ -1,4 +1,4 @@
-﻿namespace Pital.CodeAnalysis.Syntax
+﻿namespace Ncodi.CodeAnalysis.Syntax
 {
     public sealed class ForStatementSyntax : StatementSyntax
     {

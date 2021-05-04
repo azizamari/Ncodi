@@ -1,11 +1,11 @@
-﻿using Pital.CodeAnalysis.Text;
+﻿using Ncodi.CodeAnalysis.Text;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
 using System.Text;
 
-namespace Pital.Test.CodeAnalysis
+namespace Ncodi.Test.CodeAnalysis
 {
     internal sealed class AnnotatedText
     {

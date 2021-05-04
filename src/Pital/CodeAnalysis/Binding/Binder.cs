@@ -1,13 +1,13 @@
-﻿using Pital.CodeAnalysis.Syntax;
+﻿using Ncodi.CodeAnalysis.Syntax;
 using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using Pital.CodeAnalysis.Symbols;
-using Pital.CodeAnalysis.Text;
-using Pital.CodeAnalysis.Lowering;
+using Ncodi.CodeAnalysis.Symbols;
+using Ncodi.CodeAnalysis.Text;
+using Ncodi.CodeAnalysis.Lowering;
 
-namespace Pital.CodeAnalysis.Binding
+namespace Ncodi.CodeAnalysis.Binding
 {
     internal sealed class Binder
     {

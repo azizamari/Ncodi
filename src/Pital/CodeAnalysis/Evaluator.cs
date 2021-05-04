@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Text;
 using System.Threading.Tasks;
-using Pital.CodeAnalysis.Binding;
-using Pital.CodeAnalysis.Symbols;
+using Ncodi.CodeAnalysis.Binding;
+using Ncodi.CodeAnalysis.Symbols;
 
-namespace Pital.CodeAnalysis
+namespace Ncodi.CodeAnalysis
 {
 
     internal class Evaluator

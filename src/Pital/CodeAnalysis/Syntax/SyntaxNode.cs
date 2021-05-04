@@ -2,10 +2,10 @@
 using System.Reflection;
 using System.Linq;
 using System.IO;
-using Pital.CodeAnalysis.Text;
+using Ncodi.CodeAnalysis.Text;
 using System;
 
-namespace Pital.CodeAnalysis.Syntax
+namespace Ncodi.CodeAnalysis.Syntax
 {
     public abstract class SyntaxNode
     {

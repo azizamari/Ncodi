@@ -1,4 +1,4 @@
-﻿namespace Pital.CodeAnalysis.Syntax
+﻿namespace Ncodi.CodeAnalysis.Syntax
 {
     internal sealed class WhileStatementSyntax : StatementSyntax
     {

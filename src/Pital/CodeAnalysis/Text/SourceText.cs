@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Immutable;
 
-namespace Pital.CodeAnalysis.Text
+namespace Ncodi.CodeAnalysis.Text
 {
     public sealed class SourceText
     {

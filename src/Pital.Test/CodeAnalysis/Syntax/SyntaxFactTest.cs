@@ -1,9 +1,9 @@
-﻿using Pital.CodeAnalysis.Syntax;
+﻿using Ncodi.CodeAnalysis.Syntax;
 using System;
 using Xunit;
 using System.Collections.Generic;
 
-namespace Pital.Test.CodeAnalysis.Syntax
+namespace Ncodi.Test.CodeAnalysis.Syntax
 {
     public class SyntaxFactTest
     {

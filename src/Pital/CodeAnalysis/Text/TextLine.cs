@@ -1,4 +1,4 @@
-﻿namespace Pital.CodeAnalysis.Text
+﻿namespace Ncodi.CodeAnalysis.Text
 {
     public sealed class TextLine
     {

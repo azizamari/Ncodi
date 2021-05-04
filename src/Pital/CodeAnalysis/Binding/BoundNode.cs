@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace Pital.CodeAnalysis.Binding
+namespace Ncodi.CodeAnalysis.Binding
 {
     internal abstract class BoundNode
     {

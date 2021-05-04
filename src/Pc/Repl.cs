@@ -4,7 +4,7 @@ using System.Text;
 using System.Collections.Specialized;
 using System.Collections.Generic;
 
-namespace Pc
+namespace Ni
 {
     internal abstract class Repl
     {

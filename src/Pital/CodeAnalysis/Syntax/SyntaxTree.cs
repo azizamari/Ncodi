@@ -1,9 +1,9 @@
-﻿using Pital.CodeAnalysis.Text;
+﻿using Ncodi.CodeAnalysis.Text;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 
-namespace Pital.CodeAnalysis.Syntax
+namespace Ncodi.CodeAnalysis.Syntax
 {
     public sealed class SyntaxTree
     {

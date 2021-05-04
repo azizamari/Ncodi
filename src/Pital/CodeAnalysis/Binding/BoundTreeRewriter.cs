@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Immutable;
 
-namespace Pital.CodeAnalysis.Binding
+namespace Ncodi.CodeAnalysis.Binding
 {
     internal abstract class BoundTreeRewriter
     {

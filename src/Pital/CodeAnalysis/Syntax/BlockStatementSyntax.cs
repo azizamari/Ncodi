@@ -1,6 +1,6 @@
 ﻿using System.Collections.Immutable;
 
-namespace Pital.CodeAnalysis.Syntax
+namespace Ncodi.CodeAnalysis.Syntax
 {
     public sealed class BlockStatementSyntax : StatementSyntax
     {

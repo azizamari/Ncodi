@@ -1,12 +1,12 @@
-﻿using Pital.CodeAnalysis.Symbols;
-using Pital.CodeAnalysis.Syntax;
-using Pital.CodeAnalysis.Text;
+﻿using Ncodi.CodeAnalysis.Symbols;
+using Ncodi.CodeAnalysis.Syntax;
+using Ncodi.CodeAnalysis.Text;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Pital.CodeAnalysis
+namespace Ncodi.CodeAnalysis
 {
     internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
     {

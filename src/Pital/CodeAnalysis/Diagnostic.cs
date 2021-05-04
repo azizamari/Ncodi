@@ -1,6 +1,6 @@
-﻿using Pital.CodeAnalysis.Text;
+﻿using Ncodi.CodeAnalysis.Text;
 
-namespace Pital.CodeAnalysis
+namespace Ncodi.CodeAnalysis
 {
     public sealed class Diagnostic
     {

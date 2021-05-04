@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Pital.CodeAnalysis.Symbols
+namespace Ncodi.CodeAnalysis.Symbols
 {
     public abstract class VariableSymbol : Symbol
     {

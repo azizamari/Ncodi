@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 using System.Reflection;
 using System.Linq;
 
-namespace Pital.CodeAnalysis.Symbols
+namespace Ncodi.CodeAnalysis.Symbols
 {
     internal static class BuiltInFunctions
     {

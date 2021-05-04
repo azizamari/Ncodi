@@ -2,7 +2,7 @@
 using System.Collections.Immutable;
 using System.Linq;
 
-namespace Pital.CodeAnalysis
+namespace Ncodi.CodeAnalysis
 {
     public sealed class EvaluationResult
     {

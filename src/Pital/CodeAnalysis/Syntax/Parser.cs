@@ -1,8 +1,8 @@
-﻿using Pital.CodeAnalysis.Text;
+﻿using Ncodi.CodeAnalysis.Text;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 
-namespace Pital.CodeAnalysis.Syntax
+namespace Ncodi.CodeAnalysis.Syntax
 {
     internal sealed class Parser
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Pital.CodeAnalysis.Text
+namespace Ncodi.CodeAnalysis.Text
 {
     public class TextSpanComparer : IComparer<TextSpan>
     {

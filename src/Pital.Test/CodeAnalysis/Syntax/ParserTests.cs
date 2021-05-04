@@ -1,9 +1,9 @@
-﻿using Pital.CodeAnalysis.Syntax;
+﻿using Ncodi.CodeAnalysis.Syntax;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace Pital.Test.CodeAnalysis.Syntax
+namespace Ncodi.Test.CodeAnalysis.Syntax
 {
     public class ParserTests
     {

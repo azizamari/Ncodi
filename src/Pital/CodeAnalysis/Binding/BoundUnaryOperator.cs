@@ -1,8 +1,8 @@
-﻿using Pital.CodeAnalysis.Symbols;
-using Pital.CodeAnalysis.Syntax;
+﻿using Ncodi.CodeAnalysis.Symbols;
+using Ncodi.CodeAnalysis.Syntax;
 using System;
 
-namespace Pital.CodeAnalysis.Binding
+namespace Ncodi.CodeAnalysis.Binding
 {
     internal sealed class BoundUnaryOperator
     {

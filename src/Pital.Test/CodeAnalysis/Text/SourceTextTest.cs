@@ -1,7 +1,7 @@
 ﻿using Xunit;
-using Pital.CodeAnalysis.Text;
+using Ncodi.CodeAnalysis.Text;
 
-namespace Pital.Test.CodeAnalysis.Text
+namespace Ncodi.Test.CodeAnalysis.Text
 {
     public class SourceTextTest
     {

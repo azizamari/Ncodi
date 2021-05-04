@@ -1,6 +1,6 @@
-﻿using Pital.CodeAnalysis.Binding;
+﻿using Ncodi.CodeAnalysis.Binding;
 
-namespace Pc
+namespace Ni
 {
     internal static class Program
     {

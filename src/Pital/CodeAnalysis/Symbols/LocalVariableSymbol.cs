@@ -1,4 +1,4 @@
-﻿namespace Pital.CodeAnalysis.Symbols
+﻿namespace Ncodi.CodeAnalysis.Symbols
 {
     public class LocalVariableSymbol : VariableSymbol
     {

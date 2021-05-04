@@ -1,8 +1,8 @@
-﻿using Pital.CodeAnalysis.Symbols;
+﻿using Ncodi.CodeAnalysis.Symbols;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 
-namespace Pital.CodeAnalysis.Binding
+namespace Ncodi.CodeAnalysis.Binding
 {
     internal sealed class BoundScope
     {

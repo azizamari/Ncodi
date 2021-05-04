@@ -1,4 +1,4 @@
-﻿namespace Pital.CodeAnalysis.Binding
+﻿namespace Ncodi.CodeAnalysis.Binding
 {
     internal sealed class BoundConditionalGotoStatement : BoundStatement
     {

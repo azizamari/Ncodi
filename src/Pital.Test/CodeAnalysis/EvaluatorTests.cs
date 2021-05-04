@@ -1,11 +1,11 @@
-﻿using Pital.CodeAnalysis;
-using Pital.CodeAnalysis.Symbols;
-using Pital.CodeAnalysis.Syntax;
+﻿using Ncodi.CodeAnalysis;
+using Ncodi.CodeAnalysis.Symbols;
+using Ncodi.CodeAnalysis.Syntax;
 using System;
 using System.Collections.Generic;
 using Xunit;
 
-namespace Pital.Test.CodeAnalysis
+namespace Ncodi.Test.CodeAnalysis
 {
     public class EvaluatorTests
     {

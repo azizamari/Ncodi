@@ -1,8 +1,8 @@
-﻿using Pital.CodeAnalysis.Syntax;
+﻿using Ncodi.CodeAnalysis.Syntax;
 using System.Collections.Immutable;
 using System.Linq;
 
-namespace Pital.CodeAnalysis.Symbols
+namespace Ncodi.CodeAnalysis.Symbols
 {
     public sealed class FunctionSymbol : Symbol
     {

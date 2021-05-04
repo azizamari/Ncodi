@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pital", "Pital\Pital.csproj", "{9A284A87-3710-4871-8C8B-59FEAB162BF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ncodi", "Pital\Ncodi.csproj", "{9A284A87-3710-4871-8C8B-59FEAB162BF9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pc", "Pc\Pc.csproj", "{87741BC2-E4C7-471C-B79B-EC078E41DE48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ni", "Pc\Ni.csproj", "{87741BC2-E4C7-471C-B79B-EC078E41DE48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pital.Test", "Pital.Test\Pital.Test.csproj", "{4B9FFBE8-29C1-49A0-827D-DDA58CBCFB56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ncodi.Test", "Pital.Test\Ncodi.Test.csproj", "{4B9FFBE8-29C1-49A0-827D-DDA58CBCFB56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
