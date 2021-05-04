@@ -10,10 +10,16 @@ namespace Ncodi.Test.CodeAnalysis
     public class EvaluatorTests
     {
         [Theory]
+        [InlineData("\"test\" == \"test\"", true)]
+        [InlineData("\"test\" != \"test\"", false)]
+        [InlineData("\"test\" == \"abc\"", false)]
+        [InlineData("\"test\" != \"abc\"", true)]
+        [InlineData("\"test\"", "test")]
+        [InlineData("\"te\"\"st\"", "te\"st")]
         [InlineData("1", 1)]
         [InlineData("+1", 1)]
         [InlineData("-1", -1)]
-        [InlineData("14 + 12", 26)]
+        [InlineData("14 + 15", 29)]
         [InlineData("12 - 3", 9)]
         [InlineData("4 * 2", 8)]
         [InlineData("9 / 3", 3)]
