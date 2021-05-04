@@ -119,16 +119,20 @@ namespace Pital.CodeAnalysis.Syntax
         {
             var nodesAndSeparators = ImmutableArray.CreateBuilder<SyntaxNode>();
 
-            while (Current.Kind != SyntaxKind.ClosedParenthesisToken &&
-                   Current.Kind != SyntaxKind.EndOfFileToken)
+            var parseNextParameter = true;
+            while (Current.Kind != SyntaxKind.ClosedParenthesisToken && Current.Kind != SyntaxKind.EndOfFileToken && parseNextParameter) 
             {
                 var parameter = ParseParameter();
                 nodesAndSeparators.Add(parameter);
 
-                if (Current.Kind != SyntaxKind.ClosedParenthesisToken)
+                if (Current.Kind == SyntaxKind.CommaToken)
                 {
                     var comma = MatchToken(SyntaxKind.CommaToken);
                     nodesAndSeparators.Add(comma);
+                }
+                else
+                {
+                    parseNextParameter = false;
                 }
             }
 
@@ -365,16 +369,20 @@ namespace Pital.CodeAnalysis.Syntax
         {
             var nodesAndSeparators = ImmutableArray.CreateBuilder<SyntaxNode>();
 
-            while (Current.Kind != SyntaxKind.ClosedParenthesisToken &&
-                   Current.Kind != SyntaxKind.EndOfFileToken)
+            var parseNextArgument = true;
+            while (Current.Kind != SyntaxKind.ClosedParenthesisToken && Current.Kind != SyntaxKind.EndOfFileToken && parseNextArgument)
             {
                 var expression = ParseExpression();
                 nodesAndSeparators.Add(expression);
 
-                if (Current.Kind != SyntaxKind.ClosedParenthesisToken)
+                if (Current.Kind == SyntaxKind.CommaToken)
                 {
                     var comma = MatchToken(SyntaxKind.CommaToken);
                     nodesAndSeparators.Add(comma);
+                }
+                else
+                {
+                    parseNextArgument = false;
                 }
             }
 
