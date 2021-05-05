@@ -275,7 +275,7 @@ namespace Ncodi.CodeAnalysis.Syntax
 
         private void ReadIdentifierOrKeyword()
         {
-            while (char.IsLetter(Current))
+            while (char.IsLetter(Current) ||( char.IsNumber(Current)&&_position>_start))
                 _position++;
 
             var length = _position - _start;
