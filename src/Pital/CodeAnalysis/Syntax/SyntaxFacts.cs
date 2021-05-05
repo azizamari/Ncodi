@@ -78,6 +78,10 @@ namespace Ncodi.CodeAnalysis.Syntax
                     return SyntaxKind.DoKeyword;
                 case "def":
                     return SyntaxKind.FunctionKeyword;
+                case "break":
+                    return SyntaxKind.BreakKeyword;
+                case "continue":
+                    return SyntaxKind.ContinueKeyword;
 
                 //tunisian syntax
                 case "w":
@@ -92,8 +96,10 @@ namespace Ncodi.CodeAnalysis.Syntax
                     return SyntaxKind.ElseKeyword;
                 case "dir":
                     return SyntaxKind.DoKeyword;
-                //madem -> while
-                // w -> and ; wela -> or; kan -> if; w kan-> else if; makanchi -> else
+                case "t3ada":
+                    return SyntaxKind.BreakKeyword;
+                case "kamel":
+                    return SyntaxKind.ContinueKeyword;
                 default:
                     return SyntaxKind.IdentifierToken;
             }
@@ -193,6 +199,10 @@ namespace Ncodi.CodeAnalysis.Syntax
                     return "to";
                 case SyntaxKind.DoKeyword:
                     return "do";
+                case SyntaxKind.ContinueKeyword:
+                    return "continue";
+                case SyntaxKind.BreakKeyword:
+                    return "break";
                 default:
                     return null;
             }

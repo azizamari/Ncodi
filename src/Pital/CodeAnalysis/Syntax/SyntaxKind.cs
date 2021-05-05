@@ -45,6 +45,8 @@
         ToKeyword,
         DoKeyword,
         FunctionKeyword,
+        ContinueKeyword,
+        BreakKeyword,
 
         //Expressions
         LiteralExpression,
@@ -72,7 +74,5 @@
         ForStatement,
         CommaToken,
         DoWhileStatement,
-        ContinueKeyword,
-        BreakKeyword,
     }
 }

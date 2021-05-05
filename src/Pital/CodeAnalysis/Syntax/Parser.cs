@@ -163,9 +163,23 @@ namespace Ncodi.CodeAnalysis.Syntax
                     return ParseForStatement();
                 case SyntaxKind.DoKeyword:
                     return ParseDoWhileStatement();
+                case SyntaxKind.BreakKeyword:
+                    return ParseBreakStatement();
+                case SyntaxKind.ContinueKeyword:
+                    return ParseContinueStatement();
                 default:
                     return ParseExpressionStatement();
             }
+        }
+
+        private StatementSyntax ParseBreakStatement()
+        {
+
+        }
+
+        private StatementSyntax ParseContinueStatement()
+        {
+            
         }
 
         private StatementSyntax ParseDoWhileStatement()
