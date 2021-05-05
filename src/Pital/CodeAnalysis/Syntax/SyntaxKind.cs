@@ -74,5 +74,7 @@
         ForStatement,
         CommaToken,
         DoWhileStatement,
+        BreakStatement,
+        ContinueStatement,
     }
 }

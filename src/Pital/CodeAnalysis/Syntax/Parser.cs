@@ -174,12 +174,14 @@ namespace Ncodi.CodeAnalysis.Syntax
 
         private StatementSyntax ParseBreakStatement()
         {
-
+            var keyword = MatchToken(SyntaxKind.BreakKeyword);
+            return new BreakStatementSyntax(keyword);
         }
 
         private StatementSyntax ParseContinueStatement()
         {
-            
+            var keyword = MatchToken(SyntaxKind.ContinueKeyword);
+            return new ContinueStatementSyntax(keyword);
         }
 
         private StatementSyntax ParseDoWhileStatement()

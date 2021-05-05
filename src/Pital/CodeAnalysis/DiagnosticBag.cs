@@ -133,5 +133,11 @@ namespace Ncodi.CodeAnalysis
             var message ="Functions conataining return values are not supported";
             Report(span, message); 
         }
+
+        public void ReportInvalidBreakOrContinue(TextSpan span, string text)
+        {
+            var message = $"Keyword '{text}' can't be used outside of functions";
+            Report(span, message);
+        }
     }
 }
