@@ -68,7 +68,21 @@ namespace Ncodi.CodeAnalysis
         public void EmitTree(TextWriter writer)
         {
             var program = Binder.BindProgram(GlobalScope);
-            program.Statement.WriteTo(writer);
+
+            if (program.Statement.Statements.Any())
+            {
+                program.Statement.WriteTo(writer);
+            }
+            else
+            {
+                foreach (var functionBody in program.Functions)
+                {
+                    if (!GlobalScope.Functions.Contains(functionBody.Key))
+                        continue;
+                    
+                    functionBody.Value.WriteTo(writer);
+                }
+            }
         }
     }
 }
