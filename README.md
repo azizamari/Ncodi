@@ -7,4 +7,5 @@
 * Create web-based playground to run code
 * Create a documentation and about page (website)
 * Get reviews from experts
+* Remove helper functions that print the BoundTree and the syntaxTree
 * launch beta version (mid - juin)
