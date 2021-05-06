@@ -118,7 +118,7 @@ namespace Ncodi.CodeAnalysis.Lowering
             // <body>
             // check:
             // gotoTrue <condition> continue
-            //
+            // break:
 
             var continueLabel = GenerateLabel();
             var checkLabel = GenerateLabel();
@@ -152,7 +152,7 @@ namespace Ncodi.CodeAnalysis.Lowering
             // continue:
             // <body>
             // gotoTrue <condition> continue
-            //
+            // break:
 
 
             var continueLabelStatement = new BoundLabelStatement(node.ContinueLabel);
@@ -183,6 +183,7 @@ namespace Ncodi.CodeAnalysis.Lowering
             //      while (<var> <= upperBound)
             //      {
             //          <body>
+            //          continue:
             //          <var> = <var> + 1
             //      }   
             // }
