@@ -14,7 +14,7 @@ namespace Ncodi.CodeAnalysis.Symbols
             Declaration = declaration;
         }
 
-        public override SymbolKind Kind => SymbolKind.Fucntion;
+        public override SymbolKind Kind => SymbolKind.Function;
 
         public ImmutableArray<ParameterSymbol> Parameters { get; }
         public TypeSymbol ReturnType { get; }

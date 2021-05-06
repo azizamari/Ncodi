@@ -4,7 +4,7 @@
     {
         Variable,
         Type,
-        Fucntion,
+        Function,
         Parameter,
         GlobalVariable,
         LocalVariable,
