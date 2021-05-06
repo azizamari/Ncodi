@@ -14,6 +14,7 @@ namespace Ncodi.CodeAnalysis.Binding
         private readonly DiagnosticBag _diagnostics = new DiagnosticBag();
         private readonly FunctionSymbol _function;
         private Stack<(BoundLabel BreakLabel, BoundLabel ContinueLabel)> _loopStack = new Stack<(BoundLabel BreakLabel, BoundLabel ContinueLabel)>();
+        private int _labelCounter;
         private BoundScope _scope;
 
         public Binder(BoundScope parent, FunctionSymbol function)
@@ -255,8 +256,9 @@ namespace Ncodi.CodeAnalysis.Binding
 
         private BoundStatement BindLoopBody(StatementSyntax body, out BoundLabel breakLabel, out BoundLabel continueLabel)
         {
-            breakLabel = new BoundLabel("break");
-            continueLabel = new BoundLabel("continue");
+            _labelCounter++;
+            breakLabel = new BoundLabel($"break{_labelCounter}");
+            continueLabel = new BoundLabel($"continue{_labelCounter}");
 
             _loopStack.Push((breakLabel, continueLabel));
             var boundBody = BindStatement(body);
