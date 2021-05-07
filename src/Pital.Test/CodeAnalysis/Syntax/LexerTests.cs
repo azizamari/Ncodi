@@ -42,7 +42,7 @@ namespace Ncodi.Test.CodeAnalysis.Syntax
 
         [Theory]
         [MemberData(nameof(GetTokensData))]
-        public void Lexer_Lexes_Token(SyntaxKind kind, string text)
+        public void Lexer_Lexes_Token(SyntaxKind kind, string text) 
         {
             var tokens = SyntaxTree.ParseTokens(text);
             var token = Assert.Single(tokens);
@@ -180,6 +180,10 @@ namespace Ncodi.Test.CodeAnalysis.Syntax
             if (kind1 == SyntaxKind.PipeToken && kind2 == SyntaxKind.PipeToken)
                 return true;
             if (kind1 == SyntaxKind.StringToken && kind2 == SyntaxKind.StringToken)
+                return true;
+            if (kind1 == SyntaxKind.IdentifierToken && kind2 == SyntaxKind.NumberToken)
+                return true;
+            if (kind1.ToString().EndsWith("Keyword") && kind2 == SyntaxKind.NumberToken)
                 return true;
 
             return false;
