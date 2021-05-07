@@ -76,5 +76,6 @@
         DoWhileStatement,
         BreakStatement,
         ContinueStatement,
+        ReturnKeyword,
     }
 }

@@ -82,6 +82,8 @@ namespace Ncodi.CodeAnalysis.Syntax
                     return SyntaxKind.BreakKeyword;
                 case "continue":
                     return SyntaxKind.ContinueKeyword;
+                case "return":
+                    return SyntaxKind.ReturnKeyword;
 
                 //tunisian syntax
                 case "w":
@@ -203,6 +205,8 @@ namespace Ncodi.CodeAnalysis.Syntax
                     return "continue";
                 case SyntaxKind.BreakKeyword:
                     return "break";
+                case SyntaxKind.ReturnKeyword:
+                    return "return";
                 default:
                     return null;
             }
