@@ -30,9 +30,20 @@ namespace Ncodi.CodeAnalysis.Binding
                     return RewriteConditionalGotoStatement((BoundConditionalGotoStatement)node);
                 case BoundNodeKind.DoWhileStatement:
                     return RewriteDoWhileStatement((BoundDoWhileStatement)node);
+                case BoundNodeKind.ReturnStatement:
+                    return RewriteReturnStatement((BoundReturnStatement)node);
                 default:
                     throw new Exception($"Unexpected node: {node.Kind}");
             }
+        }
+
+        private BoundStatement RewriteReturnStatement(BoundReturnStatement node)
+        {
+            var expression = node.Expression==null?null: RewriteExpression(node.Expression);
+            if (expression == node.Expression)
+                return node;
+
+            return new BoundReturnStatement(expression);
         }
 
         protected virtual BoundStatement RewriteDoWhileStatement(BoundDoWhileStatement node)

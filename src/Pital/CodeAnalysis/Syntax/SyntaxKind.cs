@@ -77,5 +77,6 @@
         BreakStatement,
         ContinueStatement,
         ReturnKeyword,
+        ReturnStatement,
     }
 }

@@ -23,5 +23,6 @@
         GotoStatement,
         ConversionExpression,
         DoWhileStatement,
+        ReturnStatement,
     }
 }

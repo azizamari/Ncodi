@@ -128,15 +128,28 @@ namespace Ncodi.CodeAnalysis
             var message = $"Type '{name}' doesn't exist";
             Report(span, message);
         }
-        public void ReportFunctionsAreUnsupported(TextSpan span)
-        {
-            var message ="Functions conataining return values are not supported";
-            Report(span, message); 
-        }
 
         public void ReportInvalidBreakOrContinue(TextSpan span, string text)
         {
             var message = $"Keyword '{text}' can't be used outside of functions";
+            Report(span, message);
+        }
+
+        public void ReportInvalidReturn(TextSpan span)
+        {
+            var message = "The 'return' keyword can't be used outside of functions";
+            Report(span, message);
+        }
+
+        public void ReportMissingReturnExpression(TextSpan span, TypeSymbol returnType)
+        {
+            var message = $"Expression of type '{returnType}' expected";
+            Report(span, message);
+        }
+
+        public void ReportInvalidReturnExpression(TextSpan span, string functionName)
+        {
+            var message = $"The function '{functionName}' does not return a value the 'return' keyword can't be followed by an expression";
             Report(span, message);
         }
     }
