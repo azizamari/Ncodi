@@ -36,6 +36,23 @@ namespace Ncodi.CodeAnalysis.Binding
             public List<BoundStatement> Statements { get; } = new List<BoundStatement>();
             public List<BasicBlockEdge> Incoming { get; } = new List<BasicBlockEdge>();
             public List<BasicBlockEdge> Outgoing { get; } = new List<BasicBlockEdge>();
+
+            public override string ToString()
+            {
+                if (IsStart)
+                    return "<Start>";
+
+                if (IsEnd)
+                    return "<End>";
+
+                using (var writer = new StringWriter())
+                {
+                    foreach (var statement in Statements)
+                        statement.WriteTo(writer);
+
+                    return writer.ToString();
+                }
+            }
         }
 
         public sealed class BasicBlockEdge
@@ -110,15 +127,15 @@ namespace Ncodi.CodeAnalysis.Binding
             foreach (var block in Blocks)
             {
                 var id = blockIds[block];
-                var label = block.ToString().Replace(Environment.NewLine, "\\1");
-                writer.WriteLine($"    {id} [label = {"asas"} shape = box]");
+                var label = block.ToString().Replace(Environment.NewLine, "\\l");
+                writer.WriteLine($"    {id} [label = \"{label}\" shape = box]");
             }
             foreach (var edge in Edges)
             {
                 var fromId = blockIds[edge.From];
                 var toId = blockIds[edge.To];
                 var label = edge.Condition == null? string.Empty:edge.Condition.ToString();
-                writer.WriteLine($"    {fromId} -> {toId} [label = {label}]");
+                writer.WriteLine($"    {fromId} -> {toId} [label = \"{label}\"]");
             }
             writer.WriteLine("}");
         }
