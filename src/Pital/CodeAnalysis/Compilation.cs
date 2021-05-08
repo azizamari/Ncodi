@@ -56,6 +56,19 @@ namespace Ncodi.CodeAnalysis
                 return new EvaluationResult(diagnostics.ToImmutableArray(), null);
 
             var program = Binder.BindProgram(GlobalScope);
+
+
+            var appPath = Environment.GetCommandLineArgs()[0];
+            var appDirectory = Path.GetDirectoryName(appPath);
+            var cfgPath = Path.Combine(appDirectory, "cfg.dot");
+            var cfgStatement = !program.Statement.Statements.Any() && program.Functions.Any()
+                                             ? program.Functions.Last().Value
+                                             : program.Statement;
+            var cfg = ControlFlowGraph.Create(cfgStatement);
+            using (var streamWriter = new StreamWriter(cfgPath))
+                cfg.WriteTo(streamWriter);
+
+
             if (program.Diagnostics.Any())
                 return new EvaluationResult(program.Diagnostics.ToImmutableArray(), null);
 
