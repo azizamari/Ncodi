@@ -136,7 +136,7 @@ namespace Ncodi.CodeAnalysis.Binding
                 blocks.Insert(0, start);
                 blocks.Add(end);
 
-                return new ControlFlowGraph(start, end, blocks, new List<BasicBlockBranch>());
+                return new ControlFlowGraph(start, end, blocks, _branches);
             }
 
             private void Connect(BasicBlock from, BasicBlock to, BoundExpression condition = null)
@@ -174,7 +174,7 @@ namespace Ncodi.CodeAnalysis.Binding
             {
                 var fromId = blockIds[branch.From];
                 var toId = blockIds[branch.To];
-                var label = Quote(branch.Condition.ToString());
+                var label = Quote(branch.ToString());
                 writer.WriteLine($"    {fromId} -> {toId} [label = {label}]");
             }
             writer.WriteLine("}");
