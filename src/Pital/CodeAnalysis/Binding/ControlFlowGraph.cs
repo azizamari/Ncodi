@@ -186,10 +186,37 @@ namespace Ncodi.CodeAnalysis.Binding
                     }
                 }
 
+            ScanAgain:
+                foreach (var block in blocks)
+                {
+                    if (!block.Incoming.Any())
+                    {
+                        RemoveBlock(blocks, block);
+                        goto ScanAgain;
+                    }
+                }
+
                 blocks.Insert(0, _start);
                 blocks.Add(_end);
 
                 return new ControlFlowGraph(_start, _end, blocks, _branches);
+            }
+
+            private void RemoveBlock(List<BasicBlock> blocks, BasicBlock block)
+            {
+                foreach (var branch in block.Incoming)
+                {
+                    branch.From.Outgoing.Remove(branch);
+                    _branches.Remove(branch);
+                }
+
+                foreach (var branch in block.Outgoing)
+                {
+                    branch.To.Incoming.Remove(branch);
+                    _branches.Remove(branch);
+                }
+
+                blocks.Remove(block);
             }
 
             private BoundExpression Negate(BoundExpression condition)
