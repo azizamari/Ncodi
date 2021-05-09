@@ -287,5 +287,18 @@ namespace Ncodi.CodeAnalysis.Binding
 
             return graphBuilder.Build(blocks);
         }
+        public static bool AllPathsReturn(BoundBlockStatement body)
+        {
+            var graph = Create(body);
+
+            foreach (var branch in graph.End.Incoming)
+            {
+                var lastStatement = branch.From.Statements.Last();
+                if (lastStatement.Kind != BoundNodeKind.ReturnStatement)
+                    return false;
+            }
+
+            return true;
+        }
     }
 }

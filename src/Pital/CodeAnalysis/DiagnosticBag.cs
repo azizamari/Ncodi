@@ -82,6 +82,12 @@ namespace Ncodi.CodeAnalysis
             Report(span, message);
         }
 
+        internal void ReportAllPathsMustReturn(TextSpan span)
+        {
+            var message = "Some code paths don't return a value";
+            Report(span, message);
+        }
+
         public void ReportSymbolAlreadyDeclared(TextSpan span, string name)
         {
             var message = $"'{name}' is already declared";
