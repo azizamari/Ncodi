@@ -7,18 +7,18 @@ namespace Ncodi.CodeAnalysis.Binding
 {
     internal sealed class ControlFlowGraph
     {
-        public ControlFlowGraph(BasicBlock start, BasicBlock end, List<BasicBlock> blocks, List<BasicBlockEdge> edges)
+        public ControlFlowGraph(BasicBlock start, BasicBlock end, List<BasicBlock> blocks, List<BasicBlockBranch> branches)
         {
             Start = start;
             End = end;
             Blocks = blocks;
-            Edges = edges;
+            Branches = branches;
         }
 
         public BasicBlock Start { get; }
         public BasicBlock End { get; }
         public List<BasicBlock> Blocks { get; }
-        public List<BasicBlockEdge> Edges { get; }
+        public List<BasicBlockBranch> Branches { get; }
 
         public sealed class BasicBlock
         {
@@ -34,8 +34,8 @@ namespace Ncodi.CodeAnalysis.Binding
             public bool IsStart { get; }
             public bool IsEnd { get; }
             public List<BoundStatement> Statements { get; } = new List<BoundStatement>();
-            public List<BasicBlockEdge> Incoming { get; } = new List<BasicBlockEdge>();
-            public List<BasicBlockEdge> Outgoing { get; } = new List<BasicBlockEdge>();
+            public List<BasicBlockBranch> Incoming { get; } = new List<BasicBlockBranch>();
+            public List<BasicBlockBranch> Outgoing { get; } = new List<BasicBlockBranch>();
 
             public override string ToString()
             {
@@ -55,9 +55,9 @@ namespace Ncodi.CodeAnalysis.Binding
             }
         }
 
-        public sealed class BasicBlockEdge
+        public sealed class BasicBlockBranch
         {
-            public BasicBlockEdge( BasicBlock from, BasicBlock to, BoundExpression condition)
+            public BasicBlockBranch( BasicBlock from, BasicBlock to, BoundExpression condition)
             {
                 From = from;
                 To = to;
@@ -67,6 +67,13 @@ namespace Ncodi.CodeAnalysis.Binding
             public BasicBlock From { get; }
             public BasicBlock To { get; }
             public BoundExpression Condition { get; }
+            public override string ToString()
+            {
+                if (Condition == null)
+                    return string.Empty;
+
+                return Condition.ToString();
+            }
         }
         public sealed class BasicBlockBuilder
         {
@@ -114,8 +121,40 @@ namespace Ncodi.CodeAnalysis.Binding
                 EndBlock();
             }
         }
+        public sealed class GraphBuilder
+        {
+            private List<BasicBlockBranch> _branches = new List<BasicBlockBranch>();
+            public ControlFlowGraph Build(List<BasicBlock> blocks)
+            {
+                var start = new BasicBlock(isStart: true);
+                var end = new BasicBlock(isStart: false);
+                if (!blocks.Any())
+                    Connect(start, end);
+                else
+                    Connect(start, blocks.First());
+
+                blocks.Insert(0, start);
+                blocks.Add(end);
+
+                return new ControlFlowGraph(start, end, blocks, new List<BasicBlockBranch>());
+            }
+
+            private void Connect(BasicBlock from, BasicBlock to, BoundExpression condition = null)
+            {
+                var branch = new BasicBlockBranch(from, to,condition);
+                from.Outgoing.Add(branch);
+                to.Incoming.Add(branch);
+                _branches.Add(branch);
+            }
+        }
         public void WriteTo(TextWriter writer)
         {
+
+            string Quote(string text)
+            {
+                return "\"" + text.Replace("\"", "\\\"") + "\"";
+            }
+
             writer.WriteLine("digraph G {");
 
             var blockIds = new Dictionary<BasicBlock, string>();
@@ -127,28 +166,26 @@ namespace Ncodi.CodeAnalysis.Binding
             foreach (var block in Blocks)
             {
                 var id = blockIds[block];
-                var label = block.ToString().Replace(Environment.NewLine, "\\l");
-                writer.WriteLine($"    {id} [label = \"{label}\" shape = box]");
+                var label = Quote(block.ToString().Replace(Environment.NewLine, "\\l"));
+                writer.WriteLine($"    {id} [label = {label} shape = box]");
             }
-            foreach (var edge in Edges)
+
+            foreach (var branch in Branches)
             {
-                var fromId = blockIds[edge.From];
-                var toId = blockIds[edge.To];
-                var label = edge.Condition == null? string.Empty:edge.Condition.ToString();
-                writer.WriteLine($"    {fromId} -> {toId} [label = \"{label}\"]");
+                var fromId = blockIds[branch.From];
+                var toId = blockIds[branch.To];
+                var label = Quote(branch.Condition.ToString());
+                writer.WriteLine($"    {fromId} -> {toId} [label = {label}]");
             }
             writer.WriteLine("}");
         }
         public static ControlFlowGraph Create(BoundBlockStatement body)
         {
-            var start = new BasicBlock(isStart:true);
-            var end = new BasicBlock(isStart:false);
             var basicBlockBuilder = new BasicBlockBuilder();
             var blocks = basicBlockBuilder.Build(body);
-            blocks.Insert(0, start);
-            blocks.Add(end);
+            var graphBuilder = new GraphBuilder();
 
-            return new ControlFlowGraph(start,end,blocks,new List<BasicBlockEdge>());
+            return graphBuilder.Build(blocks);
         }
     }
 }
