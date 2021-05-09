@@ -11,4 +11,5 @@ Inspired by The .NET Compiler Platform [Roslyn](https://github.com/dotnet/roslyn
 * Get reviews from experts
 * Remove helper functions that print the BoundTree and the syntaxTree
 * Add sourceBrowser
+* Add ability to visualize dot file in website, basically a dot file rendering engine and make this a seperate javascript project
 * launch beta version (mid - juin)
