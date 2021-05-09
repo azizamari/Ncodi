@@ -102,8 +102,8 @@ namespace Ncodi.CodeAnalysis.Binding
                         default:
                             throw new Exception($"Unexpected statement: {statement.Kind}");
                     }
-                    EndBlock();
                 }
+                EndBlock();
                 return _blocks.ToList();
             }
             private void EndBlock()
@@ -150,7 +150,7 @@ namespace Ncodi.CodeAnalysis.Binding
         public void WriteTo(TextWriter writer)
         {
 
-            string Quote(string text)
+           string Quote(string text)
             {
                 return "\"" + text.Replace("\"", "\\\"") + "\"";
             }
