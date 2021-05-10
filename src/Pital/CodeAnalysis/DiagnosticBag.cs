@@ -63,7 +63,7 @@ namespace Ncodi.CodeAnalysis
             Report(span, message);
         }
 
-        internal void ReportParameterAlreadyDeclared(TextSpan span, string parameterName)
+        public void ReportParameterAlreadyDeclared(TextSpan span, string parameterName)
         {
             var message = $"Parameter named '{parameterName}' already exists";
             Report(span, message);
@@ -82,7 +82,7 @@ namespace Ncodi.CodeAnalysis
             Report(span, message);
         }
 
-        internal void ReportAllPathsMustReturn(TextSpan span)
+        public void ReportAllPathsMustReturn(TextSpan span)
         {
             var message = "Some code paths don't return a value";
             Report(span, message);
