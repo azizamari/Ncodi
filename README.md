@@ -8,8 +8,8 @@ Inspired by The .NET Compiler Platform [Roslyn](https://github.com/dotnet/roslyn
 * Create simple IDE
 * Create web-based playground to run code
 * Create a documentation and about page (website)
-* Get reviews from experts
 * Remove helper functions that print the BoundTree and the syntaxTree
 * Add sourceBrowser
 * Add ability to visualize dot file in website, basically a graphiz engine and make this a seperate javascript project or just use D3.js
+* Get reviews from experts
 * launch beta version (mid - juin)
