@@ -124,7 +124,7 @@ namespace Ncodi.Test.CodeAnalysis
             ";
 
             var diagnostics = @"
-                'ekteb' is already declared
+                Symbol 'ekteb' is already declared as a function or as a variable
             ";
 
             AssertDiagnostics(text, diagnostics);
@@ -145,7 +145,7 @@ namespace Ncodi.Test.CodeAnalysis
             ";
 
             var diagnostics = @"
-                'x' is already declared
+                Symbol 'x' is already declared as a function or as a variable
             ";
 
             AssertDiagnostics(text, diagnostics);
