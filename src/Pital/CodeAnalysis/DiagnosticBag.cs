@@ -90,7 +90,7 @@ namespace Ncodi.CodeAnalysis
 
         public void ReportSymbolAlreadyDeclared(TextSpan span, string name)
         {
-            var message = $"'{name}' is already declared";
+            var message = $"Symbol '{name}' is already declared as a function or as a variable";
             Report(span, message);
         }
 
