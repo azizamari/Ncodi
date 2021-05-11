@@ -66,6 +66,10 @@ namespace Ncodi.CodeAnalysis.Syntax
                     _kind = SyntaxKind.SlashToken;
                     _position++;
                     break;
+                case '%':
+                    _kind = SyntaxKind.ModuloToken;
+                    _position++;
+                    break;
                 case '(':
                     _kind = SyntaxKind.OpenParenthesisToken;
                     _position++;

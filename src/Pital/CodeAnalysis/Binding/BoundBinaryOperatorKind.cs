@@ -17,5 +17,6 @@
         BitwiseAnd,
         BitwiseOr,
         BitwiseXor,
+        DivisionRemainder,
     }
 }

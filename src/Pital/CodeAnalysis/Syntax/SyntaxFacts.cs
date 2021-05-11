@@ -24,6 +24,7 @@ namespace Ncodi.CodeAnalysis.Syntax
             {
                 case SyntaxKind.StarToken:
                 case SyntaxKind.SlashToken:
+                case SyntaxKind.ModuloToken:
                     return 5;
 
                 case SyntaxKind.PlusToken:
@@ -139,6 +140,8 @@ namespace Ncodi.CodeAnalysis.Syntax
                     return "*";
                 case SyntaxKind.SlashToken:
                     return "/";
+                case SyntaxKind.ModuloToken:
+                    return "%";
                 case SyntaxKind.BangToken:
                     return "!";
                 case SyntaxKind.EqualsToken:

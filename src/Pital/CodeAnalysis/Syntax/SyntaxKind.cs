@@ -15,6 +15,7 @@
         StarToken,
         SlashToken,
         OpenParenthesisToken,
+        ModuloToken,
         ClosedParenthesisToken,
         AmpersandAmpersandToken,
         PipePipeToken,
