@@ -1,4 +1,5 @@
 ﻿using Ncodi.CodeAnalysis;
+using Ncodi.CodeAnalysis.IO;
 using Ncodi.CodeAnalysis.Symbols;
 using Ncodi.CodeAnalysis.Syntax;
 using Ncodi.CodeAnalysis.Text;
@@ -117,33 +118,7 @@ namespace Ni
             }
             else
             {
-                foreach (var diagnostic in result.Diagnostics.OrderBy(diag=>diag.Span,new TextSpanComparer()))
-                {
-                    var lineIndex = syntaxTree.Text.GetLineIndex(diagnostic.Span.Start);
-                    var line = syntaxTree.Text.Lines[lineIndex];
-                    var lineNumber = lineIndex + 1;
-                    var character = diagnostic.Span.Start - line.Start + 1;
-
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write($"({lineNumber}, {character}): ");
-                    Console.WriteLine(diagnostic);
-                    Console.ResetColor();
-
-                    var prefixSpan = TextSpan.FromBounds(line.Start, diagnostic.Span.Start);
-                    var suffixSpan = TextSpan.FromBounds(diagnostic.Span.End, line.End);
-
-                    var prefix = syntaxTree.Text.ToString(prefixSpan);
-                    var error = syntaxTree.Text.ToString(diagnostic.Span);
-                    var suffix = syntaxTree.Text.ToString(suffixSpan);
-                    
-
-                    Console.Write("  ");
-                    Console.WriteLine(prefix + error + suffix);
-                    var arrows = "  " + new string(' ', prefix.Length) + new string('^', error.Length);
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine(arrows);
-                    Console.ResetColor();
-                }
+                Console.Out.WriteDiagnostics(result.Diagnostics, syntaxTree);
             }
         }
     }

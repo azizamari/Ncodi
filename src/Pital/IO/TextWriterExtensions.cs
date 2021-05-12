@@ -1,7 +1,9 @@
 ﻿using Ncodi.CodeAnalysis.Syntax;
+using Ncodi.CodeAnalysis.Text;
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Ncodi.CodeAnalysis.IO
 {
-    internal static class TextWriterExtensions
+    public static class TextWriterExtensions
     {
         private static bool IsConsoleOut(this TextWriter writer)
         {
@@ -83,5 +85,35 @@ namespace Ncodi.CodeAnalysis.IO
             writer.Write(text);
             writer.ResetColor();
         }
-    }
+        public static void WriteDiagnostics(this TextWriter writer, IEnumerable<Diagnostic> diagnostics, SyntaxTree syntaxTree)
+        {
+            foreach (var diagnostic in diagnostics.OrderBy(d => d.Span.Start).ThenBy(d=>d.Span.Length))
+            {
+                var lineIndex = syntaxTree.Text.GetLineIndex(diagnostic.Span.Start);
+                var line = syntaxTree.Text.Lines[lineIndex];
+                var lineNumber = lineIndex + 1;
+                var character = diagnostic.Span.Start - line.Start + 1;
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write($"({lineNumber}, {character}): ");
+                Console.WriteLine(diagnostic);
+                Console.ResetColor();
+
+                var prefixSpan = TextSpan.FromBounds(line.Start, diagnostic.Span.Start);
+                var suffixSpan = TextSpan.FromBounds(diagnostic.Span.End, line.End);
+
+                var prefix = syntaxTree.Text.ToString(prefixSpan);
+                var error = syntaxTree.Text.ToString(diagnostic.Span);
+                var suffix = syntaxTree.Text.ToString(suffixSpan);
+
+
+                Console.Write("  ");
+                Console.WriteLine(prefix + error + suffix);
+                var arrows = "  " + new string(' ', prefix.Length) + new string('^', error.Length);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(arrows);
+                Console.ResetColor();
+            }
+        }
+    } 
 }
