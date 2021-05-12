@@ -147,6 +147,8 @@ namespace Ncodi.CodeAnalysis
                     return (int)left * (int)right;
                 case BoundBinaryOperatorKind.Division:
                     return (int)left / (int)right;
+                case BoundBinaryOperatorKind.DivisionRemainder:
+                    return (int)left % (int)right;
 
                 case BoundBinaryOperatorKind.BitwiseAnd:
                     if(b.Type==TypeSymbol.Int)
