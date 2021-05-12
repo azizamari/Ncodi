@@ -1,0 +1,3 @@
+ekteb("What's your name: ")
+const name=a9ra()
+ekteb("Hello "+name)
