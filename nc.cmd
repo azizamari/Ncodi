@@ -1,2 +1,2 @@
 @echo off
-dotnet run --project ./src/nc/nc.csproj -- %*
+dotnet run --project ./src/nc/nc.csproj -- "%*"
