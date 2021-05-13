@@ -7,22 +7,22 @@ var guess=-1
 madem i<10
 {
   i=i+1
-  ekteb("mou7awla"+string(i)+" ekteb ra9em: ")
-  guess=a9ra()
+  ekteb("mou7awla "+string(i)+" ekteb ra9em: ")
+  guess=int(a9ra())
   kan guess==ra9em
   {
-     ekteb("mabroukkk rbe7t")
-     break
+    ekteb("mabroukkk rbe7t")
+    break
   }
   kan guess>ra9em
   {
     ekteb("ra9mek akber men ra9mi")
-    break
+    continue
   }
   kan guess<ra9em
   {
-     ekteb("ra9mek as8er men ra9mi")
-    break
+    ekteb("ra9mek as8er men ra9mi")
+    continue
   }
 }
 ekteb("lo3ba kemlet :D")
