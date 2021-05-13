@@ -1,4 +1,5 @@
 ﻿using Ncodi.CodeAnalysis;
+using Ncodi.CodeAnalysis.IO;
 using Ncodi.CodeAnalysis.Symbols;
 using Ncodi.CodeAnalysis.Syntax;
 using System;
@@ -31,12 +32,22 @@ namespace Ncodi
 
                 var compilation = new Compilation(syntaxTree);
                 var result = compilation.Evaluate(new Dictionary<VariableSymbol, object>());
+                if (!result.Diagnostics.Any())
+                {
+                    if (result.Value != null)
+                        Console.Out.WriteLine(result.Value);
+                }
+                else
+                {
+                    Console.Out.WriteDiagnostics(result.Diagnostics, syntaxTree);
+                }
             }
             catch (IOException)
             {
                 Console.Error.WriteLine("Error: File Not Found");
                 return;
             }
+
         }
     }
 }
