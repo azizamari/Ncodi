@@ -1,5 +1,5 @@
 # Pital
-### &lt;Under Construction> Pital is the compiler for my programming language
+### &lt;Under Construction> Ncodi is the compiler for my programming language
 ## Syntax is in Tunisian Dialect 🔹
 Inspired by The .NET Compiler Platform [Roslyn](https://github.com/dotnet/roslyn)
 ## Roadmap:
