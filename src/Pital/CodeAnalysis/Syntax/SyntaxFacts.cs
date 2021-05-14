@@ -99,7 +99,7 @@ namespace Ncodi.CodeAnalysis.Syntax
                     return SyntaxKind.ElseKeyword;
                 case "dir":
                     return SyntaxKind.DoKeyword;
-                case "t3ada":
+                case "o5rej":
                     return SyntaxKind.BreakKeyword;
                 case "kamel":
                     return SyntaxKind.ContinueKeyword;
