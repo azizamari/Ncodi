@@ -1,7 +1,7 @@
 <h1 align="center">
   <img src="https://github.com/azizamari/Ncodi/blob/3525fea8be5603f59f6b6eefabb00989ccc3e808/logo.png" width="123px"/>
 </h1>
-<h3 align="center"><Under Construction> Ncodi is a my programming language that uses the Tunisian Dialect 🔹</h3><br>
+<h3 align="center"><Under Construction> Ncodi is a programming language that uses the Tunisian Dialect 🔹</h3><br>
 
 
 Inspired by The .NET Compiler Platform [Roslyn](https://github.com/dotnet/roslyn)
