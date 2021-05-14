@@ -37,6 +37,19 @@
         "/consoleloggerparameters:NoSummary"
       ],
       "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "nc",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+          "run",
+          "--project",
+          "${workspaceFolder}/src/nc/nc.csproj",
+          "--",
+          "${file}"
+      ],
+      "problemMatcher": "$msCompile"
     }
   ]
 }
