@@ -1,6 +1,9 @@
-# Pital
-### &lt;Under Construction> Ncodi is the compiler for my programming language
-## Syntax is in Tunisian Dialect 🔹
+<h1 align="center">
+  <img src="https://github.com/azizamari/Ncodi/blob/3525fea8be5603f59f6b6eefabb00989ccc3e808/logo.png" width="156px"/>
+</h1>
+<h3 align="center"><Under Construction> Ncodi is a my programming language that uses the Tunisian Dialect 🔹</h3><br>
+
+
 Inspired by The .NET Compiler Platform [Roslyn](https://github.com/dotnet/roslyn)
 ## Roadmap:
 * Finish Core Compiler
