@@ -21,7 +21,7 @@ namespace Ncodi.Test.CodeAnalysis.Syntax
             Assert.Equal(text, token.Text);
 
             var diagnotic = Assert.Single(diagnostics);
-            Assert.Equal(new TextSpan(0,1), diagnotic.Span);
+            Assert.Equal(new TextSpan(0,1), diagnotic.Location.Span);
             Assert.Equal("Unterminated string literal", diagnotic.Message);
         }
 
