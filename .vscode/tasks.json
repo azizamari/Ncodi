@@ -47,7 +47,7 @@
           "--project",
           "${workspaceFolder}/src/nc/nc.csproj",
           "--",
-          "${file}"
+          "${fileDirname}"
       ],
       "presentation": {
         "echo": true,

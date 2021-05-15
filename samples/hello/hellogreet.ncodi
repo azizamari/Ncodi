@@ -1,3 +1,2 @@
-ekteb("What's your name: ")
-const name=a9ra()
-ekteb("Hello "+name)
+ekteb(string(multiply(9,2)))
+ekteb(string(multiply(9,5)))

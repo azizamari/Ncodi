@@ -18,22 +18,24 @@ namespace Ncodi
                 Console.Error.WriteLine("Usage: nc <Source-Path>");
                 return;
             }
-            if (args.Length > 1)
-            {
-                Console.Error.WriteLine("Error: only one path supported for the time being");
-                return;
+
+            var paths = GetFilePaths(args);
+            var syntaxTrees = new List<SyntaxTree>();
+            var hasErrors = false;
+            foreach (var path in paths)
+            { 
+                if (!File.Exists(path))
+                {
+                    Console.Error.WriteLine($"Error: file '{path}' not found");
+                    hasErrors=true;
+                    continue;
+                }
+                var syntaxTree = SyntaxTree.Load(path);
+                syntaxTrees.Add(syntaxTree);
             }
+            if (hasErrors) return;
 
-            var path = args.Single();
-            if (!File.Exists(path))
-            {
-                Console.Error.WriteLine($"Error: file '{path}' not found");
-                return;
-            }
-
-            var syntaxTree = SyntaxTree.Load(path);
-
-            var compilation = new Compilation(syntaxTree);
+            var compilation = new Compilation(syntaxTrees.ToArray());
             var result = compilation.Evaluate(new Dictionary<VariableSymbol, object>());
             if (!result.Diagnostics.Any())
             {
@@ -42,9 +44,28 @@ namespace Ncodi
             }
             else
             {
-                Console.Out.WriteDiagnostics(result.Diagnostics);
+                Console.Error.WriteDiagnostics(result.Diagnostics);
             }
 
+        }
+
+        private static IEnumerable<string> GetFilePaths(IEnumerable<string> paths)
+        {
+            var result = new SortedSet<string>();
+
+            foreach (var path in paths)
+            {
+                if (Directory.Exists(path))
+                {
+                    result.UnionWith(Directory.EnumerateFiles(path, "*.ncodi", SearchOption.AllDirectories));
+                }
+                else
+                {
+                    result.Add(path);
+                }
+            }
+
+            return result;
         }
     }
 }
