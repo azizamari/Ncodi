@@ -7,16 +7,24 @@ namespace Ncodi.CodeAnalysis.Text
     {
         private readonly string _text;
 
-        private SourceText(string text)
+        private SourceText(string text, string fileName)
         {
             _text = text;
+            FileName = fileName;
             Lines = ParseLines(this, text);
+        }
+
+        public static SourceText From(string text, string fileName="")
+        {
+            return new SourceText(text,fileName);
         }
 
         public ImmutableArray<TextLine> Lines { get; }
 
         public char this[int index]=>_text[index];
         public int Length => _text.Length;
+
+        public string FileName { get; }
 
         public int GetLineIndex(int position)
         {
@@ -84,10 +92,6 @@ namespace Ncodi.CodeAnalysis.Text
             return 0;
         }
 
-        public static SourceText From(string text)
-        {
-            return new SourceText(text);
-        }
 
         public override string ToString() => _text;
         public string ToString(int start, int length) => _text.Substring(start, length);

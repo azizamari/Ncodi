@@ -25,27 +25,24 @@ namespace Ncodi
             }
 
             var path = args.Single();
-            try
+            if (!File.Exists(path))
             {
-                var text = File.ReadAllText(path);
-                var syntaxTree = SyntaxTree.Parse(text);
-
-                var compilation = new Compilation(syntaxTree);
-                var result = compilation.Evaluate(new Dictionary<VariableSymbol, object>());
-                if (!result.Diagnostics.Any())
-                {
-                    if (result.Value != null)
-                        Console.Out.WriteLine(result.Value);
-                }
-                else
-                {
-                    Console.Out.WriteDiagnostics(result.Diagnostics, syntaxTree);
-                }
-            }
-            catch (IOException)
-            {
-                Console.Error.WriteLine("Error: File Not Found");
+                Console.Error.WriteLine($"Error: file '{path}' not found");
                 return;
+            }
+
+            var syntaxTree = SyntaxTree.Load(path);
+
+            var compilation = new Compilation(syntaxTree);
+            var result = compilation.Evaluate(new Dictionary<VariableSymbol, object>());
+            if (!result.Diagnostics.Any())
+            {
+                if (result.Value != null)
+                    Console.Out.WriteLine(result.Value);
+            }
+            else
+            {
+                Console.Out.WriteDiagnostics(result.Diagnostics);
             }
 
         }

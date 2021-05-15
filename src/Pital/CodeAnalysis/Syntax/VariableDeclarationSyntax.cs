@@ -2,7 +2,8 @@
 {
     public sealed class VariableDeclarationSyntax : StatementSyntax
     {
-        public VariableDeclarationSyntax(SyntaxToken keywordToken, SyntaxToken identifier, TypeClauseSyntax typeClause, SyntaxToken equalsToken,ExpressionSyntax initializer)
+        public VariableDeclarationSyntax(SyntaxTree syntaxTree,SyntaxToken keywordToken, SyntaxToken identifier, TypeClauseSyntax typeClause, SyntaxToken equalsToken,ExpressionSyntax initializer)
+            : base(syntaxTree)
         {
             KeywordToken = keywordToken;
             Identifier = identifier;

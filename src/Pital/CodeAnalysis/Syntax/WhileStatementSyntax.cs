@@ -2,7 +2,8 @@
 {
     internal sealed class WhileStatementSyntax : StatementSyntax
     {
-        public WhileStatementSyntax(SyntaxToken keyword, ExpressionSyntax condition, StatementSyntax body)
+        public WhileStatementSyntax(SyntaxTree syntaxTree, SyntaxToken keyword, ExpressionSyntax condition, StatementSyntax body)
+            : base(syntaxTree)
         {
             Keyword = keyword;
             Condition = condition;

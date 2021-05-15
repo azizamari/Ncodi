@@ -4,7 +4,8 @@ namespace Ncodi.CodeAnalysis.Syntax
 {
     public sealed class BlockStatementSyntax : StatementSyntax
     {
-        public BlockStatementSyntax(SyntaxToken openBraceToken, ImmutableArray<StatementSyntax> statements,SyntaxNode closedBraceToken)
+        public BlockStatementSyntax(SyntaxTree syntaxTree, SyntaxToken openBraceToken, ImmutableArray<StatementSyntax> statements,SyntaxNode closedBraceToken)
+            : base(syntaxTree)
         {
             OpenBraceToken = openBraceToken;
             Statements = statements;

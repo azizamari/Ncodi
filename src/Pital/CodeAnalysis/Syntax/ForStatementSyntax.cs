@@ -2,8 +2,8 @@
 {
     public sealed class ForStatementSyntax : StatementSyntax
     {
-        //                                                      menToken                   
-        public ForStatementSyntax(SyntaxToken forKeyword,SyntaxToken identifier, SyntaxToken equalsToken,ExpressionSyntax lowerBound,SyntaxToken toKeyword,ExpressionSyntax upperBound,StatementSyntax body)
+        public ForStatementSyntax(SyntaxTree syntaxTree, SyntaxToken forKeyword,SyntaxToken identifier, SyntaxToken equalsToken,ExpressionSyntax lowerBound,SyntaxToken toKeyword,ExpressionSyntax upperBound,StatementSyntax body)
+            : base(syntaxTree)
         {
             Keyword = forKeyword;
             Identifier = identifier;

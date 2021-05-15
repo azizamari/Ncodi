@@ -4,11 +4,12 @@ namespace Ncodi.CodeAnalysis.Syntax
 {
     public sealed class LiteralExpressionSyntax : ExpressionSyntax
     {
-        public LiteralExpressionSyntax(SyntaxToken literalToken)
-            :this(literalToken,literalToken.Value)
+        public LiteralExpressionSyntax(SyntaxTree syntaxTree, SyntaxToken literalToken)
+            :this(syntaxTree ,literalToken,literalToken.Value)
         {
         }
-        public LiteralExpressionSyntax(SyntaxToken literalToken, object value)
+        public LiteralExpressionSyntax(SyntaxTree syntaxTree,SyntaxToken literalToken, object value)
+            : base(syntaxTree)
         {
             LiteralToken = literalToken;
             Value = value;
