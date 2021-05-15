@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Pital\Ncodi.csproj" />
+    <ProjectReference Include="..\Ncodi\Ncodi.csproj" />
   </ItemGroup>
 
 </Project>
