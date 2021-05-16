@@ -14,6 +14,7 @@ namespace Ncodi.CodeAnalysis
         private readonly BoundProgram _program;
         private readonly Dictionary<VariableSymbol, object> _globals;
         public readonly Stack<Dictionary<VariableSymbol, object>> _locals = new Stack<Dictionary<VariableSymbol, object>>();
+        public readonly DiagnosticBag _diagnostics = new DiagnosticBag();
         private Random _random;
 
         private object _lastValue;
@@ -124,7 +125,14 @@ namespace Ncodi.CodeAnalysis
             if (node.Type == TypeSymbol.Bool)
                 return Convert.ToBoolean(value);
             else if (node.Type == TypeSymbol.Int)
-                return Convert.ToInt32(value);
+                try
+                {
+                    return Convert.ToInt32(value);
+                }
+                catch (Exception)
+                {
+                    return new BoundErrorExpression();
+                }
             else if (node.Type == TypeSymbol.String)
                 return Convert.ToString(value);
             else
