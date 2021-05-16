@@ -23,6 +23,7 @@ namespace Ncodi.CodeAnalysis.Syntax
             switch (kind)
             {
                 case SyntaxKind.StarToken:
+                case SyntaxKind.StarStarToken:
                 case SyntaxKind.SlashToken:
                 case SyntaxKind.ModuloToken:
                     return 5;
@@ -138,6 +139,8 @@ namespace Ncodi.CodeAnalysis.Syntax
                     return "-";
                 case SyntaxKind.StarToken:
                     return "*";
+                case SyntaxKind.StarStarToken:
+                    return "**";
                 case SyntaxKind.SlashToken:
                     return "/";
                 case SyntaxKind.ModuloToken:

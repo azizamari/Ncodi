@@ -145,6 +145,8 @@ namespace Ncodi.CodeAnalysis
                     return (int)left - (int)right;
                 case BoundBinaryOperatorKind.Multiplication:
                     return (int)left * (int)right;
+                case BoundBinaryOperatorKind.Power:
+                    return Math.Pow((int)left, (int)right);
                 case BoundBinaryOperatorKind.Division:
                     return (int)left / (int)right;
                 case BoundBinaryOperatorKind.DivisionRemainder:

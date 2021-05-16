@@ -18,5 +18,6 @@
         BitwiseOr,
         BitwiseXor,
         DivisionRemainder,
+        Power,
     }
 }

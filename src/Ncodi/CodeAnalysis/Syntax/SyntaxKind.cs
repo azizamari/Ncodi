@@ -79,5 +79,6 @@
         ContinueStatement,
         ReturnKeyword,
         ReturnStatement,
+        StarStarToken,
     }
 }
