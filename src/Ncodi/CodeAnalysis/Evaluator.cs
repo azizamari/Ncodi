@@ -12,9 +12,9 @@ namespace Ncodi.CodeAnalysis
     internal class Evaluator
     {
         private readonly BoundProgram _program;
+        private readonly DiagnosticBag _diagnostics = new DiagnosticBag();
         private readonly Dictionary<VariableSymbol, object> _globals;
         public readonly Stack<Dictionary<VariableSymbol, object>> _locals = new Stack<Dictionary<VariableSymbol, object>>();
-        public readonly DiagnosticBag _diagnostics = new DiagnosticBag();
         private Random _random;
 
         private object _lastValue;
@@ -25,6 +25,7 @@ namespace Ncodi.CodeAnalysis
             _globals = variables;
             _locals.Push(new Dictionary<VariableSymbol, object>());
         }
+        public ImmutableArray<Diagnostic> Diagnostics => _diagnostics.ToImmutableArray();
         public object Evaluate()
         {
             return EvaluateStatement(_program.Statement);
@@ -131,6 +132,7 @@ namespace Ncodi.CodeAnalysis
                 }
                 catch (Exception)
                 {
+                    _diagnostics.ReportCannotConvertToInt(node.Location, value);
                     return new BoundErrorExpression();
                 }
             else if (node.Type == TypeSymbol.String)

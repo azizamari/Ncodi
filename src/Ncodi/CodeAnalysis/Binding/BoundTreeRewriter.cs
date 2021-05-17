@@ -252,7 +252,7 @@ namespace Ncodi.CodeAnalysis.Binding
             if (expression == node.Expression)
                 return node;
 
-            return new BoundConversionExpression(node.Type, expression);
+            return new BoundConversionExpression(node.Type, expression, node.Location);
         }
 
     }

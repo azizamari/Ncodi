@@ -140,6 +140,12 @@ namespace Ncodi.CodeAnalysis
             Report(location, message);
         }
 
+        public void ReportCannotConvertToInt(TextLocation location, object value)
+        {
+            var messsage = $"Cannot convert \"{value.ToString()}\" to 'Int'";
+            Report(location, messsage);
+        }
+
         public void ReportInvalidReturn(TextLocation location)
         {
             var message = "The 'return' keyword can't be used outside of functions";

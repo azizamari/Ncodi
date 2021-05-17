@@ -540,7 +540,7 @@ namespace Ncodi.CodeAnalysis.Binding
 
             if (conversion.IsIdentity)
                 return expression;
-            return new BoundConversionExpression(type, expression);
+            return new BoundConversionExpression(type, expression, diagnosticLocation);
         }
 
         private VariableSymbol BindVariable(SyntaxToken identifier,bool isReadonly, TypeSymbol type)
