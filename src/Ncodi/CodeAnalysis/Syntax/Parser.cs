@@ -370,8 +370,8 @@ namespace Ncodi.CodeAnalysis.Syntax
 
                 case SyntaxKind.NumberToken:
                     return ParseNumberLiteral();
-                case SyntaxKind.DoubleToken:
-                    return ParseDoubleLiteral();
+                case SyntaxKind.DecimalToken:
+                    return ParseDecimalLiteral();
 
                 case SyntaxKind.StringToken:
                     return ParseStringLiteral();
@@ -453,9 +453,9 @@ namespace Ncodi.CodeAnalysis.Syntax
             return new NameExpressionSyntax(_syntaxTree, identifierToken);
         }
 
-        private ExpressionSyntax ParseDoubleLiteral()
+        private ExpressionSyntax ParseDecimalLiteral()
         {
-            var numberToken = MatchToken(SyntaxKind.DoubleToken);
+            var numberToken = MatchToken(SyntaxKind.DecimalToken);
             return new LiteralExpressionSyntax(_syntaxTree, numberToken);
         }
     }

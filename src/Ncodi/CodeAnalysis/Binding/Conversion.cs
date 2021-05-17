@@ -37,7 +37,7 @@ namespace Ncodi.CodeAnalysis.Binding
                 if (to == TypeSymbol.Int || to == TypeSymbol.Bool)
                     return Conversion.Explicit;
             }
-            if (from == TypeSymbol.Int && to == TypeSymbol.Double)
+            if (from == TypeSymbol.Int && to == TypeSymbol.Decimal)
                 return Conversion.Implicit;
             return Conversion.None;
         }

@@ -137,11 +137,11 @@ namespace Ncodi.CodeAnalysis
                 }
             else if (node.Type == TypeSymbol.String)
                 return Convert.ToString(value);
-            else if (node.Type == TypeSymbol.Double)
+            else if (node.Type == TypeSymbol.Decimal)
             {
                 try
                 {
-                    return Convert.ToDouble(value);
+                    return Convert.ToDecimal(value);
                 }
                 catch (Exception)
                 {
@@ -163,15 +163,15 @@ namespace Ncodi.CodeAnalysis
                     {
                         if (b.Type == TypeSymbol.String)
                             return (string)left + (string)right;
-                        var res= Convert.ToDouble(left) + Convert.ToDouble(right);
-                        if (b.Type == TypeSymbol.Double)
+                        var res= Convert.ToDecimal(left) + Convert.ToDecimal(right);
+                        if (b.Type == TypeSymbol.Decimal)
                             return res;
                         return (int)res;
                     }
                 case BoundBinaryOperatorKind.Substraction:
                     {
-                        var res = Convert.ToDouble(left) - Convert.ToDouble(right);
-                        if (b.Type == TypeSymbol.Double)
+                        var res = Convert.ToDecimal(left) - Convert.ToDecimal(right);
+                        if (b.Type == TypeSymbol.Decimal)
                             return res;
                         return (int)res;
                     }

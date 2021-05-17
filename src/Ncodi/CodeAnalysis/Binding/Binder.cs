@@ -566,7 +566,7 @@ namespace Ncodi.CodeAnalysis.Binding
                 case "string":
                     return TypeSymbol.String;
                 case "decimal":
-                    return TypeSymbol.Double;
+                    return TypeSymbol.Decimal;
                 default:
                     return null;
             }
