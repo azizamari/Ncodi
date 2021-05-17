@@ -150,7 +150,10 @@ namespace Ncodi.CodeAnalysis
                 case BoundBinaryOperatorKind.Addition:
                     if (b.Type == TypeSymbol.String)
                         return (string)left + (string)right;
-                    return (int)left + (int)right;
+                    var res= Convert.ToDecimal(left) + Convert.ToDecimal(right);
+                    if (b.Type == TypeSymbol.Decimal)
+                        return res;
+                    return (int)res;
                 case BoundBinaryOperatorKind.Substraction:
                     return (int)left - (int)right;
                 case BoundBinaryOperatorKind.Multiplication:
