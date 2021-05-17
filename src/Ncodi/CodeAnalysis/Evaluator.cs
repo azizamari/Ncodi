@@ -223,7 +223,13 @@ namespace Ncodi.CodeAnalysis
                 case BoundBinaryOperatorKind.GreaterThanOrEquals:
                     return (int)left >= (int)right;
                 case BoundBinaryOperatorKind.Equals:
-                    return Equals(left, right);
+                    {
+                        if (b.Left.Type == TypeSymbol.Decimal ^ b.Right.Type == TypeSymbol.Decimal)
+                        {
+                            return Equals(Convert.ToDecimal(left), Convert.ToDecimal(right));
+                        }
+                        return Equals(left, right);
+                    }
                 case BoundBinaryOperatorKind.NotEquals:
                     return !Equals(left, right);
                 default:
