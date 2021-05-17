@@ -1,4 +1,5 @@
 ﻿using Ncodi.CodeAnalysis.Symbols;
+using Ncodi.CodeAnalysis.Text;
 using System.Collections.Immutable;
 
 namespace Ncodi.CodeAnalysis.Binding
@@ -10,9 +11,16 @@ namespace Ncodi.CodeAnalysis.Binding
             Function = function;
             Arguments = arguments;
         }
+        public BoundCallExpression(FunctionSymbol function, ImmutableArray<BoundExpression> arguments, TextLocation location)
+        {
+            Function = function;
+            Arguments = arguments;
+            Location = location;
+        }
 
         public FunctionSymbol Function { get; }
         public ImmutableArray<BoundExpression> Arguments { get; }
+        public TextLocation Location { get; }
 
         public override TypeSymbol Type => Function.ReturnType;
 

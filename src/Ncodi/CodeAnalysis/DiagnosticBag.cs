@@ -163,5 +163,17 @@ namespace Ncodi.CodeAnalysis
             var message = $"The function '{functionName}' does not return a value the 'return' keyword can't be followed by an expression";
             Report(location, message);
         }
+
+        public void ReportAsciiBounds(TextLocation location, int number)
+        {
+            var message = $"Cannot find an ASCII match for '{number}' since it's not in the interval [0..255]";
+            Report(location, message);
+        }
+
+        public void ReportIsNotChar(TextLocation location, string character)
+        {
+            var message = $"Cannot convert '{character}' to ASCII int since it's not a single character";
+            Report(location, message);
+        }
     }
 }

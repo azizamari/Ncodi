@@ -515,7 +515,7 @@ namespace Ncodi.CodeAnalysis.Binding
             if (hasErrors)
                 return new BoundErrorExpression();
 
-            return new BoundCallExpression(function, boundArguments.ToImmutable());
+            return new BoundCallExpression(function, boundArguments.ToImmutable(), syntax.Identifier.Location);
         }
 
         private BoundExpression BindConversion(ExpressionSyntax syntax, TypeSymbol type, bool allowExplicit = false)

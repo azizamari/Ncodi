@@ -254,6 +254,26 @@ namespace Ncodi.CodeAnalysis
                 Console.WriteLine(message);
                 return null;
             }
+            else if (node.Function == BuiltInFunctions.Chr)
+            {
+                var number = (int)EvaluateExpression(node.Arguments[0]);
+                if (number > 255 || number < 0)
+                {
+                    _diagnostics.ReportAsciiBounds(node.Location, number);
+                    return new BoundErrorExpression();
+                }
+                return Convert.ToChar(number).ToString();
+            }
+            else if (node.Function == BuiltInFunctions.Ord)
+            {
+                var character = (string)EvaluateExpression(node.Arguments[0]);
+                if (character.Length != 1)
+                {
+                    _diagnostics.ReportIsNotChar(node.Location, character);
+                    return new BoundErrorExpression();
+                }
+                return (byte)character[0];
+            }
             else if (node.Function == BuiltInFunctions.Len)
             {
                 var message = (string)EvaluateExpression(node.Arguments[0]);
