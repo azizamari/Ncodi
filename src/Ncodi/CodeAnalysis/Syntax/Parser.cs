@@ -370,6 +370,8 @@ namespace Ncodi.CodeAnalysis.Syntax
 
                 case SyntaxKind.NumberToken:
                     return ParseNumberLiteral();
+                case SyntaxKind.DecimalToken:
+                    return ParseDecimalLiteral();
 
                 case SyntaxKind.StringToken:
                     return ParseStringLiteral();
@@ -449,6 +451,12 @@ namespace Ncodi.CodeAnalysis.Syntax
         {
             var identifierToken = MatchToken(SyntaxKind.IdentifierToken);
             return new NameExpressionSyntax(_syntaxTree, identifierToken);
+        }
+
+        private ExpressionSyntax ParseDecimalLiteral()
+        {
+            var numberToken = MatchToken(SyntaxKind.DecimalToken);
+            return new LiteralExpressionSyntax(_syntaxTree, numberToken);
         }
     }
 }
