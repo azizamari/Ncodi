@@ -6,12 +6,13 @@
 
 Inspired by The .NET Compiler Platform [Roslyn](https://github.com/dotnet/roslyn)
 ## Roadmap:
-* Finish Core Compiler
+* Finish Core Interpreter
 * Add Bracket notation [index]
+* Create a Cli to run code
+* Create VsCode Extension (highlighting, syntax completion and maybe run button)
 * Create simple IDE
 * Create web-based playground to run code
 * Create a documentation and about page (website)
-* Remove helper functions that print the BoundTree and the syntaxTree
 * Add sourceBrowser
 * Add ability to visualize dot file in website, basically a graphiz engine and make this a seperate javascript project or just use D3.js
 * Get reviews from experts
