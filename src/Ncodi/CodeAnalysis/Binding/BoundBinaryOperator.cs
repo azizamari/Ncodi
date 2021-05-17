@@ -40,6 +40,10 @@ namespace Ncodi.CodeAnalysis.Binding
 
 
             new BoundBinaryOperator(SyntaxKind.MinusToken, BoundBinaryOperatorKind.Substraction, TypeSymbol.Int),
+            new BoundBinaryOperator(SyntaxKind.MinusToken, BoundBinaryOperatorKind.Substraction, TypeSymbol.Double),
+            new BoundBinaryOperator(SyntaxKind.MinusToken, BoundBinaryOperatorKind.Substraction, TypeSymbol.Double,TypeSymbol.Int,TypeSymbol.Double),
+            new BoundBinaryOperator(SyntaxKind.MinusToken, BoundBinaryOperatorKind.Substraction, TypeSymbol.Int,TypeSymbol.Double,TypeSymbol.Double),
+
             new BoundBinaryOperator(SyntaxKind.StarToken, BoundBinaryOperatorKind.Multiplication, TypeSymbol.Int),
             new BoundBinaryOperator(SyntaxKind.StarStarToken, BoundBinaryOperatorKind.Power, TypeSymbol.Int),
             new BoundBinaryOperator(SyntaxKind.SlashToken, BoundBinaryOperatorKind.Division, TypeSymbol.Int),

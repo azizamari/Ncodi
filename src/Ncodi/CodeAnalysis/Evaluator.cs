@@ -160,14 +160,21 @@ namespace Ncodi.CodeAnalysis
             switch (b.Op.Kind)
             {
                 case BoundBinaryOperatorKind.Addition:
-                    if (b.Type == TypeSymbol.String)
-                        return (string)left + (string)right;
-                    var res= Convert.ToDecimal(left) + Convert.ToDecimal(right);
-                    if (b.Type == TypeSymbol.Double)
-                        return res;
-                    return (int)res;
+                    {
+                        if (b.Type == TypeSymbol.String)
+                            return (string)left + (string)right;
+                        var res= Convert.ToDouble(left) + Convert.ToDouble(right);
+                        if (b.Type == TypeSymbol.Double)
+                            return res;
+                        return (int)res;
+                    }
                 case BoundBinaryOperatorKind.Substraction:
-                    return (int)left - (int)right;
+                    {
+                        var res = Convert.ToDouble(left) - Convert.ToDouble(right);
+                        if (b.Type == TypeSymbol.Double)
+                            return res;
+                        return (int)res;
+                    }
                 case BoundBinaryOperatorKind.Multiplication:
                     return (int)left * (int)right;
                 case BoundBinaryOperatorKind.Power:
