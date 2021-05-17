@@ -8,6 +8,7 @@ namespace Ncodi.CodeAnalysis.Symbols
     internal static class BuiltInFunctions
     {
         public static readonly FunctionSymbol Print = new FunctionSymbol("ekteb", ImmutableArray.Create(new ParameterSymbol("text", TypeSymbol.String)), TypeSymbol.Void);
+        public static readonly FunctionSymbol Len = new FunctionSymbol("len", ImmutableArray.Create(new ParameterSymbol("text", TypeSymbol.String)), TypeSymbol.Void);
         public static readonly FunctionSymbol Input = new FunctionSymbol("a9ra", ImmutableArray<ParameterSymbol>.Empty, TypeSymbol.String);
 
         //public static readonly FunctionSymbol Print=new FunctionSymbol("print", ImmutableArray.Create(new ParameterSymbol("text", TypeSymbol.String)),TypeSymbol.Void);

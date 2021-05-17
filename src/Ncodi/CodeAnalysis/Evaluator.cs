@@ -254,6 +254,11 @@ namespace Ncodi.CodeAnalysis
                 Console.WriteLine(message);
                 return null;
             }
+            else if (node.Function == BuiltInFunctions.Len)
+            {
+                var message = (string)EvaluateExpression(node.Arguments[0]);
+                return message.Length;
+            }
             else if (node.Function == BuiltInFunctions.Random)
             {
                 var max = (int)EvaluateExpression(node.Arguments[0]);
