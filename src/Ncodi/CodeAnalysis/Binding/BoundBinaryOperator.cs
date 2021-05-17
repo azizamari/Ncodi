@@ -50,6 +50,10 @@ namespace Ncodi.CodeAnalysis.Binding
             new BoundBinaryOperator(SyntaxKind.StarToken, BoundBinaryOperatorKind.Multiplication, TypeSymbol.Int,TypeSymbol.Decimal,TypeSymbol.Decimal),
 
             new BoundBinaryOperator(SyntaxKind.StarStarToken, BoundBinaryOperatorKind.Power, TypeSymbol.Int),
+            new BoundBinaryOperator(SyntaxKind.StarStarToken, BoundBinaryOperatorKind.Power, TypeSymbol.Decimal),
+            new BoundBinaryOperator(SyntaxKind.StarStarToken, BoundBinaryOperatorKind.Power, TypeSymbol.Decimal,TypeSymbol.Int,TypeSymbol.Decimal),
+            new BoundBinaryOperator(SyntaxKind.StarStarToken, BoundBinaryOperatorKind.Power, TypeSymbol.Int,TypeSymbol.Decimal,TypeSymbol.Decimal),
+
             new BoundBinaryOperator(SyntaxKind.SlashToken, BoundBinaryOperatorKind.Division, TypeSymbol.Int),
             new BoundBinaryOperator(SyntaxKind.ModuloToken, BoundBinaryOperatorKind.DivisionRemainder, TypeSymbol.Int),
             new BoundBinaryOperator(SyntaxKind.AmpersandToken, BoundBinaryOperatorKind.BitwiseAnd, TypeSymbol.Int),

@@ -183,7 +183,12 @@ namespace Ncodi.CodeAnalysis
                         return (int)res;
                     }
                 case BoundBinaryOperatorKind.Power:
-                    return Math.Pow((int)left, (int)right);
+                    {
+                        var res = Convert.ToDecimal(Math.Pow(Convert.ToDouble(left), Convert.ToDouble(right)));
+                        if (b.Type == TypeSymbol.Decimal)
+                            return res;
+                        return (int)res;
+                    }
                 case BoundBinaryOperatorKind.Division:
                     return (int)left / (int)right;
                 case BoundBinaryOperatorKind.DivisionRemainder:
