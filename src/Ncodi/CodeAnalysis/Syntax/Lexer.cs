@@ -276,20 +276,49 @@ namespace Ncodi.CodeAnalysis.Syntax
 
         private void ReadNumberToken()
         {
-            while (char.IsDigit(Current))
+            var countDots=0;
+            var curr = Current;
+            while (char.IsDigit(curr) || curr == '.')
+            {
+                if (curr == '.')
+                    countDots++;
                 _position++;
+                curr = Current;
+            }
 
             var length = _position - _start;
             var text = _text.ToString(_start, length);
-            if (!int.TryParse(text, out var value))
+            if (countDots > 1)
             {
                 var span = new TextSpan(_start, length);
                 var location = new TextLocation(_text, span);
 
-                _diagnostics.ReportInvalidNumber(location, text, TypeSymbol.Int);
+                _diagnostics.ReportInvalidNumber(location, text, TypeSymbol.Decimal);
             }
-            _value = value;
-            _kind = SyntaxKind.NumberToken;
+            if (countDots == 1)
+            {
+                if (!decimal.TryParse(text, out var value))
+                {
+                    var span = new TextSpan(_start, length);
+                    var location = new TextLocation(_text, span);
+
+                    _diagnostics.ReportInvalidNumber(location, text, TypeSymbol.Decimal);
+                }
+                _value = value;
+                _kind = SyntaxKind.DecimalToken;
+            }
+            else
+            {
+                if (!int.TryParse(text, out var value))
+                {
+                    var span = new TextSpan(_start, length);
+                    var location = new TextLocation(_text, span);
+
+                    _diagnostics.ReportInvalidNumber(location, text, TypeSymbol.Int);
+                }
+                _value = value;
+                _kind = SyntaxKind.NumberToken;
+            }
         }
 
         private void ReadIdentifierOrKeyword()

@@ -80,5 +80,6 @@
         ReturnKeyword,
         ReturnStatement,
         StarStarToken,
+        DecimalToken,
     }
 }
