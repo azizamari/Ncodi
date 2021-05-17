@@ -293,19 +293,19 @@ namespace Ncodi.CodeAnalysis.Syntax
                 var span = new TextSpan(_start, length);
                 var location = new TextLocation(_text, span);
 
-                _diagnostics.ReportInvalidNumber(location, text, TypeSymbol.Decimal);
+                _diagnostics.ReportInvalidNumber(location, text, TypeSymbol.Double);
             }
             if (countDots == 1)
             {
-                if (!decimal.TryParse(text, out var value))
+                if (!double.TryParse(text, out var value))
                 {
                     var span = new TextSpan(_start, length);
                     var location = new TextLocation(_text, span);
 
-                    _diagnostics.ReportInvalidNumber(location, text, TypeSymbol.Decimal);
+                    _diagnostics.ReportInvalidNumber(location, text, TypeSymbol.Double);
                 }
                 _value = value;
-                _kind = SyntaxKind.DecimalToken;
+                _kind = SyntaxKind.DoubleToken;
             }
             else
             {

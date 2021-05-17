@@ -14,8 +14,8 @@ namespace Ncodi.CodeAnalysis.Binding
                 Type = TypeSymbol.Int;
             else if (value is string)
                 Type = TypeSymbol.String;
-            else if (value is decimal)
-                Type = TypeSymbol.Decimal;
+            else if (double.TryParse(Convert.ToString(value), out _))
+                Type = TypeSymbol.Double;
             else
                 throw new Exception($"Unexpected literal '{value}' of type {value.GetType()}");
         }

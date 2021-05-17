@@ -158,6 +158,12 @@ namespace Ncodi.CodeAnalysis
             Report(location, message);
         }
 
+        public void ReportCannotConvertToDecimal(TextLocation location, object value)
+        {
+            var messsage = $"Cannot convert \"{value.ToString()}\" to 'Decimal'";
+            Report(location, messsage);
+        }
+
         public void ReportInvalidReturnExpression(TextLocation location, string functionName)
         {
             var message = $"The function '{functionName}' does not return a value the 'return' keyword can't be followed by an expression";

@@ -267,7 +267,7 @@ namespace Ncodi.CodeAnalysis.Binding
             {
                 writer.WriteKeyword((bool)node.Value ? SyntaxKind.TrueKeyword : SyntaxKind.FalseKeyword);
             }
-            else if (node.Type == TypeSymbol.Int||node.Type==TypeSymbol.Decimal)
+            else if (node.Type == TypeSymbol.Int||node.Type==TypeSymbol.Double)
             {
                 writer.WriteNumber(value);
             }

@@ -137,6 +137,18 @@ namespace Ncodi.CodeAnalysis
                 }
             else if (node.Type == TypeSymbol.String)
                 return Convert.ToString(value);
+            else if (node.Type == TypeSymbol.Double)
+            {
+                try
+                {
+                    return Convert.ToDouble(value);
+                }
+                catch (Exception)
+                {
+                    _diagnostics.ReportCannotConvertToDecimal(node.Location, value);
+                    return new BoundErrorExpression();
+                }
+            }
             else
                 throw new Exception($"Unexpected type {node.Type}");
         }
@@ -151,7 +163,7 @@ namespace Ncodi.CodeAnalysis
                     if (b.Type == TypeSymbol.String)
                         return (string)left + (string)right;
                     var res= Convert.ToDecimal(left) + Convert.ToDecimal(right);
-                    if (b.Type == TypeSymbol.Decimal)
+                    if (b.Type == TypeSymbol.Double)
                         return res;
                     return (int)res;
                 case BoundBinaryOperatorKind.Substraction:
