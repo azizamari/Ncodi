@@ -1,17 +1,18 @@
 <h1 align="center">
-  <img src="https://github.com/azizamari/Ncodi/blob/3525fea8be5603f59f6b6eefabb00989ccc3e808/logo.png" width="123px"/>
+  <img src="https://github.com/azizamari/Ncodi/blob/0c25d9232d3cd601e3fcac9cac83a97be168658d/icon-05.png" width="96px"/>
 </h1>
 <h3 align="center"><Under Construction> Ncodi is a programming language that uses the Tunisian Dialect 🔹</h3><br>
 
 
 Inspired by The .NET Compiler Platform [Roslyn](https://github.com/dotnet/roslyn)
 ## Roadmap:
-* Finish Core Compiler
+* Finish Core Interpreter
 * Add Bracket notation [index]
+* Create a Cli to run code
+* Create VsCode Extension (highlighting, syntax completion and maybe run button)
 * Create simple IDE
 * Create web-based playground to run code
 * Create a documentation and about page (website)
-* Remove helper functions that print the BoundTree and the syntaxTree
 * Add sourceBrowser
 * Add ability to visualize dot file in website, basically a graphiz engine and make this a seperate javascript project or just use D3.js
 * Get reviews from experts
