@@ -54,7 +54,13 @@ namespace Ncodi.CodeAnalysis.Binding
             new BoundBinaryOperator(SyntaxKind.StarStarToken, BoundBinaryOperatorKind.Power, TypeSymbol.Decimal,TypeSymbol.Int,TypeSymbol.Decimal),
             new BoundBinaryOperator(SyntaxKind.StarStarToken, BoundBinaryOperatorKind.Power, TypeSymbol.Int,TypeSymbol.Decimal,TypeSymbol.Decimal),
 
-            new BoundBinaryOperator(SyntaxKind.SlashSlashToken, BoundBinaryOperatorKind.Division, TypeSymbol.Int),
+            new BoundBinaryOperator(SyntaxKind.SlashSlashToken, BoundBinaryOperatorKind.EuclidianDivision, TypeSymbol.Int),
+
+            new BoundBinaryOperator(SyntaxKind.SlashToken, BoundBinaryOperatorKind.DecimalDivision, TypeSymbol.Int),
+            new BoundBinaryOperator(SyntaxKind.SlashToken, BoundBinaryOperatorKind.DecimalDivision, TypeSymbol.Decimal),
+            new BoundBinaryOperator(SyntaxKind.SlashToken, BoundBinaryOperatorKind.DecimalDivision, TypeSymbol.Decimal,TypeSymbol.Int,TypeSymbol.Decimal),
+            new BoundBinaryOperator(SyntaxKind.SlashToken, BoundBinaryOperatorKind.DecimalDivision, TypeSymbol.Int,TypeSymbol.Decimal,TypeSymbol.Decimal),
+
             new BoundBinaryOperator(SyntaxKind.ModuloToken, BoundBinaryOperatorKind.DivisionRemainder, TypeSymbol.Int),
             new BoundBinaryOperator(SyntaxKind.AmpersandToken, BoundBinaryOperatorKind.BitwiseAnd, TypeSymbol.Int),
             new BoundBinaryOperator(SyntaxKind.PipeToken, BoundBinaryOperatorKind.BitwiseOr, TypeSymbol.Int),

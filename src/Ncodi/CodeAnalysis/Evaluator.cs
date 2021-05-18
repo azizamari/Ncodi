@@ -189,8 +189,10 @@ namespace Ncodi.CodeAnalysis
                             return res;
                         return (int)res;
                     }
-                case BoundBinaryOperatorKind.Division:
+                case BoundBinaryOperatorKind.EuclidianDivision:
                     return (int)left / (int)right;
+                case BoundBinaryOperatorKind.DecimalDivision:
+                    return Convert.ToDecimal(left) / Convert.ToDecimal(right);
                 case BoundBinaryOperatorKind.DivisionRemainder:
                     return (int)left % (int)right;
 

@@ -5,7 +5,7 @@
         Addition,
         Substraction,
         Multiplication,
-        Division,
+        EuclidianDivision,
         LogicalAnd,
         LogicalOr,
         Equals,
@@ -19,5 +19,6 @@
         BitwiseXor,
         DivisionRemainder,
         Power,
+        DecimalDivision,
     }
 }
