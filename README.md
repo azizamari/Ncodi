@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://github.com/azizamari/Ncodi/blob/0c25d9232d3cd601e3fcac9cac83a97be168658d/icon-05.png" width="123px"/>
+  <img src="https://github.com/azizamari/Ncodi/blob/0c25d9232d3cd601e3fcac9cac83a97be168658d/icon-05.png" width="96px"/>
 </h1>
 <h3 align="center"><Under Construction> Ncodi is a programming language that uses the Tunisian Dialect 🔹</h3><br>
 
