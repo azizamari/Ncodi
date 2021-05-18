@@ -59,10 +59,6 @@ namespace Ncodi.CodeAnalysis.Syntax
                     _kind = SyntaxKind.MinusToken;
                     _position++;
                     break;
-                case '/':
-                    _kind = SyntaxKind.SlashToken;
-                    _position++;
-                    break;
                 case '%':
                     _kind = SyntaxKind.ModuloToken;
                     _position++;
@@ -98,6 +94,18 @@ namespace Ncodi.CodeAnalysis.Syntax
                 case ':':
                     _kind = SyntaxKind.ColonToken;
                     _position++;
+                    break;
+                case '/':
+                    _position++;
+                    if (Current != '/')
+                    {
+                        _kind = SyntaxKind.SlashToken;
+                    }
+                    else
+                    {
+                        _kind = SyntaxKind.SlashSlashToken;
+                        _position++;
+                    }
                     break;
                 case '*':
                     _position++;

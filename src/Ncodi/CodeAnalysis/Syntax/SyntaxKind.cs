@@ -81,5 +81,6 @@
         ReturnStatement,
         StarStarToken,
         DecimalToken,
+        SlashSlashToken,
     }
 }
