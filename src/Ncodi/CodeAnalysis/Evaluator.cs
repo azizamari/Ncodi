@@ -221,9 +221,9 @@ namespace Ncodi.CodeAnalysis
                 case BoundBinaryOperatorKind.LessThanOrEquals:
                     return Convert.ToDecimal(left) <= Convert.ToDecimal(right);
                 case BoundBinaryOperatorKind.GreaterThan:
-                    return (int)left > (int)right;
+                    return Convert.ToDecimal(left) > Convert.ToDecimal(right);
                 case BoundBinaryOperatorKind.GreaterThanOrEquals:
-                    return (int)left >= (int)right;
+                    return Convert.ToDecimal(left) >= Convert.ToDecimal(right);
                 case BoundBinaryOperatorKind.Equals:
                     {
                         if (b.Left.Type == TypeSymbol.Decimal ^ b.Right.Type == TypeSymbol.Decimal)
