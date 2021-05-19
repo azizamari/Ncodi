@@ -217,9 +217,9 @@ namespace Ncodi.CodeAnalysis
                 case BoundBinaryOperatorKind.LogicalOr:
                     return (bool)left || (bool)right;
                 case BoundBinaryOperatorKind.LessThan:
-                    return (int)left < (int)right;
+                    return Convert.ToDecimal(left)< Convert.ToDecimal(right);
                 case BoundBinaryOperatorKind.LessThanOrEquals:
-                    return (int)left <= (int)right;
+                    return Convert.ToDecimal(left) <= Convert.ToDecimal(right);
                 case BoundBinaryOperatorKind.GreaterThan:
                     return (int)left > (int)right;
                 case BoundBinaryOperatorKind.GreaterThanOrEquals:
