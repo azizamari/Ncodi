@@ -233,7 +233,13 @@ namespace Ncodi.CodeAnalysis
                         return Equals(left, right);
                     }
                 case BoundBinaryOperatorKind.NotEquals:
-                    return !Equals(left, right);
+                    {
+                        if (b.Left.Type == TypeSymbol.Decimal ^ b.Right.Type == TypeSymbol.Decimal)
+                        {
+                            return !Equals(Convert.ToDecimal(left), Convert.ToDecimal(right));
+                        }
+                        return !Equals(left, right);
+                    }
                 default:
                     throw new Exception($"Unexpected Operator {b.Op.Kind}");
             }
