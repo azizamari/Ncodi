@@ -373,9 +373,17 @@ namespace Ncodi.CodeAnalysis.Binding
                     return BindBinaryExpression((BinaryExpressionSyntax)syntax);
                 case SyntaxKind.CallExpression:
                     return BindCallExpression((CallExpressionSyntax)syntax);
+                case SyntaxKind.StringIndexExpression:
+                    return BindStringIndexExpression((StringIndexExpressionSyntax)syntax);
                 default:
                     throw new Exception($"Unexpected syntax {syntax.Kind}");
             }
+        }
+
+        private BoundExpression BindStringIndexExpression(StringIndexExpressionSyntax syntax)
+        {
+            var 
+            var boundExpression = BindExpression(syntax.Expression);
         }
 
         private BoundExpression BindParenthesizedExpression(ParenthesizedExpressionSyntax syntax)

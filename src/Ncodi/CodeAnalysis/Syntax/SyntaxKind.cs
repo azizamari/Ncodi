@@ -84,5 +84,6 @@
         SlashSlashToken,
         OpenBracketToken,
         ClosedBracketToken,
+        StringIndexExpression,
     }
 }

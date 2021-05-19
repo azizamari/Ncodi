@@ -443,8 +443,22 @@ namespace Ncodi.CodeAnalysis.Syntax
         }
         private ExpressionSyntax ParseStringLiteral()
         {
+            if (Peek(1).Kind == SyntaxKind.OpenBracketToken)
+            {
+                return ParseIndexExpression();
+            }
             var stringToken = MatchToken(SyntaxKind.StringToken);
             return new LiteralExpressionSyntax(_syntaxTree, stringToken);
+        }
+
+        private ExpressionSyntax ParseIndexExpression()
+        {
+            var stringToken = MatchToken(SyntaxKind.StringToken);
+            var openBracket= MatchToken(SyntaxKind.OpenBracketToken);
+            var expression = ParseExpression();
+            var closedBracket = MatchToken(SyntaxKind.ClosedBracketToken);
+            var x= new StringIndexExpressionSyntax(_syntaxTree, stringToken, openBracket, expression, closedBracket);
+            return x;
         }
 
         private ExpressionSyntax ParseNameExpression()
