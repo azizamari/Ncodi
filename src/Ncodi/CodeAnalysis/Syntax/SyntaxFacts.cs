@@ -184,6 +184,10 @@ namespace Ncodi.CodeAnalysis.Syntax
                     return "(";
                 case SyntaxKind.ClosedParenthesisToken:
                     return ")";
+                case SyntaxKind.OpenBracketToken:
+                    return "[";
+                case SyntaxKind.ClosedBracketToken:
+                    return "]";
                 case SyntaxKind.OpenBraceToken:
                     return "{";
                 case SyntaxKind.ClosedBraceToken:

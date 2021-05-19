@@ -82,5 +82,7 @@
         StarStarToken,
         DecimalToken,
         SlashSlashToken,
+        OpenBracketToken,
+        ClosedBracketToken,
     }
 }

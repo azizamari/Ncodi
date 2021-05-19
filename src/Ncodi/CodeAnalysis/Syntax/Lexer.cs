@@ -71,6 +71,14 @@ namespace Ncodi.CodeAnalysis.Syntax
                     _kind = SyntaxKind.ClosedParenthesisToken;
                     _position++;
                     break;
+                case '[':
+                    _kind = SyntaxKind.OpenBracketToken;
+                    _position++;
+                    break;
+                case ']':
+                    _kind = SyntaxKind.ClosedBracketToken;
+                    _position++;
+                    break;
                 case '{':
                     _kind = SyntaxKind.OpenBraceToken;
                     _position++;
