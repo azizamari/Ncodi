@@ -454,10 +454,11 @@ namespace Ncodi.CodeAnalysis.Syntax
         private ExpressionSyntax ParseIndexExpression()
         {
             var stringToken = MatchToken(SyntaxKind.StringToken);
+            var stringLiteral = new LiteralExpressionSyntax(_syntaxTree, stringToken);
             var openBracket= MatchToken(SyntaxKind.OpenBracketToken);
             var expression = ParseExpression();
             var closedBracket = MatchToken(SyntaxKind.ClosedBracketToken);
-            var x= new StringIndexExpressionSyntax(_syntaxTree, stringToken, openBracket, expression, closedBracket);
+            var x= new StringIndexExpressionSyntax(_syntaxTree, stringLiteral, openBracket, expression, closedBracket);
             return x;
         }
 

@@ -146,6 +146,18 @@ namespace Ncodi.CodeAnalysis
             Report(location, messsage);
         }
 
+        public void ReportIndexOutOfBounds(TextLocation location, int length, int i)
+        {
+            var messsage = $"Index out of bounds string is of length {length} and the index is {i}";
+            Report(location, messsage);
+        }
+
+        public void ReportIndexIsNotInt(TextLocation location, object index)
+        {
+            var messsage = $"Index '{index}' is not an Int";
+            Report(location, messsage);
+        }
+
         public void ReportInvalidReturn(TextLocation location)
         {
             var message = "The 'return' keyword can't be used outside of functions";

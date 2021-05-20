@@ -115,8 +115,35 @@ namespace Ncodi.CodeAnalysis
                     return EvaluateCallExpression((BoundCallExpression)node);
                 case BoundNodeKind.ConversionExpression:
                     return EvaluateConversionExpression((BoundConversionExpression)node);
+                case BoundNodeKind.StringIndexExpression:
+                    return EvaluateStringIndexExpression((BoundStringIndexExpression)node);
                 default:
                     throw new Exception($"Unexpected node {node.Kind}");
+            }
+        }
+
+        private object EvaluateStringIndexExpression(BoundStringIndexExpression node)
+        {
+            var text = EvaluateExpression(node.BoundString).ToString();
+            var index = EvaluateExpression(node.IndexExpression);
+            try
+            {
+                if(!(index is int))
+                {
+                    throw new Exception();
+                }
+                var i=Convert.ToInt32(index);
+                if (i < 0 || i > text.Length)
+                {
+                    _diagnostics.ReportIndexOutOfBounds(node.Location, text.Length, i);
+                    return new BoundErrorExpression();
+                }
+                return Convert.ToString(text[i]);
+            }
+            catch (Exception)
+            {
+                _diagnostics.ReportIndexIsNotInt(node.Location,index);
+                return new BoundErrorExpression();
             }
         }
 

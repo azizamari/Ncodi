@@ -83,9 +83,20 @@ namespace Ncodi.CodeAnalysis.Binding
                 case BoundNodeKind.ReturnStatement:
                     WriteReturnStatement((BoundReturnStatement)node, writer);
                     break;
+                case BoundNodeKind.StringIndexExpression:
+                    WriteStringIndexExpression((BoundStringIndexExpression)node, writer);
+                    break;
                 default:
                     throw new Exception($"Unexpected node {node.Kind}");
             }
+        }
+
+        private static void WriteStringIndexExpression(BoundStringIndexExpression node, IndentedTextWriter writer)
+        {
+            writer.WriteString(node.BoundString.ToString());
+            writer.WritePunctuation(SyntaxKind.OpenBracketToken);
+            node.IndexExpression.WriteTo(writer);
+            writer.WritePunctuation(SyntaxKind.ClosedBracketToken);
         }
 
         private static void WriteReturnStatement(BoundReturnStatement node, IndentedTextWriter writer)

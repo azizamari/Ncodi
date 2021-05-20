@@ -24,5 +24,6 @@
         ConversionExpression,
         DoWhileStatement,
         ReturnStatement,
+        StringIndexExpression,
     }
 }

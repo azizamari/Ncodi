@@ -2,10 +2,10 @@
 {
     public sealed class StringIndexExpressionSyntax : ExpressionSyntax
     {
-        public StringIndexExpressionSyntax(SyntaxTree syntaxTree, SyntaxToken stringToken, SyntaxToken openBracket, ExpressionSyntax expression, SyntaxToken closedBracket)
+        public StringIndexExpressionSyntax(SyntaxTree syntaxTree, ExpressionSyntax stringExpression, SyntaxToken openBracket, ExpressionSyntax expression, SyntaxToken closedBracket)
             : base(syntaxTree)
         {
-            StringToken = stringToken;
+            StringExpression = stringExpression;
             OpenBracket = openBracket;
             Expression = expression;
             ClosedBracket = closedBracket;
@@ -13,7 +13,7 @@
 
         public override SyntaxKind Kind => SyntaxKind.StringIndexExpression;
 
-        public SyntaxToken StringToken { get; }
+        public ExpressionSyntax StringExpression { get; }
         public SyntaxToken OpenBracket { get; }
         public ExpressionSyntax Expression { get; }
         public SyntaxToken ClosedBracket { get; }

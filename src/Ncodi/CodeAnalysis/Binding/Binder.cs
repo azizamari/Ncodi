@@ -382,8 +382,9 @@ namespace Ncodi.CodeAnalysis.Binding
 
         private BoundExpression BindStringIndexExpression(StringIndexExpressionSyntax syntax)
         {
-            var 
-            var boundExpression = BindExpression(syntax.Expression);
+            var boundString = BindExpression(syntax.StringExpression);
+            var indexExpression = BindExpression(syntax.Expression);
+            return new BoundStringIndexExpression(boundString, indexExpression, syntax.StringExpression.Location);
         }
 
         private BoundExpression BindParenthesizedExpression(ParenthesizedExpressionSyntax syntax)

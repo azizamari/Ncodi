@@ -61,7 +61,7 @@ namespace Ncodi.CodeAnalysis.IO
             writer.Write(text);
             writer.ResetColor();
         }
-
+        
         public static void WriteString(this TextWriter writer, string text)
         {
             writer.SetForeground(ConsoleColor.Magenta);
