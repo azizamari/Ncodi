@@ -278,9 +278,13 @@ namespace Ncodi.CodeAnalysis
             switch (u.Op.Kind)
             {
                 case BoundUnaryOperatorKind.Identity:
-                    return (int)operand;
+                    if (u.Type == TypeSymbol.Int)
+                        return (int)operand;
+                    return (decimal)operand;
                 case BoundUnaryOperatorKind.Negation:
-                    return -(int)operand;
+                    if(u.Type==TypeSymbol.Int)
+                        return -(int)operand;
+                    return -(decimal)operand;
                 case BoundUnaryOperatorKind.LogicalNegation:
                     return !(bool)operand;
                 case BoundUnaryOperatorKind.OnesComplement:
