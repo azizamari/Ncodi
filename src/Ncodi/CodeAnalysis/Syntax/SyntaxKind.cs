@@ -33,6 +33,11 @@
         ClosedBraceToken,
         IdentifierToken,
         ColonToken,
+        StarStarToken,
+        DecimalToken,
+        SlashSlashToken,
+        OpenBracketToken,
+        ClosedBracketToken,
 
         //Keywords
         TrueKeyword,
@@ -57,6 +62,8 @@
         NameExpression,
         AssignmentExpression,
         CallExpression,
+        StringIndexExpression,
+        NameIndexExpressoin,
 
         //Nodes
         CompilationUnit,
@@ -79,11 +86,5 @@
         ContinueStatement,
         ReturnKeyword,
         ReturnStatement,
-        StarStarToken,
-        DecimalToken,
-        SlashSlashToken,
-        OpenBracketToken,
-        ClosedBracketToken,
-        StringIndexExpression,
     }
 }
