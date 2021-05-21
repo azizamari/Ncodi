@@ -1,19 +1,35 @@
-﻿using System;
+﻿using McMaster.Extensions.CommandLineUtils;
+using System;
 using System.Threading.Tasks;
 
 namespace Ncodi.Cli
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static int Main(string[] args)
         {
-            var helloWorld = await GetHelloWorldAsync();
-            Console.WriteLine(helloWorld);
-        }
+            var app = new CommandLineApplication
+            {
+                Name = "ncodi",
+                Description = "Command line interface to run ncodi coes",
+            };
+            app.HelpOption(inherited: true);
 
-        static Task<string> GetHelloWorldAsync()
-        {
-            return Task.FromResult("Hello Async World");
+            app.Command("run", run =>
+            {
+                run.OnExecute(()=>
+                {
+                    Console.WriteLine("File running result here");
+                    return 1;
+                });
+            });
+            app.OnExecute(() =>
+            {
+                Console.WriteLine("azuz");
+                app.ShowHelp();
+                return 1;
+            });
+            return app.Execute(args);
         }
     }
 }
