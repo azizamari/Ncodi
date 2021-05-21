@@ -86,9 +86,20 @@ namespace Ncodi.CodeAnalysis.Binding
                 case BoundNodeKind.StringIndexExpression:
                     WriteStringIndexExpression((BoundStringIndexExpression)node, writer);
                     break;
+                case BoundNodeKind.NameIndexExpression:
+                    WriteNameIndexExpression((BoundNameIndexExpression)node, writer);
+                    break;
                 default:
                     throw new Exception($"Unexpected node {node.Kind}");
             }
+        }
+
+        private static void WriteNameIndexExpression(BoundNameIndexExpression node, IndentedTextWriter writer)
+        {
+            node.BoundName.WriteTo(writer);
+            writer.WritePunctuation(SyntaxKind.OpenBracketToken);
+            node.IndexExpression.WriteTo(writer);
+            writer.WritePunctuation(SyntaxKind.ClosedBracketToken);
         }
 
         private static void WriteStringIndexExpression(BoundStringIndexExpression node, IndentedTextWriter writer)

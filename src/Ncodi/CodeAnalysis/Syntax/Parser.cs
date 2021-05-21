@@ -445,13 +445,13 @@ namespace Ncodi.CodeAnalysis.Syntax
         {
             if (Peek(1).Kind == SyntaxKind.OpenBracketToken)
             {
-                return ParseIndexExpression();
+                return ParseStringIndexExpression();
             }
             var stringToken = MatchToken(SyntaxKind.StringToken);
             return new LiteralExpressionSyntax(_syntaxTree, stringToken);
         }
 
-        private ExpressionSyntax ParseIndexExpression()
+        private ExpressionSyntax ParseStringIndexExpression()
         {
             var stringToken = MatchToken(SyntaxKind.StringToken);
             var stringLiteral = new LiteralExpressionSyntax(_syntaxTree, stringToken);
@@ -461,9 +461,23 @@ namespace Ncodi.CodeAnalysis.Syntax
             var x= new StringIndexExpressionSyntax(_syntaxTree, stringLiteral, openBracket, expression, closedBracket);
             return x;
         }
+        private ExpressionSyntax ParseNameIndexExpression()
+        {
+            var identifierToken = MatchToken(SyntaxKind.IdentifierToken);
+            var identifierExpression = new NameExpressionSyntax(_syntaxTree, identifierToken);
+            var openBracket = MatchToken(SyntaxKind.OpenBracketToken);
+            var expression = ParseExpression();
+            var closedBracket = MatchToken(SyntaxKind.ClosedBracketToken);
+            var x = new NameIndexExpressionSyntax(_syntaxTree, identifierExpression, openBracket, expression, closedBracket);
+            return x;
+        }
 
         private ExpressionSyntax ParseNameExpression()
         {
+            if (Peek(1).Kind == SyntaxKind.OpenBracketToken)
+            {
+                return ParseNameIndexExpression();
+            }
             var identifierToken = MatchToken(SyntaxKind.IdentifierToken);
             return new NameExpressionSyntax(_syntaxTree, identifierToken);
         }

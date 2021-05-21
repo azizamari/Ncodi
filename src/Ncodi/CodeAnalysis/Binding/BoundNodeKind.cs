@@ -25,5 +25,6 @@
         DoWhileStatement,
         ReturnStatement,
         StringIndexExpression,
+        NameIndexExpression,
     }
 }

@@ -375,9 +375,22 @@ namespace Ncodi.CodeAnalysis.Binding
                     return BindCallExpression((CallExpressionSyntax)syntax);
                 case SyntaxKind.StringIndexExpression:
                     return BindStringIndexExpression((StringIndexExpressionSyntax)syntax);
+                case SyntaxKind.NameIndexExpressoin:
+                    return BindNameIndexExpressoin((NameIndexExpressionSyntax)syntax);
                 default:
                     throw new Exception($"Unexpected syntax {syntax.Kind}");
             }
+        }
+
+        private BoundExpression BindNameIndexExpressoin(NameIndexExpressionSyntax syntax)
+        {
+            var boundName = BindNameExpression(syntax.NameExpression);
+            if (boundName.Type != TypeSymbol.String)
+            {
+                _diagnostics.ReportIndexingNotAllowedForType(syntax.NameExpression.Location, boundName.Type);
+            }
+            var indexExpression = BindExpression(syntax.Expression);
+            return new BoundNameIndexExpression(boundName, indexExpression, syntax.NameExpression.Location);
         }
 
         private BoundExpression BindStringIndexExpression(StringIndexExpressionSyntax syntax)

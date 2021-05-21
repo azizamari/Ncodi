@@ -175,9 +175,16 @@ namespace Ncodi.CodeAnalysis.Binding
                     return RewriteConversionExpression((BoundConversionExpression)node);
                 case BoundNodeKind.StringIndexExpression:
                     return RewriteStringIndexExpression((BoundStringIndexExpression)node);
+                case BoundNodeKind.NameIndexExpression:
+                    return RewriteNameIndexExpression((BoundNameIndexExpression)node);
                 default:
                     throw new Exception($"Unexpected node: {node.Kind}");
             }
+        }
+
+        protected virtual BoundExpression RewriteNameIndexExpression(BoundNameIndexExpression node)
+        {
+            return node;
         }
 
         protected virtual BoundExpression RewriteStringIndexExpression(BoundStringIndexExpression node)

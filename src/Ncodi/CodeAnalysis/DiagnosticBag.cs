@@ -193,5 +193,11 @@ namespace Ncodi.CodeAnalysis
             var message = $"Cannot convert '{character}' to ASCII int since it's not a single character";
             Report(location, message);
         }
+
+        public void ReportIndexingNotAllowedForType(TextLocation location, TypeSymbol type)
+        {
+            var message = $"Indexing [index] not allowed for type '{type}' only for string";
+            Report(location, message);
+        }
     }
 }
