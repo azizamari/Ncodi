@@ -18,7 +18,7 @@ namespace Ncodi.Cli
             var app = new CommandLineApplication
             {
                 Name = "ncodi",
-                Description = "Command line interface to run ncodi coes",
+                Description = "Command line interface to run ncodi files",
             };
             app.HelpOption(inherited: true);
 
