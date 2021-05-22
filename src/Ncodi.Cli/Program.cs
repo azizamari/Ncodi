@@ -21,7 +21,15 @@ namespace Ncodi.Cli
                 Description = "Command line interface to run ncodi files",
             };
             app.HelpOption(inherited: true);
-
+            app.Command("repl", run =>
+            {
+                run.OnExecute(()=>
+                {
+                    var repl = new NcodiRepl();
+                    repl.Run();
+                    return 1;
+                });
+            });
             app.Command("run", run =>
             {
                 var pathArgument = run.Argument("path", "path of the file you want to execute").IsRequired();
