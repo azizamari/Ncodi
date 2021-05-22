@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Ni
 {
-    internal sealed class NcodiRepl : Repl
+    public sealed class NcodiRepl : Repl
     {
         private Compilation _previous;
         private bool _showTree;

@@ -2,6 +2,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Ncodi\Ncodi.csproj" />
+		<ProjectReference Include="..\Ni\Ni.csproj" />
 	</ItemGroup>
 
 	<PropertyGroup>

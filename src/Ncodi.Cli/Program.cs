@@ -3,6 +3,7 @@ using Ncodi.CodeAnalysis;
 using Ncodi.CodeAnalysis.IO;
 using Ncodi.CodeAnalysis.Symbols;
 using Ncodi.CodeAnalysis.Syntax;
+using Ni;
 using System;
 using System.Collections.Generic;
 using System.IO;

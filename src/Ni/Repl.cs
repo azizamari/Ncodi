@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Ni
 {
-    internal abstract class Repl
+    public abstract class Repl
     {
         private List<string> _submissionHistory = new List<string>();
         private int _submissionHistoryIndex;
