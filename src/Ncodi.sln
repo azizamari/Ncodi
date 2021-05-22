@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ncodi.Test", "Ncodi.Test\Nc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ncodi.Cli", "Ncodi.Cli\Ncodi.Cli.csproj", "{961C9BA7-D38F-4762-AA84-D6CE30A2031C}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Ncodi.Setup", "Ncodi.Setup\Ncodi.Setup.vdproj", "{A315EB79-081B-425C-B8C5-2D46973E0D88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,8 @@ Global
 		{961C9BA7-D38F-4762-AA84-D6CE30A2031C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{961C9BA7-D38F-4762-AA84-D6CE30A2031C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{961C9BA7-D38F-4762-AA84-D6CE30A2031C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A315EB79-081B-425C-B8C5-2D46973E0D88}.Debug|Any CPU.ActiveCfg = Debug
+		{A315EB79-081B-425C-B8C5-2D46973E0D88}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

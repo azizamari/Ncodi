@@ -1,0 +1,1 @@
+set PATH=%PATH%;D:\aziz\dotnetprojects\Pital\src\Ncodi.Cli\bin\Debug\netcoreapp3.1
