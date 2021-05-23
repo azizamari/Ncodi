@@ -20,7 +20,7 @@ namespace Ncodi.Web.Controllers
         [HttpPost("{controller}/run")]
         public IActionResult Run(CodeDto code)
         {
-            var srouce = SourceText.From(code.Code, "file.ncodi");
+            var srouce = SourceText.From(String.Join(Environment.NewLine,code.Lines), "sasfile.ncodi");
             var syntaxTree = SyntaxTree.Parse(srouce);
             var compilation = new Compilation(syntaxTree);
             var result = compilation.Evaluate(new Dictionary<VariableSymbol, object>());

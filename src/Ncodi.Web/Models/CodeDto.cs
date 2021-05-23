@@ -8,7 +8,7 @@ namespace Ncodi.Web.Models
 {
     public class CodeDto
     {
-        public string Code { get; set; }
+        public ICollection<string> Lines { get; set; }
         public string FileNmae { get; set; }
     }
 }
