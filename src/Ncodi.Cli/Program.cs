@@ -45,8 +45,13 @@ namespace Ncodi.Cli
                         var result = compilation.Evaluate(new Dictionary<VariableSymbol, object>());
                         if (!result.Diagnostics.Any())
                         {
-                            if (result.Value != null)
-                                Console.Out.WriteLine(result.Value);
+                            if (result.OutputLines != null)
+                            {
+                                foreach(var line in result.OutputLines)
+                                {
+                                    Console.Out.WriteLine(line);
+                                }
+                            }
                         }
                         else
                         {

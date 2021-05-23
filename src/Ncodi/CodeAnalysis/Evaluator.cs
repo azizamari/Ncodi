@@ -11,6 +11,7 @@ namespace Ncodi.CodeAnalysis
 
     internal class Evaluator
     {
+        public List<string> _outputLines;
         private readonly BoundProgram _program;
         private readonly DiagnosticBag _diagnostics = new DiagnosticBag();
         private readonly Dictionary<VariableSymbol, object> _globals;
@@ -24,6 +25,7 @@ namespace Ncodi.CodeAnalysis
             _program = program;
             _globals = variables;
             _locals.Push(new Dictionary<VariableSymbol, object>());
+            _outputLines = new List<string>();
         }
         public ImmutableArray<Diagnostic> Diagnostics => _diagnostics.ToImmutableArray();
         public object Evaluate()
@@ -329,6 +331,7 @@ namespace Ncodi.CodeAnalysis
             {
                 var message = (string)EvaluateExpression(node.Arguments[0]);
                 Console.WriteLine(message);
+                _outputLines.Add(message);
                 return null;
             }
             else if (node.Function == BuiltInFunctions.Chr)

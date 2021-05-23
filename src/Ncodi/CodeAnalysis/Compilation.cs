@@ -47,7 +47,7 @@ namespace Ncodi.CodeAnalysis
         {
             return new Compilation(this, syntaxTree);
         }
-
+        
         public EvaluationResult Evaluate(Dictionary<VariableSymbol,object> variables)
         {
             var parseDiagnostics = SyntaxTrees.SelectMany(st => st.Diagnostics);
@@ -77,7 +77,7 @@ namespace Ncodi.CodeAnalysis
             if (evaluator.Diagnostics.Any())
                 return new EvaluationResult(evaluator.Diagnostics.ToImmutableArray(), null);
 
-            return new EvaluationResult(ImmutableArray<Diagnostic>.Empty, value);
+            return new EvaluationResult(ImmutableArray<Diagnostic>.Empty, value, evaluator._outputLines);
         }
 
         public void EmitTree(TextWriter writer)
