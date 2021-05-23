@@ -336,7 +336,7 @@ namespace Ncodi.CodeAnalysis
             }
             else if (node.Function == BuiltInFunctions.Chr)
             {
-                var number = (int)EvaluateExpression(node.Arguments[0]);
+                var number = Convert.ToInt32(EvaluateExpression(node.Arguments[0]));
                 if (number > 255 || number < 0)
                 {
                     _diagnostics.ReportAsciiBounds(node.Location, number);
