@@ -27,14 +27,13 @@ namespace Ncodi.Web.Controllers
             if (!result.Diagnostics.Any())
             {
                 if (result.Value != null)
-                    Console.Out.WriteLine(result.Value);
+                    return Ok(result.Value);
+                return Ok("Your code doesn't return any data");
             }
             else
             {
-                Console.WriteLine("Error List:");
-                Console.Error.WriteDiagnostics(result.Diagnostics);
+                return Ok(result.Diagnostics.ReturnDiagnostics());
             }
-            return Ok();
         }
     }
 }
