@@ -32,8 +32,8 @@ namespace Ncodi.Web.Controllers
             }
             else
             {
-                var x = result.Diagnostics.ReturnDiagnostics();
-                return Ok(result.Diagnostics.ReturnDiagnostics());
+                var x = result.Diagnostics.ReturnDiagnostics().Split('\n');
+                return Ok(x);
             }
         }
     }
