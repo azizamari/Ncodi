@@ -26,9 +26,9 @@ namespace Ncodi.Web.Controllers
             var result = compilation.Evaluate(new Dictionary<VariableSymbol, object>());
             if (!result.Diagnostics.Any())
             {
-                if (result.Value != null)
+                if (result.OutputLines != null)
                     return Ok(result.OutputLines);
-                return Ok("Your code doesn't return any data");
+                return Ok(new string[]{"Your code doesn't return any data"});
             }
             else
             {
