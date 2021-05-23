@@ -426,8 +426,11 @@ namespace Ncodi.CodeAnalysis.Syntax
             var left = MatchToken(SyntaxKind.OpenParenthesisToken);
             var expression = ParseExpression();
             var right = MatchToken(SyntaxKind.ClosedParenthesisToken);
+            if (Peek(0).Kind == SyntaxKind.OpenBracketToken)
+                return ParseParenthesizedIndexExpression(new ParenthesizedExpressionSyntax(_syntaxTree, left, expression, right));
             return new ParenthesizedExpressionSyntax(_syntaxTree, left, expression, right);
         }
+
 
         private ExpressionSyntax ParseBooleanLiteral()
         {
@@ -451,6 +454,13 @@ namespace Ncodi.CodeAnalysis.Syntax
             return new LiteralExpressionSyntax(_syntaxTree, stringToken);
         }
 
+        private ExpressionSyntax ParseParenthesizedIndexExpression(ParenthesizedExpressionSyntax parenthesizedExpressionSyntax)
+        {
+            var openBracket = MatchToken(SyntaxKind.OpenBracketToken);
+            var expression = ParseExpression();
+            var closedBracket = MatchToken(SyntaxKind.ClosedBracketToken);
+            return new ParenthesizedIndexExpressionSyntax(_syntaxTree, parenthesizedExpressionSyntax, openBracket, expression, closedBracket);
+        }
         private ExpressionSyntax ParseStringIndexExpression()
         {
             var stringToken = MatchToken(SyntaxKind.StringToken);
@@ -458,8 +468,7 @@ namespace Ncodi.CodeAnalysis.Syntax
             var openBracket= MatchToken(SyntaxKind.OpenBracketToken);
             var expression = ParseExpression();
             var closedBracket = MatchToken(SyntaxKind.ClosedBracketToken);
-            var x= new StringIndexExpressionSyntax(_syntaxTree, stringLiteral, openBracket, expression, closedBracket);
-            return x;
+            return new StringIndexExpressionSyntax(_syntaxTree, stringLiteral, openBracket, expression, closedBracket);
         }
         private ExpressionSyntax ParseNameIndexExpression()
         {
@@ -468,8 +477,8 @@ namespace Ncodi.CodeAnalysis.Syntax
             var openBracket = MatchToken(SyntaxKind.OpenBracketToken);
             var expression = ParseExpression();
             var closedBracket = MatchToken(SyntaxKind.ClosedBracketToken);
-            var x = new NameIndexExpressionSyntax(_syntaxTree, identifierExpression, openBracket, expression, closedBracket);
-            return x;
+            
+            return new NameIndexExpressionSyntax(_syntaxTree, identifierExpression, openBracket, expression, closedBracket);
         }
 
         private ExpressionSyntax ParseNameExpression()

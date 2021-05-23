@@ -86,5 +86,6 @@
         ContinueStatement,
         ReturnKeyword,
         ReturnStatement,
+        ParenthesizedIndexExpression,
     }
 }

@@ -377,9 +377,22 @@ namespace Ncodi.CodeAnalysis.Binding
                     return BindStringIndexExpression((StringIndexExpressionSyntax)syntax);
                 case SyntaxKind.NameIndexExpressoin:
                     return BindNameIndexExpressoin((NameIndexExpressionSyntax)syntax);
+                case SyntaxKind.ParenthesizedIndexExpression:
+                    return BindParenthesizedIndexExpression((ParenthesizedIndexExpressionSyntax)syntax);
                 default:
                     throw new Exception($"Unexpected syntax {syntax.Kind}");
             }
+        }
+
+        private BoundExpression BindParenthesizedIndexExpression(ParenthesizedIndexExpressionSyntax syntax)
+        {
+            var boundExpression = BindParenthesizedExpression(syntax.ParenthesizedExpressionSyntax);
+            if (boundExpression.Type != TypeSymbol.String)
+            {
+                _diagnostics.ReportIndexingNotAllowedForType(syntax.ParenthesizedExpressionSyntax.Location, boundExpression.Type);
+            }
+            var indexExpression = BindExpression(syntax.Expression);
+            return new BoundIndexExpression(boundExpression, indexExpression, syntax.ParenthesizedExpressionSyntax.Location);
         }
 
         private BoundExpression BindNameIndexExpressoin(NameIndexExpressionSyntax syntax)
@@ -390,14 +403,14 @@ namespace Ncodi.CodeAnalysis.Binding
                 _diagnostics.ReportIndexingNotAllowedForType(syntax.NameExpression.Location, boundName.Type);
             }
             var indexExpression = BindExpression(syntax.Expression);
-            return new BoundNameIndexExpression(boundName, indexExpression, syntax.NameExpression.Location);
+            return new BoundIndexExpression(boundName, indexExpression, syntax.NameExpression.Location);
         }
 
         private BoundExpression BindStringIndexExpression(StringIndexExpressionSyntax syntax)
         {
             var boundString = BindExpression(syntax.StringExpression);
             var indexExpression = BindExpression(syntax.Expression);
-            return new BoundStringIndexExpression(boundString, indexExpression, syntax.StringExpression.Location);
+            return new BoundIndexExpression(boundString, indexExpression, syntax.StringExpression.Location);
         }
 
         private BoundExpression BindParenthesizedExpression(ParenthesizedExpressionSyntax syntax)

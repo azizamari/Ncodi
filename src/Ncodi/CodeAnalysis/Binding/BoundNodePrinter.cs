@@ -84,27 +84,15 @@ namespace Ncodi.CodeAnalysis.Binding
                     WriteReturnStatement((BoundReturnStatement)node, writer);
                     break;
                 case BoundNodeKind.StringIndexExpression:
-                    WriteStringIndexExpression((BoundStringIndexExpression)node, writer);
-                    break;
-                case BoundNodeKind.NameIndexExpression:
-                    WriteNameIndexExpression((BoundNameIndexExpression)node, writer);
+                    WriteStringIndexExpression((BoundIndexExpression)node, writer);
                     break;
                 default:
                     throw new Exception($"Unexpected node {node.Kind}");
             }
         }
-
-        private static void WriteNameIndexExpression(BoundNameIndexExpression node, IndentedTextWriter writer)
+        private static void WriteStringIndexExpression(BoundIndexExpression node, IndentedTextWriter writer)
         {
-            node.BoundName.WriteTo(writer);
-            writer.WritePunctuation(SyntaxKind.OpenBracketToken);
-            node.IndexExpression.WriteTo(writer);
-            writer.WritePunctuation(SyntaxKind.ClosedBracketToken);
-        }
-
-        private static void WriteStringIndexExpression(BoundStringIndexExpression node, IndentedTextWriter writer)
-        {
-            writer.WriteString(node.BoundString.ToString());
+            node.BoundExpression.WriteTo(writer);
             writer.WritePunctuation(SyntaxKind.OpenBracketToken);
             node.IndexExpression.WriteTo(writer);
             writer.WritePunctuation(SyntaxKind.ClosedBracketToken);

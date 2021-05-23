@@ -116,42 +116,15 @@ namespace Ncodi.CodeAnalysis
                 case BoundNodeKind.ConversionExpression:
                     return EvaluateConversionExpression((BoundConversionExpression)node);
                 case BoundNodeKind.StringIndexExpression:
-                    return EvaluateStringIndexExpression((BoundStringIndexExpression)node);
-                case BoundNodeKind.NameIndexExpression:
-                    return EvaluateNameIndexExpression((BoundNameIndexExpression)node);
+                    return EvaluateStringIndexExpression((BoundIndexExpression)node);
                 default:
                     throw new Exception($"Unexpected node {node.Kind}");
             }
         }
 
-        private object EvaluateNameIndexExpression(BoundNameIndexExpression node)
+        private object EvaluateStringIndexExpression(BoundIndexExpression node)
         {
-            var text = EvaluateExpression(node.BoundName).ToString();
-            var index = EvaluateExpression(node.IndexExpression);
-            try
-            {
-                if (!(index is int))
-                {
-                    throw new Exception();
-                }
-                var i = Convert.ToInt32(index);
-                if (i < 0 || i > text.Length)
-                {
-                    _diagnostics.ReportIndexOutOfBounds(node.Location, text.Length, i);
-                    return new BoundErrorExpression();
-                }
-                return Convert.ToString(text[i]);
-            }
-            catch (Exception)
-            {
-                _diagnostics.ReportIndexIsNotInt(node.Location, index);
-                return new BoundErrorExpression();
-            }
-        }
-
-        private object EvaluateStringIndexExpression(BoundStringIndexExpression node)
-        {
-            var text = EvaluateExpression(node.BoundString).ToString();
+            var text = EvaluateExpression(node.BoundExpression).ToString();
             var index = EvaluateExpression(node.IndexExpression);
             try
             {

@@ -3,11 +3,11 @@ using Ncodi.CodeAnalysis.Text;
 
 namespace Ncodi.CodeAnalysis.Binding
 {
-    internal sealed class BoundStringIndexExpression : BoundExpression
+    internal sealed class BoundIndexExpression : BoundExpression
     {
-        public BoundStringIndexExpression(BoundExpression boundString, BoundExpression indexExpression, TextLocation location)
+        public BoundIndexExpression(BoundExpression boundExpression, BoundExpression indexExpression, TextLocation location)
         {
-            BoundString = boundString;
+            BoundExpression = boundExpression;
             IndexExpression = indexExpression;
             Location = location;
         }
@@ -16,7 +16,7 @@ namespace Ncodi.CodeAnalysis.Binding
 
         public override BoundNodeKind Kind => BoundNodeKind.StringIndexExpression;
 
-        public BoundExpression BoundString { get; }
+        public BoundExpression BoundExpression { get; }
         public BoundExpression IndexExpression { get; }
         public TextLocation Location { get; }
     }
