@@ -121,5 +121,37 @@ namespace Ncodi.CodeAnalysis.IO
                 Console.ResetColor();
             }
         }
+        public static string ReturnDiagnostics(this IEnumerable<Diagnostic> diagnostics)
+        {
+            var result = "";
+            foreach (var diagnostic in diagnostics.OrderBy(d => d.Location.Text.FileName).ThenBy(d => d.Location.Span.Start).ThenBy(d => d.Location.Span.Length))
+            {
+                var text = diagnostic.Location.Text;
+                var fileName = diagnostic.Location.FileName;
+                var startLine = diagnostic.Location.StartLine + 1;
+                var startCharacter = diagnostic.Location.StartCharacter + 1;
+
+                var span = diagnostic.Location.Span;
+                var lineIndex = text.GetLineIndex(span.Start);
+                var line = text.Lines[lineIndex];
+
+                result+=$"{fileName}(line {startLine}, col {startCharacter}): ";
+                result+=diagnostic+"\n";
+
+                var prefixSpan = TextSpan.FromBounds(line.Start, span.Start);
+                var suffixSpan = TextSpan.FromBounds(span.End, line.End);
+
+                var prefix = text.ToString(prefixSpan);
+                var error = text.ToString(span);
+                var suffix = text.ToString(suffixSpan);
+
+
+                result+="  ";
+                result += prefix + error + suffix;
+                var arrows = "  " + new string(' ', prefix.Length) + new string('^', error.Length);
+                result += arrows;
+            }
+            return result;
+        }
     } 
 }
