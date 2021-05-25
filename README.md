@@ -11,7 +11,7 @@ Inspired by The .NET Compiler Platform [Roslyn](https://github.com/dotnet/roslyn
 * Create a Cli to run code - 99% ✔️
 * Create VsCode Extension (highlighting, syntax completion and maybe run button)
 * Create simple IDE - dropped ✅
-* Create web-based playground to run code 10% ✔️ (just MVP)
+* Create web-based playground to run code use AceEditor 10% ✔️ (just MVP)
 * Create a documentation and about page (website) 20% ✔️
 * Add sourceBrowser - 0% ✔️
 * Add ability to visualize graphiz file for CFG use D3.js 40% ✔️
