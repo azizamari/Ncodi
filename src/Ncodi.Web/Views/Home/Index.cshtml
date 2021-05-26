@@ -1,10 +1,14 @@
-﻿@{ 
+﻿@{
 
 }
 <h1>Ncodi Online Editor</h1>
-<textarea class="code"></textarea><br />
-<input type="button" class="run" value="Run Code"/>
+<textarea class="code"></textarea>
+<br />
+<input type="button" class="run" value="Run Code" />
 <p class="output"></p>
+<div id="code-editor">
+
+</div>
 <script>
     const runBtn = document.querySelector(".run");
     const codeArea = document.querySelector(".code");
@@ -23,10 +27,11 @@
             console.log(this.responseText);
             var data = JSON.parse(this.responseText);
             console.log(data);
-            output.innerHTML=""
+            output.innerHTML = ""
             for (const element of data) {
-                output.innerHTML  += element+"<br>";
+                output.innerHTML += element + "<br>";
             }
         }
     }
 </script>
+<script type="module" src="~/ClientApp/editor.js"></script>

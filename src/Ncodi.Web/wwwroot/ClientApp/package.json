@@ -1,0 +1,8 @@
+{
+	"version": "1.0.0",
+	"name": "ncodi",
+	"private": true,
+	"dependencies": {
+		"codeflask": "^1.4.1"
+	}
+}
