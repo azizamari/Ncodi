@@ -24,7 +24,7 @@ namespace Ncodi.Web.Controllers
             string[] output=new string[]{"Code hase no output"};
             var task = Task.Run(() =>
             {
-                var srouce = SourceText.From(String.Join(Environment.NewLine, code.Lines), "sasfile.ncodi");
+                var srouce = SourceText.From(String.Join(Environment.NewLine, code.Lines), "fileName.ncodi");
                 var syntaxTree = SyntaxTree.Parse(srouce);
                 var compilation = new Compilation(syntaxTree);
                 var result = compilation.Evaluate(new Dictionary<VariableSymbol, object>());
