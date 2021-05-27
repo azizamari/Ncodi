@@ -10,7 +10,7 @@ Inspired by The .NET Compiler Platform [Roslyn](https://github.com/dotnet/roslyn
 * Add Bracket notation [index] - 100% ✔️
 * Create a Cli to run code - 99% ✔️
 * Create VsCode Extension (highlighting, syntax completion and maybe run button)
-* Create simple IDE - dropped ✅
+* Create simple IDE - dropped :'(
 * Create web-based playground to run code use AceEditor 10% ✔️ (just MVP)
 * Create a documentation and about page (website) 20% ✔️
 * Add sourceBrowser - 0% ✔️
