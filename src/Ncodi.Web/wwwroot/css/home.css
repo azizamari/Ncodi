@@ -1,0 +1,266 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Heebo', sans-serif;
+}
+
+
+.swiper-container {
+    width: 80%;
+    height: 100%;
+}
+
+.swiper-slide {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+/* reviews section */
+.reviews_section {
+    width: 100%;
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+    .reviews_section h1 {
+        margin: auto;
+        padding: 2.5rem 0 3rem 0;
+        font-size: 2.5rem;
+        color: #f7443d;
+    }
+
+/* .reviews{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: auto;
+  width: 100%;
+} */
+
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+    display: block;
+}
+
+.icon-end {
+    transform: rotateY(180deg);
+}
+
+.quotes {
+    display: block;
+    margin-bottom: 4rem;
+}
+
+.quote_picture {
+    border-radius: 50%;
+    width: 60px;
+    height: auto;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.quotes-slide {
+    display: inline-block;
+    width: 20rem;
+    padding: 1rem;
+    background-color: white;
+    cursor: pointer;
+    box-shadow: 1px 0px 10px 5px #eaeaea;
+    line-height: 1.10;
+    transition: all .5s ease;
+}
+
+    .quotes-slide:hover {
+        z-index: 10;
+        /* transform: scale(1.05); */
+        box-shadow: 0px 0px 0px 1px #eaeaea;
+        color: #2a364e;
+    }
+
+blockquote {
+    margin: 0;
+}
+
+.content {
+    color: #2a364e;
+    z-index: 80;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem;
+}
+
+.quote_author {
+    text-align: center;
+    color: #f7443d;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.quote_author-title {
+    text-align: center;
+    color: #2a364e;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.icon {
+    width: 25px;
+    height: 25px;
+    fill: #f7443d;
+}
+/* reviews section */
+
+/* FAQ section */
+.faq_section {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+}
+
+.faq h1 {
+    margin: auto;
+    text-align: center;
+    padding: 2.5rem 0 4rem 0;
+    font-size: 2rem;
+    color: #f7443d;
+}
+
+.faq {
+    display: flex;
+    margin: auto;
+    width: 95%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+    .faq .container {
+        width: 100%;
+        max-width: 80rem;
+        margin: 0 auto;
+        padding: 0 1.5rem
+    }
+
+.accordion_item {
+    background-color: #2a364e;
+    width: 80%;
+    margin: auto;
+    border-radius: .4rem;
+    margin-bottom: 1.3rem;
+    padding: 1rem;
+    box-shadow: 1px 0px 10px 5px #eaeaea;
+}
+
+    .accordion_item:hover {
+        box-shadow: 0px 0px 0px 1px #eaeaea;
+    }
+
+.accordion_link {
+    font-size: 1.6rem;
+    color: white;
+    text-decoration: none;
+    /* background-color: #2a364e; */
+    opacity: .8;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+}
+
+    .accordion_link i {
+        color: #f7443d;
+        padding: .5rem;
+        cursor: pointer;
+    }
+
+    .accordion_link .bx-minus {
+        display: none;
+    }
+
+.answer {
+    max-height: 0;
+    overflow: hidden;
+    position: relative;
+    background-color: #2f3c57;
+    transition: max-height 650ms;
+}
+
+.openAnswer {
+    max-height: 20rem;
+}
+
+.answer::before {
+    content: "";
+    position: absolute;
+    width: .6rem;
+    height: 94%;
+    background-color: #f7443d;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.answer p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    padding: 1.5rem;
+}
+/* FAQ section */
+
+@media only screen and (max-width:460px) {
+    .content {
+        font-size: 0.75rem;
+    }
+
+    .quotes-slide {
+        display: inline-block;
+        width: 15rem;
+        padding: 0.7rem;
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .accordion_link {
+        font-size: 1.2rem;
+    }
+
+    .answer p {
+        font-size: 0.8rem;
+    }
+
+    .faq h1 {
+        font-size: 1.6rem;
+    }
+
+    .reviews_section h1 {
+        font-size: 1.9rem;
+    }
+}
