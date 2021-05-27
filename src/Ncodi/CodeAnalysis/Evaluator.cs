@@ -19,6 +19,7 @@ namespace Ncodi.CodeAnalysis
         private Random _random;
 
         private object _lastValue;
+        private bool _useConsole=true;
 
         public Evaluator(BoundProgram program, Dictionary<VariableSymbol, object> variables)
         {
@@ -28,8 +29,9 @@ namespace Ncodi.CodeAnalysis
             _outputLines = new List<string>();
         }
         public ImmutableArray<Diagnostic> Diagnostics => _diagnostics.ToImmutableArray();
-        public object Evaluate()
+        public object Evaluate(bool useConsole=true)
         {
+            _useConsole = useConsole;
             return EvaluateStatement(_program.Statement);
         }
 
@@ -330,7 +332,8 @@ namespace Ncodi.CodeAnalysis
             else if (node.Function == BuiltInFunctions.Print)
             {
                 var message = (string)EvaluateExpression(node.Arguments[0]);
-                Console.WriteLine(message);
+                if (_useConsole)
+                    Console.WriteLine(message);
                 _outputLines.Add(message);
                 return null;
             }

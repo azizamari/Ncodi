@@ -27,7 +27,7 @@ namespace Ncodi.Web.Controllers
                 var srouce = SourceText.From(String.Join(Environment.NewLine, code.Lines), "fileName.ncodi");
                 var syntaxTree = SyntaxTree.Parse(srouce);
                 var compilation = new Compilation(syntaxTree);
-                var result = compilation.Evaluate(new Dictionary<VariableSymbol, object>());
+                var result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(), false);
                 if (!result.Diagnostics.Any())
                 {
                     if (result.OutputLines.Count()!=0)
