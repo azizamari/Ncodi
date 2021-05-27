@@ -148,7 +148,7 @@ namespace Ncodi.CodeAnalysis.IO
 
                 result+="  ";
                 result += prefix + error + suffix;
-                var arrows = "\n  " + new string(' ', prefix.Length) + new string('^', error.Length);
+                var arrows = "\n  " + new string(' ', prefix.Length) + new string('^', error.Length)+ "\n";
                 result += arrows;
             }
             return result;
