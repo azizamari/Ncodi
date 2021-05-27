@@ -29,7 +29,8 @@
             console.log(data);
             output.innerHTML = ""
             for (const element of data) {
-                output.innerHTML += element + "<br>";
+                output.textContent += element;
+                output.innerHTML += "<br>";
             }
         }
     }
