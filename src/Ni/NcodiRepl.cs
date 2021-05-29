@@ -83,9 +83,15 @@ namespace Ni
             return true;
 
             var syntaxTree = SyntaxTree.Parse(text);
-
-            if (syntaxTree.Root.Members.Last().GetLastToken().IsMissing)
+            try
+            {
+                if (syntaxTree.Root.Members.Last().GetLastToken().IsMissing)
+                    return false;
+            }
+            catch
+            {
                 return false;
+            }
 
             return true;
         }

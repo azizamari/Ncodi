@@ -24,7 +24,8 @@ namespace Ncodi.CodeAnalysis
 
         public void ReportInvalidNumber(TextLocation span, string text, TypeSymbol type)
         {
-            var message = $"The number {text} isn't a valid {type}";
+            //var message = $"The number {text} isn't a valid {type}";
+            var message = $"{text} mahouch {type} s7i7";
             Report(span, message);
         }
 
@@ -34,13 +35,15 @@ namespace Ncodi.CodeAnalysis
         }
         public void ReportBadCharacter(TextLocation location, char character)
         {
-            var message = $"Bad character input: '{character}'";
+            //var message = $"Bad character input: '{character}'";
+            var message = $"L 7arf '{character}' mane3rfech";
             Report(location, message);
         }
 
         public  void ReportUnexpectedToken(TextLocation location, SyntaxKind actualKind, SyntaxKind expectedKind)
         {
-            var message = $"Unexpected token <{actualKind}>, expected <{expectedKind}>";
+            //var message = $"Unexpected token <{actualKind}>, expected <{expectedKind}>";
+            var message = $"Twa9e3t <{expectedKind}> ama lgit <{actualKind}>";
             Report(location, message);
         }
 
@@ -58,19 +61,22 @@ namespace Ncodi.CodeAnalysis
 
         public void ReportUndefinedName(TextLocation location, string name)
         {
-            var message = $"Variable '{name}' doesn't exist";
+            //var message = $"Variable '{name}' doesn't exist";
+            var message = $"Variable '{name}' Mahouch mawjoud";
             Report(location, message);
         }
 
         public void ReportParameterAlreadyDeclared(TextLocation location, string parameterName)
         {
-            var message = $"Parameter named '{parameterName}' already exists";
+            //var message = $"Parameter named '{parameterName}' already exists";
+            var message = $"Parameter '{parameterName}' mawjoud";
             Report(location, message);
         }
 
         public void ReportCannotConvert(TextLocation location, TypeSymbol type1, TypeSymbol type2)
         {
-            var messsage = $"Cannot convert type '{type1}' to '{type2}'";
+            //var messsage = $"Cannot convert type '{type1}' to '{type2}'";
+            var messsage = $"Najemch n7wal type '{type1}' l '{type2}'";
             Report(location, messsage);
         }
 
