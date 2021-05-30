@@ -83,42 +83,49 @@ namespace Ncodi.CodeAnalysis
 
         public void ReportCannotConvertImplicitly(TextLocation location, TypeSymbol type1, TypeSymbol type2)
         {
-            var message = $"Cannot implicitly convert type '{type1}' to '{type2}'. An Explicit convesion exists ( are you missing a cast?)";
+            //var message = $"Cannot implicitly convert type '{type1}' to '{type2}'. An Explicit convesion exists ( are you missing a cast?)";
+            var message = $"Najemch n7wal type '{type1}' l '{type2}'";
             Report(location, message);
         }
 
         public void ReportAllPathsMustReturn(TextLocation location)
         {
-            var message = "Some code paths don't return a value";
+            //var message = "Some code paths don't return a value";
+            var message = "Mch lcode lkol iraje3 natija";
             Report(location, message);
         }
 
         public void ReportSymbolAlreadyDeclared(TextLocation location, string name)
         {
-            var message = $"Symbol '{name}' is already declared as a function or as a variable";
+            //var message = $"Symbol '{name}' is already declared as a function or as a variable";
+            var message = $"L esm '{name}' déja mawjoud ka fonction wela variable";
             Report(location, message);
         }
 
         public void ReportCannotAssign(TextLocation location, string name)
         {
-            var message = $"Variable '{name}' is read-only and cannot be assigned to";
+            //var message = $"Variable '{name}' is read-only and cannot be assigned to";
+            var message = $"L variable '{name}' thabet w ma tnajmch tbadla";
             Report(location, message);
         }
 
         public void ReportUnterminatedString(TextLocation location)
         {
-            var message = "Unterminated string literal";
+            //var message = "Unterminated string literal";
+            var message = "L kalma mahich maktoba b s7i7";
             Report(location, message);
         }
         public void ReportUndefinedFunction(TextLocation location, string name)
         {
-            var message = $"Function '{name}' doesn't exist";
+            //var message = $"Function '{name}' doesn't exist";
+            var message = $"L fonction '{name}' mahich mawjoda";
             Report(location, message);
         }
 
         public void ReportWrongArgumentCount(TextLocation location, string name, int expectedCount, int actualCount)
         {
-            var message = $"Function '{name}' requires {expectedCount} arguments but was given {actualCount}";
+            //var message = $"Function '{name}' requires {expectedCount} arguments but was given {actualCount}";
+            var message = $"L fonction '{name}' test7a9 {expectedCount} argument ama enta 3titha {actualCount}";
             Report(location, message);
         }
 
@@ -130,25 +137,29 @@ namespace Ncodi.CodeAnalysis
 
         public void ReportExpressionMustHaveValue(TextLocation location)
         {
-            var message = "Expression must have a value";
+            //var message = "Expression must have a value";
+            var message = "L expression ma3endhech 9ima";
             Report(location, message);
         }
 
         public void ReportUndefinedType(TextLocation location, string name)
         {
-            var message = $"Type '{name}' doesn't exist";
+            //var message = $"Type '{name}' doesn't exist";
+            var message = $"L type '{name}' mahouch mawjoud";
             Report(location, message);
         }
 
         public void ReportInvalidBreakOrContinue(TextLocation location, string text)
         {
-            var message = $"Keyword '{text}' can't be used outside of functions";
+            //var message = $"Keyword '{text}' can't be used outside of functions";
+            var message = $"Ma tnajemch testa3mel '{text}' l bara men fonction";
             Report(location, message);
         }
 
         public void ReportCannotConvertToInt(TextLocation location, object value)
         {
-            var messsage = $"Cannot convert \"{value.ToString()}\" to 'Int'";
+            //var messsage = $"Cannot convert \"{value}\" to 'Int'";
+            var messsage = $"Ma ngedech n7tawel \"{value}\" l 'Int'";
             Report(location, messsage);
         }
 
