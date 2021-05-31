@@ -165,37 +165,43 @@ namespace Ncodi.CodeAnalysis
 
         public void ReportIndexOutOfBounds(TextLocation location, int length, int i)
         {
-            var messsage = $"Index out of bounds string is of length {length} and the index is {i}";
+            //var messsage = $"Index out of bounds string is of length {length} and the index is {i}";
+            var messsage = $"L index {i} l bara mel 7oudoud [0..{length-1}]";
             Report(location, messsage);
         }
 
         public void ReportIndexIsNotInt(TextLocation location, object index)
         {
-            var messsage = $"Index '{index}' is not an Int";
+            //var messsage = $"Index '{index}' is not an Int";
+            var messsage = $"L index '{index}' mahouch type Int";
             Report(location, messsage);
         }
 
         public void ReportInvalidReturn(TextLocation location)
         {
-            var message = "The 'return' keyword can't be used outside of functions";
+            //var message = "The 'return' keyword can't be used outside of functions";
+            var message = $"Ma tnajemch testa3ml {SyntaxKind.ReturnKeyword.ToString()} l bara men fonction";
             Report(location, message);
         }
 
         public void ReportMissingReturnExpression(TextLocation location, TypeSymbol returnType)
         {
-            var message = $"Expression of type '{returnType}' expected";
+            //var message = $"Expression of type '{returnType}' expected";
+            var message = $"Twa9et expression type '{returnType}'";
             Report(location, message);
         }
 
         public void ReportCannotConvertToDecimal(TextLocation location, object value)
         {
-            var messsage = $"Cannot convert \"{value.ToString()}\" to 'Decimal'";
+            //var messsage = $"Cannot convert \"{value.ToString()}\" to 'Decimal'";
+            var messsage = $"Ma najemch n7awel \"{value.ToString()}\" l 'Decimal'";
             Report(location, messsage);
         }
 
         public void ReportInvalidReturnExpression(TextLocation location, string functionName)
         {
-            var message = $"The function '{functionName}' does not return a value the 'return' keyword can't be followed by an expression";
+            //var message = $"The function '{functionName}' does not return a value the 'return' keyword can't be followed by an expression";
+            var message = $"L fonction '{functionName}' ma traje3 7ata natijfa";
             Report(location, message);
         }
 
