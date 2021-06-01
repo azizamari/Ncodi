@@ -16,6 +16,7 @@ namespace Ncodi.Cli
     {
         static int Main(string[] args)
         {
+            args = new string[] { "repl" };
             var app = new CommandLineApplication
             {
                 Name = "ncodi",
@@ -73,7 +74,16 @@ namespace Ncodi.Cli
                 app.ShowHelp();
                 return 1;
             });
-            return app.Execute(args);
+            try
+            {
+                return app.Execute(args);
+            }
+            catch
+            {
+                Console.WriteLine("Invalid arguments.\n");
+                app.ShowHelp();
+                return 1;
+            }
         }
         private static string AddFileExtension(string path)
         {
