@@ -22,7 +22,7 @@ namespace Ncodi.Cli
                 Description = "Command line interface to run ncodi files",
             };
             app.HelpOption(inherited: true);
-            app.Command("repl", run =>
+            app.Command("shell", run =>
             {
                 run.OnExecute(()=>
                 {
