@@ -109,10 +109,14 @@ pre[class*="language-"] {
 .token.italic {
     font-style: italic;
 }
-
-/*.token.entity {
+.codeflask__textarea {
+    caret-color: white;
+}    
+.token.entity {
     cursor: help;
-}*/
+
+}
+
 .codeflask-flatten{
     padding:initial;
     font-size:initial;
