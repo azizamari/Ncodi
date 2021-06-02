@@ -1,40 +1,6 @@
-﻿@{
-
-}
-<h1>Ncodi Online Editor</h1>
-<textarea class="code"></textarea>
-<br />
-<input type="button" class="run" value="Run Code" />
-<pre class="output"></pre>
-<div id="code-editor">
+﻿<div id="code-editor">
 
 </div>
-<script>
-    const runBtn = document.querySelector(".run");
-    const codeArea = document.querySelector(".code");
-    const output = document.querySelector(".output");
-    runBtn.addEventListener("click", runCode);
-    function runCode() {
-        console.log(codeArea.value.split(/\n/));
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/api/editor/run", true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify({
-            lines: codeArea.value.split(/\n/),
-            filename: "ioi"
-        }));
-        xhr.onload = function () {
-            console.log(this.responseText);
-            var data = JSON.parse(this.responseText);
-            console.log(data);
-            output.innerHTML = ""
-            for (const element of data) {
-                output.textContent += element;
-                output.innerHTML += "<br>";
-            }
-        }
-    }
-</script>
 <script src="https://unpkg.com/codeflask/build/codeflask.min.js"></script>
 
 <script>

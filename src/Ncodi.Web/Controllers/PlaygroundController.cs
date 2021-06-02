@@ -14,5 +14,11 @@ namespace Ncodi.Web.Controllers
         {
             return View();
         }
+        [HttpGet]
+        [Route("OldPlayground")]
+        public IActionResult OldPlaground()
+        {
+            return View("old");
+        }
     }
 }
