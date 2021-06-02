@@ -1,4 +1,4 @@
-﻿code[class*="language-"],
+﻿.codeflask__textarea, code[class*="language-"],
 pre[class*="language-"] {
     color: #f8f8f2;
     background: none;
@@ -21,15 +21,14 @@ pre[class*="language-"] {
 }
 
 /* Code blocks */
-pre[class*="language-"] {
+.codeflask__textarea, pre[class*="language-"] {
     padding: 1em;
     margin: .5em 0;
     overflow: auto;
     border-radius: 0.3em;
 }
 
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
+.codeflask {
     background: #272822;
 }
 
@@ -111,6 +110,11 @@ pre[class*="language-"] {
     font-style: italic;
 }
 
-.token.entity {
+/*.token.entity {
     cursor: help;
+}*/
+.codeflask-flatten{
+    padding:initial;
+    font-size:initial;
+    line-height:initial;
 }
