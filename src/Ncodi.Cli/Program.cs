@@ -16,7 +16,6 @@ namespace Ncodi.Cli
     {
         static int Main(string[] args)
         {
-            args = new string[] { "repl" };
             var app = new CommandLineApplication
             {
                 Name = "ncodi",
@@ -80,8 +79,6 @@ namespace Ncodi.Cli
             }
             catch
             {
-                Console.WriteLine("Invalid arguments.\n");
-                app.ShowHelp();
                 return 1;
             }
         }
