@@ -1,0 +1,19 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.codeflask__lines {
+    padding: 1rem !important;
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+}
+
+.codeflask.codeflask--has-line-numbers:before {
+    background: #272822 !important;
+}
+
+.codeflask__lines {
+    color: #f8f8f2 !important;
+}
