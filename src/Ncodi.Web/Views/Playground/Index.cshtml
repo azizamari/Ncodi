@@ -11,3 +11,31 @@
     const flask = new CodeFlask('#code-editor', { language: 'js', defaultTheme: false, lineNumbers: true });
 </script>
 <link href="~/css/prism.css" rel="stylesheet" />
+
+<input type="button" class="run" value="Run Code" />
+<pre class="output"></pre>
+<script>
+    const runBtn = document.querySelector(".run");
+    const output = document.querySelector(".output");
+    runBtn.addEventListener("click", runCode);
+    function runCode() {
+        console.log(flask.getCode().split(/\n/));
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/api/editor/run", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            lines: flask.getCode().split(/\n/),
+            filename: "ioi"
+        }));
+        xhr.onload = function () {
+            console.log(this.responseText);
+            var data = JSON.parse(this.responseText);
+            console.log(data);
+            output.innerHTML = ""
+            for (const element of data) {
+                output.innerHTML += element;
+                output.innerHTML += "<br>";
+            }
+        }
+    }
+</script>
