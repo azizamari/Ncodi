@@ -166,7 +166,7 @@ namespace Ncodi.CodeAnalysis
         public void ReportIndexOutOfBounds(TextLocation location, int length, int i)
         {
             //var messsage = $"Index out of bounds string is of length {length} and the index is {i}";
-            var messsage = $"L index {i} l bara mel 7oudoud [0..{length-1}]";
+            var messsage = $"L index {i} l bara mel 7oudoud [{-length}..0..{length-1}]";
             Report(location, messsage);
         }
 
