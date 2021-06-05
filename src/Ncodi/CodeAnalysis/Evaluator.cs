@@ -250,12 +250,20 @@ namespace Ncodi.CodeAnalysis
                 case BoundBinaryOperatorKind.LogicalOr:
                     return (bool)left || (bool)right;
                 case BoundBinaryOperatorKind.LessThan:
+                    if (b.Type == TypeSymbol.String)
+                        return string.Compare(Convert.ToString(left) , Convert.ToString(right), StringComparison.Ordinal)<0;
                     return Convert.ToDecimal(left)< Convert.ToDecimal(right);
                 case BoundBinaryOperatorKind.LessThanOrEquals:
+                    if (b.Type == TypeSymbol.String)
+                        return string.Compare(Convert.ToString(left), Convert.ToString(right), StringComparison.Ordinal) <= 0;
                     return Convert.ToDecimal(left) <= Convert.ToDecimal(right);
                 case BoundBinaryOperatorKind.GreaterThan:
+                    if (b.Type == TypeSymbol.String)
+                        return string.Compare(Convert.ToString(left), Convert.ToString(right), StringComparison.Ordinal)>0;
                     return Convert.ToDecimal(left) > Convert.ToDecimal(right);
                 case BoundBinaryOperatorKind.GreaterThanOrEquals:
+                    if (b.Type == TypeSymbol.String)
+                        return string.Compare(Convert.ToString(left), Convert.ToString(right), StringComparison.Ordinal) >= 0;
                     return Convert.ToDecimal(left) >= Convert.ToDecimal(right);
                 case BoundBinaryOperatorKind.Equals:
                     {
