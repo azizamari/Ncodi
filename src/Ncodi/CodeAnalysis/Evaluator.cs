@@ -137,11 +137,13 @@ namespace Ncodi.CodeAnalysis
                     throw new Exception();
                 }
                 var i=Convert.ToInt32(index);
-                if (i < 0 || i > text.Length)
+                if (i < -text.Length || i >= text.Length)
                 {
                     _diagnostics.ReportIndexOutOfBounds(node.Location, text.Length, i);
                     return new BoundErrorExpression();
                 }
+                if (i < 0)
+                    return Convert.ToString(text[^(-i)]);
                 return Convert.ToString(text[i]);
             }
             catch (Exception)
