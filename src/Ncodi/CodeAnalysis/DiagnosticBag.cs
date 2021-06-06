@@ -105,7 +105,7 @@ namespace Ncodi.CodeAnalysis
         public void ReportCannotAssign(TextLocation location, string name)
         {
             //var message = $"Variable '{name}' is read-only and cannot be assigned to";
-            var message = $"L variable '{name}' thabet w ma tnajmch tbadla";
+            var message = $"L variable '{name}' const w ma tnajmch tbadla";
             Report(location, message);
         }
 
