@@ -379,6 +379,11 @@ namespace Ncodi.CodeAnalysis
                     _random = new Random();
                 return _random.Next(max);
             }
+            else if (node.Function == BuiltInFunctions.Sqrt)
+            {
+                var number = (int)EvaluateExpression(node.Arguments[0]);
+                return Math.Sqrt(number);
+            }
             else
             {
                 var locals = new Dictionary<VariableSymbol, object>();
