@@ -22,7 +22,7 @@ namespace Ncodi.Test.CodeAnalysis.Syntax
 
             var diagnotic = Assert.Single(diagnostics);
             Assert.Equal(new TextSpan(0,1), diagnotic.Location.Span);
-            Assert.Equal("Unterminated string literal", diagnotic.Message);
+            Assert.Equal("L kalma mahich maktoba b s7i7", diagnotic.Message);
         }
 
         [Fact]
@@ -171,8 +171,15 @@ namespace Ncodi.Test.CodeAnalysis.Syntax
                 return true;
             if (kind1 == SyntaxKind.AmpersandToken && kind2 == SyntaxKind.AmpersandAmpersandToken)
                 return true;
-
             if (kind1 == SyntaxKind.AmpersandToken && kind2 == SyntaxKind.AmpersandToken)
+                return true;
+            if (kind1 == SyntaxKind.SlashToken && kind2 == SyntaxKind.SlashSlashToken)
+                return true;
+            if (kind1 == SyntaxKind.SlashToken && kind2 == SyntaxKind.SlashToken)
+                return true;
+            if (kind1 == SyntaxKind.StarToken && kind2 == SyntaxKind.StarStarToken)
+                return true;
+            if (kind1 == SyntaxKind.StarToken && kind2 == SyntaxKind.StarToken)
                 return true;
             if (kind1 == SyntaxKind.PipeToken && kind2 == SyntaxKind.PipePipeToken)
                 return true;
