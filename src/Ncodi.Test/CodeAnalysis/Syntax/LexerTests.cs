@@ -112,6 +112,7 @@ namespace Ncodi.Test.CodeAnalysis.Syntax
                 (SyntaxKind.IdentifierToken,"abc"),
                 (SyntaxKind.NumberToken,"3526"),
                 (SyntaxKind.NumberToken,"1"),
+                (SyntaxKind.DecimalToken,"1.6"),
                 (SyntaxKind.StringToken,"\"Aziz\""),
                 (SyntaxKind.StringToken,"\"A\"\"ziz\""),
             };
@@ -149,7 +150,14 @@ namespace Ncodi.Test.CodeAnalysis.Syntax
 
             if (kind1 == SyntaxKind.NumberToken && kind2 == SyntaxKind.NumberToken)
                 return true;
-
+            if (kind1 == SyntaxKind.DecimalToken && kind2 == SyntaxKind.DecimalToken)
+                return true;
+            if (kind1 == SyntaxKind.DecimalToken && kind2 == SyntaxKind.NumberToken)
+                return true;
+            if (kind1 == SyntaxKind.NumberToken && kind2 == SyntaxKind.DecimalToken)
+                return true;
+            if (kind1 == SyntaxKind.IdentifierToken && kind2 == SyntaxKind.DecimalToken)
+                return true;
             if (kind1 == SyntaxKind.BangToken && kind2 == SyntaxKind.EqualsToken)
                 return true;
 
@@ -191,6 +199,8 @@ namespace Ncodi.Test.CodeAnalysis.Syntax
             if (kind1 == SyntaxKind.IdentifierToken && kind2 == SyntaxKind.NumberToken)
                 return true;
             if (kind1.ToString().EndsWith("Keyword") && kind2 == SyntaxKind.NumberToken)
+                return true;
+            if (kind1.ToString().EndsWith("Keyword") && kind2 == SyntaxKind.DecimalToken)
                 return true;
 
             return false;
