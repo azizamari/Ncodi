@@ -38,4 +38,7 @@
             }
         }
     }
+    flask.onUpdate((code) => {
+        console.log(code.match(/^(.*?(\bkan\b)[^$]*)$/g))
+    });
 </script>
