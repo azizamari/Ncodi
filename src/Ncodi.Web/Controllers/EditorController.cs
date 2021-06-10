@@ -24,23 +24,31 @@ namespace Ncodi.Web.Controllers
             string[] output=new string[]{"Code hase no output"};
             var task = Task.Run(() =>
             {
-                var srouce = SourceText.From(String.Join(Environment.NewLine, code.Lines), "fileName.ncodi");
-                var syntaxTree = SyntaxTree.Parse(srouce);
-                var compilation = new Compilation(syntaxTree);
-                var result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(), false);
-                if (!result.Diagnostics.Any())
+                try
                 {
-                    if (result.OutputLines.Count()!=0)
+                    var srouce = SourceText.From(String.Join(Environment.NewLine, code.Lines), "fileName.ncodi");
+                    var syntaxTree = SyntaxTree.Parse(srouce);
+                    var compilation = new Compilation(syntaxTree);
+                    var result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(), false);
+                    if (!result.Diagnostics.Any())
                     {
-                        output = result.OutputLines.ToArray();
+                        if (result.OutputLines.Count()!=0)
+                        {
+                            output = result.OutputLines.ToArray();
+                            return;
+                        }
+                        output = new string[] { "Your code doesn't return any data" };
                         return;
                     }
-                    output = new string[] { "Your code doesn't return any data" };
-                    return;
+                    else
+                    {
+                        output= result.Diagnostics.ReturnDiagnostics().Split('\n');
+                        return;
+                    }
                 }
-                else
+                catch
                 {
-                    output= result.Diagnostics.ReturnDiagnostics().Split('\n');
+                    output = new string[] { "Can't execute this code because it causes an internal error, this is probably our mistake." };
                     return;
                 }
             });
