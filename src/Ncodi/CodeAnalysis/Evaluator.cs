@@ -341,11 +341,18 @@ namespace Ncodi.CodeAnalysis
             }
             else if (node.Function == BuiltInFunctions.Print)
             {
-                var message = (string)EvaluateExpression(node.Arguments[0]);
-                if (_useConsole)
-                    Console.WriteLine(message);
-                _outputLines.Add(message);
-                return null;
+                try
+                {
+                    var message = (string)EvaluateExpression(node.Arguments[0]);
+                    if (_useConsole)
+                        Console.WriteLine(message);
+                    _outputLines.Add(message);
+                    return null;
+                }
+                catch
+                {
+                    return null;
+                }
             }
             else if (node.Function == BuiltInFunctions.Chr)
             {
