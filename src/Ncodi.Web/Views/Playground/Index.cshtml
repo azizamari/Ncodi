@@ -35,7 +35,7 @@
 <script src="https://unpkg.com/codeflask/build/codeflask.min.js"></script>
 
 <script>
-    const flask = new CodeFlask('#code-editor', { language: 'js', defaultTheme: false, lineNumbers: true });
+    const flask = new CodeFlask('#code-editor', {defaultTheme: false, lineNumbers: true });
 </script>
 <link href="~/css/prism.css" rel="stylesheet" />
 
@@ -44,6 +44,7 @@
 <script>
     const runBtn = document.querySelector(".run");
     const output = document.querySelector(".output");
+    const codeField = document.querySelector(".codeflask__code");
     runBtn.addEventListener("click", runCode);
     function runCode() {
         console.log(flask.getCode().split(/\n/));
@@ -52,7 +53,7 @@
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({
             lines: flask.getCode().split(/\n/),
-            filename: "ioi"
+            filename: "file"
         }));
         xhr.onload = function () {
             console.log(this.responseText);
@@ -66,6 +67,14 @@
         }
     }
     flask.onUpdate((code) => {
-        console.log(code.match(/^(.*?(\bkan\b)[^$]*)$/g))
+        fetch("/api/editor/lex", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(code.replaceAll("/", ""))
+        }).then(res => res.text()).then(data => {
+            codeField.innerHTML = data;
+        });
     });
 </script>
