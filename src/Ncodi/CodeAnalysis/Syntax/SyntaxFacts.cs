@@ -89,22 +89,28 @@ namespace Ncodi.CodeAnalysis.Syntax
                     return SyntaxKind.ReturnKeyword;
 
                 //tunisian syntax
-                case "w":
-                    return SyntaxKind.AmpersandAmpersandToken;
-                case "wela":
-                    return SyntaxKind.PipePipeToken;
                 case "madem":
                     return SyntaxKind.WhileKeyword;
                 case "kan":
                     return SyntaxKind.IfKeyword;
-                case "makanech":
+                case "wela":
                     return SyntaxKind.ElseKeyword;
                 case "dir":
                     return SyntaxKind.DoKeyword;
-                case "o5rej":
+                case "yezzi":
                     return SyntaxKind.BreakKeyword;
                 case "kamel":
                     return SyntaxKind.ContinueKeyword;
+                case "s7i7":
+                    return SyntaxKind.TrueKeyword;
+                case "8alet":
+                    return SyntaxKind.FalseKeyword;
+                case "men":
+                    return SyntaxKind.ForKeyword;
+                case "ila":
+                    return SyntaxKind.ToKeyword;
+                case "raje3":
+                    return SyntaxKind.ReturnKeyword;
                 default:
                     return SyntaxKind.IdentifierToken;
             }
