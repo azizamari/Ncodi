@@ -22,7 +22,6 @@ namespace Ncodi.Test.CodeAnalysis
         [InlineData("14 + 15", 29)]
         [InlineData("12 - 3", 9)]
         [InlineData("4 * 2", 8)]
-        [InlineData("9 / 3", 3)]
         [InlineData("(10)", 10)]
         [InlineData("false == false", true)]
         [InlineData("!true", false)]
@@ -108,7 +107,7 @@ namespace Ncodi.Test.CodeAnalysis
             ";
 
             var diagnostics = @"
-                Cannot convert type 'int' to 'bool'
+                Najemch n7wal type 'int' l 'bool'
             ";
 
             AssertDiagnostics(text, diagnostics);
@@ -124,7 +123,7 @@ namespace Ncodi.Test.CodeAnalysis
             ";
 
             var diagnostics = @"
-                Symbol 'ekteb' is already declared as a function or as a variable
+                L esm 'ekteb' déja mawjoud ka fonction wela variable
             ";
 
             AssertDiagnostics(text, diagnostics);
@@ -145,7 +144,7 @@ namespace Ncodi.Test.CodeAnalysis
             ";
 
             var diagnostics = @"
-                Symbol 'x' is already declared as a function or as a variable
+                L esm 'x' déja mawjoud ka fonction wela variable
             ";
 
             AssertDiagnostics(text, diagnostics);
@@ -157,7 +156,7 @@ namespace Ncodi.Test.CodeAnalysis
             var text = @"[x] * 10";
 
             var diagnostics = @"
-                Variable 'x' doesn't exist
+                Variable 'x' Mahouch mawjoud
             ";
 
             AssertDiagnostics(text, diagnostics);
@@ -169,7 +168,7 @@ namespace Ncodi.Test.CodeAnalysis
             var text = @"[x] = 10";
 
             var diagnostics = @"
-                Variable 'x' doesn't exist
+                Variable 'x' Mahouch mawjoud
             ";
 
             AssertDiagnostics(text, diagnostics);
@@ -186,7 +185,7 @@ namespace Ncodi.Test.CodeAnalysis
             ";
 
             var diagnostics = @"
-                Variable 'x' is read-only and cannot be assigned to
+                L variable 'x' const w ma tnajmch tbadla
             ";
 
             AssertDiagnostics(text, diagnostics);
@@ -203,7 +202,7 @@ namespace Ncodi.Test.CodeAnalysis
             ";
 
             var diagnostics = @"
-                Cannot convert type 'bool' to 'int'
+                Najemch n7wal type 'bool' l 'int'
             ";
 
             AssertDiagnostics(text, diagnostics);
@@ -215,7 +214,7 @@ namespace Ncodi.Test.CodeAnalysis
             var text = @"[+]true";
 
             var diagnostics = @"
-                Unary operator '+' is not defined for type 'bool'
+                Ma tnajmch testa3mel '+' m3a type 'bool'
             ";
 
             AssertDiagnostics(text, diagnostics);
@@ -227,7 +226,7 @@ namespace Ncodi.Test.CodeAnalysis
             var text = @"10 [*] false";
 
             var diagnostics = @"
-                Binary operator '*' is not defined for types 'int' and 'bool'
+                Ma tnajemch testa3ml '*' m3a 'int' w 'bool'
             ";
 
             AssertDiagnostics(text, diagnostics);
@@ -244,7 +243,7 @@ namespace Ncodi.Test.CodeAnalysis
             ";
 
             var diagnostics = @"
-                Cannot convert type 'bool' to 'int'
+                Najemch n7wal type 'bool' l 'int'
             ";
 
             AssertDiagnostics(text, diagnostics);
@@ -262,7 +261,7 @@ namespace Ncodi.Test.CodeAnalysis
             ";
 
             var diagnostics = @"
-                Cannot convert type 'bool' to 'int'
+                Najemch n7wal type 'bool' l 'int'
             ";
 
             AssertDiagnostics(text, diagnostics);
@@ -276,8 +275,8 @@ namespace Ncodi.Test.CodeAnalysis
             ";
 
             var diagnostics = @"
-                Unexpected token <ClosedParenthesisToken>, expected <IdentifierToken>
-                Unexpected token <EndOfFileToken>, expected <ClosedBraceToken>
+                Twa9e3t <IdentifierToken> ama lgit <ClosedParenthesisToken>
+                Twa9e3t <ClosedBraceToken> ama lgit <EndOfFileToken>
             ";
 
             AssertDiagnostics(text, diagnostics);
