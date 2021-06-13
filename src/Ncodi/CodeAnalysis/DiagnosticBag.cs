@@ -49,13 +49,15 @@ namespace Ncodi.CodeAnalysis
 
         public void ReportUndefinedUnaryOperator(TextLocation location, string operatorText, TypeSymbol operandText)
         {
-            var message = $"Unary operator '{operatorText}' is not defined for type '{operandText}'";
+            //var message = $"Unary operator '{operatorText}' is not defined for type '{operandText}'";
+            var message = $"Ma tnajmch testa3mel '{operatorText}' m3a type '{operandText}'";
             Report(location, message);
         }
 
         public void ReportUndefinedBinaryOperator(TextLocation location, string operatorText, TypeSymbol leftType, TypeSymbol rightType)
         {
-            var message = $"Binary operator '{operatorText}' is not defined for types '{leftType}' and '{rightType}'";
+            //var message = $"Binary operator '{operatorText}' is not defined for types '{leftType}' and '{rightType}'";
+            var message = $"Ma tnajemch testa3ml '{operatorText}' m3a '{leftType}' w '{rightType}'";
             Report(location, message);
         }
 
@@ -131,7 +133,8 @@ namespace Ncodi.CodeAnalysis
 
         public void ReportWrongArgumentType(TextLocation location, string name, TypeSymbol expectedType, TypeSymbol actualType)
         {
-            var message = $"Parameter '{name}' requires a value of type '{expectedType}' but was given a value of type '{actualType}'";
+            //var message = $"Parameter '{name}' requires a value of type '{expectedType}' but was given a value of type '{actualType}'";
+            var message = $"Parametre '{name}' lazma type '{expectedType}' ama inta 3tita valeur type '{actualType}'";
             Report(location, message);
         }
 
@@ -207,19 +210,22 @@ namespace Ncodi.CodeAnalysis
 
         public void ReportAsciiBounds(TextLocation location, int number)
         {
-            var message = $"Cannot find an ASCII match for '{number}' since it's not in the interval [0..255]";
+            //var message = $"Cannot find an ASCII match for '{number}' since it's not in the interval [0..255]";
+            var message = $"'{number}' mahouch code ASCII valide lazma mabin 0 w 255]";
             Report(location, message);
         }
 
         public void ReportIsNotChar(TextLocation location, string character)
         {
-            var message = $"Cannot convert '{character}' to ASCII int since it's not a single character";
+            //var message = $"Cannot convert '{character}' to ASCII int since it's not a single character";
+            var message = $"'{character}' ma3endech code ASCII";
             Report(location, message);
         }
 
         public void ReportIndexingNotAllowedForType(TextLocation location, TypeSymbol type)
         {
-            var message = $"Indexing [index] not allowed for type '{type}' only for string";
+            //var message = $"Indexing [index] not allowed for type '{type}' only for string";
+            var message = $"Ma tnajmch testa3mel [index] m3a type '{type}' lazma ikoun type string";
             Report(location, message);
         }
     }
