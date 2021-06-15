@@ -103,7 +103,7 @@ namespace Ncodi.CodeAnalysis.Syntax
                     return SyntaxKind.ContinueKeyword;
                 case "s7i7":
                     return SyntaxKind.TrueKeyword;
-                case "8alet":
+                case "ghalet":
                     return SyntaxKind.FalseKeyword;
                 case "men":
                     return SyntaxKind.ForKeyword;
