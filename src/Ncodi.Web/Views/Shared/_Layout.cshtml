@@ -6,13 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @*<meta property="og:url" content="https://ncodi.heroku.app/">*@
-    <meta property="og:title" content="Ncodi | Code in your own dialect">
-    <meta property="og:description" content="Ncodi is a Ncodi is a programming language that uses the Tunisian Dialect.">
+    <meta property="og:title" content="Ncodi | Code in your own words">
+    <meta property="og:description" content="Ncodi is a programming language that uses the Tunisian Dialect.">
     @*<meta property="og:image" content="img/page1.png">*@
     <meta name="twitter:card" content="summary_large_image">
-    <title>Ncodi | Code in your own dialect</title>
+    <title>Ncodi | Code in your own words</title>
 </head>
 <body>
+    <header class="header">
+        <img src="logo.png" />
+        <ul>
+            <li><a class="h active" id="homeNav" href="/#">Home</a></li>
+            <li><a class="h" id="aboutNav" href="/#about">About</a></li>
+            <li><a class="h" id="featuresNav" href="/playground">Playground</a></li>
+            <li><a class="h" id="featuresNav" href="/docs">Docs</a></li>
+            <li><a class="h" id="featuresNav" href="/#faq">FAQ</a></li>
+            <li><a class="h" id="contactNav" href="/#contact">Contact</a></li>
+        </ul>
+    </header>
+    <div id="content" class="content">
+        <h1 id="homePageTitle">Ncodi</h1>
+        <p>Code in your own words</p>
+        <p id="stuff">Ncodi is a programming language that uses the Tunisian Dialect.</p>
+        <button onclick="location.href = '/playground'">Get Started</button>
+    </div>
     <div>
         @RenderBody()
     </div>
