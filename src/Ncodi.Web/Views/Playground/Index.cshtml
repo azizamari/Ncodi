@@ -66,6 +66,14 @@
             }
         }
     }
+    const strReg = /"(.*?)"/g
+    const keywordReg = /\b(true|false|const|var|if|else|while|for|to|do|def|break|continue|return|madem|kan|wela|dir|yezzi|kamel|s7i7|ghalet|men|ila|raje3)(?=[^\w])/g
+    const numericReg = /(0|[0-9]*)/g
     flask.onUpdate((code) => {
+        let htmlCode = code + " ";
+        htmlCode = htmlCode.replace(strReg, '<span class="token string">"$1"</span>')
+        htmlCode = htmlCode.replace(keywordReg, '<span class="token keyword">$1</sypan>')
+        //htmlCode = htmlCode.replace(numericReg, '<span class="token number">$1</span>')
+        codeField.innerHTML = htmlCode;
     });
 </script>
