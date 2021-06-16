@@ -14,6 +14,9 @@ nav {
     padding: 20px 0;
     color: rgb(255, 254, 254);
     align-items: center;
+    position:fixed;
+    width:100%;
+    z-index:99;
 }
 .logo{
     letter-spacing: 3px;
