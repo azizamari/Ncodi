@@ -67,14 +67,5 @@
         }
     }
     flask.onUpdate((code) => {
-        fetch("/api/editor/lex", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(code.replaceAll("/", ""))
-        }).then(res => res.text()).then(data => {
-            codeField.innerHTML = data;
-        });
     });
 </script>

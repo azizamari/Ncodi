@@ -65,39 +65,5 @@ namespace Ncodi.Web.Controllers
                 return Ok(new string[] { "Time limit 1 second exceeded" });
             }
         }
-
-        [HttpPost("{controller}/lex")]
-        public IActionResult Highlight([FromBody]string code)
-        {
-            var result = "";
-            var tokens = SyntaxTree.ParseTokens(code);
-            foreach (var token in tokens)
-            {
-                var prefix = "";
-                var isKeyword = token.Kind.ToString().EndsWith("Keyword");
-                var isNumber = token.Kind == SyntaxKind.NumberToken || token.Kind == SyntaxKind.DecimalToken;
-                var isIdentifier = token.Kind == SyntaxKind.IdentifierToken;
-                var isString = token.Kind == SyntaxKind.StringToken;
-
-                if (isKeyword)
-                    prefix = "keyword";
-                else if (isIdentifier)
-                    prefix = "identifier";
-                else if (isNumber)
-                    prefix = "number";
-                else if (isString)
-                    prefix = "string";
-                if(prefix!="")
-                    result+= $"<span class=\"token {prefix}\">{token.Text}</span>";
-                else
-                    result += token.Text;   
-            }
-            return new ContentResult
-            {
-                ContentType = "text/html",
-                StatusCode = (int)HttpStatusCode.OK,
-                Content = result
-            };
-        }
     }
 }
