@@ -6,14 +6,14 @@
 
 Inspired by The .NET Compiler Platform [Roslyn](https://github.com/dotnet/roslyn)
 ## Roadmap:
-* Finish Core Interpreter - 95% ✔️
+* Finish Core Interpreter - 100% ✔️
 * Add Bracket notation [index] - 100% ✔️
-* Create a Cli to run code - 99% ✔️
-* Create VsCode Extension (highlighting, syntax completion and maybe run button)
-* Create simple IDE - dropped :'(
-* Create web-based playground to run code use AceEditor 10% ✔️ (just MVP)
+* Create a Cli to run code - 100% ✔️
+* Create VsCode Extension (highlighting, syntax completion and maybe run button) 10%✔️
+* Create simple IDE - dropped :'( 
+* Create web-based playground to run code use CodeFlask 80% ✔️ (just MVP)
 * Create a documentation and about page (website) 20% ✔️
 * Add sourceBrowser - 0% ✔️
 * Add ability to visualize graphiz file for CFG use D3.js 40% ✔️
 * Get reviews from experts 0% ✔️
-* launch beta version (mid - juin)
+* launch beta version (late - juin)
