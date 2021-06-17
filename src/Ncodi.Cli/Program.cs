@@ -42,18 +42,8 @@ namespace Ncodi.Cli
                         Console.WriteLine($"Executing file '{path}'");
                         var syntaxTree = SyntaxTree.Load(path);
                         var compilation = new Compilation(syntaxTree);
-                        var result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(),false);
-                        if (!result.Diagnostics.Any())
-                        {
-                            if (result.OutputLines != null)
-                            {
-                                foreach(var line in result.OutputLines)
-                                {
-                                    Console.Out.WriteLine(line);
-                                }
-                            }
-                        }
-                        else
+                        var result = compilation.Evaluate(new Dictionary<VariableSymbol, object>());
+                        if (result.Diagnostics.Any())
                         {
                             Console.WriteLine("Error List:");
                             Console.Error.WriteDiagnostics(result.Diagnostics);
