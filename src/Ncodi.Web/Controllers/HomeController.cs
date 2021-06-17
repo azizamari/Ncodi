@@ -14,5 +14,11 @@ namespace Ncodi.Web.Controllers
         {
             return View();
         }
+        [HttpGet]
+        [Route("/docs")]
+        public IActionResult Docs()
+        {
+            return View("docs");
+        }
     }
 }
