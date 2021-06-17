@@ -1,17 +1,19 @@
-﻿body{
-    overflow-x: hidden;
-}
+﻿@import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+body {
+    overflow-x: hidden;
+    font-family: 'Heebo', sans-serif;
 }
 
 nav {
     display: flex;
     background-color: #f7443d;
     justify-content: space-around;
-    padding: 20px 0;
     color: rgb(255, 254, 254);
     align-items: center;
     position:fixed;
