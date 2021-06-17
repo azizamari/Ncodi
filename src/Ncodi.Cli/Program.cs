@@ -42,7 +42,7 @@ namespace Ncodi.Cli
                         Console.WriteLine($"Executing file '{path}'");
                         var syntaxTree = SyntaxTree.Load(path);
                         var compilation = new Compilation(syntaxTree);
-                        var result = compilation.Evaluate(new Dictionary<VariableSymbol, object>());
+                        var result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(),false);
                         if (!result.Diagnostics.Any())
                         {
                             if (result.OutputLines != null)
