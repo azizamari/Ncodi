@@ -16,7 +16,8 @@ nav {
     justify-content: space-around;
     color: rgb(255, 254, 254);
     align-items: center;
-    position:fixed;
+    position:sticky;
+    top:0;
     width:100%;
     z-index:99;
 }
