@@ -166,6 +166,7 @@ blockquote {
     margin-bottom: 1.3rem;
     padding: 1rem;
     box-shadow: 1px 0px 10px 5px #eaeaea;
+    cursor:pointer;
 }
 
     .accordion_item:hover {
