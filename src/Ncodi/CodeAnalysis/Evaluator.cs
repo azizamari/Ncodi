@@ -343,10 +343,15 @@ namespace Ncodi.CodeAnalysis
             {
                 try
                 {
-                    var message = (string)EvaluateExpression(node.Arguments[0]);
+                    var result="";
+                    var message = EvaluateExpression(node.Arguments[0]);
+                    if (node.Arguments[0].Type == TypeSymbol.String)
+                        result = (string)message;
+                    else
+                        result = $"{message}";
                     if (_useConsole)
-                        Console.WriteLine(message);
-                    _outputLines.Add(message);
+                        Console.WriteLine(result);
+                    _outputLines.Add(result);
                     return null;
                 }
                 catch
