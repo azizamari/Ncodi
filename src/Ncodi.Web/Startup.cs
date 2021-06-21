@@ -27,6 +27,7 @@ namespace Ncodi.Web
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseWebSockets();
             app.UseStaticFiles();
             app.UseRouting();
 

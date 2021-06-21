@@ -20,6 +20,9 @@ namespace Ncodi.CodeAnalysis
 
         private object _lastValue;
         private bool _useConsole=true;
+        private int inputIndex = 0;
+        public List<string> inputList = new List<string>();
+        public bool needInput=false;
 
         public Evaluator(BoundProgram program, Dictionary<VariableSymbol, object> variables)
         {
@@ -46,7 +49,7 @@ namespace Ncodi.CodeAnalysis
             }
 
             var index = 0;
-            while (index < body.Statements.Length)
+            while (index < body.Statements.Length&&!needInput)
             {
                 var s = body.Statements[index];
 
@@ -337,7 +340,18 @@ namespace Ncodi.CodeAnalysis
         {
             if (node.Function == BuiltInFunctions.Input)
             {
-                return Console.ReadLine();
+                if (_useConsole)
+                {
+                    if (inputIndex > inputList.Count)
+                    {
+                        needInput = true;
+                        return new object { };
+                    }
+                    else
+                        return inputList[inputIndex];
+                }
+                else
+                    return Console.ReadLine();
             }
             else if (node.Function == BuiltInFunctions.Print)
             {

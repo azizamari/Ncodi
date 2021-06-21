@@ -13,6 +13,8 @@ namespace Ncodi.CodeAnalysis
 {
     public sealed class Compilation
     {
+        public bool needInput=false;
+        public List<string> inputList = new List<string>();
         private BoundGlobalScope _globalScope;
         public Compilation(params SyntaxTree[] syntaxTrees)
             :this(null,syntaxTrees)
@@ -73,9 +75,13 @@ namespace Ncodi.CodeAnalysis
                 return new EvaluationResult(program.Diagnostics.ToImmutableArray(), null);
 
             var evaluator = new Evaluator(program, variables);
+            evaluator.inputList = inputList;
             var value = evaluator.Evaluate(useConsole);
+            needInput = evaluator.needInput;
             if (evaluator.Diagnostics.Any())
                 return new EvaluationResult(evaluator.Diagnostics.ToImmutableArray(), null);
+            if (needInput)
+                return new EvaluationResult(ImmutableArray<Diagnostic>.Empty, null);
 
             return new EvaluationResult(ImmutableArray<Diagnostic>.Empty, value, evaluator._outputLines);
         }
@@ -99,5 +105,7 @@ namespace Ncodi.CodeAnalysis
                 }
             }
         }
+
+        public void AddInput(string input) => inputList.Add(input);
     }
 }

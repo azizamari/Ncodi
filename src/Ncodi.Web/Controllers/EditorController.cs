@@ -31,7 +31,12 @@ namespace Ncodi.Web.Controllers
                     var syntaxTree = SyntaxTree.Parse(srouce);
                     var compilation = new Compilation(syntaxTree);
                     var result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(), false);
-                    if (!result.Diagnostics.Any())
+                    while (compilation.needInput)
+                    {
+                        compilation.AddInput(Console.ReadLine());
+                        result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(), false);
+                    }
+                        if (!result.Diagnostics.Any())
                     {
                         if (result.OutputLines.Count()!=0)
                         {
