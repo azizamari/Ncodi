@@ -20,9 +20,7 @@ namespace Ncodi.CodeAnalysis
 
         private object _lastValue;
         private bool _useConsole=true;
-        private int inputIndex = 0;
-        public List<string> inputList = new List<string>();
-        public bool needInput=false;
+        private Func<Task<string>> _getInput;
 
         public Evaluator(BoundProgram program, Dictionary<VariableSymbol, object> variables)
         {
@@ -32,9 +30,10 @@ namespace Ncodi.CodeAnalysis
             _outputLines = new List<string>();
         }
         public ImmutableArray<Diagnostic> Diagnostics => _diagnostics.ToImmutableArray();
-        public object Evaluate(bool useConsole=true)
+        public object Evaluate(bool useConsole=true, Func<Task<string>> GetInput=null)
         {
             _useConsole = useConsole;
+            _getInput = GetInput;
             return EvaluateStatement(_program.Statement);
         }
 
@@ -49,7 +48,7 @@ namespace Ncodi.CodeAnalysis
             }
 
             var index = 0;
-            while (index < body.Statements.Length&&!needInput)
+            while (index < body.Statements.Lengt)
             {
                 var s = body.Statements[index];
 
@@ -342,15 +341,9 @@ namespace Ncodi.CodeAnalysis
             {
                 if (!_useConsole)
                 {
-                    if (inputIndex==0||inputIndex > inputList.Count)
-                    {
-                        needInput = true;
-                        return new object { };
-                    }
-                    else
-                    {
-                        return inputList[inputIndex];
-                    }
+                    var x=_getInput();
+                    Task.WaitAll(x);
+                    return x.Result;
                 }
                 else
                     return Console.ReadLine();

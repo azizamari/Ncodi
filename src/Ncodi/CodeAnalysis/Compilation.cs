@@ -8,13 +8,12 @@ using System.Threading;
 using System.IO;
 using Ncodi.CodeAnalysis.Lowering;
 using Ncodi.CodeAnalysis.Symbols;
+using System.Threading.Tasks;
 
 namespace Ncodi.CodeAnalysis
 {
     public sealed class Compilation
     {
-        public bool needInput=false;
-        public List<string> inputList = new List<string>();
         private BoundGlobalScope _globalScope;
         public Compilation(params SyntaxTree[] syntaxTrees)
             :this(null,syntaxTrees)
@@ -50,7 +49,7 @@ namespace Ncodi.CodeAnalysis
             return new Compilation(this, syntaxTree);
         }
         
-        public EvaluationResult Evaluate(Dictionary<VariableSymbol,object> variables, bool useConsole=true)
+        public EvaluationResult Evaluate(Dictionary<VariableSymbol,object> variables, bool useConsole=true, Func<Task<string>> GetInput=null)
         {
             var parseDiagnostics = SyntaxTrees.SelectMany(st => st.Diagnostics);
             var diagnostics = parseDiagnostics.Concat(GlobalScope.Diagnostics).ToImmutableArray();
@@ -75,16 +74,9 @@ namespace Ncodi.CodeAnalysis
                 return new EvaluationResult(program.Diagnostics.ToImmutableArray(), null);
 
             var evaluator = new Evaluator(program, variables);
-            evaluator.inputList = inputList;
-            var value = evaluator.Evaluate(useConsole);
-            needInput = evaluator.needInput;
+            var value = evaluator.Evaluate(useConsole,GetInput);
             if (evaluator.Diagnostics.Any())
                 return new EvaluationResult(evaluator.Diagnostics.ToImmutableArray(), null);
-            if (needInput)
-            {
-                needInput = false;
-                return new EvaluationResult(ImmutableArray<Diagnostic>.Empty, null);
-            }
 
             return new EvaluationResult(ImmutableArray<Diagnostic>.Empty, value, evaluator._outputLines);
         }

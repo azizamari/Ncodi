@@ -100,9 +100,11 @@
 
         socket.onmessage = function (e) {
             if (e.data === "send data")
-                socket.send("aziz");
-            else
+                socket.send(prompt());
+            else {
                 console.log(e);
+                output.innerHTML = e.data;
+            }
         };
 
         socket.onerror = function (e) {

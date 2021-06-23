@@ -47,28 +47,19 @@ namespace Ncodi.Web
                 (bool, EvaluationResult) executionResult;
                 try
                 {
-
-                    executionResult = ExecuteCode(compilation);
+                    Func<Task<string>> get = async () =>
+                    {
+                        await SendStringAsync(socket,"send data",ct);
+                        var x = await ReceiveStringAsync(socket, ct);
+                        return x;
+                    };
+                    executionResult = ExecuteCode(compilation,get);
                     var result = executionResult.Item2;
                     if (!executionResult.Item1)
                     {
                         await SendStringAsync(socket, "Time limit exceeded", ct);
                         await socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "done", ct);
                         return;
-                    }
-                    while (compilation.needInput)
-                    {
-                        await SendStringAsync(socket, "send data", ct);
-                        var input= await ReceiveStringAsync(socket, ct);
-                        compilation.AddInput(input);
-                        executionResult = ExecuteCode(compilation);
-                        result = executionResult.Item2;
-                        if (!executionResult.Item1)
-                        {
-                            await SendStringAsync(socket, "Time limit exceededs", ct);
-                            await socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "done", ct);
-                            return;
-                        }
                     }
                     if (!result.Diagnostics.Any())
                     {
@@ -131,14 +122,14 @@ namespace Ncodi.Web
                 }
             }
         }
-        public (bool, EvaluationResult) ExecuteCode(Compilation compilation)
+        public (bool, EvaluationResult) ExecuteCode(Compilation compilation, Func<Task<string>> GetInput)
         {
             EvaluationResult result = null;
             var task = Task.Run(() =>
             {
-                result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(), false);
+                result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(), false,GetInput);
             });
-            bool isCompletedSuccessfully = task.Wait(TimeSpan.FromMilliseconds(1000));
+            bool isCompletedSuccessfully = task.Wait(TimeSpan.FromMilliseconds(100000));
 
             if (isCompletedSuccessfully)
             {
