@@ -17,6 +17,11 @@
         left: 50% !important;
         z-index:90;
     }
+    #BtnStart {
+        position: absolute !important;
+        left: 60% !important;
+        z-index: 90;
+    }
 
     .output {
         position: absolute !important;
@@ -40,6 +45,7 @@
 <link href="~/css/prism.css" rel="stylesheet" />
 
 <input type="button" class="run" value="Run Code" />
+<input type="button" id ="BtnStart" value="Run Socket" />
 <pre class="output"></pre>
 <script>
     const runBtn = document.querySelector(".run");
@@ -74,4 +80,34 @@
         htmlCode = htmlCode.replace(keywordReg, '<span class="token keyword">$1</span>')
         codeField.innerHTML = htmlCode;
     });
+
+
+    var btnStart = document.getElementById("BtnStart");
+    btnStart.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        var protocol = location.protocol === "https:" ? "wss:" : "ws:";
+        var wsUri = protocol + "//" + window.location.host;
+        var socket = new WebSocket(wsUri);
+        socket.onopen = e => {
+            console.log("socket opened", e);
+            socket.send(flask.getCode().split(/\n/));
+        };
+
+        socket.onclose = function (e) {
+            console.log("socket closed", e);
+        };
+
+        socket.onmessage = function (e) {
+            if (e.data === "send data")
+                socket.send("aziz");
+            else
+                console.log(e);
+        };
+
+        socket.onerror = function (e) {
+            console.error(e.data);
+        };
+    });
+
 </script>

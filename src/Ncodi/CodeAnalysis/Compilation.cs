@@ -81,7 +81,10 @@ namespace Ncodi.CodeAnalysis
             if (evaluator.Diagnostics.Any())
                 return new EvaluationResult(evaluator.Diagnostics.ToImmutableArray(), null);
             if (needInput)
+            {
+                needInput = false;
                 return new EvaluationResult(ImmutableArray<Diagnostic>.Empty, null);
+            }
 
             return new EvaluationResult(ImmutableArray<Diagnostic>.Empty, value, evaluator._outputLines);
         }

@@ -340,15 +340,17 @@ namespace Ncodi.CodeAnalysis
         {
             if (node.Function == BuiltInFunctions.Input)
             {
-                if (_useConsole)
+                if (!_useConsole)
                 {
-                    if (inputIndex > inputList.Count)
+                    if (inputIndex==0||inputIndex > inputList.Count)
                     {
                         needInput = true;
                         return new object { };
                     }
                     else
+                    {
                         return inputList[inputIndex];
+                    }
                 }
                 else
                     return Console.ReadLine();

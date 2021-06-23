@@ -1,10 +1,18 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Ncodi.CodeAnalysis;
+using Ncodi.CodeAnalysis.Syntax;
+using Ncodi.CodeAnalysis.Text;
 using System;
 using System.IO;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
+using System.Collections.Immutable;
 using System.Threading.Tasks;
+using System.Linq;
+using Ncodi.CodeAnalysis.IO;
+using Ncodi.CodeAnalysis.Symbols;
+using System.Collections.Generic;
 
 namespace Ncodi.Web
 {
@@ -29,18 +37,62 @@ namespace Ncodi.Web
             var ct = context.RequestAborted;
             using (var socket = await context.WebSockets.AcceptWebSocketAsync())
             {
-                for (var i = 0; i < 10; i++)
+                var code = await ReceiveStringAsync(socket, ct);
+                code=code.Replace(',', '\n');
+                //await SendStringAsync(socket, "ping", ct);
+                string[] output = new string[] { "Code hase no output" };
+                var srouce = SourceText.From(String.Join(Environment.NewLine, code), "fileName.ncodi");
+                var syntaxTree = SyntaxTree.Parse(srouce);
+                var compilation = new Compilation(syntaxTree);
+                (bool, EvaluationResult) executionResult;
+                try
                 {
-                    await SendStringAsync(socket, "ping", ct);
-                    var response = await ReceiveStringAsync(socket, ct);
-                    if (response != "pong")
+
+                    executionResult = ExecuteCode(compilation);
+                    var result = executionResult.Item2;
+                    if (!executionResult.Item1)
                     {
-                        await socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Expected 'pong'", ct);
+                        await SendStringAsync(socket, "Time limit exceeded", ct);
+                        await socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "done", ct);
                         return;
                     }
-
-                    await Task.Delay(1000, ct);
+                    while (compilation.needInput)
+                    {
+                        await SendStringAsync(socket, "send data", ct);
+                        var input= await ReceiveStringAsync(socket, ct);
+                        compilation.AddInput(input);
+                        executionResult = ExecuteCode(compilation);
+                        result = executionResult.Item2;
+                        if (!executionResult.Item1)
+                        {
+                            await SendStringAsync(socket, "Time limit exceededs", ct);
+                            await socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "done", ct);
+                            return;
+                        }
+                    }
+                    if (!result.Diagnostics.Any())
+                    {
+                        if (result.OutputLines.Count() != 0)
+                        {
+                            output = result.OutputLines.ToArray();
+                        }
+                        else
+                        {
+                            output = new string[] { "Your code doesn't return any data" };
+                        }
+                    }
+                    else
+                    {
+                        output = result.Diagnostics.ReturnDiagnostics().Split('\n');
+                    }
                 }
+                catch
+                {
+                    output = new string[] { "Can't execute this code because it causes an internal error, this is probably our mistake." };
+                }
+                await SendStringAsync(socket, string.Join('\n',output), ct);
+                await socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "done", ct);
+                return;
             }
         }
 
@@ -77,6 +129,24 @@ namespace Ncodi.Web
                 {
                     return await reader.ReadToEndAsync();
                 }
+            }
+        }
+        public (bool, EvaluationResult) ExecuteCode(Compilation compilation)
+        {
+            EvaluationResult result = null;
+            var task = Task.Run(() =>
+            {
+                result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(), false);
+            });
+            bool isCompletedSuccessfully = task.Wait(TimeSpan.FromMilliseconds(1000));
+
+            if (isCompletedSuccessfully)
+            {
+                return (true, result);
+            }
+            else
+            {
+                return (false, null);
             }
         }
     }
