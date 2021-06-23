@@ -24,11 +24,8 @@
     height: 70vh;
     position: relative;
     overflow: hidden;
-    background: url("../images/background.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background: url("../images/background.jpg");
+
 }
 
 .hero__text {
