@@ -23,51 +23,63 @@ namespace Ncodi.Web.Controllers
         public IActionResult Run(CodeDto code)
         {
             string[] output=new string[]{"Code hase no output"};
-            var task = Task.Run(() =>
+            var srouce = SourceText.From(String.Join(Environment.NewLine, code.Lines), "fileName.ncodi");
+            var syntaxTree = SyntaxTree.Parse(srouce);
+            var compilation = new Compilation(syntaxTree);
+            (bool, EvaluationResult) executionResult;
+            try
             {
-                try
+
+                executionResult = ExecuteCode(compilation);
+                var result = executionResult.Item2;
+                if (!executionResult.Item1)
+                    return Ok(new string[] { "Time limit exceededs" });
+                while (compilation.needInput)
                 {
-                    var srouce = SourceText.From(String.Join(Environment.NewLine, code.Lines), "fileName.ncodi");
-                    var syntaxTree = SyntaxTree.Parse(srouce);
-                    var compilation = new Compilation(syntaxTree);
-                    var result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(), false);
-                    while (compilation.needInput)
+                    compilation.AddInput(Console.ReadLine());
+                    executionResult = ExecuteCode(compilation);
+                    if (!executionResult.Item1)
+                        return Ok(new string[] { "Time limit exceeded" });
+                }
+                if (!result.Diagnostics.Any())
+                {
+                    if (result.OutputLines.Count()!=0)
                     {
-                        compilation.AddInput(Console.ReadLine());
-                        result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(), false);
-                    }
-                        if (!result.Diagnostics.Any())
-                    {
-                        if (result.OutputLines.Count()!=0)
-                        {
-                            output = result.OutputLines.ToArray();
-                            return;
-                        }
-                        output = new string[] { "Your code doesn't return any data" };
-                        return;
+                        output = result.OutputLines.ToArray();
                     }
                     else
                     {
-                        output= result.Diagnostics.ReturnDiagnostics().Split('\n');
-                        return;
+                        output = new string[] { "Your code doesn't return any data" };
                     }
                 }
-                catch
+                else
                 {
-                    output = new string[] { "Can't execute this code because it causes an internal error, this is probably our mistake." };
-                    return;
+                    output= result.Diagnostics.ReturnDiagnostics().Split('\n');
                 }
+            }
+            catch
+            {
+                output = new string[] { "Can't execute this code because it causes an internal error, this is probably our mistake." };
+                return Ok(output);
+            }
+            return Ok(output);
+        }
+        public (bool,EvaluationResult) ExecuteCode(Compilation compilation)
+        {
+            EvaluationResult result=null;
+            var task = Task.Run(() =>
+            {
+                result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(), false);
             });
-
             bool isCompletedSuccessfully = task.Wait(TimeSpan.FromMilliseconds(1000));
 
             if (isCompletedSuccessfully)
             {
-                return Ok(output);
+                return (true,result);
             }
             else
             {
-                return Ok(new string[] { "Time limit 1 second exceeded" });
+                return (false, null);
             }
         }
     }
