@@ -27,10 +27,13 @@ namespace Ncodi.Web
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseWebSockets();
+            // Accept web socket requests
             app.UseStaticFiles();
             app.UseRouting();
 
+            app.UseWebSockets();
+            // handle web socket requests
+            app.UseMiddleware<SampleWebSocketMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
