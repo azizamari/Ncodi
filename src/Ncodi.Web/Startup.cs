@@ -33,7 +33,7 @@ namespace Ncodi.Web
 
             app.UseWebSockets();
             // handle web socket requests
-            app.UseMiddleware<SampleWebSocketMiddleware>();
+            app.UseMiddleware<WebSocketMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();

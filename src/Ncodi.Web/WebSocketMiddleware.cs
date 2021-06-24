@@ -16,11 +16,11 @@ using System.Collections.Generic;
 
 namespace Ncodi.Web
 {
-    public class SampleWebSocketMiddleware
+    public class WebSocketMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public SampleWebSocketMiddleware(RequestDelegate next)
+        public WebSocketMiddleware(RequestDelegate next)
         {
             _next = next;
         }
