@@ -48,7 +48,7 @@ namespace Ncodi.CodeAnalysis
             }
 
             var index = 0;
-            while (index < body.Statements.Lengt)
+            while (index < body.Statements.Length)
             {
                 var s = body.Statements[index];
 

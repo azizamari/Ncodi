@@ -101,6 +101,5 @@ namespace Ncodi.CodeAnalysis
             }
         }
 
-        public void AddInput(string input) => inputList.Add(input);
     }
 }
