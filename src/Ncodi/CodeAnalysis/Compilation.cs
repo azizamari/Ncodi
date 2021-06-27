@@ -49,7 +49,7 @@ namespace Ncodi.CodeAnalysis
             return new Compilation(this, syntaxTree);
         }
         
-        public EvaluationResult Evaluate(Dictionary<VariableSymbol,object> variables, bool useConsole=true, Func<Task<string>> GetInput=null)
+        public EvaluationResult Evaluate(Dictionary<VariableSymbol,object> variables, bool useConsole=true, Func<Task<string>> GetInput=null, Action<string> send = null)
         {
             var parseDiagnostics = SyntaxTrees.SelectMany(st => st.Diagnostics);
             var diagnostics = parseDiagnostics.Concat(GlobalScope.Diagnostics).ToImmutableArray();
@@ -74,7 +74,7 @@ namespace Ncodi.CodeAnalysis
                 return new EvaluationResult(program.Diagnostics.ToImmutableArray(), null);
 
             var evaluator = new Evaluator(program, variables);
-            var value = evaluator.Evaluate(useConsole,GetInput);
+            var value = evaluator.Evaluate(useConsole,GetInput,send);
             if (evaluator.Diagnostics.Any())
                 return new EvaluationResult(evaluator.Diagnostics.ToImmutableArray(), null);
 

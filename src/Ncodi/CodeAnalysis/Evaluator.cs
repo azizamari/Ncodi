@@ -21,6 +21,7 @@ namespace Ncodi.CodeAnalysis
         private object _lastValue;
         private bool _useConsole=true;
         private Func<Task<string>> _getInput;
+        private Action<string> _sendOutput;
 
         public Evaluator(BoundProgram program, Dictionary<VariableSymbol, object> variables)
         {
@@ -30,10 +31,11 @@ namespace Ncodi.CodeAnalysis
             _outputLines = new List<string>();
         }
         public ImmutableArray<Diagnostic> Diagnostics => _diagnostics.ToImmutableArray();
-        public object Evaluate(bool useConsole=true, Func<Task<string>> GetInput=null)
+        public object Evaluate(bool useConsole=true, Func<Task<string>> GetInput=null, Action<string> send = null)
         {
             _useConsole = useConsole;
             _getInput = GetInput;
+            _sendOutput = send;
             return EvaluateStatement(_program.Statement);
         }
 
@@ -360,7 +362,8 @@ namespace Ncodi.CodeAnalysis
                         result = $"{message}";
                     if (_useConsole)
                         Console.WriteLine(result);
-                    _outputLines.Add(result);
+                    //_outputLines.Add(result);
+                    _sendOutput(result);
                     return null;
                 }
                 catch

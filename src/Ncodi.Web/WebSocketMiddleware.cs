@@ -53,7 +53,11 @@ namespace Ncodi.Web
                         var x = await ReceiveStringAsync(socket, ct);
                         return x;
                     };
-                    executionResult = ExecuteCode(compilation,get);
+                    Action<string> send = async (txt) =>
+                    {
+                        await SendStringAsync(socket, txt, ct);
+                    };
+                    executionResult = ExecuteCode(compilation,get, send);
                     var result = executionResult.Item2;
                     if (!executionResult.Item1)
                     {
@@ -63,14 +67,14 @@ namespace Ncodi.Web
                     }
                     if (!result.Diagnostics.Any())
                     {
-                        if (result.OutputLines.Count() != 0)
-                        {
-                            output = result.OutputLines.ToArray();
-                        }
-                        else
-                        {
-                            output = new string[] { "Your code doesn't return any data" };
-                        }
+                        //if (result.OutputLines.Count() != 0)
+                        //{
+                        //    output = result.OutputLines.ToArray();
+                        //}
+                        //else
+                        //{
+                        //    output = new string[] { "" };
+                        //}
                     }
                     else
                     {
@@ -81,7 +85,11 @@ namespace Ncodi.Web
                 {
                     output = new string[] { "Can't execute this code because it causes an internal error, this is probably our mistake." };
                 }
-                await SendStringAsync(socket, string.Join('\n',output), ct);
+                foreach(var line in output)
+                {
+                    if(!string.IsNullOrWhiteSpace(line))
+                        await SendStringAsync(socket, line, ct);
+                }
                 await socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "done", ct);
                 return;
             }
@@ -122,12 +130,12 @@ namespace Ncodi.Web
                 }
             }
         }
-        public (bool, EvaluationResult) ExecuteCode(Compilation compilation, Func<Task<string>> GetInput)
+        public (bool, EvaluationResult) ExecuteCode(Compilation compilation, Func<Task<string>> GetInput, Action<string> send)
         {
             EvaluationResult result = null;
             var task = Task.Run(() =>
             {
-                result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(), false,GetInput);
+                result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(), false,GetInput,send);
             });
             bool isCompletedSuccessfully = task.Wait(TimeSpan.FromMilliseconds(100000));
 
