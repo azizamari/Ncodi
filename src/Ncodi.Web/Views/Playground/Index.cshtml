@@ -25,15 +25,33 @@
 
     .output {
         position: absolute !important;
-        left: 50% !important;
+        left: 51% !important;
         height: 100%;
-        width: 50%;
+        width: 49%;
         background: #272822 !important;
         font-size: 1rem !important;
         line-height: 1.5 !important;
         color: #f8f8f2 !important;
     }
+    .playground_header {
+        display: flex;
+        justify-content: space-between;
+        background-color: #1c1d19;
+        color: white;
+        font-size: 1rem;
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+    .runBtn {
+        background-color: lightgreen;
+        color: white;
+        width:4rem;
+        font-size: 0.8rem;
+        border:none;
+        cursor:pointer;
+    }
 </style>
+<h4 class="playground_header"><span>Code Editor</span><span> Console <input type="button" class="runBtn" value="Run" /></span></h4>
 <div id="code-editor">
 
 </div>
@@ -44,34 +62,32 @@
 </script>
 <link href="~/css/prism.css" rel="stylesheet" />
 
-<input type="button" class="run" value="Run Code" />
-<input type="button" id ="BtnStart" value="Run Socket" />
 <pre class="output"></pre>
 <script>
-    const runBtn = document.querySelector(".run");
+    //const runBtn = document.querySelector(".run");
     const output = document.querySelector(".output");
     const codeField = document.querySelector(".codeflask__code");
-    runBtn.addEventListener("click", runCode);
-    function runCode() {
-        console.log(flask.getCode().split(/\n/));
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/api/editor/run", true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify({
-            lines: flask.getCode().split(/\n/),
-            filename: "file"
-        }));
-        xhr.onload = function () {
-            console.log(this.responseText);
-            var data = JSON.parse(this.responseText);
-            console.log(data);
-            output.innerHTML = ""
-            for (const element of data) {
-                output.innerHTML += element;
-                output.innerHTML += "<br>";
-            }
-        }
-    }
+    //runBtn.addEventListener("click", runCode);
+    //function runCode() {
+    //    console.log(flask.getCode().split(/\n/));
+    //    var xhr = new XMLHttpRequest();
+    //    xhr.open("POST", "/api/editor/run", true);
+    //    xhr.setRequestHeader('Content-Type', 'application/json');
+    //    xhr.send(JSON.stringify({
+    //        lines: flask.getCode().split(/\n/),
+    //        filename: "file"
+    //    }));
+    //    xhr.onload = function () {
+    //        console.log(this.responseText);
+    //        var data = JSON.parse(this.responseText);
+    //        console.log(data);
+    //        output.innerHTML = ""
+    //        for (const element of data) {
+    //            output.innerHTML += element;
+    //            output.innerHTML += "<br>";
+    //        }
+    //    }
+    //}
     const strReg = /"(.*?)"/g
     const keywordReg = /\b(true|false|const|var|if|else|while|for|to|do|def|break|continue|return|madem|kan|wela|dir|yezzi|kamel|s7i7|ghalet|men|ila|raje3)(?=[^\w])/g
     flask.onUpdate((code) => {
@@ -82,7 +98,7 @@
     });
 
 
-    var btnStart = document.getElementById("BtnStart");
+    var btnStart = document.querySelector(".runBtn");
     btnStart.addEventListener("click", function (e) {
         e.preventDefault();
         output.innerHTML = '';
