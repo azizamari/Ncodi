@@ -43,7 +43,7 @@ namespace Ncodi.CodeAnalysis
         public  void ReportUnexpectedToken(TextLocation location, SyntaxKind actualKind, SyntaxKind expectedKind)
         {
             //var message = $"Unexpected token <{actualKind}>, expected <{expectedKind}>";
-            var message = $"Twa9e3t <{expectedKind}> ama lgit <{actualKind}>";
+            var message = $"Twa9e3t '{expectedKind}' ama lgit '{actualKind}'";
             Report(location, message);
         }
 
