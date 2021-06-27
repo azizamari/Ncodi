@@ -6,10 +6,10 @@
     .codeflask {
         width: 50% !important;
         /* height: 50%; */
-        position: absolute !important;
-        top: 50%;
+        /*position: absolute !important;
+        top: 50%;*/
         /* left: 50%; */
-        transform: translateY(-50%) !important;
+        /*transform: translateY(-50%) !important;*/
         /* display: block; */
     }
     .run {
@@ -85,6 +85,7 @@
     var btnStart = document.getElementById("BtnStart");
     btnStart.addEventListener("click", function (e) {
         e.preventDefault();
+        output.innerHTML = '';
 
         var protocol = location.protocol === "https:" ? "wss:" : "ws:";
         var wsUri = protocol + "//" + window.location.host;
@@ -103,7 +104,7 @@
                 socket.send(prompt());
             else {
                 console.log(e);
-                output.innerHTML = e.data;
+                output.innerHTML += e.data+'<br>';
             }
         };
 
