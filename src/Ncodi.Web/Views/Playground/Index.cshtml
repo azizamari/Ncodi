@@ -5,24 +5,7 @@
 <style>
     .codeflask {
         width: 49.5% !important;
-        /* height: 50%; */
-        /*position: absolute !important;
-        top: 50%;*/
-        /* left: 50%; */
-        /*transform: translateY(-50%) !important;*/
-        /* display: block; */
     }
-    .run {
-        position: absolute !important;
-        left: 50% !important;
-        z-index:90;
-    }
-    #BtnStart {
-        position: absolute !important;
-        left: 60% !important;
-        z-index: 90;
-    }
-
     .output {
         position: absolute !important;
         left: 50.5% !important;
@@ -64,30 +47,8 @@
 
 <pre class="output"></pre>
 <script>
-    //const runBtn = document.querySelector(".run");
     const output = document.querySelector(".output");
     const codeField = document.querySelector(".codeflask__code");
-    //runBtn.addEventListener("click", runCode);
-    //function runCode() {
-    //    console.log(flask.getCode().split(/\n/));
-    //    var xhr = new XMLHttpRequest();
-    //    xhr.open("POST", "/api/editor/run", true);
-    //    xhr.setRequestHeader('Content-Type', 'application/json');
-    //    xhr.send(JSON.stringify({
-    //        lines: flask.getCode().split(/\n/),
-    //        filename: "file"
-    //    }));
-    //    xhr.onload = function () {
-    //        console.log(this.responseText);
-    //        var data = JSON.parse(this.responseText);
-    //        console.log(data);
-    //        output.innerHTML = ""
-    //        for (const element of data) {
-    //            output.innerHTML += element;
-    //            output.innerHTML += "<br>";
-    //        }
-    //    }
-    //}
     const strReg = /"(.*?)"/g
     const keywordReg = /\b(true|false|const|var|if|else|while|for|to|do|def|break|continue|return|madem|kan|wela|dir|yezzi|kamel|s7i7|ghalet|men|ila|raje3)(?=[^\w])/g
     flask.onUpdate((code) => {
