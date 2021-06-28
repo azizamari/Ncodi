@@ -40,7 +40,7 @@ namespace Ncodi.Web
                 var code = await ReceiveStringAsync(socket, ct);
                 code=code.Replace(',', '\n');
                 //await SendStringAsync(socket, "ping", ct);
-                string[] output = new string[] { "Code hase no output" };
+                string[] output = new string[] { "" };
                 var srouce = SourceText.From(String.Join(Environment.NewLine, code), "fileName.ncodi");
                 var syntaxTree = SyntaxTree.Parse(srouce);
                 var compilation = new Compilation(syntaxTree);
@@ -78,7 +78,8 @@ namespace Ncodi.Web
                     }
                     else
                     {
-                        output = result.Diagnostics.ReturnDiagnostics().Split('\n');
+                        var x = result.Diagnostics.ReturnDiagnostics();
+                        output = x.Split('\n');
                     }
                 }
                 catch
