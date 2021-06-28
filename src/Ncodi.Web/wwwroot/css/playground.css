@@ -14,3 +14,50 @@
 .codeflask.codeflask--has-line-numbers:before {
     background: #272822 !important;
 }
+.codeflask {
+    width: 49.5% !important;
+    height: 85.6% !important;
+}
+
+.output {
+    overflow: auto;
+    position: absolute !important;
+    left: 50.5% !important;
+    height: 85.6%;
+    width: 49.5%;
+    background: #272822 !important;
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+    color: #f8f8f2 !important;
+}
+
+.playground_header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #1c1d19;
+    color: white;
+    font-size: 1rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.runBtn {
+    background-color: lightgreen;
+    color: white;
+    width: 4rem;
+    font-size: 0.8rem;
+    border: none;
+    cursor: pointer;
+}
+@media only screen and (max-width: 768px) {
+    .codeflask {
+        width: 100% !important;
+        height: 60.6% !important;
+    }
+    .output {
+        left: 0% !important;
+        width: 100% !important;
+        top:76% !important;
+        height:50% !important;
+    }
+}
