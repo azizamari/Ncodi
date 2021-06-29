@@ -60,4 +60,10 @@
         top:76% !important;
         height:50% !important;
     }
+    .playground_header {
+        justify-content: center;
+    }
+    .playground_item {
+        display: none !important;
+    }
 }

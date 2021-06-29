@@ -2,7 +2,7 @@
 
 }
 <link href="~/css/playground.css" rel="stylesheet" />
-<h4 class="playground_header"><span>Code Editor</span><span> Console <input type="button" class="runBtn" value="Run" /></span></h4>
+<h4 class="playground_header"><span class="playground_item">Code Editor</span><span> <span class="playground_item">Console</span> <input type="button" class="runBtn" value="Run" /></span></h4>
 <div id="code-editor">
 
 </div>
@@ -13,7 +13,9 @@
 </script>
 <link href="~/css/prism.css" rel="stylesheet" />
 
-<pre class="output"></pre>
+<pre class="output">
+@*<input type="text" style="width:80%;"/><button style="width:20%;">Enter</button>*@
+</pre>
 <script>
     const output = document.querySelector(".output");
     const codeField = document.querySelector(".codeflask__code");
@@ -26,12 +28,11 @@
         codeField.innerHTML = htmlCode;
     });
 
-
     var btnStart = document.querySelector(".runBtn");
     btnStart.addEventListener("click", function (e) {
         e.preventDefault();
         output.innerHTML = '';
-
+        let lastMessage = "";
         var protocol = location.protocol === "https:" ? "wss:" : "ws:";
         var wsUri = protocol + "//" + window.location.host;
         var socket = new WebSocket(wsUri);
@@ -46,10 +47,11 @@
 
         socket.onmessage = function (e) {
             if (e.data === "send data")
-                socket.send(prompt());
+                socket.send(prompt(lastMessage));
             else {
                 console.log(e);
-                output.innerHTML += e.data+'<br>';
+                output.innerHTML += e.data + '<br>';
+                lastMessage = e.data;
             }
         };
 
