@@ -46,8 +46,19 @@
         };
 
         socket.onmessage = function (e) {
-            if (e.data === "send data")
-                socket.send(prompt(lastMessage));
+            if (e.data === "send data") {
+                output.innerHTML += `<input type="text" id="textField" placeholder="Type and press on the button" style="width:80%;"/><button id="send" style="width:20%;">Enter</button>`;
+                const sendBtn = document.querySelector('#send');
+                console.log(sendBtn)
+                sendBtn.addEventListener('click', () => {
+                    const textField = document.querySelector('#textField');
+                    sendBtn.remove();
+                    textField.remove();
+                    output.innerHTML += '> ' + textField.value +'<br>'
+                    socket.send(textField.value);
+
+                });
+            }
             else {
                 console.log(e);
                 output.innerHTML += e.data + '<br>';
