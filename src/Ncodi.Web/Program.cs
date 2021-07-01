@@ -1,3 +1,4 @@
+using System.Net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,9 @@ namespace Ncodi.Web
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.ConfigureKestrel(serverOptions=>{
+                        serverOptions.Listen(IPAddress.Any,Convert.ToInt32(Environment.GetEnvironmentVariable("PORT")));
+                    }).UseStartup<Startup>();
                 });
     }
 }
