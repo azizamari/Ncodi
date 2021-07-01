@@ -538,7 +538,7 @@ namespace Ncodi.CodeAnalysis.Binding
             {
                 var argument = boundArguments[i];
                 var parameter = function.Parameters[i];
-                if (argument.Type != parameter.Type&&!(function.Name=="ekteb"&&(argument.Type == TypeSymbol.Int || argument.Type == TypeSymbol.Decimal)))
+                if (argument.Type != parameter.Type&&!(function.Name=="ekteb"&&(argument.Type == TypeSymbol.Int || argument.Type == TypeSymbol.Decimal || argument.Type == TypeSymbol.Bool)))
                 {
                     if (argument.Type != TypeSymbol.Error)
                         _diagnostics.ReportWrongArgumentType(syntax.Arguments[i].Location, parameter.Name, parameter.Type, argument.Type);

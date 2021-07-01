@@ -358,6 +358,12 @@ namespace Ncodi.CodeAnalysis
                     var message = EvaluateExpression(node.Arguments[0]);
                     if (node.Arguments[0].Type == TypeSymbol.String)
                         result = (string)message;
+                    if (node.Arguments[0].Type == TypeSymbol.Bool)
+                    {
+                        var val = (bool)message;
+                        if (val) result = "s7i7";
+                        else result = "ghalet";
+                    }
                     else
                         result = $"{message}";
                     if (_useConsole)
