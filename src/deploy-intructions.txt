@@ -1,0 +1,4 @@
+docker build -t ncodi .
+docker run ncodi
+heroku container:push web -a ncodi
+heroku container:release web -a ncodi
