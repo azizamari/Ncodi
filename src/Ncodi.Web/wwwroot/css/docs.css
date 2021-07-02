@@ -20,3 +20,9 @@ a {
 .docs{
     margin:0 2.5rem;
 }
+.code {
+    background: #272822;
+    font-size:1rem;
+    color:white;
+    padding:1rem;
+}
