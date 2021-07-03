@@ -26,6 +26,7 @@ nav {
     top: 0;
     width: 100%;
     z-index: 99;
+    overflow-x:hidden;
 }
 .logo{
     letter-spacing: 3px;

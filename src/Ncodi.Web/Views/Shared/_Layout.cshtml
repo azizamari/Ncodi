@@ -14,7 +14,6 @@
     <title>Ncodi | Code in your own words</title>
 </head>
 <body>
-    <div class="overflow">
         <nav>
             <div class="logo">
                 <a href="#"><img src="~/images/logow.png" width="70" /></a>
@@ -34,11 +33,10 @@
                 <span></span>
             </div>
         </nav>
-        <ul>
+        <ul style="overflow-x:hidden;">
 
         </ul>
-        @RenderBody()
-    </div>
+    @RenderBody()
     <script>
         const menuToggle= document.querySelector(".menu-bars");
         const nav = document.querySelector("nav ul");
