@@ -44,7 +44,8 @@ else
         var socket = new WebSocket(wsUri);
         socket.onopen = e => {
             console.log("socket opened", e);
-            socket.send(flask.getCode().split(/\n/));
+            socket.send(flask.getCode());
+            //socket.send(flask.getCode().split(/\n/));
         };
 
         socket.onclose = function (e) {
