@@ -2,6 +2,7 @@
 
 }
 <link href="~/css/docs.css" rel="stylesheet" />
+<link href="~/css/prism.css" rel="stylesheet" />
 <section class="docs">
     <h2>Table Of Contents</h2>
     <h3>Getting Started</h3>
@@ -13,7 +14,9 @@
     <a href="#variables" class="link">Variables</a>
     <br />
     <h3>Types</h3>
-    <a href="#num" class="link">Numbers</a>
+    <a href="#int" class="link">Int</a>
+    <br />
+    <a href="#dec" class="link">Decimal</a>
     <br />
     <a href="#str" class="link">String</a>
     <br />
@@ -46,8 +49,7 @@
     <h2>Documentation</h2>
     <h3>Getting Started</h3>
     <h4>Installation</h4>
-    <h4>Hello World</h4>
-    <link href="~/css/prism.css" rel="stylesheet" />
+    <h4 id="hello">Hello World</h4>
     <p>
         If you want to print something to the console you simply have to call the funciton ekteb("something")
         @* code snippet here *@
@@ -59,7 +61,7 @@
         ekteb(<span class="token string">"Hello, Tunisia!"</span>)
     </p>
     </p>
-    <h3>Variables</h3>
+    <h3 id="variables">Variables</h3>
     <p>
         We use variables to store data and use it later on. You can think of variables as containers that have a name and a value.
         @* code snippet here *@
@@ -68,25 +70,115 @@
 ekteb(x)</textarea>
             <input class="tryIt" type="submit" value="Try It" />
         </form>
-        <p class="code">
-            <span class="token keyword">var</span> x = <span class="token string">"Hello again"</span><br />
-            ekteb(x)
-        </p>
-    There is also constant variables which once declared you can't change their value.
+    <p class="code">
+        <span class="token keyword">var</span> x = <span class="token string">"Hello again"</span><br />
+        ekteb(x)
+    </p>
+    There is also constant "const" variables which once declared you can't change their value.
     @* code snippet here *@
+    <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+        <textarea hidden name="code">const x= "No Name"
+x="Ncodi"
+"That will result in an error"
+"Meanwhile this is fine"
+var y="45"
+y="60"</textarea>
+        <input class="tryIt" type="submit" value="Try It" />
+    </form>
+    <p class="code">
+        <span class="token keyword">const</span> x= <span class="token string">"No Name"</span><br />
+        x=<span class="token string">"Ncodi"</span><br />
+        <span class="token string">"That will result in an error"</span><br />
+        <span class="token string">"Meanwhile this is fine"</span><br />
+        <span class="token keyword">var</span> y=<span class="token string">"45"</span><br />
+        y=<span class="token string">"60"</span>
+    </p>
     </p>
     <h3>Types</h3>
     <p>
-        In Ncodi we have severale data types.
-        <h4>Ar9am</h4>
+        In Ncodi we have several data types.
+        <h4>Int</h4>
         They are numeric values that can only contain digits from [0,1,2,3,4,5,6,7,8,9].
         @* code snippet here *@
-        <h4>Decimal</h4>
-        Decimals are a numbers with floating pointl ike 2.56
-        @* code snippet here *@
-        <h4>Bool</h4>
-        Boolean values can be either true/ s7i7 or false/ ghalet.
-        @* code snippet here *@
+        <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+            <textarea hidden name="code">var num1 = 458
+var num2 = 15
+ekteb(num1+num2)</textarea>
+            <input class="tryIt" type="submit" value="Try It" />
+        </form>
+    <p class="code">
+        <span class="token keyword">var</span> num1 = 458<br />
+        <span class="token keyword">var</span> num2 = 15<br />
+        ekteb(num1+num2)
+    </p>
+    <h4>Decimal</h4>
+    Decimals are numbers that have a floating point like 2.56 or 1.0
+    @* code snippet here *@
+    <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+        <textarea hidden name="code">var dec = 4.25
+ekteb(dec)</textarea>
+        <input class="tryIt" type="submit" value="Try It" />
+    </form>
+    <p class="code">
+        <span class="token keyword">var</span> dec = 4.25<br />
+        ekteb(dec)
+    </p>
+
+
+    <h4>String</h4>
+    Strings are basically textual data. You must use quoatation marks "" to indicate that it's a string.
+    @* code snippet here *@
+    <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+        <textarea hidden name="code">var s="Code in your own words"
+var x="51"
+"x is not an Int it's a string"
+ekteb(s)</textarea>
+        <input class="tryIt" type="submit" value="Try It" />
+    </form>
+    <p class="code">
+        <span class="token keyword">var</span> s=<span class="token string\">"Code in your own words"</span><br />
+        <span class="token keyword">var</span> x=<span class="token string">"51"</span><br />
+        <span class="token string">"x is not an Int it's a string"</span><br />
+        ekteb(s)
+    </p>
+
+
+
+    <h4>Bool</h4>
+    Boolean values can be either true/ s7i7 or false/ ghalet.
+    @* code snippet here *@
+    <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+        <textarea hidden name="code">var res=s7i7
+var nope=ghalet
+ekteb(res)</textarea>
+        <input class="tryIt" type="submit" value="Try It" />
+    </form>
+    <p class="code">
+        <span class="token keyword">var</span> res=<span class="token keyword">s7i7</span><br />
+        <span class="token keyword">var</span> nope=<span class="token keyword">ghalet</span><br />
+        ekteb(res)
+    </p>
+    <h4>Optional Type Declaration</h4>
+    You also can specifiy the type of a variable when declaring it. This is mainly to make your code more clear since Ncodi can dynamically detect variable types. If you declare a variable as int and then assign to it a bool value you will get an error.
+    @* code snippet here *@
+    <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+        <textarea hidden name="code">var num:int=1564
+var dec:decimal=1.5
+var really:bool=ghalet
+var esmi:string="Aziz Amari"
+"This will cause an error because 16.5 isn't an int"
+var age:int=16.5</textarea>
+        <input class="tryIt" type="submit" value="Try It" />
+    </form>
+    <p class="code">
+        <span class="token keyword">var</span> num:int=1564<br />
+        <span class="token keyword">var</span> dec:decimal=1.5<br />
+        <span class="token keyword">var</span> really:bool=<span class="token keyword">ghalet</span><br />
+        <span class="token keyword">var</span> esmi:string=<span class="token string">"Aziz Amari"</span><br />
+        <span class="token string">"This will cause an error because 16.5 isn't an int"</span><br />
+        <span class="token keyword">var</span> age:int=16.5
+    </p>
+
     </p>
     <h3>Operators</h3>
     <p>
