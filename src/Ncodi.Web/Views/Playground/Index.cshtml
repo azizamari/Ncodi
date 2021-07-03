@@ -1,15 +1,21 @@
-﻿@{
+﻿@model Ncodi.Web.Models.TryCode
+@{
 
 }
 <link href="~/css/playground.css" rel="stylesheet" />
 <h4 class="playground_header"><span class="playground_item">Code Editor</span><span> <span class="playground_item">Console</span> <input type="button" class="runBtn" value="Run" /></span></h4>
-<div id="code-editor">
-
-</div>
+@if (Model != null)
+{
+    <div id="code-editor">@Model.code</div>
+}
+else
+{
+    <div id="code-editor"></div>
+}
 <script src="https://unpkg.com/codeflask/build/codeflask.min.js"></script>
 
 <script>
-    const flask = new CodeFlask('#code-editor', {defaultTheme: false, lineNumbers: true });
+    const flask = new CodeFlask('#code-editor', { defaultTheme: false, lineNumbers: true });
 </script>
 <link href="~/css/prism.css" rel="stylesheet" />
 
@@ -55,7 +61,7 @@
                     document.querySelector('#arr').remove();
                     sendBtn.remove();
                     textField.remove();
-                    output.innerHTML += '> ' + textField.value +'<br>'
+                    output.innerHTML += '> ' + textField.value + '<br>'
                     socket.send(textField.value);
 
                 });

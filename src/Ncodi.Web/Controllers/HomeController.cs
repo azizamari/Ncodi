@@ -20,10 +20,5 @@ namespace Ncodi.Web.Controllers
         {
             return View("docs");
         }
-        [HttpPost]
-        public IActionResult TryCodeBtn([FromBody] string code)
-        {
-            return RedirectToRoute("/playground");
-        }
     }
 }

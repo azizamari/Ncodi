@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Ncodi.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,11 @@ namespace Ncodi.Web.Controllers
         public IActionResult OldPlaground()
         {
             return View("old");
+        }
+        [HttpPost("playground")]
+        public IActionResult TryCodeBtn(TryCode coding)
+        {
+            return View("index", coding);
         }
     }
 }

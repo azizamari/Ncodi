@@ -51,16 +51,29 @@
     <p>
         If you want to print something to the console you simply have to call the funciton ekteb("something")
         @* code snippet here *@
-        <p class="code">
-            ekteb(<span class="token string">"Hello, Tunisia!"</span>)
-        </p>
+        <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+            <input hidden type="text" name="code" value="ekteb(&quot;Hello, Tunisia!&quot;)" />
+            <input class="tryIt" type="submit" value="Try It" />
+        </form>
+    <p class="code">
+        ekteb(<span class="token string">"Hello, Tunisia!"</span>)
+    </p>
     </p>
     <h3>Variables</h3>
     <p>
-        We use variables to store data and use it in the program. You can think of variables as containers that have a name and a value.
+        We use variables to store data and use it later on. You can think of variables as containers that have a name and a value.
         @* code snippet here *@
-        There is also constant variables which once declared you can't change their value.
-        @* code snippet here *@
+        <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+            <textarea hidden name="code">var x = "Hello again"
+ekteb(x)</textarea>
+            <input class="tryIt" type="submit" value="Try It" />
+        </form>
+        <p class="code">
+            <span class="token keyword">var</span> x = <span class="token string">"Hello again"</span><br />
+            ekteb(x)
+        </p>
+    There is also constant variables which once declared you can't change their value.
+    @* code snippet here *@
     </p>
     <h3>Types</h3>
     <p>
@@ -101,3 +114,21 @@
         @* code snippet here *@
     </p>
 </section>
+
+<script>
+    //const tryBtn = document.querySelector('.tryCode');
+    //async function tryCode(code) {
+    //    var xhr = new XMLHttpRequest();
+    //    xhr.open("POST", "/playground", true);
+    //    xhr.setRequestHeader('Content-Type', 'application/json');
+    //    xhr.send(JSON.stringify({
+    //        code: code
+    //    }));
+    //    xhr.onload = function () {
+    //        console.log(data);
+    //    }
+    //}
+    //tryBtn.addEventListener('click', async () => {
+    //    await tryCode(document.querySelector('.code').innerHTML);
+    //});
+</script>
