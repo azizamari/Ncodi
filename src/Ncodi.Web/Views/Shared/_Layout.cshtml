@@ -14,36 +14,39 @@
     <title>Ncodi | Code in your own words</title>
 </head>
 <body>
-    <nav>
-        <div class="logo">
-            <a href="#"><img src="~/images/logow.png" width="70" /></a>
-        </div>
+    <div class="overflow">
+        <nav>
+            <div class="logo">
+                <a href="#"><img src="~/images/logow.png" width="70" /></a>
+            </div>
+            <ul>
+                <li><a href="/#">Home</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/playground">Playground</a></li>
+                <li><a href="/docs">Docs</a></li>
+                <li><a href="/#faq">FAQ</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+            <div class="menu-bars">
+                <input type="checkbox">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
         <ul>
-            <li><a href="/#">Home</a></li>
-            <li><a href="/#about">About</a></li>
-            <li><a href="/playground">Playground</a></li>
-            <li><a href="/docs">Docs</a></li>
-            <li><a href="/#faq">FAQ</a></li>
-            <li><a href="/#contact">Contact</a></li>
-        </ul>
-        <div class="menu-bars">
-            <input type="checkbox">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </nav>
-    <ul>
 
-    </ul>
+        </ul>
         @RenderBody()
+    </div>
     <script>
         const menuToggle= document.querySelector(".menu-bars");
         const nav = document.querySelector("nav ul");
+        const navig = document.querySelector("nav");
 
 
         menuToggle.addEventListener("click", () => {
-          nav.classList.toggle("slide");
+            nav.classList.toggle("slide");
           });
     </script>
 </body>

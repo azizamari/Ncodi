@@ -9,8 +9,11 @@ html {
     scroll-behavior: smooth;
 }
 body {
-    overflow-x: hidden;
     font-family: 'Heebo', sans-serif;
+    overflow-x: hidden;
+}
+.overflow{
+    overflow-x:hidden;
 }
 
 nav {
@@ -19,10 +22,10 @@ nav {
     justify-content: space-around;
     color: rgb(255, 254, 254);
     align-items: center;
-    position:sticky;
-    top:0;
-    width:100%;
-    z-index:99;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 99;
 }
 .logo{
     letter-spacing: 3px;

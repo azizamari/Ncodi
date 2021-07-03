@@ -271,7 +271,7 @@ blockquote {
 /* FAQ section */
 /* Footer */
 
-.logo img {
+.logo_footer img {
     width: auto;
     height: 150px;
     display: flex;
@@ -347,7 +347,7 @@ blockquote {
         margin: 0;
         padding: 0;
     }
-    .logo img {
+    .logo_footer img {
         width: auto;
         height: 100px;
     }
