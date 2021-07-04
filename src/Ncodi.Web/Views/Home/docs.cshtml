@@ -142,8 +142,6 @@ ekteb(s)</textarea>
         ekteb(s)
     </p>
 
-
-
     <h4>Bool</h4>
     Boolean values can be either true/ s7i7 or false/ ghalet.
     @* code snippet here *@
@@ -158,6 +156,7 @@ ekteb(res)</textarea>
         <span class="token keyword">var</span> nope=<span class="token keyword">ghalet</span><br />
         ekteb(res)
     </p>
+
     <h4>Optional Type Declaration</h4>
     You also can specifiy the type of a variable when declaring it. This is mainly to make your code more clear since Ncodi can dynamically detect variable types. If you declare a variable as int and then assign to it a bool value you will get an error.
     @* code snippet here *@
@@ -178,21 +177,18 @@ var age:int=16.5</textarea>
         <span class="token string">"This will cause an error because 16.5 isn't an int"</span><br />
         <span class="token keyword">var</span> age:int=16.5
     </p>
-
-    </p>
     <h3>Operators</h3>
-    <p>
-        <h4>Arithmetic</h4>
-        -Plus operator '+'<br />
-        -Minus operator '-'<br />
-        -Multiply operator '*'<br />
-        -Division operator '/'<br />
-        -Euclidian Division operator '//'<br />
-        -Modulo operator '%'<br />
-        -Power operator '**'
-        @* code snippet here *@
-        <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
-            <textarea hidden name="code">"Plus operator '+'"
+    <h4>Arithmetic</h4>
+    -Plus operator '+'<br />
+    -Minus operator '-'<br />
+    -Multiply operator '*'<br />
+    -Division operator '/'<br />
+    -Euclidian Division operator '//'<br />
+    -Modulo operator '%'<br />
+    -Power operator '**'<br />
+    @* code snippet here *@
+    <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+        <textarea hidden name="code">"Plus operator '+'"
 "With strings: concatinates them"
 ekteb("Ncodi" + " "+ "Beta Version")
 "With numbers"
@@ -216,7 +212,7 @@ ekteb(5/2)
 "Modulo operator '%' returns the rest"
 ekteb(5%2)</textarea>
         <input class="tryIt" type="submit" value="Try It" />
-        </form>
+    </form>
     <p class="code">
         <span class="token string">"Plus operator '+'"</span><br />
         <span class="token string">"With strings: concatinates them"</span><br />
@@ -237,18 +233,46 @@ ekteb(5%2)</textarea>
         <span class="token string">"Modulo operator '%' returns the rest"</span><br />
         ekteb(5%2)
     </p>
-        <h4>Comparison</h4>
-        -Greater operator '>'<br />
-        -Greater or Equal operator '>='<br />
-        -Lesser operator '<'<br />
-        -Lesser or Equal operator '<='<br />
-        -Is Equal operator '=='<br />
-        Is Diffirent operator '!='
-        @* code snippet here *@
-        <h4>Logical</h4>
-        -And operator '&&'<br />
-        -Or operator '||'<br />
-        -More operators '^~|&'
-        @* code snippet here *@
+    <h4>Comparison</h4>
+    -Greater operator '>'<br />
+    -Greater or Equal operator >=<br />
+    -Less or Equal operator <=<br />
+    -Is Equal operator '=='<br />
+    -Is Diffirent operator '!='<br />
+    <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+        <textarea hidden name="code">"This returns either s7i7 or ghalet"
+"Numbers"
+ekteb(12.6<10) ekteb(12.6>10)
+
+ekteb(9 > 9)
+ekteb(9 >= 9)
+ekteb(12 <= 50)
+
+"Equality and difference"
+ekteb(9==4)
+ekteb(4==4)
+ekteb(9!=4)
+
+"String: uses Ascii/ alphabet order to compare"
+ekteb("a" < "b")
+ekteb("Ncodi" > "Python")
+ekteb("aziz" != "AZIZ")
+
+"Bools only != and =="
+ekteb(false==false)
+ekteb(true!=false)</textarea>
+        <input class="tryIt" type="submit" value="Try It" />
+    </form>
+    <p class="code">
+        <span class="token keyword">var</span> s=<span class="token string\">"Code in your own words"</span><br />
+        <span class="token keyword">var</span> x=<span class="token string">"51"</span><br />
+        <span class="token string">"x is not an Int it's a string"</span><br />
+        ekteb(s)
     </p>
+    @* code snippet here *@
+    <h4>Logical</h4>
+    -And operator '&&'<br />
+    -Or operator '||'<br />
+    -More operators '^~|&'
+    @* code snippet here *@
 </section>
