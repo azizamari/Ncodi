@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿        using Microsoft.AspNetCore.Http;
 using Ncodi.CodeAnalysis;
 using Ncodi.CodeAnalysis.Syntax;
 using Ncodi.CodeAnalysis.Text;
@@ -78,13 +78,12 @@ namespace Ncodi.Web
                     }
                     else
                     {
-                        var x = result.Diagnostics.ReturnDiagnostics();
-                        output = x.Split('\n');
+                        result.Diagnostics.ReturnDiagnostics(send);
                     }
                 }
                 catch
                 {
-                    output = new string[] { "Can't execute this code because it causes an internal error, this is probably our mistake." };
+                    output = new string[] { "Can't execute this code because it causes an internal error." };
                 }
                 foreach(var line in output)
                 {

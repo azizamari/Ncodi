@@ -121,22 +121,23 @@ namespace Ncodi.CodeAnalysis.IO
                 Console.ResetColor();
             }
         }
-        public static string ReturnDiagnostics(this IEnumerable<Diagnostic> diagnostics)
+        public static void ReturnDiagnostics(this IEnumerable<Diagnostic> diagnostics, Action<string> send)
         {
-            var result = "";
             foreach (var diagnostic in diagnostics.OrderBy(d => d.Location.Text.FileName).ThenBy(d => d.Location.Span.Start).ThenBy(d => d.Location.Span.Length))
             {
+                var result = "";
                 var text = diagnostic.Location.Text;
                 var fileName = diagnostic.Location.FileName;
                 var startLine = diagnostic.Location.StartLine + 1;
                 var startCharacter = diagnostic.Location.StartCharacter + 1;
+                //var endLine = diagnostic.Location.EndLine + 1;
+                //var endCharacter = diagnostic.Location.EndCharacter + 1;
 
                 var span = diagnostic.Location.Span;
                 var lineIndex = text.GetLineIndex(span.Start);
                 var line = text.Lines[lineIndex];
 
-                result+=$"{fileName}(line {startLine}, col {startCharacter}): ";
-                result+=diagnostic+"\n";
+                send($"{fileName}(line {startLine}, col {startCharacter}): "+ diagnostic.ToString());
 
                 var prefixSpan = TextSpan.FromBounds(line.Start, span.Start);
                 var suffixSpan = TextSpan.FromBounds(span.End, line.End);
@@ -146,12 +147,10 @@ namespace Ncodi.CodeAnalysis.IO
                 var suffix = text.ToString(suffixSpan);
 
 
-                result+="  ";
-                result += prefix + error + suffix;
-                var arrows = "\n  " + new string(' ', prefix.Length) + new string('^', error.Length)+ "\n";
-                result += arrows;
+                send(prefix + error + suffix);
+                var arrows =new string(' ', prefix.Length) + new string('^', error.Length);
+                send(arrows);
             }
-            return result;
         }
     } 
 }
