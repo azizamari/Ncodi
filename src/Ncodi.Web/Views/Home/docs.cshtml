@@ -98,7 +98,7 @@ y="60"</textarea>
     <p>
         In Ncodi we have several data types.
         <h4>Int</h4>
-        They are numeric values that can only contain digits from [0,1,2,3,4,5,6,7,8,9].
+        They are numeric values that can only contain digits from [0,1,2,3,4,5,6,7,8,9]. This can also be negative like -15.
         @* code snippet here *@
         <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
             <textarea hidden name="code">var num1 = 458
@@ -183,44 +183,72 @@ var age:int=16.5</textarea>
     <h3>Operators</h3>
     <p>
         <h4>Arithmetic</h4>
-        Plus operator '+'<br />
-        Minus operator '-'<br />
-        Multiply operator '*'<br />
-        Division operator '/'<br />
-        Euclidian Division operator '//'<br />
-        Modulo operator '%'<br />
-        Power operator '**'
+        -Plus operator '+'<br />
+        -Minus operator '-'<br />
+        -Multiply operator '*'<br />
+        -Division operator '/'<br />
+        -Euclidian Division operator '//'<br />
+        -Modulo operator '%'<br />
+        -Power operator '**'
         @* code snippet here *@
+        <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+            <textarea hidden name="code">"Plus operator '+'"
+"With strings: concatinates them"
+ekteb("Ncodi" + " "+ "Beta Version")
+"With numbers"
+ekteb(598+18)
+ekteb(15.5+0.5)
+ekteb(0.5+1)
+
+"Minus operator '-'"
+ekteb(546-56)
+ekteb(12.5-0.5-2)
+
+"Multiply operator '*'"
+ekteb(2*0.5*5)
+"Power operator '**'"
+ekteb(2**8)
+
+"Division operator '/'"
+ekteb(5/2)
+"Euclidian division '//' ignores the rest"
+ekteb(5/2)
+"Modulo operator '%' returns the rest"
+ekteb(5%2)</textarea>
+        <input class="tryIt" type="submit" value="Try It" />
+        </form>
+    <p class="code">
+        <span class="token string">"Plus operator '+'"</span><br />
+        <span class="token string">"With strings: concatinates them"</span><br />
+        ekteb(<span class="token string">"Ncodi"</span> + <span class="token string">" "</span>+ <span class="token string">"Beta Version"</span>)<br /><span class="token string">"With numbers"</span><br />
+        ekteb(598+18)<br />
+        ekteb(15.5+0.5)<br />
+        ekteb(0.5+1)<br /><br /><span class="token string">"Minus operator '-'"</span><br />
+        ekteb(546-56)<br />
+        ekteb(12.5-0.5-2)<br /><br />
+        <span class="token string">"Multiply operator '*'"</span><br />
+        ekteb(2*0.5*5)<br />
+        <span class="token string">"Power operator '**'"</span><br />
+        ekteb(2**8)<br /><br />
+        <span class="token string">"Division operator '/'"</span><br />
+        ekteb(5/2)<br />
+        <span class="token string">"Euclidian division '//' ignores the rest"</span><br />
+        ekteb(5/2)<br />
+        <span class="token string">"Modulo operator '%' returns the rest"</span><br />
+        ekteb(5%2)
+    </p>
         <h4>Comparison</h4>
-        Greater operator '>'<br />
-        Greater or Equal operator '>='<br />
-        Lesser operator '<'<br />
-        Lesser or Equal operator '<='<br />
-        Is Equal operator '=='<br />
+        -Greater operator '>'<br />
+        -Greater or Equal operator '>='<br />
+        -Lesser operator '<'<br />
+        -Lesser or Equal operator '<='<br />
+        -Is Equal operator '=='<br />
         Is Diffirent operator '!='
         @* code snippet here *@
         <h4>Logical</h4>
-        And operator '&&'<br />
-        Or operator '||'<br />
-        More operators '^~|&'
+        -And operator '&&'<br />
+        -Or operator '||'<br />
+        -More operators '^~|&'
         @* code snippet here *@
     </p>
 </section>
-
-<script>
-    //const tryBtn = document.querySelector('.tryCode');
-    //async function tryCode(code) {
-    //    var xhr = new XMLHttpRequest();
-    //    xhr.open("POST", "/playground", true);
-    //    xhr.setRequestHeader('Content-Type', 'application/json');
-    //    xhr.send(JSON.stringify({
-    //        code: code
-    //    }));
-    //    xhr.onload = function () {
-    //        console.log(data);
-    //    }
-    //}
-    //tryBtn.addEventListener('click', async () => {
-    //    await tryCode(document.querySelector('.code').innerHTML);
-    //});
-</script>
