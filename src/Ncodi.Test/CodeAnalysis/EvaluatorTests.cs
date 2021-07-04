@@ -280,8 +280,8 @@ namespace Ncodi.Test.CodeAnalysis
             ";
 
             var diagnostics = @"
-                Twa9e3t <IdentifierToken> ama lgit <ClosedParenthesisToken>
-                Twa9e3t <ClosedBraceToken> ama lgit <EndOfFileToken>
+                Twa9e3t 'IdentifierToken' ama lgit 'ClosedParenthesisToken'
+                Twa9e3t 'ClosedBraceToken' ama lgit 'EndOfFileToken'
             ";
 
             AssertDiagnostics(text, diagnostics);
