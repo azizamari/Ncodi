@@ -231,7 +231,7 @@ namespace Ncodi.CodeAnalysis
                 case BoundBinaryOperatorKind.DecimalDivision:
                     return Convert.ToDecimal(left) / Convert.ToDecimal(right);
                 case BoundBinaryOperatorKind.DivisionRemainder:
-                    return Convert.ToDecimal(left) % Convert.ToDecimal(right);
+                    return (int)left % (int)right;
 
                 case BoundBinaryOperatorKind.BitwiseAnd:
                     if(b.Type==TypeSymbol.Int)
