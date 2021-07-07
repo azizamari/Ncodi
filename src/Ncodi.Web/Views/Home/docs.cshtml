@@ -30,7 +30,9 @@
     <a href="#logic" class="link">Logical</a>
     <br />
     <h3>Conditionals</h3>
-    <a href="#cond" class="link">Conditionals</a>
+    <a href="#cond_nor" class="link">Normal</a>
+    <br />
+    <a href="#cond_nested" class="link">Nested</a>
     <br />
     <h3>Loops</h3>
     <a href="#men" class="link">men ... ila loop</a>
@@ -317,4 +319,50 @@ ekteb(!(5==2))</textarea>
         ekteb(!<span class="token keyword">ghalet</span>)<br />
         ekteb(!(5==2))
     </p>
+
+
+
+    <h3>Conditionals</h3>
+    <h4>Normal</h4>
+    Conditionals are a crucial part of any programming language. They tell the programm to do something IF a condition is met otherwise do something else.
+        If you want to print something to the console you simply have to call the funciton ekteb("something")
+        @* code snippet here *@
+        <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+            <textarea hidden name="code">
+"Make sure you enter a number here"
+
+var x:int = int(a9ra())
+kan x % 2 ==0{
+    ekteb(string(x)+" is an even number")
+}
+wela{
+    ekteb(string(x)+" is and odd number")
+}
+</textarea>
+            <input class="tryIt" type="submit" value="Try It" />
+
+        </form>
+        <p class="code">
+            <span class="token string">"Make sure you enter a number here"</span><br /><br />
+            <span class="token keyword">var</span> x:int = int(a9ra())<br />
+            <span class="token keyword">kan</span> x % 2 ==0{<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;ekteb(string(x)+<span class="token string">" is an even number"</span>)<br />
+            }<br />
+            <span class="token keyword">wela</span>{<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;ekteb(string(x)+<span class="token string">" is and odd number"</span>)<br />
+            }<br />
+        </p>
+    <h4 id="hello">Nested</h4>
+        If you want to print something to the console you simply have to call the funciton ekteb("something")
+        @* code snippet here *@
+        <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+            <textarea hidden name="code">
+
+</textarea>
+            <input class="tryIt" type="submit" value="Try It" />
+
+        </form>
+        <p class="code">
+            ekteb(<span class="token string">"Hello, Tunisia!"</span>)
+        </p>
 </section>
