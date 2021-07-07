@@ -39,7 +39,7 @@
     <br />
     <a href="#dir" class="link">dir ... madem loop</a>
     <br />
-    <h3>Loops</h3>
+    <h3>Functions</h3>
     <a href="#call" class="link">Calling functions</a>
     <br />
     <a href="#built" class="link">Built-in functions</a>
@@ -136,7 +136,7 @@ ekteb(s)</textarea>
         <input class="tryIt" type="submit" value="Try It" />
     </form>
     <p class="code">
-        <span class="token keyword">var</span> s=<span class="token string\">"Code in your own words"</span><br />
+        <span class="token keyword">var</span> s=<span class="token string">"Code in your own words"</span><br />
         <span class="token keyword">var</span> x=<span class="token string">"51"</span><br />
         <span class="token string">"x is not an Int it's a string"</span><br />
         ekteb(s)
@@ -264,10 +264,23 @@ ekteb(true!=false)</textarea>
         <input class="tryIt" type="submit" value="Try It" />
     </form>
     <p class="code">
-        <span class="token keyword">var</span> s=<span class="token string\">"Code in your own words"</span><br />
-        <span class="token keyword">var</span> x=<span class="token string">"51"</span><br />
-        <span class="token string">"x is not an Int it's a string"</span><br />
-        ekteb(s)
+        <span class="token string">"This returns either <span class="token keyword">s7i7</span> or <span class="token keyword">ghalet</span>"</span><br />
+        <span class="token string">"Numbers"</span><br />
+        ekteb(12.6&lt;10) ekteb(12.6&gt;10)<br /><br />
+        ekteb(9 &gt; 9)<br />
+        ekteb(9 &gt;= 9)<br />
+        ekteb(12 &lt;= 50)<br /><br />
+        <span class="token string">"Equality and Difference"</span><br />
+        ekteb(9==4)<br />
+        ekteb(4==4)<br />
+        ekteb(9!=4)<br /><br />
+        <span class="token string">"String: uses Ascii/ alphabet order <span class="token keyword">to</span> compare"</span><br />
+        ekteb(<span class="token string">"a"</span> &lt; <span class="token string">"b"</span>)<br />
+        ekteb(<span class="token string">"Ncodi"</span> &gt; <span class="token string">"Python"</span>)<br />
+        ekteb(<span class="token string">"aziz"</span> != <span class="token string">"AZIZ"</span>)<br /><br />
+        <span class="token string">"Bools only != and =="</span><br />
+        ekteb(<span class="token keyword">false</span>==<span class="token keyword">false</span>)<br />
+        ekteb(<span class="token keyword">true</span>!=<span class="token keyword">false</span>)
     </p>
     @* code snippet here *@
     <h4>Logical</h4>
@@ -275,4 +288,33 @@ ekteb(true!=false)</textarea>
     -Or operator '||'<br />
     -More operators '^~|&'
     @* code snippet here *@
+    <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+        <textarea hidden name="code">"AND operator && only returns s7i7 when both conditions are s7i7"
+ekteb(5>2&&10!=15)
+ekteb(5>2&&10==15)
+ekteb(s7i7 || ghalet)
+
+"OR operator || only returns s7i7 when atleast one of the conditions is s7i7"
+ekteb(5%2==1 || ghalet)
+ekteb(s7i7 || s7i7)
+ekteb(ghalet || ghalet)
+
+"NO operator ! inverses the condition s7i7 becomes ghalet and vice versa"
+ekteb(!ghalet)
+ekteb(!(5==2))</textarea>
+        <input class="tryIt" type="submit" value="Try It" />
+    </form>
+    <p class="code">
+        <span class="token string">"AND operator &amp;&amp; only returns <span class="token keyword">s7i7</span> when both conditions are <span class="token keyword">s7i7</span>"</span><br />
+        ekteb(5&gt;2&amp;&amp;10!=15)<br />
+        ekteb(5&gt;2&amp;&amp;10==15)<br />
+        ekteb(<span class="token keyword">s7i7</span> || <span class="token keyword">ghalet</span>)<br /><br />
+        <span class="token string">"OR operator || only returns <span class="token keyword">s7i7</span> when atleast one of the conditions is <span class="token keyword">s7i7</span>"</span><br />
+        ekteb(5%2==1 || <span class="token keyword">ghalet</span>)<br />
+        ekteb(<span class="token keyword">s7i7</span> || <span class="token keyword">s7i7</span>)<br />
+        ekteb(<span class="token keyword">ghalet</span> || <span class="token keyword">ghalet</span>)<br /><br />
+        <span class="token string">"NO operator ! inverses the condition <span class="token keyword">s7i7</span> becomes <span class="token keyword">ghalet</span> and vice versa"</span><br />
+        ekteb(!<span class="token keyword">ghalet</span>)<br />
+        ekteb(!(5==2))
+    </p>
 </section>
