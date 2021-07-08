@@ -283,10 +283,10 @@ blockquote {
     padding: 0;
     display: flex;
     flex-direction: column;
-    background-color: #e94642;
+    background-color: #f7443d;
     border-top-left-radius: 100px;
     border-top-right-radius: 100px;
-    margin-top:2rem;
+    margin-top: 2rem;
 }
 
 .container {

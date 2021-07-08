@@ -324,11 +324,11 @@ ekteb(!(5==2))</textarea>
 
     <h3>Conditionals</h3>
     <h4>Normal</h4>
-    Conditionals are a crucial part of any programming language. They tell the programm to do something IF a condition is met otherwise do something else.
-        If you want to print something to the console you simply have to call the funciton ekteb("something")
-        @* code snippet here *@
-        <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
-            <textarea hidden name="code">
+    Conditionals are a crucial part of any programming language. They tell the programm to do something IF a condition is met OTHERWISE do something else.
+    If you want to print something to the console you simply have to call the funciton ekteb("something")
+    @* code snippet here *@
+    <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+        <textarea hidden name="code">
 "Make sure you enter a number here"
 
 var x:int = int(a9ra())
@@ -339,30 +339,143 @@ wela{
     ekteb(string(x)+" is and odd number")
 }
 </textarea>
-            <input class="tryIt" type="submit" value="Try It" />
+        <input class="tryIt" type="submit" value="Try It" />
 
-        </form>
-        <p class="code">
-            <span class="token string">"Make sure you enter a number here"</span><br /><br />
-            <span class="token keyword">var</span> x:int = int(a9ra())<br />
-            <span class="token keyword">kan</span> x % 2 ==0{<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;ekteb(string(x)+<span class="token string">" is an even number"</span>)<br />
-            }<br />
-            <span class="token keyword">wela</span>{<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;ekteb(string(x)+<span class="token string">" is and odd number"</span>)<br />
-            }<br />
-        </p>
+    </form>
+    <p class="code">
+        <span class="token string">"Make sure you enter a number here"</span><br /><br />
+        <span class="token keyword">var</span> x:int = int(a9ra())<br />
+        <span class="token keyword">kan</span> x % 2 ==0{<br />
+        &nbsp;&nbsp;ekteb(string(x)+<span class="token string">" is an even number"</span>)<br />
+        }<br />
+        <span class="token keyword">wela</span>{<br />
+        &nbsp;&nbsp;ekteb(string(x)+<span class="token string">" is and odd number"</span>)<br />
+        }<br />
+    </p>
     <h4 id="hello">Nested</h4>
-        If you want to print something to the console you simply have to call the funciton ekteb("something")
-        @* code snippet here *@
-        <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
-            <textarea hidden name="code">
-
+    You can also nest conditions to get more control.
+    @* code snippet here *@
+    <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+        <textarea hidden name="code">
+var language=a9ra()
+kan language=="ncodi"{
+  ekteb("Great Language")
+}
+wela kan language == "python"{
+  ekteb("Mehh !")
+}
+wela{
+  ekteb("I don't know this language yet: " +language)
+}
 </textarea>
-            <input class="tryIt" type="submit" value="Try It" />
+        <input class="tryIt" type="submit" value="Try It" />
 
-        </form>
-        <p class="code">
-            ekteb(<span class="token string">"Hello, Tunisia!"</span>)
-        </p>
+    </form>
+    <p class="code">
+        <span class="token keyword">var</span> language=a9ra()<br />
+        <span class="token keyword">kan</span> language==<span class="token string">"ncodi"</span>{<br />
+        &nbsp;&nbsp;ekteb(<span class="token string">"Great Language"</span>)<br />
+        }<br />
+        <span class="token keyword">wela</span> <span class="token keyword">kan</span> language == <span class="token string">"python"</span>{<br />
+        &nbsp;&nbsp;ekteb(<span class="token string">"Mehh !"</span>)<br />
+        }<br />
+        <span class="token keyword">wela</span>{<br />
+        &nbsp;&nbsp;ekteb(<span class="token string">"I don't know this language yet: "</span> +language)<br />
+        }
+    </p>
+    <h3>Loops</h3>
+    Loops are very usefull whenever you have to repeat some instructions a number of times.
+    <h4>men ... ila loop</h4>
+    This allows you to repeat something n times and also have a counter variable to keep count of current state.
+    @* code snippet here *@
+    <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+        <textarea hidden name="code">
+"Write all numbers in the interval 0-10"
+men num = 0 ila 10{
+  ekteb(num)
+}
+
+"Draw a pyramid"
+var rows = 5
+men i = 1 ila rows{
+  var line=""
+  men j = 1 ila i{
+    line=line+string(j)+" "
+  }
+  ekteb(line)
+}</textarea>
+        <input class="tryIt" type="submit" value="Try It" />
+
+    </form>
+    <p class="code">
+        <span class="token string">"Write all numbers in the interval 0-10"</span><br />
+        <span class="token keyword">men</span> num = 0 <span class="token keyword">ila</span> 10{<br />
+        &nbsp;&nbsp;ekteb(num)<br />
+        }<br />
+        <span class="token string">"Draw a pyramid"</span><br /><br />
+        <span class="token keyword">var</span> rows = 5<br />
+        <span class="token keyword">men</span> i = 1 <span class="token keyword">ila</span> rows{<br />
+        &nbsp;&nbsp;<span class="token keyword">var</span> line=<span class="token string">""</span><br />
+        &nbsp;&nbsp;<span class="token keyword">men</span> j = 1 <span class="token keyword">ila</span> i{<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;line=line+string(j)+<span class="token string">" "</span><br />
+        &nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;ekteb(line)<br />
+        }
+    </p>
+
+    <h4>madem loop</h4>
+    This allows you to keep repeating something until a condition is met.
+    @* code snippet here *@
+    <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+        <textarea hidden name="code">
+ekteb("A3tini a7sen programming language:")
+var lang = a9ra()
+madem ( lang!="ncodi" && lang!="Ncodi"){
+  ekteb("Wrong think again")
+  lang=a9ra()
+}
+ekteb("YES")</textarea>
+        <input class="tryIt" type="submit" value="Try It" />
+
+    </form>
+    <p class="code">
+        ekteb(<span class="token string">"A3tini a7sen programming language:"</span>)<br />
+        <span class="token keyword">var</span> lang = a9ra()<br />
+        <span class="token keyword">madem</span> ( lang!=<span class="token string">"ncodi"</span> &amp;&amp; lang!=<span class="token string">"Ncodi"</span>){<br />
+        &nbsp;&nbsp;ekteb(<span class="token string">"Wrong think again"</span>)<br />
+        &nbsp;&nbsp;lang=a9ra()<br />
+        }<br />
+        ekteb(<span class="token string">"YES"</span>)
+    </p>
+    <h4>dir...madem loop loop</h4>
+    This loop is similar to the previous one madem execpt we check the condtion after excuting at least once meanwhile in madem we check the condition before even starting.
+    @* code snippet here *@
+    <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+        <textarea hidden name="code">
+"This will run once"
+
+var lang="python"
+dir{
+  ekteb(lang)
+}madem lang!="python"
+
+"This won't even run"
+madem(lang!="python"){
+  ekteb(lang)
+}</textarea>
+        <input class="tryIt" type="submit" value="Try It" />
+
+    </form>
+    <p class="code">
+        <span class="token string">"This will run once"</span><br /><br />
+        <span class="token keyword">var</span> lang=<span class="token string">"python"</span><br />
+        <span class="token keyword">dir</span>{<br />
+        ekteb(lang)<br />
+        }<span class="token keyword">madem</span> lang!=<span class="token string"><br />
+        "python"</span><br /><br />
+        <span class="token string">"This won't even run"</span><br />
+        <span class="token keyword">madem</span>( lang != <span class="token string"> "python" </span> ){<br />
+        ekteb(lang)<br />
+        }
+    </p>
 </section>
