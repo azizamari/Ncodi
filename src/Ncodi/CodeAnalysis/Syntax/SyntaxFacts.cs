@@ -89,6 +89,8 @@ namespace Ncodi.CodeAnalysis.Syntax
                     return SyntaxKind.ReturnKeyword;
 
                 //tunisian syntax
+                case "asne3":
+                    return SyntaxKind.FunctionKeyword;
                 case "madem":
                     return SyntaxKind.WhileKeyword;
                 case "kan":
