@@ -22,6 +22,10 @@
     <br />
     <a href="#bool" class="link">Bool</a>
     <br />
+    <a href="#bool" class="link">Type Declaration</a>
+    <br />
+    <a href="#bool" class="link">Type conversion</a>
+    <br />
     <h3>Operators</h3>
     <a href="#arith" class="link">Arithmetic</a>
     <br />
@@ -471,11 +475,95 @@ madem(lang!="python"){
         <span class="token keyword">var</span> lang=<span class="token string">"python"</span><br />
         <span class="token keyword">dir</span>{<br />
         ekteb(lang)<br />
-        }<span class="token keyword">madem</span> lang!=<span class="token string"><br />
-        "python"</span><br /><br />
+        }<span class="token keyword">madem</span> lang != <span class="token string"> "python"</span><br /><br />
         <span class="token string">"This won't even run"</span><br />
         <span class="token keyword">madem</span>( lang != <span class="token string"> "python" </span> ){<br />
         ekteb(lang)<br />
         }
+    </p>
+
+
+    <h3>Functions</h3>
+    <p>
+        In Ncodi we have several data types.
+        <h4>Calling functions</h4>
+        A function is like a magic box: you give it some input it perfoms THE MAGIC and gives you back a result. each function has a name, optional parameters/ options and a return type. A function call is in the following form functionName(param1, param2,....).
+        @* code snippet here *@
+        <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+            <textarea hidden name="code">"Function 'ekteb' call that has one parameter => the desired output"
+ekteb("output")
+
+"We call the function len that gives us back the number of characters in a string"
+ekteb(len("aziz"))
+var x="Ncodi code in your own language"
+ekteb("Length: "+string(len(x)))</textarea>
+            <input class="tryIt" type="submit" value="Try It" />
+        </form>
+    <p class="code">
+        <span class="token string">"Function 'ekteb' call that has one parameter =&gt; the desired output"</span><br />
+        ekteb(<span class="token string">"output"</span>)<br /><br />
+        <span class="token string">"We call the function len that gives us back the number of characters in a string"</span><br />
+        ekteb(len(<span class="token string">"aziz"</span>))<br />
+        <span class="token keyword">var</span> x=<span class="token string">"Ncodi code in your own language"</span><br />
+        ekteb(<span class="token string">"Length: "</span>+string(len(x)))
+    </p>
+    <h4>Built-in functions</h4>
+    We have a lot of builtin functions in Ncodi.
+    @* code snippet here *@
+    <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+        <textarea hidden name="code">"ekteb: it prints whatever you write on the screen"
+ekteb("Hello ncodi users")
+
+"a9ra: it asks you input/ prompt a sentence"
+ekteb("Do you like Ncodi ?")
+var x=a9ra()
+
+"sqrt: you give it a number and it will give you it's square root"
+var s=sqrt(16)
+ekteb(s)
+
+"random: you give a max number and it will give random number from 0-max"
+ekteb(random(10))
+"Interval not starting from 0 instead from 20: 20-35"
+ekteb(random(15)+20)
+
+"ord: you give it a single character and it will convert it in ASCII code"
+ekteb(ord("A"))
+"chr: is the inverse of ord"
+ekteb(chr(70))
+ekteb(chr(ord("B")))</textarea>
+        <input class="tryIt" type="submit" value="Try It" />
+    </form>
+    <p class="code">
+        <span class="token string">"ekteb: it prints whatever you write on the screen"</span><br />
+        ekteb(<span class="token string">"Hello ncodi users"</span>)<br /><br />
+        <span class="token string">"a9ra: it asks you input/ prompt a sentence"</span><br />
+        ekteb(<span class="token string">"Do you like Ncodi ?"</span>)<br />
+        <span class="token keyword">var</span> x=a9ra()<br /><br />
+        <span class="token string">"sqrt: you give it a number and it will give you it's square root"</span><br />
+        <span class="token keyword">var</span> s=sqrt(16)<br />
+        ekteb(s)<br /><br />
+        <span class="token string">"random: you give a max number and it will give random number from 0-max"</span><br />
+        ekteb(random(10))<br />
+        <span class="token string">"Interval not starting from 0 instead from 20: 20-35"</span><br />
+        ekteb(random(15)+20)<br /><br />
+        <span class="token string">"ord: you give it a single character and it will convert it in ASCII code"</span><br />
+        ekteb(ord(<span class="token string">"A"</span>))<br />
+        <span class="token string">"chr: is the inverse of ord"</span><br />
+        ekteb(chr(70))<br />
+        ekteb(chr(ord(<span class="token string">"B"</span>)))
+    </p>
+
+    <h4>Definig functions</h4>
+    Decimals are numbers that have a floating point like 2.56 or 1.0
+    @* code snippet here *@
+    <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+        <textarea hidden name="code">var dec = 4.25
+ekteb(dec)</textarea>
+        <input class="tryIt" type="submit" value="Try It" />
+    </form>
+    <p class="code">
+        <span class="token keyword">var</span> dec = 4.25<br />
+        ekteb(dec)
     </p>
 </section>
