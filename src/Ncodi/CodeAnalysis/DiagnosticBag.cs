@@ -162,7 +162,7 @@ namespace Ncodi.CodeAnalysis
         public void ReportCannotConvertToInt(TextLocation location, object value)
         {
             //var messsage = $"Cannot convert \"{value}\" to 'Int'";
-            var messsage = $"Ma ngedech n7tawel \"{value}\" l 'Int'";
+            var messsage = $"Ma ngedech n7awel \"{value}\" l 'Int'";
             Report(location, messsage);
         }
 
