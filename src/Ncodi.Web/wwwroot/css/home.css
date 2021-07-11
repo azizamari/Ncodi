@@ -61,7 +61,51 @@
     letter-spacing: 3px;
     margin-bottom: 3rem;
 }
-
+/*about*/
+.about{
+    width:100%;
+    padding: 70px 0;
+    background-color: #fff;
+}
+.about_image {
+    height: auto;
+    width: 20rem;
+}
+.about_text{
+    width:550px;
+}
+.main_about {
+    width: 1130px;
+    max-width: 95%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.about_text h1{
+    text-align:center;
+    color:#e94642;
+    font-size:80px;
+    text-transform:capitalize;
+    margin-bottom:20px;
+}
+.about_text h5{
+    text-align:center;
+    color:#e94642;
+    font-size:25px;
+    text-transform:capitalize;
+    margin-bottom:25px;
+    letter-spacing:2px;
+}
+.about_text p{
+    text-align:center;
+    color:#29364e;
+    font-size:18px;
+    letter-spacing:1px;
+    line-height:28px;
+    margin-bottom: 45px;
+}
 /* reviews section */
 .reviews_section {
     width: 100%;
@@ -347,10 +391,12 @@ blockquote {
         margin: 0;
         padding: 0;
     }
+
     .logo_footer img {
         width: auto;
         height: 100px;
     }
+
     .list {
         text-align: center;
     }
@@ -358,8 +404,19 @@ blockquote {
     .foot {
         font-size: 0.8rem;
     }
-}
 
+    .about_text h1 {
+        font-size: 52px;
+    }
+
+    .about_text h5 {
+        font-size: 18px;
+    }
+
+    .about_text p {
+        font-size: 14px;
+    }
+}
 @media only screen and (max-width:768px) {
     .accordion_link {
         font-size: 1.2rem;
@@ -375,5 +432,12 @@ blockquote {
 
     .reviews_section h1 {
         font-size: 1.9rem;
+    }
+    .about_image {
+        height: auto;
+        width: 14rem;
+    }
+    .about_text h1 {
+        margin-top: 20px;
     }
 }

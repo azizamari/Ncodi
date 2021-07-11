@@ -26,7 +26,7 @@ nav {
     top: 0;
     width: 100%;
     z-index: 99;
-    overflow-x:hidden;
+    overflow-x:clip;
 }
 .logo{
     letter-spacing: 3px;
@@ -99,6 +99,10 @@ nav ul li a {
     transform: scale(0); 
 }
 
+nav ul.slide{
+    transform: translateX(0);
+    z-index: 10;
+}
 
 @media only screen and (max-width: 768px){
     nav ul{
@@ -124,8 +128,4 @@ nav ul li a {
         transform: translateX(100%);
         transition: all 1s;
     }
-}
-nav ul.slide{
-    transform: translateX(0);
-    z-index: 10;
 }
