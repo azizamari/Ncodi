@@ -45,6 +45,12 @@
     var btnStart = document.querySelector(".runBtn");
     btnStart.addEventListener("click", function (e) {
         e.preventDefault();
+        console.log("clicked")
+        btnStart.disabled = true; 
+        setTimeout(()=>{
+            btnStart.disabled=false;
+        }, 500);
+
         output.innerHTML = '';
         let lastMessage = "";
         var protocol = location.protocol === "https:" ? "wss:" : "ws:";

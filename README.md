@@ -12,8 +12,7 @@ Inspired by The .NET Compiler Platform [Roslyn](https://github.com/dotnet/roslyn
 * Create VsCode Extension (highlighting, syntax completion and maybe run button) 10%✔️
 * Create simple IDE - dropped :'( 
 * Create web-based playground to run code use CodeFlask 100% ✔️ (just MVP)
-* Create a documentation and about page (website) 20% ✔️
+* Create a documentation and about page (website) 95% ✔️
 * Add sourceBrowser - 0% ✔️
-* Add ability to visualize graphiz file for CFG use D3.js 40% ✔️
-* Get reviews from experts 0% ✔️
+* Get reviews from 0% ✔️
 * launch beta version (late - juin)
