@@ -42,7 +42,7 @@ namespace Ncodi.Cli
                         Console.WriteLine($"Executing file '{path}'");
                         var syntaxTree = SyntaxTree.Load(path);
                         var compilation = new Compilation(syntaxTree);
-                        var result = compilation.Evaluate(new Dictionary<VariableSymbol, object>());
+                        var result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(),useConsole:true);
                         if (result.Diagnostics.Any())
                         {
                             Console.WriteLine("Error List:");
@@ -51,7 +51,7 @@ namespace Ncodi.Cli
                     }
                     else
                     {
-                        Console.WriteLine($"Error: file '{pathArgument.Value}' not found");
+                        Console.WriteLine($"Error: file '{pathArgument.Value}' not found here");
                     }
                     return 1;
                 });

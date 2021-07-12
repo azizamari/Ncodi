@@ -136,7 +136,7 @@ namespace Ncodi.Web
             {
                 result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(), false,GetInput,send);
             });
-            bool isCompletedSuccessfully = task.Wait(TimeSpan.FromMilliseconds(10000));
+            bool isCompletedSuccessfully = task.Wait(TimeSpan.FromMilliseconds(15000));
 
             if (isCompletedSuccessfully)
             {
