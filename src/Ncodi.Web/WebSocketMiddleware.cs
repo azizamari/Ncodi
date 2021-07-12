@@ -1,4 +1,4 @@
-﻿        using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Ncodi.CodeAnalysis;
 using Ncodi.CodeAnalysis.Syntax;
 using Ncodi.CodeAnalysis.Text;
@@ -38,10 +38,9 @@ namespace Ncodi.Web
             using (var socket = await context.WebSockets.AcceptWebSocketAsync())
             {
                 var code = await ReceiveStringAsync(socket, ct);
-                code=code.Replace(',', '\n');
                 //await SendStringAsync(socket, "ping", ct);
                 string[] output = new string[] { "" };
-                var srouce = SourceText.From(String.Join(Environment.NewLine, code), "fileName.ncodi");
+                var srouce = SourceText.From(String.Join(Environment.NewLine, code), "playground.ncodi");
                 var syntaxTree = SyntaxTree.Parse(srouce);
                 var compilation = new Compilation(syntaxTree);
                 (bool, EvaluationResult) executionResult;
@@ -61,7 +60,7 @@ namespace Ncodi.Web
                     var result = executionResult.Item2;
                     if (!executionResult.Item1)
                     {
-                        await SendStringAsync(socket, "Time limit exceeded", ct);
+                        await SendStringAsync(socket, "\n Time limit 10second exceeded", ct);
                         await socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "done", ct);
                         return;
                     }
@@ -137,7 +136,7 @@ namespace Ncodi.Web
             {
                 result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(), false,GetInput,send);
             });
-            bool isCompletedSuccessfully = task.Wait(TimeSpan.FromMilliseconds(100000));
+            bool isCompletedSuccessfully = task.Wait(TimeSpan.FromMilliseconds(10000));
 
             if (isCompletedSuccessfully)
             {
