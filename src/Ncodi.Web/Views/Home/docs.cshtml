@@ -22,9 +22,9 @@
     <br />
     <a href="#bool" class="link">Bool</a>
     <br />
-    <a href="#bool" class="link">Type Declaration</a>
+    <a href="#declare" class="link">Type Declaration</a>
     <br />
-    <a href="#bool" class="link">Type conversion</a>
+    <a href="#conver" class="link">Type conversion</a>
     <br />
     <h3>Operators</h3>
     <a href="#arith" class="link">Arithmetic</a>
@@ -55,7 +55,8 @@
     <h2>Documentation</h2>
     <h3>Getting Started</h3>
     <h4>Installation</h4>
-    <h4 id="hello">Hello World</h4>
+    <span class="anchor" id="hello"></span>
+    <h4>Hello World</h4>
     <p>
         If you want to print something to the console you simply have to call the funciton ekteb("something")
         @* code snippet here *@
@@ -67,7 +68,8 @@
         ekteb(<span class="token string">"Hello, Tunisia!"</span>)
     </p>
     </p>
-    <h3 id="variables">Variables</h3>
+    <span class="anchor" id="variables"></span>
+    <h3>Variables</h3>
     <p>
         We use variables to store data and use it later on. You can think of variables as containers that have a name and a value.
         @* code snippet here *@
@@ -103,6 +105,7 @@ y="60"</textarea>
     <h3>Types</h3>
     <p>
         In Ncodi we have several data types.
+        <span class="anchor" id="int"></span>
         <h4>Int</h4>
         They are numeric values that can only contain digits from [0,1,2,3,4,5,6,7,8,9]. This can also be negative like -15.
         @* code snippet here *@
@@ -117,6 +120,7 @@ ekteb(num1+num2)</textarea>
         <span class="token keyword">var</span> num2 = 15<br />
         ekteb(num1+num2)
     </p>
+    <span class="anchor" id="dec"></span>
     <h4>Decimal</h4>
     Decimals are numbers that have a floating point like 2.56 or 1.0
     @* code snippet here *@
@@ -130,7 +134,7 @@ ekteb(dec)</textarea>
         ekteb(dec)
     </p>
 
-
+    <span class="anchor" id="str"></span>
     <h4>String</h4>
     Strings are basically textual data. You must use quoatation marks "" to indicate that it's a string.
     @* code snippet here *@
@@ -148,6 +152,7 @@ ekteb(s)</textarea>
         ekteb(s)
     </p>
 
+    <span class="anchor" id="bool"></span>
     <h4>Bool</h4>
     Boolean values can be either true/ s7i7 or false/ ghalet.
     @* code snippet here *@
@@ -163,6 +168,7 @@ ekteb(res)</textarea>
         ekteb(res)
     </p>
 
+    <span class="anchor" id="declare"></span>
     <h4>Optional Type Declaration</h4>
     You also can specifiy the type of a variable when declaring it. This is mainly to make your code more clear since Ncodi can dynamically detect variable types. If you declare a variable as int and then assign to it a bool value you will get an error.
     @* code snippet here *@
@@ -183,6 +189,7 @@ var age:int=16.5</textarea>
         <span class="token string">"This will cause an error because 16.5 isn't an int"</span><br />
         <span class="token keyword">var</span> age:int=16.5
     </p>
+    <span class="anchor" id="arith"></span>
     <h3>Operators</h3>
     <h4>Arithmetic</h4>
     -Plus operator '+'<br />
@@ -239,6 +246,7 @@ ekteb(5%2)</textarea>
         <span class="token string">"Modulo operator '%' returns the rest"</span><br />
         ekteb(5%2)
     </p>
+    <span class="anchor" id="comp"></span>
     <h4>Comparison</h4>
     -Greater operator '>'<br />
     -Greater or Equal operator >=<br />
@@ -289,6 +297,7 @@ ekteb(true!=false)</textarea>
         ekteb(<span class="token keyword">true</span>!=<span class="token keyword">false</span>)
     </p>
     @* code snippet here *@
+    <span class="anchor" id="logic"></span>
     <h4>Logical</h4>
     -And operator '&&'<br />
     -Or operator '||'<br />
@@ -327,6 +336,7 @@ ekteb(!(5==2))</textarea>
 
 
     <h3>Conditionals</h3>
+    <span class="anchor" id="cond_nor"></span>
     <h4>Normal</h4>
     Conditionals are a crucial part of any programming language. They tell the programm to do something IF a condition is met OTHERWISE do something else.
     If you want to print something to the console you simply have to call the funciton ekteb("something")
@@ -356,7 +366,8 @@ wela{
         &nbsp;&nbsp;ekteb(string(x)+<span class="token string">" is and odd number"</span>)<br />
         }<br />
     </p>
-    <h4 id="hello">Nested</h4>
+    <span class="anchor" id="cond_nested"></span>
+    <h4>Nested</h4>
     You can also nest conditions to get more control.
     @* code snippet here *@
     <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
@@ -389,6 +400,7 @@ wela{
     </p>
     <h3>Loops</h3>
     Loops are very usefull whenever you have to repeat some instructions a number of times.
+    <span class="anchor" id="men"></span>
     <h4>men ... ila loop</h4>
     This allows you to repeat something n times and also have a counter variable to keep count of current state.
     @* code snippet here *@
@@ -426,7 +438,7 @@ men i = 1 ila rows{
         &nbsp;&nbsp;ekteb(line)<br />
         }
     </p>
-
+    <span class="anchor" id="madem"></span>
     <h4>madem loop</h4>
     This allows you to keep repeating something until a condition is met.
     @* code snippet here *@
@@ -451,7 +463,8 @@ ekteb("YES")</textarea>
         }<br />
         ekteb(<span class="token string">"YES"</span>)
     </p>
-    <h4>dir...madem loop loop</h4>
+    <span class="anchor" id="dir"></span>
+    <h4>dir...madem loop</h4>
     This loop is similar to the previous one madem execpt we check the condtion after excuting at least once meanwhile in madem we check the condition before even starting.
     @* code snippet here *@
     <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
@@ -486,6 +499,7 @@ madem(lang!="python"){
     <h3>Functions</h3>
     <p>
         In Ncodi we have several data types.
+        <span class="anchor" id="call"></span>
         <h4>Calling functions</h4>
         A function is like a magic box: you give it some input it perfoms THE MAGIC and gives you back a result. each function has a name, optional parameters/ options and a return type. A function call is in the following form functionName(param1, param2,....).
         @* code snippet here *@
@@ -507,6 +521,7 @@ ekteb("Length: "+string(len(x)))</textarea>
         <span class="token keyword">var</span> x=<span class="token string">"Ncodi code in your own language"</span><br />
         ekteb(<span class="token string">"Length: "</span>+string(len(x)))
     </p>
+    <span class="anchor" id="built"></span>
     <h4>Built-in functions</h4>
     We have a lot of builtin functions in Ncodi.
     @* code snippet here *@
@@ -553,7 +568,7 @@ ekteb(chr(ord("B")))</textarea>
         ekteb(chr(70))<br />
         ekteb(chr(ord(<span class="token string">"B"</span>)))
     </p>
-
+    <span class="anchor" id="define"></span>
     <h4>Definig functions</h4>
     Decimals are numbers that have a floating point like 2.56 or 1.0
     @* code snippet here *@
