@@ -56,11 +56,12 @@ namespace Ncodi.Web
                     {
                         await SendStringAsync(socket, txt, ct);
                     };
-                    executionResult = ExecuteCode(compilation,get, send);
+                    var timeLimit=(code.Split("a9ra()").Length - 1)*15000+1000;
+                    executionResult = ExecuteCode(compilation,get, send, timeLimit);
                     var result = executionResult.Item2;
                     if (!executionResult.Item1)
                     {
-                        await SendStringAsync(socket, "\n Time limit 10second exceeded", ct);
+                        await SendStringAsync(socket, $"\n Time limit {timeLimit/1000} sec exceeded", ct);
                         await socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "done", ct);
                         return;
                     }
@@ -129,14 +130,14 @@ namespace Ncodi.Web
                 }
             }
         }
-        public (bool, EvaluationResult) ExecuteCode(Compilation compilation, Func<Task<string>> GetInput, Action<string> send)
+        public (bool, EvaluationResult) ExecuteCode(Compilation compilation, Func<Task<string>> GetInput, Action<string> send,int waitTime)
         {
             EvaluationResult result = null;
             var task = Task.Run(() =>
             {
                 result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(), false,GetInput,send);
             });
-            bool isCompletedSuccessfully = task.Wait(TimeSpan.FromMilliseconds(15000));
+            bool isCompletedSuccessfully = task.Wait(TimeSpan.FromMilliseconds(waitTime));
 
             if (isCompletedSuccessfully)
             {
