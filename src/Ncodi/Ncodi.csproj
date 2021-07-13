@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+	<RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
   </PropertyGroup>
 
 </Project>
