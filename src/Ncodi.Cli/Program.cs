@@ -27,7 +27,14 @@ namespace Ncodi.Cli
                 run.OnExecute(()=>
                 {
                     var repl = new NcodiRepl();
-                    repl.Run();
+                    try
+                    {
+                        repl.Run();
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Repl not currently supported on this terminal");
+                    }
                     return 1;
                 });
             });
