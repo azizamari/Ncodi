@@ -6,36 +6,40 @@
 <link href="~/css/prism.css" rel="stylesheet" />
 <section class="docs">
 
-    <h3>Variables</h3>
+    <h3>Code Samples</h3>
+    <h4>Fizz Buzz</h4>
     <p>
-        We use variables to store data and use it later on. You can think of variables as containers that have a name and a value.
+        Fizz Buzz is a famous programming question where you have to write a program that prints numbers from 1 to 100. But for multiples of 3 print "Fizz" instead and fro multiples of 5 print "Buzz". For numbers which are multiples of both 3 and 5 print "FizzBuzz".
         @* code snippet here *@
         <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
-            <textarea hidden name="code">var x = "Hello again"
-ekteb(x)</textarea>
+            <textarea hidden name="code">men i = 1 ila 100{
+  var res=""
+  kan i%3==0{
+    res=res+"Fizz"
+  }
+  kan i%5==0{
+    res=res+"Buzz"
+  }
+  kan len(res)==0{
+    res=string(i)
+  }
+  ekteb(res)
+}</textarea>
             <input class="tryIt" type="submit" value="Try It" />
         </form>
     <p class="code">
-        <span class="token keyword">var</span> x = <span class="token string">"Hello again"</span><br />
-        ekteb(x)
-    </p>
-    There is also constant "const" variables which once declared you can't change their value.
-    @* code snippet here *@
-    <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
-        <textarea hidden name="code">const x= "No Name"
-x="Ncodi"
-"That will result in an error"
-"Meanwhile this is fine"
-var y="45"
-y="60"</textarea>
-        <input class="tryIt" type="submit" value="Try It" />
-    </form>
-    <p class="code">
-        <span class="token keyword">const</span> x= <span class="token string">"No Name"</span><br />
-        x=<span class="token string">"Ncodi"</span><br />
-        <span class="token string">"That will result in an error"</span><br />
-        <span class="token string">"Meanwhile this is fine"</span><br />
-        <span class="token keyword">var</span> y=<span class="token string">"45"</span><br />
-        y=<span class="token string">"60"</span>
+        <span class="token keyword">men</span> i = 1 <span class="token keyword">ila</span> 100{<br />
+        &nbsp;&nbsp;<span class="token keyword">var</span> res=<span class="token string">""</span><br />
+        &nbsp;&nbsp;<span class="token keyword">kan</span> i%3==0{<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;res=res+<span class="token string">"Fizz"</span><br />
+        &nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;<span class="token keyword">kan</span> i%5==0{<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;res=res+<span class="token string">"Buzz"</span><br />
+        &nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;<span class="token keyword">kan</span> len(res)==0{<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;res=string(i)<br />
+        &nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;ekteb(res)<br />
+        }
     </p>
 </section>
