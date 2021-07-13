@@ -570,15 +570,52 @@ ekteb(chr(ord("B")))</textarea>
     </p>
     <span class="anchor" id="define"></span>
     <h4>Definig functions</h4>
-    Decimals are numbers that have a floating point like 2.56 or 1.0
+    We create functions by using asne3 keyword then giving a name to it and we type the desired parameters and their type
     @* code snippet here *@
     <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
-        <textarea hidden name="code">var dec = 4.25
-ekteb(dec)</textarea>
+        <textarea hidden name="code">"Function with no returned value"
+asne3 hey(){
+  ekteb("Hello from ncodi servers")
+}
+
+"Function with parameters and no returned value"
+asne3 greet(name:string, times:int){
+  men i = 0 ila times{
+    ekteb("Hello "+ name+" "+string(i))
+  }
+}
+
+"Function with returned value and parameters"
+asne3 pow(n:int, p:int):int{
+  raje3 n**p
+}
+
+"Calling them"
+hey()
+greet("Aziz Amari",4)
+var x= pow(2,8)
+ekteb(x)</textarea>
         <input class="tryIt" type="submit" value="Try It" />
     </form>
     <p class="code">
-        <span class="token keyword">var</span> dec = 4.25<br />
-        ekteb(dec)
+        <span class="token string">"Function with no returned value"</span><br />
+        <span class="token keyword">asne3</span> hey(){<br />
+        &nbsp;&nbsp;ekteb(<span class="token string">"Hello from ncodi servers"</span>)<br />
+        }<br /><br />
+        <span class="token string">"Function with parameters and no returned value"</span><br />
+        <span class="token keyword">asne3</span> greet(name:string, times:int){<br />
+        &nbsp;&nbsp;<span class="token keyword">men</span> i = 0 <span class="token keyword">ila</span> times{<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;ekteb(<span class="token string">"Hello "</span>+ name+<span class="token string">" "</span>+string(i))<br />
+        &nbsp;&nbsp;}<br />
+        }<br /><br />
+        <span class="token string">"Function with returned value and parameters"</span><br />
+        <span class="token keyword">asne3</span> pow(n:int, p:int):int{<br />
+        &nbsp;&nbsp;<span class="token keyword">raje3</span> n**p<br />
+        }<br /><br />
+        <span class="token string">"Calling them"</span><br />
+        hey()<br />
+        greet(<span class="token string">"Aziz Amari"</span>,4)<br />
+        <span class="token keyword">var</span> x= pow(2,8)<br />
+        ekteb(x)
     </p>
 </section>
