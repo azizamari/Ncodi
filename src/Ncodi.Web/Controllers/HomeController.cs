@@ -20,5 +20,11 @@ namespace Ncodi.Web.Controllers
         {
             return View("docs");
         }
+        [HttpGet]
+        [Route("/samples")]
+        public IActionResult Samples()
+        {
+            return View("samples");
+        }
     }
 }
