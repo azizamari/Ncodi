@@ -9,12 +9,6 @@ namespace Ncodi.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly string filePath;
-
-        public HomeController(string filePath)
-        {
-            this.filePath = filePath;
-        }
         [HttpGet]
         public IActionResult Index()
         {
@@ -31,13 +25,6 @@ namespace Ncodi.Web.Controllers
         public IActionResult Samples()
         {
             return View("samples");
-        }
-
-        [HttpGet]
-        [Route("/download")]
-        public FileContentResult Installer()
-        {
-            return File(System.IO.File.ReadAllBytes(filePath), "application/octet-stream", "ncodi.exe");
         }
     }
 }

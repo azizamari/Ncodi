@@ -17,7 +17,6 @@ namespace Ncodi.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSingleton(System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(),"setup", "ncodi.exe"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
