@@ -46,3 +46,13 @@ a {
     margin-top: -115px; /*same height as header*/
     visibility: hidden;
 }
+.download {
+    font-size: 1rem;
+    background: #F7443D;
+    width: 6rem;
+    height: 2rem;
+    margin: 1rem 0;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
