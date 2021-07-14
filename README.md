@@ -3,8 +3,6 @@
 </h1>
 <h3 align="center"><Under Construction> Ncodi is a programming language that uses the Tunisian Dialect 🔹</h3><br>
 
-
-Inspired by The .NET Compiler Platform [Roslyn](https://github.com/dotnet/roslyn)
 ## Roadmap:
 * Finish Core Interpreter - 100% ✔️
 * Add Bracket notation [index] - 100% ✔️
