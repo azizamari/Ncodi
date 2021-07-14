@@ -42,4 +42,34 @@
         &nbsp;&nbsp;ekteb(res)<br />
         }
     </p>
+
+    <h4>Star Trigangle</h4>
+    <p>
+        Drawing a triangle using "*".
+        @* code snippet here *@
+        <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
+            <textarea hidden name="code">
+var rows = 6
+men i=0 ila rows-1{
+  var res=""
+  men j=0 ila i{
+    res=res+"* "
+  }
+  ekteb(res)
+}
+ekteb("")
+</textarea>
+            <input class="tryIt" type="submit" value="Try It" />
+        </form>
+    <p class="code">
+        <span class="token keyword">var</span> rows = 6<br />
+        <span class="token keyword">men</span> i=0 <span class="token keyword">ila</span> rows-1{<br />
+        &nbsp;&nbsp;<span class="token keyword">var</span> res=<span class="token string">""</span><br />
+        &nbsp;&nbsp;<span class="token keyword">men</span> j=0 <span class="token keyword">ila</span> i{<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;res=res+<span class="token string">"* "</span><br />
+        }<br />
+        &nbsp;&nbsp;ekteb(res)<br />
+        }<br />
+        ekteb(<span class="token string">""</span>)
+    </p>
 </section>
