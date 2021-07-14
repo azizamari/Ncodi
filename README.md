@@ -11,8 +11,10 @@ Inspired by The .NET Compiler Platform [Roslyn](https://github.com/dotnet/roslyn
 * Create a Cli to run code - 100% ✔️
 * Create VsCode Extension (highlighting, syntax completion and maybe run button) 10%✔️
 * Create simple IDE - dropped :'( 
-* Create web-based playground to run code use CodeFlask 100% ✔️ (just MVP)
+* Create web-based playground to run code 100% ✔️ (just MVP)
 * Create a documentation and about page (website) 95% ✔️
 * Add sourceBrowser - 0% ✔️
-* Get reviews from 0% ✔️
-* launch beta version (late - juin)
+* Get reviews from experts 0% ✔️
+* launch beta version (18 july)
+
+Inspired by The .NET Compiler Platform [Roslyn](https://github.com/dotnet/roslyn)
