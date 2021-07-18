@@ -95,6 +95,9 @@ pre[class*="language-"] {
 .token.keyword {
     color: #66d9ef;
 }
+.token.easter {
+    color: #F7443D;
+}
 
 .token.regex,
 .token.important {
