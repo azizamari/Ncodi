@@ -1,8 +1,12 @@
 <h1 align="center">
   <img src="https://github.com/azizamari/Ncodi/blob/0c25d9232d3cd601e3fcac9cac83a97be168658d/icon-05.png" width="96px"/>
 </h1>
-<h3 align="center"><Under Construction> Ncodi is a programming language that uses the Tunisian Dialect 🔹</h3><br>
-
+<h3 align="center"><Under Construction> Ncodi is a programming language that uses the Tunisian Dialect</h3><br>
+## Useful links:
+[Official Website](https://ncodi.herokuapp.com)
+[Documentation](https://ncodi.herokuapp.com/docs)
+[Playground](https://ncodi.herokuapp.com/playground)
+[Code Samples](https://ncodi.herokuapp.com)
 ## Roadmap:
 * Finish Core Interpreter - 100% ✔️
 * Add Bracket notation [index] - 100% ✔️
