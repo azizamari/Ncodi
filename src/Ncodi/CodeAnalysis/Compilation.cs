@@ -49,7 +49,7 @@ namespace Ncodi.CodeAnalysis
             return new Compilation(this, syntaxTree);
         }
         
-        public EvaluationResult Evaluate(Dictionary<VariableSymbol,object> variables, bool useConsole=true, Func<Task<string>> GetInput=null, Action<string> send = null)
+        public EvaluationResult Evaluate(Dictionary<VariableSymbol,object> variables, bool useConsole=true, Func<Task<string>> GetInput=null, Action<string> send = null, CancellationToken token = default)
         {
             var parseDiagnostics = SyntaxTrees.SelectMany(st => st.Diagnostics);
             var diagnostics = parseDiagnostics.Concat(GlobalScope.Diagnostics).ToImmutableArray();
@@ -61,7 +61,7 @@ namespace Ncodi.CodeAnalysis
 
             var appPath = Environment.GetCommandLineArgs()[0];
             var appDirectory = Path.GetDirectoryName(appPath);
-            var cfgPath = Path.Combine(appDirectory, "cfg.dot");
+            var cfgPath = Path.Combine("D:", "ncodi", "cfg.dot");
             var cfgStatement = !program.Statement.Statements.Any() && program.Functions.Any()
                                              ? program.Functions.Last().Value
                                              : program.Statement;
@@ -74,7 +74,7 @@ namespace Ncodi.CodeAnalysis
                 return new EvaluationResult(program.Diagnostics.ToImmutableArray(), null);
 
             var evaluator = new Evaluator(program, variables);
-            var value = evaluator.Evaluate(useConsole,GetInput,send);
+            var value = evaluator.Evaluate(useConsole,GetInput,send,token);
             if (evaluator.Diagnostics.Any())
                 return new EvaluationResult(evaluator.Diagnostics.ToImmutableArray(), null);
 
