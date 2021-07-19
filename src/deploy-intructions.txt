@@ -2,3 +2,9 @@ docker build -t ncodi .
 docker run ncodi
 heroku container:push web -a ncodi
 heroku container:release web -a ncodi
+
+publish release
+transfer it use sftp
+sudo rm -r /var/netcore/
+sudo cp -a ~/release/ /var/netcore/
+sudo systemctl start kestrel-netcore.service
