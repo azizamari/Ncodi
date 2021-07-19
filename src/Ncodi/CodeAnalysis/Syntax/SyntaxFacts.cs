@@ -71,13 +71,13 @@ namespace Ncodi.CodeAnalysis.Syntax
                     return SyntaxKind.IfKeyword;
                 case "else":
                     return SyntaxKind.ElseKeyword;
-                case "whileeeeeeeeeeeeeee":
+                case "while":
                     return SyntaxKind.WhileKeyword;
                 case "for":
                     return SyntaxKind.ForKeyword;
                 case "to":
                     return SyntaxKind.ToKeyword;
-                case "doooooooooooooooo":
+                case "do":
                     return SyntaxKind.DoKeyword;
                 case "def":
                     return SyntaxKind.FunctionKeyword;
@@ -91,13 +91,13 @@ namespace Ncodi.CodeAnalysis.Syntax
                 //tunisian syntax
                 case "asne3":
                     return SyntaxKind.FunctionKeyword;
-                case "mademmmmmmmmmmmmmmmmm":
+                case "madem":
                     return SyntaxKind.WhileKeyword;
                 case "kan":
                     return SyntaxKind.IfKeyword;
                 case "wela":
                     return SyntaxKind.ElseKeyword;
-                case "dirrrrrrrrrrrrrr":
+                case "dir":
                     return SyntaxKind.DoKeyword;
                 case "yezzi":
                     return SyntaxKind.BreakKeyword;
