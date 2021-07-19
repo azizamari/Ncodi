@@ -74,7 +74,7 @@ namespace Ncodi.CodeAnalysis
                 return new EvaluationResult(program.Diagnostics.ToImmutableArray(), null);
 
             var evaluator = new Evaluator(program, variables);
-            var value = evaluator.Evaluate(useConsole,GetInput,send,token);
+            var value = evaluator.Evaluate(useConsole,GetInput,send);
             if (evaluator.Diagnostics.Any())
                 return new EvaluationResult(evaluator.Diagnostics.ToImmutableArray(), null);
 

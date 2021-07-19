@@ -132,35 +132,21 @@ namespace Ncodi.Web
         }
         public (bool, EvaluationResult) ExecuteCode(Compilation compilation, Func<Task<string>> GetInput, Action<string> send,int waitTime)
         {
-
-            var tokenSource = new CancellationTokenSource();
-            var token = tokenSource.Token;
-            tokenSource.CancelAfter(waitTime);
             EvaluationResult result = null;
-            try
+            var task = Task.Run(() =>
             {
-                Task.Run(() =>
-                {
-                    result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(), false,GetInput,send,token);
-                    if (token.IsCancellationRequested)
-                        token.ThrowIfCancellationRequested();
-                }, token).Wait(token);
-            }
-            catch
-            {
+                result = compilation.Evaluate(new Dictionary<VariableSymbol, object>(), false,GetInput,send);
+            });
+            bool isCompletedSuccessfully = task.Wait(TimeSpan.FromMilliseconds(waitTime));
 
+            if (isCompletedSuccessfully)
+            {
+                return (true, result);
+            }
+            else
+            {
                 return (false, null);
             }
-            return (true, result);
-            //bool isCompletedSuccessfully = task.Wait(TimeSpan.FromMilliseconds(waitTime));
-            //if (isCompletedSuccessfully)
-            //{
-            //    return (true, result);
-            //}
-            //else
-            //{
-            //    return (false, null);
-            //}
         }
     }
 }

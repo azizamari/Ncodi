@@ -23,7 +23,6 @@ namespace Ncodi.CodeAnalysis
         private bool _useConsole=true;
         private Func<Task<string>> _getInput;
         private Action<string> _sendOutput;
-        private CancellationToken _token;
 
         public Evaluator(BoundProgram program, Dictionary<VariableSymbol, object> variables)
         {
@@ -33,9 +32,8 @@ namespace Ncodi.CodeAnalysis
             _outputLines = new List<string>();
         }
         public ImmutableArray<Diagnostic> Diagnostics => _diagnostics.ToImmutableArray();
-        public object Evaluate(bool useConsole=true, Func<Task<string>> GetInput=null, Action<string> send = null, CancellationToken token = default)
+        public object Evaluate(bool useConsole=true, Func<Task<string>> GetInput=null, Action<string> send = null)
         {
-            _token = token;
             _useConsole = useConsole;
             _getInput = GetInput;
             _sendOutput = send;
@@ -53,7 +51,7 @@ namespace Ncodi.CodeAnalysis
             }
 
             var index = 0;
-            while (index < body.Statements.Length&& !_token.IsCancellationRequested)
+            while (index < body.Statements.Length)
             {
                 var s = body.Statements[index];
 
