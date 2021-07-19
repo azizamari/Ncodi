@@ -4,7 +4,7 @@
 <link href="~/css/docs.css" rel="stylesheet" />
 <link href="~/css/prism.css" rel="stylesheet" />
 <section class="docs">
-    <h2>Table Of Contents</h2>
+    <h2>Table Of Content</h2>
     <h3>Getting Started</h3>
     <a href="#install" class="link">Installation</a>
     <br />
@@ -50,7 +50,7 @@
     <br />
     <a href="#built" class="link">Built-in functions</a>
     <br />
-    <a href="#define" class="link">Definig functions</a>
+    <a href="#define" class="link">Defining functions</a>
     <br />
     <h2>Documentation</h2>
     <h3>Getting Started</h3>
@@ -58,12 +58,11 @@
     <h5>Windows Installation</h5>
     <ol>
         <li>
-            Download the following file in desired folder
+            Download the following file in your desired folder
             <a href="https://github.com/azizamari/Ncodi/blob/master/src/Ncodi.Web/setup/ncodi.exe?" target="_blank" class="download">Download</a>
         </li>
-        <li>
+        <ul>
             Update your path
-            <ul>
                 <li>
                     From the Start search bar, enter ‘env’ and select Edit environment variables for your account.
                 </li>
@@ -74,15 +73,14 @@
                     If the entry exists, append the full path to desiredNcodiFolder\ using ; as a separator from existing values.
                     If the entry doesn’t exist, create a new user variable named Path with the full path to desiredNcodiFolder\ as its value
                 </li>
-            </ul>
-        </li>
+        </ul>
     </ol>
     <h5>Linux Installation</h5>
-    Coming soon...
+        Coming soon...
     <span class="anchor" id="hello"></span>
     <h4>Hello World</h4>
     <p>
-        If you want to print something to the console you simply have to call the funciton ekteb("something")
+        If you want to print something to the console you simply have to call the function ekteb("something")
         @* code snippet here *@
         <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
             <input hidden type="text" name="code" value="ekteb(&quot;Hello, Tunisia!&quot;)" />
@@ -98,8 +96,7 @@
         We use variables to store data and use it later on. You can think of variables as containers that have a name and a value.
         @* code snippet here *@
         <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
-            <textarea hidden name="code">var x = "Hello again"
-ekteb(x)</textarea>
+            <textarea hidden name="code">var x = "Hello again" ekteb(x)</textarea>
             <input class="tryIt" type="submit" value="Try It" />
         </form>
     <p class="code">
@@ -160,8 +157,13 @@ ekteb(dec)</textarea>
 
     <span class="anchor" id="str"></span>
     <h4>String</h4>
-    Strings are basically textual data. You must use quoatation marks "" to indicate that it's a string.
-    @* code snippet here *@
+    In computer programming, a string is traditionally a sequence of characters,    
+    in other words
+    Strings are basically textual data. You must use quotation marks "" to indicate that it's a string.
+    <a href="https://en.m.wikipedia.org/wiki/String_(computer_science)#:~:text=In%20computer%20programming%2C%20a%20string,as%20some%20kind%20of%20variable.&text=In%20formal%20languages%2C%20which%20are,a%20set%20called%20an%20alphabet.">
+        learn more about strings
+    </a>
+@* code snippet here *@
     <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
         <textarea hidden name="code">var s="Code in your own words"
 var x="51"
@@ -194,15 +196,15 @@ ekteb(res)</textarea>
 
     <span class="anchor" id="declare"></span>
     <h4>Optional Type Declaration</h4>
-    You also can specifiy the type of a variable when declaring it. This is mainly to make your code more clear since Ncodi can dynamically detect variable types. If you declare a variable as int and then assign to it a bool value you will get an error.
+    You also can specify the type of a variable when declaring it. This is mainly to make your code more clear since Ncodi can dynamically detect variable types. If you declare a variable as int and then assign to it a boolean value you will get an error.
     @* code snippet here *@
     <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
         <textarea hidden name="code">var num:int=1564
-var dec:decimal=1.5
-var really:bool=ghalet
-var esmi:string="Aziz Amari"
-"This will cause an error because 16.5 isn't an int"
-var age:int=16.5</textarea>
+                                     var dec:decimal=1.5
+                                     var really:bool=ghalet
+                                     var esmi:string="Aziz Amari"
+                "This will cause an error because 16.5 isn't an int"
+                                     var age:int=16.5</textarea>
         <input class="tryIt" type="submit" value="Try It" />
     </form>
     <p class="code">
@@ -276,7 +278,7 @@ ekteb(5%2)</textarea>
     -Greater or Equal operator >=<br />
     -Less or Equal operator <=<br />
     -Is Equal operator '=='<br />
-    -Is Diffirent operator '!='<br />
+    -Is Different operator '!='<br />
     <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
         <textarea hidden name="code">"This returns either s7i7 or ghalet"
 "Numbers"
@@ -378,7 +380,6 @@ wela{
 }
 </textarea>
         <input class="tryIt" type="submit" value="Try It" />
-
     </form>
     <p class="code">
         <span class="token string">"Make sure you enter a number here"</span><br /><br />
@@ -423,10 +424,11 @@ wela{
         }
     </p>
     <h3>Loops</h3>
-    Loops are very usefull whenever you have to repeat some instructions a number of times.
+    Loops are very useful whenever you have to repeat some instructions a number of times.
+        <a href="https://en.wikipedia.org/wiki/For_loop">Learn more about loops</a>
     <span class="anchor" id="men"></span>
     <h4>men ... ila loop</h4>
-    This allows you to repeat something n times and also have a counter variable to keep count of current state.
+    This allows you to repeat something many times and also have a counter variable to keep count of current state.
     @* code snippet here *@
     <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
         <textarea hidden name="code">
@@ -476,7 +478,6 @@ madem ( lang!="ncodi" && lang!="Ncodi"){
 }
 ekteb("YES")</textarea>
         <input class="tryIt" type="submit" value="Try It" />
-
     </form>
     <p class="code">
         ekteb(<span class="token string">"A3tini a7sen programming language:"</span>)<br />
@@ -489,7 +490,7 @@ ekteb("YES")</textarea>
     </p>
     <span class="anchor" id="dir"></span>
     <h4>dir...madem loop</h4>
-    This loop is similar to the previous one madem execpt we check the condtion after excuting at least once meanwhile in madem we check the condition before even starting.
+    This loop is similar to the previous one madem except we check the condition after executing at least once meanwhile in dir...madem we check the condition before even starting.
     @* code snippet here *@
     <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
         <textarea hidden name="code">
@@ -547,7 +548,7 @@ ekteb("Length: "+string(len(x)))</textarea>
     </p>
     <span class="anchor" id="built"></span>
     <h4>Built-in functions</h4>
-    We have a lot of builtin functions in Ncodi.
+    We have a lot of built-in functions in Ncodi.
     @* code snippet here *@
     <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
         <textarea hidden name="code">"ekteb: it prints whatever you write on the screen"
@@ -557,7 +558,7 @@ ekteb("Hello ncodi users")
 ekteb("Do you like Ncodi ?")
 var x=a9ra()
 
-"sqrt: you give it a number and it will give you it's square root"
+"sqrt: it returns the square root of a given number"
 var s=sqrt(16)
 ekteb(s)
 
@@ -593,7 +594,7 @@ ekteb(chr(ord("B")))</textarea>
         ekteb(chr(ord(<span class="token string">"B"</span>)))
     </p>
     <span class="anchor" id="define"></span>
-    <h4>Definig functions</h4>
+    <h4>Defining functions</h4>
     We create functions by using asne3 keyword then giving a name to it and we type the desired parameters and their type
     @* code snippet here *@
     <form method="post" asp-controller="playground" asp-action="TryCodeBtn">
