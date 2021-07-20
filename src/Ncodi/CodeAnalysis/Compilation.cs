@@ -61,7 +61,7 @@ namespace Ncodi.CodeAnalysis
 
             var appPath = Environment.GetCommandLineArgs()[0];
             var appDirectory = Path.GetDirectoryName(appPath);
-            var cfgPath = Path.Combine(appDirectory, "cfg.dot");
+            var cfgPath = Path.Combine("D:", "ncodi", "cfg.dot");
             var cfgStatement = !program.Statement.Statements.Any() && program.Functions.Any()
                                              ? program.Functions.Last().Value
                                              : program.Statement;
