@@ -20,4 +20,4 @@
 * Get reviews from experts 50% ✔️
 * launch beta version (18 july)
 
-Software Design Inspired by The .NET Compiler Platform [Roslyn](https://github.com/dotnet/roslyn)
+Software Design Inspired by The .NET Compiler Platform [Roslyn](https://github.com/dotnet/roslyn) and [Minsk](https://github.com/terrajobst/minsk)
