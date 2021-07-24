@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nc", "Nc\Nc.csproj", "{63B96E26-8B90-4DF2-8672-2B130B2A01DA}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ncodi", "Ncodi\Ncodi.csproj", "{33572359-071C-4DEB-8FD2-D7A947EE9164}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ni", "Ni\Ni.csproj", "{8A11A806-6A62-4A66-8D32-2C194F2135D1}"
@@ -15,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ncodi.Cli", "Ncodi.Cli\Ncod
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Ncodi.Setup", "Ncodi.Setup\Ncodi.Setup.vdproj", "{A315EB79-081B-425C-B8C5-2D46973E0D88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ncodi.Web", "Ncodi.Web\Ncodi.Web.csproj", "{6AC92B98-0AB4-4620-8329-B8ECFC07A549}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ncodi.Web", "Ncodi.Web\Ncodi.Web.csproj", "{6AC92B98-0AB4-4620-8329-B8ECFC07A549}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{63B96E26-8B90-4DF2-8672-2B130B2A01DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{63B96E26-8B90-4DF2-8672-2B130B2A01DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{63B96E26-8B90-4DF2-8672-2B130B2A01DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{63B96E26-8B90-4DF2-8672-2B130B2A01DA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{33572359-071C-4DEB-8FD2-D7A947EE9164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{33572359-071C-4DEB-8FD2-D7A947EE9164}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33572359-071C-4DEB-8FD2-D7A947EE9164}.Release|Any CPU.ActiveCfg = Release|Any CPU
