@@ -91,7 +91,7 @@ namespace Ncodi.CodeAnalysis.Syntax
                 //tunisian syntax
                 case "asne3":
                     return SyntaxKind.FunctionKeyword;
-                case "mademmmmmmmmm":
+                case "madem":
                     return SyntaxKind.WhileKeyword;
                 case "kan":
                     return SyntaxKind.IfKeyword;
