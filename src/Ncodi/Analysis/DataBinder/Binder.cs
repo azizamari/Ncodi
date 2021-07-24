@@ -11,7 +11,7 @@ namespace Ncodi.CodeAnalysis.Binding
 {
     internal sealed class Binder
     {
-        private readonly DiagnosticBag _diagnostics = new DiagnosticBag();
+        private readonly ErrorBag _diagnostics = new ErrorBag();
         private readonly FunctionSymbol _function;
         private Stack<(BoundLabel BreakLabel, BoundLabel ContinueLabel)> _loopStack = new Stack<(BoundLabel BreakLabel, BoundLabel ContinueLabel)>();
         private int _labelCounter;
@@ -152,7 +152,7 @@ namespace Ncodi.CodeAnalysis.Binding
             return result;
         }
 
-        public DiagnosticBag Diagnostics => _diagnostics;
+        public ErrorBag Diagnostics => _diagnostics;
 
         private BoundStatement BindStatement(StatementSyntax syntax)
         {

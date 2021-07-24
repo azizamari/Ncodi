@@ -7,7 +7,7 @@ namespace Ncodi.CodeAnalysis.Syntax
 {
    internal sealed class Lexer
     {
-        private readonly DiagnosticBag _diagnostics = new DiagnosticBag();
+        private readonly ErrorBag _diagnostics = new ErrorBag();
         private readonly SourceText _text;
         private readonly SyntaxTree _syntaxTree;
         private int _position;
@@ -22,7 +22,7 @@ namespace Ncodi.CodeAnalysis.Syntax
             _syntaxTree = syntaxTree;
         }
 
-        public DiagnosticBag Diagnostics => _diagnostics;
+        public ErrorBag Diagnostics => _diagnostics;
         private char Current => Peek(0);
         private char LookAhead => Peek(1);
 

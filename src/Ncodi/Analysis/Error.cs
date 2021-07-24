@@ -3,6 +3,7 @@
 namespace Ncodi.CodeAnalysis
 {
     public sealed class Diagnostic
+
     {
         public Diagnostic(TextLocation location,string message)
         {

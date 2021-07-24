@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Ncodi.CodeAnalysis
 {
-    internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
+    internal sealed class ErrorBag : IEnumerable<Diagnostic>
     {
         private readonly List<Diagnostic> _diagnostics = new List<Diagnostic>();
 
@@ -29,7 +29,7 @@ namespace Ncodi.CodeAnalysis
             Report(span, message);
         }
 
-        public void AddRange(DiagnosticBag diagnostics)
+        public void AddRange(ErrorBag diagnostics)
         {
             _diagnostics.AddRange(diagnostics._diagnostics);
         }

@@ -14,7 +14,7 @@ namespace Ncodi.CodeAnalysis
     {
         public List<string> _outputLines;
         private readonly BoundProgram _program;
-        private readonly DiagnosticBag _diagnostics = new DiagnosticBag();
+        private readonly ErrorBag _diagnostics = new ErrorBag();
         private readonly Dictionary<VariableSymbol, object> _globals;
         public readonly Stack<Dictionary<VariableSymbol, object>> _locals = new Stack<Dictionary<VariableSymbol, object>>();
         private Random _random;

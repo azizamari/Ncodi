@@ -7,7 +7,7 @@ namespace Ncodi.CodeAnalysis.Syntax
     internal sealed class Parser
     {
         private readonly ImmutableArray<SyntaxToken> _tokens;
-        private readonly DiagnosticBag _diagnostics = new DiagnosticBag();
+        private readonly ErrorBag _diagnostics = new ErrorBag();
         private readonly SourceText _text;
         private readonly SyntaxTree _syntaxTree;
         private int _position;
@@ -33,7 +33,7 @@ namespace Ncodi.CodeAnalysis.Syntax
             _text = syntaxTree.Text;
         }
 
-        public DiagnosticBag Diagnostics => _diagnostics;
+        public ErrorBag Diagnostics => _diagnostics;
 
         private SyntaxToken Peek(int offset)
         {

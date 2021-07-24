@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Ncodi.CodeAnalysis.IO
 {
-    public static class TextWriterExtensions
+    public static class WriterExtensions
     {
         private static bool IsConsoleOut(this TextWriter writer)
         {
