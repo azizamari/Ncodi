@@ -4,10 +4,10 @@
 <h3 align="center">Ncodi is a programming language that uses the Tunisian Dialect</h3><br>
 
 ## Useful Links:
-[Official Website](https://ncodi.herokuapp.com/) /
-[Documentation](https://ncodi.herokuapp.com/docs/) /
-[Playground](https://ncodi.herokuapp.com/playground/) / 
-[Code Samples](https://ncodi.herokuapp.com/samples/)
+[Official Website](http://ncodi.tn/) /
+[Documentation](http://ncodi.tn/docs/) /
+[Playground](http://ncodi.tn/playground/) / 
+[Code Samples](http://ncodi.tn/samples/)
 
 <img align="center" src="https://github.com/azizamari/azizamari.github.io/blob/52696e34faaf18b59c62d4dc55b5aeee447f1b72/images/projects/ncodi.gif" width="600" height="auto" />
 
@@ -20,4 +20,4 @@
 * Get reviews from experts 50% ✔️
 * launch beta version (18 july)
 
-Software Design Inspired by The .NET Compiler Platform [Roslyn](https://github.com/dotnet/roslyn)
+Software Design Inspired by The .NET Compiler Platform [Roslyn](https://github.com/dotnet/roslyn) and [Minsk](https://github.com/terrajobst/minsk)
