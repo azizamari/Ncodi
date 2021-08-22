@@ -7,4 +7,5 @@ publish release
 transfer it use sftp
 sudo rm -r /var/netcore/
 sudo cp -a ~/release/ /var/netcore/
+sudo systemctl stop kestrel-netcore.service
 sudo systemctl start kestrel-netcore.service
