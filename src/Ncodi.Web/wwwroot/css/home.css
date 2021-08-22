@@ -380,6 +380,17 @@ blockquote {
 
 
 /* Footer */
+.stats {
+    height: 20vh;
+    background: #f7443d;
+    display:flex;
+    justify-content:space-evenly;
+    align-content:center;
+    align-items:center;
+    color:white;
+    font-size:1.3rem;
+    text-align:center;
+}
 
 @media only screen and (max-width:460px) {
     .content {
@@ -425,6 +436,14 @@ blockquote {
     .about_text p {
         font-size: 14px;
     }
+    .stats {
+        flex-direction:column;
+        font-size: 1rem;
+        height:47vh;
+    }
+    .stats div{
+        padding:10px;
+    }
 }
 @media only screen and (max-width:768px) {
     .accordion_link {
@@ -448,5 +467,8 @@ blockquote {
     }
     .about_text h1 {
         margin-top: 20px;
+    }
+    .stats {
+        font-size: 1.1rem;
     }
 }
