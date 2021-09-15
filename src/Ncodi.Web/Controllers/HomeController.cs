@@ -12,7 +12,7 @@ namespace Ncodi.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            return Redirect("https://ncodi.tn/");
         }
         [HttpGet]
         [Route("/docs")]
