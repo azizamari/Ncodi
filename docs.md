@@ -117,27 +117,27 @@ var esmi:string = "Aziz Amari"
 
 ### Arithmetic
 
-Addition: +
-Subtraction: -
-Multiplication: *
-Division: /
-Euclidean Division: //
-Modulo: %
-Exponentiation: **
+* Addition: +
+* Subtraction: -
+* Multiplication: *
+* Division: /
+* Euclidean Division: //
+* Modulo: %
+* Exponentiation: **
 
 ### Comparison
 
-Greater than: >
-Greater than or equal to: >=
-Less than or equal to: <=
-Equal to: ==
-Not equal to: !=
+* Greater than: >
+* Greater than or equal to: >=
+* Less than or equal to: <=
+* Equal to: ==
+* Not equal to: !=
 
 ### Logical
 
-AND: &&
-OR: ||
-NOT: !
+* AND: &&
+* OR: ||
+* NOT: !
 
 ## Conditionals
 ### Normal
@@ -193,12 +193,12 @@ ekteb(len("aziz"))
 
 ### Built-in functions
 
-ekteb(): Prints to the screen
-a9ra(): Prompts for user input
-sqrt(): Calculates square root
-random(): Generates a random number
-ord(): Converts a character to its ASCII code
-chr(): Converts an ASCII code to a character
+* ekteb(): Prints to the screen
+* a9ra(): Prompts for user input
+* sqrt(): Calculates square root
+* random(): Generates a random number
+* ord(): Converts a character to its ASCII code
+* chr(): Converts an ASCII code to a character
 
 ### Defining functions
 
