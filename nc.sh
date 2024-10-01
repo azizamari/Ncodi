@@ -1,2 +1,2 @@
 #!/bin/bash
-dotnet run --project ./src/nc/nc.csproj -- "$@"
+dotnet run --project ./src/Nc/Nc.csproj -- "$@"
